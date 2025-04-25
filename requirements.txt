@@ -1,3 +1,6 @@
 toml
 keyboard
 pywin32
+importlib
+importlib-metadata
+
