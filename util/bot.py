@@ -1,4 +1,5 @@
 import os
+import logging  # Import the logging module
 from time import sleep
 import win32gui
 
@@ -12,6 +13,28 @@ import util.keys as keys
 class Bot:
     def __init__(self) -> None:
         """Initialize the bot with configuration, commands, and chat queue."""
+        # Set up logging
+        self.logger = logging.getLogger(__name__)  # Create a logger for the Bot class
+        self.logger.setLevel(logging.INFO)  # Set the logging level to INFO
+
+        # File handler for logging to a file
+        file_handler = logging.FileHandler("bot.log")
+        file_handler.setLevel(logging.INFO)
+        file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        file_handler.setFormatter(file_formatter)
+
+        # Stream handler for logging to the console
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.INFO)
+        console_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        console_handler.setFormatter(console_formatter)
+
+        # Add both handlers to the logger
+        self.logger.addHandler(file_handler)
+        self.logger.addHandler(console_handler)
+
+        self.logger.info("Initializing bot...")
+
         self.chat_queue = []  # Queue to store chat messages to be sent
         self.config = load_config()  # Load configuration from config.toml
         self.prefix = self.config.get("command_prefix", "@")  # Command prefix (e.g., "@")
@@ -27,83 +50,101 @@ class Bot:
         # Load commands from the "cmds" directory
         commands_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cmds")
         self.commands.load_commands(commands_dir)
+        self.logger.info(f"Loaded commands from {commands_dir}")
 
         # Load modules from the "modules" directory
         modules_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "modules")
         self.modules.load_modules(modules_dir)
+        self.logger.info(f"Loaded modules from {modules_dir}")
 
         # Connect to the Counter-Strike 2 game window
         self.connect_to_cs2()
 
     def connect_to_cs2(self):
         """Connect to the Counter-Strike 2 window."""
+        self.logger.info("Connecting to Counter-Strike 2 window...")
         cs2_hwnd = win32gui.FindWindow(None, "Counter-Strike 2")  # Find the CS2 window
         if cs2_hwnd == 0:
+            self.logger.error("Counter-Strike 2 is not running.")
             raise Exception("Counter-Strike 2 is not running.")  # Raise an error if the game is not running
         win32gui.SetForegroundWindow(cs2_hwnd)  # Bring the CS2 window to the foreground
+        self.logger.info("Connected to Counter-Strike 2 window.")
 
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         """Add a message to the chat queue."""
+        # clean message
+        chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "י").strip()
+        self.logger.debug(f"Adding message to chat queue: {chattext} (team: {is_team})")
         self.chat_queue.append((is_team, chattext))  # Append the message to the queue
 
     def run_chat_queue(self) -> None:
         """Process the chat queue."""
-        if self.chat_queue:
-            # Get the next message from the queue
+        while self.chat_queue:
             is_team, chattext = self.chat_queue.pop(0)
+            self.logger.info(f"Processing chat message: {chattext} (team: {is_team})")
 
-            # Write the message to the chat configuration file
-            write_chat_to_cfg(self.exec_path, self.send_chat_key, is_team, chattext)
-            sleep(0.5)
+            try:
+                # Write the message to the chat configuration file
+                write_chat_to_cfg(self.exec_path, self.send_chat_key, is_team, chattext)
+                sleep(0.5)
 
-            # Load the chat message into the game
-            load_chat(self.load_chat_key_win32)
-            sleep(0.5)
+                # Load the chat message into the game
+                load_chat(self.load_chat_key_win32)
+                sleep(0.5)
 
-            # Send the chat message
-            send_chat(self.send_chat_key_win32)
-            sleep(0.5)
-
-            # Process the next message in the queue
-            self.run_chat_queue()
+                # Send the chat message
+                send_chat(self.send_chat_key_win32)
+                sleep(0.5)
+            except Exception as e:
+                self.logger.error(f"Error processing chat message: {e}")
 
     def run(self):
         """Main loop to monitor the console log and process commands."""
+        self.logger.info("Starting bot main loop...")
         if not os.path.exists(self.console_log_path):
-            raise FileNotFoundError(f"Console log file {self.console_log_path} does not exist.")  # Ensure the log file exists
+            self.logger.error(f"Console log file {self.console_log_path} does not exist.")
+            raise FileNotFoundError(f"Console log file {self.console_log_path} does not exist.")
 
         with open(self.console_log_path, "r", encoding="utf-8") as log_file:
-            # Move to the end of the file to start monitoring new lines
-            log_file.seek(0, os.SEEK_END)
+            log_file.seek(0, os.SEEK_END)  # Move to the end of the file
 
             while True:
-                # Read the next line from the log file
                 line = log_file.readline()
                 if not line:
-                    sleep(0.1)  # Wait briefly if no new line is available
+                    sleep(0.1)
                     continue
 
-                # Process lines containing the command prefix
-                if self.prefix in line:
+                # Parse the line to extract playername, is_team, and chattext
+                try:
+                    is_team, playername, chattext = self.parse_chat_line(line)
+                except ValueError as e:
+                    self.logger.error(f"Error parsing line: {line}\n{e}")
+                    continue
+
+                # Pass the parsed arguments to all modules that are reading input
+                for module_name, module_instance in self.modules.modules.items():
+                    if getattr(module_instance, "reading_input", True):  # Check if the module is reading input
+                        try:
+                            response = module_instance.process(playername, is_team, chattext)
+                            if response:
+                                self.add_to_chat_queue(is_team, response)
+                        except Exception as e:
+                            self.logger.error(f"Error in module '{module_name}' while processing line: {e}")
+
+                # Process commands if the line contains the command prefix
+                if chattext.startswith(self.prefix):
                     try:
-                        # Parse the player name, team status, and chat text
-                        is_team, playername, chattext = self.parse_chat_line(line)
+                        command_name = chattext[len(self.prefix):].split(" ")[0]
+                        command_args = chattext[len(self.prefix) + len(command_name):].strip()
 
-                        # Check if the chat text starts with the command prefix
-                        if chattext.startswith(self.prefix):
-                            # Extract the command name and arguments
-                            command_name = chattext[len(self.prefix):].split(" ")[0]
-                            command_args = chattext[len(self.prefix) + len(command_name):].strip()
+                        if command_name in self.commands.commands:
+                            self.logger.info(f"Executing command: {command_name} with args: {command_args}")
+                            self.commands.execute(command_name, self, is_team, playername, command_args)
+                        else:
+                            self.logger.warning(f"Unknown command: {command_name}")
+                    except Exception as e:
+                        self.logger.error(f"Error executing command: {line}\n{e}")
 
-                            # Execute the command if it is registered
-                            if command_name in self.commands.commands:
-                                self.commands.execute(command_name, self, is_team, playername, command_args)
-                            else:
-                                print(f"Unknown command: {command_name}")  # Print a message for unknown commands
-                    except ValueError as e:
-                        print(f"Error processing line: {line}\n{e}")  # Handle errors gracefully
-
-                # Process the chat queue
                 self.run_chat_queue()
 
     def parse_chat_line(self, line: str):
@@ -113,7 +154,7 @@ class Bot:
             is_team = line.split("] ")[0].split("  [")[1] != "ALL"
 
             # Extract the player name and chat text
-            chatline = line.split("] ")[1].split(": ")
+            chatline = line.split("] ", 1)[1].rsplit(": ", 1)  # Use rsplit to split at the last occurrence of ": "
             playername = chatline[0].strip().replace("\u200e", "")
             playername = playername.split("\ufe6b")[0].split("[DEAD]")[0].strip()
             playername = playername.replace("/", "/​").replace("'", "י")
@@ -124,4 +165,5 @@ class Bot:
 
             return is_team, playername, chattext
         except (ValueError, IndexError) as e:
+            self.logger.error(f"Invalid chat line format: {line}")
             raise ValueError(f"Invalid chat line format: {line}") from e
