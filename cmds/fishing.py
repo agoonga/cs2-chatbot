@@ -14,8 +14,12 @@ def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     fishing_module = bot.modules.get_module("fishing")
     if fishing_module:
         fish = fishing_module.fish(playername)
-        if fish:
+        if fish and "fish_name" in fish:
+            # If a fish is caught, display its details
             bot.add_to_chat_queue(is_team, f"{playername} caught a {fish['fish_name']} weighing {fish['weight']} lbs worth ${fish['price']}!")
+        elif fish:
+            # If the result is not a fish but contains a message, send it directly
+            bot.add_to_chat_queue(is_team, f"{playername}: {fish['error']}")
         else:
             bot.add_to_chat_queue(is_team, f"{playername}: No fish were caught. Better luck next time!")
     else:

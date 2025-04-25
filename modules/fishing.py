@@ -42,6 +42,29 @@ class Fishing:
             print("No fish data available.")
             return None
 
+        # Check the current number of fish in the user's sack
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT COUNT(*)
+            FROM caught_fish
+            WHERE user_id = ?
+        """, (user_id,))
+        fish_count = cursor.fetchone()
+
+        # Convert fish_count to an integer
+        fish_count = int(fish_count[0]) if fish_count else 0
+
+        print(f"User {user_id} has {fish_count} fish in their sack.")
+
+        # Enforce the limit of 5 fish
+        if fish_count >= 5:
+            conn.close()
+            print(f"User {user_id} has reached the limit of 5 fish.")
+            return {"error": "You cannot carry more than 5 fish in your sack."}
+
+        conn.close()
+
         # Randomly select a fish based on catch rate
         total_catch_rate = sum(fish["catch_rate"] for fish in self.fish_data)
         random_roll = random.uniform(0, total_catch_rate)
@@ -62,12 +85,15 @@ class Fishing:
         """Add a caught fish to the database."""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
+
+        # Add the new fish to the database
         cursor.execute("""
             INSERT INTO caught_fish (user_id, fish_name, weight, price)
             VALUES (?, ?, ?, ?)
         """, (user_id, fish_name, weight, price))
         conn.commit()
         conn.close()
+        return f"You caught a {fish_name} weighing {weight} lbs worth ${price}!"
 
     def get_sack(self, user_id):
         """Retrieve all fish caught by the user."""
