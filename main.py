@@ -85,24 +85,24 @@ class Bot:
 
                     chattext = chatline[1].strip()
                     chattext = chattext.replace(";", ";")
-                    chattext = playername.replace("/", "/​")
-                    playername = playername.replace("'", "י")
+                    chattext = chattext.replace("/", "/​")
+                    chattext = chattext.replace("'", "י")
 
-                    # make sure chat starts with wubalubadubdub
+                    print(f"chattext: {chattext}")
+                    possible_cmd = chattext.split(" ")[0]
+                    print(f"Command: {possible_cmd}")
+                    print(f"Chattext: {chattext}")
+                    print(f"Playername: {playername}")
+                    
                     if not chattext.startswith("@"):
                         continue
 
                     chattext = chattext[1:]
                     chattext = chattext.strip()
 
-                    print(f"chattext: {chattext}")
-                    possible_cmd = chattext.split(" ")[0]
                     # check if command exists
                     if possible_cmd in self.commands:
                         print(f"Command found: {chattext}")
-                        print(f"Command: {possible_cmd}")
-                        print(f"Chattext: {chattext}")
-                        print(f"Playername: {playername}")
                         chattext = chattext.replace(possible_cmd, "", 1).strip()
                         # run command
                         command = self.commands[possible_cmd]
