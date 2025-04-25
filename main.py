@@ -7,25 +7,30 @@ import toml
 import importlib.util as importlib_util
 import inspect
 
-
-import util.register_cmd
 import util.keys as keys
+
 
 class Bot:
     def __init__(self) -> None:
         self.chat_queue = []
         self.config = self.load_config()
-        self.load_chat_key = self.config.get('load_chat_key', "kp_1") # keypad 1
+        self.load_chat_key = self.config.get("load_chat_key", "kp_1")  # keypad 1
         self.load_chat_key_win32 = keys.KEYS[self.load_chat_key]
-        self.send_chat_key = self.config.get('send_chat_key', "kp_2") # keypad 2
+        self.send_chat_key = self.config.get("send_chat_key", "kp_2")  # keypad 2
         self.send_chat_key_win32 = keys.KEYS[self.send_chat_key]
         self.console_log_path = os.path.join(
             os.path.dirname(__file__),
-            self.config.get('console_log_path', 'C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/console.log')
+            self.config.get(
+                "console_log_path",
+                "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/console.log",
+            ),
         )
         self.exec_path = os.path.join(
             os.path.dirname(__file__),
-            self.config.get('exec_path', 'C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/chat.cfg')
+            self.config.get(
+                "exec_path",
+                "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/chat.cfg",
+            ),
         )
         self.load_commands()
 
@@ -41,7 +46,7 @@ class Bot:
             print(f"console log file {self.console_log_path} does not exist.")
             exit(1)
 
-        with open(self.console_log_path, 'r', encoding='utf-8') as f:
+        with open(self.console_log_path, "r", encoding="utf-8") as f:
             # move to the end of the file
             f.seek(0, os.SEEK_END)
             # follow the file for new lines
@@ -57,18 +62,19 @@ class Bot:
                     print(line)
                     try:
                         # if its not ALL, then its team
-                        is_team = line.split('] ')[0].split('  [')[1]
+                        is_team = line.split("] ")[0].split("  [")[1]
                         print("is_team", is_team)
-                        chatline = line.split('] ')[1].split(': ')
+                        chatline = line.split("] ")[1].split(": ")
                         playername = chatline[0].strip()
-                        playername = playername.replace('\u200e', '')
+                        playername = playername.replace("\u200e", "")
                         if is_team != "ALL":
                             is_team = True
                         else:
                             is_team = False
-                        playername = playername.split('\ufe6b')[0]
-                        playername = playername.split('[DEAD]')[0]
-                        playername = playername.replace('/', '∕')
+                        playername = playername.split("\ufe6b")[0]
+                        playername = playername.split("[DEAD]")[0]
+                        playername = playername.replace("/", "/​")
+                        playername = playername.replace("'", "י")
                         playername = playername.strip()
                     except ValueError:
                         print("Line is not chat line", line)
@@ -77,8 +83,10 @@ class Bot:
                         print("Line is not chat line", line)
                         continue
 
-
                     chattext = chatline[1].strip()
+                    chattext = chattext.replace(";", ";")
+                    chattext = playername.replace("/", "/​")
+                    playername = playername.replace("'", "י")
 
                     # make sure chat starts with wubalubadubdub
                     if not chattext.startswith("@"):
@@ -102,7 +110,6 @@ class Bot:
 
                     self.run_chat_queue()
 
-
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         self.chat_queue.append((is_team, chattext))
 
@@ -115,23 +122,23 @@ class Bot:
 
             # write chat to cfg file
             self.write_chat_to_cfg(is_team, chattext)
-            sleep(.5)
+            sleep(0.5)
 
             # load chat
             self.load_chat()
-            sleep(.5)
+            sleep(0.5)
 
             # send chat
             self.send_chat()
-            sleep(.5)
+            sleep(0.5)
 
             self.run_chat_queue()
 
     def load_commands(self) -> None:
-        commands_dir = os.path.join(os.path.dirname(__file__), 'cmds')
+        commands_dir = os.path.join(os.path.dirname(__file__), "cmds")
         self.commands = {}  # Initialize the commands dictionary
         for filename in os.listdir(commands_dir):
-            if filename.endswith('.py'):
+            if filename.endswith(".py"):
                 module_name = filename[:-3]
                 module_path = os.path.join(commands_dir, filename)
                 spec = importlib_util.spec_from_file_location(module_name, module_path)
@@ -140,17 +147,19 @@ class Bot:
 
                 # Inspect the module for functions decorated with @bot_command
                 for name, obj in inspect.getmembers(module, inspect.isfunction):
-                    if getattr(obj, "is_bot_command", False):  # Check if it's a bot command
+                    if getattr(
+                        obj, "is_bot_command", False
+                    ):  # Check if it's a bot command
                         self.commands[obj.command_name] = obj
 
         print(f"Loaded commands: {list(self.commands.keys())}")
 
     # load config
     def load_config(self) -> dict:
-        config_path = os.path.join(os.path.dirname(__file__), 'config.toml')
+        config_path = os.path.join(os.path.dirname(__file__), "config.toml")
         if not os.path.exists(config_path):
             raise FileNotFoundError(f"config file {config_path} does not exist.")
-        with open(config_path, 'r') as f:
+        with open(config_path, "r") as f:
             config = toml.load(f)
         return config
 
@@ -166,12 +175,13 @@ class Bot:
 
     def write_chat_to_cfg(self, is_team: bool, chattext: str) -> None:
         # clear cfg file then write chat to cfg file
-        with open(self.exec_path, 'w', encoding='utf-8') as f:
+        with open(self.exec_path, "w", encoding="utf-8") as f:
             # write chat to cfg file
             if is_team:
-                f.write(f'bind "{self.send_chat_key}" say_team \"{chattext}\"\n')
+                f.write(f'bind "{self.send_chat_key}" say_team "{chattext}"\n')
             else:
-                f.write(f'bind "{self.send_chat_key}" say \"{chattext}\"\n')
+                f.write(f'bind "{self.send_chat_key}" say "{chattext}"\n')
+
 
 if __name__ == "__main__":
     bot = Bot()
