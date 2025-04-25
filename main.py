@@ -87,18 +87,22 @@ class Bot:
                     chattext = chattext.replace(";", ";")
                     chattext = chattext.replace("/", "/​")
                     chattext = chattext.replace("'", "י")
+                    chattext = chattext.strip()
 
-                    print(f"chattext: {chattext}")
+                    print(f"chattext: [{chattext}]")
                     possible_cmd = chattext.split(" ")[0]
-                    print(f"Command: {possible_cmd}")
-                    print(f"Chattext: {chattext}")
-                    print(f"Playername: {playername}")
+                    print(f"Command: [{possible_cmd}]")
+                    print(f"Chattext: [{chattext}]")
+                    print(f"Playername: [{playername}]")
                     
                     if not chattext.startswith("@"):
                         continue
+                    print("after continue")
 
-                    chattext = chattext[1:]
-                    chattext = chattext.strip()
+                    possible_cmd = possible_cmd[1:]
+                    possible_cmd = possible_cmd.strip()
+                    # remove @ from chattext
+                    chattext = chattext.replace(f"@{possible_cmd}", "", 1).strip()
 
                     # check if command exists
                     if possible_cmd in self.commands:
