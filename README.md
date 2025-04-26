@@ -1,5 +1,5 @@
 # cs2-chatbot
-Python CS2 chat bot
+Python CS2 chat bot by meef (/id/meefaf, meef)
 
 ## Setup Instructions
 
