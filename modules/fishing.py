@@ -4,6 +4,8 @@ import sqlite3
 import json
 import os
 
+from util.module_registry import module_registry
+
 class Fishing:
     def __init__(self):
         self.fish_data = self.load_fish_data()
@@ -173,5 +175,94 @@ class Fishing:
                 return fish_data.get("description", "You ate the fish.")
 
         return "You ate the fish."
+
+    def sell_fish(self, user_id, fish_name=None):
+        """
+        Sell the first fish matching the given name from the user's sack, or sell all fish if 'all' is provided.
+
+        :param user_id: The ID of the user.
+        :param fish_name: The name of the fish to sell, or 'all' to sell all fish.
+        :return: The total earnings or an error message if no fish is found.
+        """
+
+        # check if the bot has the economy module loaded to its modules
+        try:
+            economy = module_registry.get_module("economy")
+        except ValueError:
+            print("Economy module not found.")
+            return "Economy module not found."
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+
+        if fish_name and fish_name.strip().lower() == "all":
+            # Sell all fish in the sack
+            cursor.execute("""
+                SELECT price
+                FROM caught_fish
+                WHERE user_id = ?
+            """, (user_id,))
+            fish_prices = cursor.fetchall()
+
+            if not fish_prices:
+                conn.close()
+                return "Your sack is empty. You have no fish to sell."
+
+            total_earnings = sum(price[0] for price in fish_prices)
+
+            # Remove all fish from the database
+            cursor.execute("""
+                DELETE FROM caught_fish
+                WHERE user_id = ?
+            """, (user_id,))
+            conn.commit()
+            conn.close()
+
+            # Add the earnings to the user's balance
+            new_balance = economy.add_balance(user_id, total_earnings)
+
+            return f"You sold all your fish for a total of ${total_earnings:.2f}! Your new balance is ${new_balance:.2f}."
+        else:
+            # Sell the first fish in the sack or the first matching fish
+            if fish_name:
+                # Sanitize the fish_name input
+                fish_name = fish_name.strip()
+
+                # Retrieve the first fish matching the name (case-insensitive) from the database
+                cursor.execute("""
+                    SELECT id, fish_name, price
+                    FROM caught_fish
+                    WHERE user_id = ? AND LOWER(fish_name) = LOWER(?)
+                    LIMIT 1
+                """, (user_id, fish_name))
+            else:
+                # Retrieve the first fish in the sack if no name is provided
+                cursor.execute("""
+                    SELECT id, fish_name, price
+                    FROM caught_fish
+                    WHERE user_id = ?
+                    LIMIT 1
+                """, (user_id,))
+
+            fish = cursor.fetchone()
+
+            if not fish:
+                conn.close()
+                return "Your sack is empty." if not fish_name else f"There were no '{fish_name}' found in your sack."
+
+            fish_id, fish_name, price = fish
+
+            # Remove the fish from the database
+            cursor.execute("""
+                DELETE FROM caught_fish
+                WHERE id = ?
+            """, (fish_id,))
+            conn.commit()
+            conn.close()
+
+            # Add the earnings to the user's balance
+            new_balance = economy.add_balance(user_id, price)
+            
+            return f"You sold a {fish_name} for ${price:.2f}! Your new balance is ${new_balance:.2f}."
 
 

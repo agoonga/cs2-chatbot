@@ -29,6 +29,7 @@ class ModuleRegistry:
 
     def get_module(self, module_name):
         """Retrieve a registered module instance by name."""
+        module_name = module_name.lower()
         if module_name in self.modules:
             return self.modules[module_name]
         else:

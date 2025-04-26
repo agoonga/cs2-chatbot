@@ -173,3 +173,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 modules/data/fish.db
+modules/data/economy.db

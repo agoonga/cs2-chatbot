@@ -4,8 +4,8 @@ from time import sleep
 import win32gui
 
 from util.config import load_config
-from util.commands import CommandRegistry
-from util.module_registry import ModuleRegistry
+from util.commands import command_registry
+from util.module_registry import module_registry
 from util.chat_utils import write_chat_to_cfg, load_chat, send_chat
 import util.keys as keys
 
@@ -44,8 +44,8 @@ class Bot:
         self.send_chat_key_win32 = keys.KEYS[self.send_chat_key]  # Win32 key code for send chat key
         self.console_log_path = self.config.get("console_log_path")  # Path to the console log file
         self.exec_path = self.config.get("exec_path")  # Path to the chat configuration file
-        self.commands = CommandRegistry()  # Command registry to manage commands
-        self.modules = ModuleRegistry()  # Module registry to manage modules
+        self.commands = command_registry  # Command registry to manage commands
+        self.modules = module_registry  # Module registry to manage modules
 
         # Load commands from the "cmds" directory
         commands_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cmds")

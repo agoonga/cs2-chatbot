@@ -63,3 +63,21 @@ def eat_command(bot, is_team: bool, playername: str, chattext: str) -> None:
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
+
+@command_registry.register("sell")
+def sell_command(bot, is_team: bool, playername: str, chattext: str) -> None:
+    """
+    Sell a fish from the player's sack.
+
+    :param bot: The Bot instance.
+    :param is_team: Whether the message is for the team chat.
+    :param playername: The name of the player.
+    :param chattext: The name of the fish to sell, or 'all' to sell all fish.
+    """
+    fishing_module = bot.modules.get_module("fishing")
+    if fishing_module:
+        fish_name = chattext.strip() if chattext else None
+        result = fishing_module.sell_fish(playername, fish_name)
+        bot.add_to_chat_queue(is_team, f"{playername}: {result}")
+    else:
+        bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
