@@ -24,4 +24,4 @@ pause_buttons = "b,tab,y,`,alt+tab"
 
 # resume button
 # set this to the button you want to resume the output loop
-resume_button = "enter"
+resume_buttons = "enter,esc"

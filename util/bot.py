@@ -57,18 +57,72 @@ class Bot:
             keyboard.add_hotkey(button.strip(), self.set_paused, args=(True,))
         keyboard.add_hotkey(resume_button.strip(), self.set_paused, args=(False,))
 
-        # Load commands from the "cmds" directory
+        # Load commands and modules
+        self.load_commands()
+        self.load_modules()
+
+        # Connect to the Counter-Strike 2 game window
+        self.connect_to_cs2()
+
+    def load_commands(self):
+        """Load commands from the 'cmds' directory."""
         commands_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cmds")
         self.commands.load_commands(commands_dir)
         self.logger.info(f"Loaded commands from {commands_dir}")
 
-        # Load modules from the "modules" directory
+    def load_modules(self):
+        """Load modules from the 'modules' directory."""
         modules_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "modules")
         self.modules.load_modules(modules_dir)
         self.logger.info(f"Loaded modules from {modules_dir}")
 
-        # Connect to the Counter-Strike 2 game window
-        self.connect_to_cs2()
+    def reload_commands(self, command_names=None):
+        """Reload specific commands or all commands if no names are provided."""
+        try:
+            if command_names is None:
+                # Reload all commands
+                self.commands.commands.clear()
+                self.load_commands()
+                self.logger.info("All commands reloaded successfully.")
+            else:
+                # Reload specific commands
+                if isinstance(command_names, str):
+                    command_names = [command_names]  # Convert single string to list
+
+                for command_name in command_names:
+                    if command_name in self.commands.commands:
+                        del self.commands.commands[command_name]
+                        self.logger.info(f"Command '{command_name}' removed.")
+                    else:
+                        self.logger.warning(f"Command '{command_name}' not found.")
+                self.load_commands()
+                self.logger.info(f"Specific commands reloaded: {', '.join(command_names)}")
+        except Exception as e:
+            self.logger.error(f"Failed to reload commands: {e}")
+
+    def reload_modules(self, module_names=None):
+        """Reload specific modules or all modules if no names are provided."""
+        try:
+            if module_names is None:
+                # Reload all modules
+                self.modules.modules.clear()
+                self.load_modules()
+                self.logger.info("All modules reloaded successfully.")
+            else:
+                # Reload specific modules
+                if isinstance(module_names, str):
+                    module_names = [module_names]  # Convert single string to list
+
+                for module_name in module_names:
+                    if module_name in self.modules.modules:
+                        del self.modules.modules[module_name]
+                        self.logger.info(f"Module '{module_name}' removed.")
+                    else:
+                        self.logger.warning(f"Module '{module_name}' not found.")
+                self.load_modules()
+                self.logger.info(f"Specific modules reloaded: {', '.join(module_names)}")
+        except Exception as e:
+            self.logger.error(f"Failed to reload modules: {e}")
 
     def connect_to_cs2(self):
         """Connect to the Counter-Strike 2 window."""
