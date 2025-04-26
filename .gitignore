@@ -174,3 +174,4 @@ cython_debug/
 .pypirc
 modules/data/fish.db
 modules/data/economy.db
+modules/data/inventory.db

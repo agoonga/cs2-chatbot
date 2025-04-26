@@ -4,7 +4,7 @@ from util.module_registry import module_registry
 @command_registry.register("cast")
 def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
-    Simulate casting a fishing rod to catch a fish.
+    Simulate casting a fishing rod to catch a fish or item.
 
     :param bot: The Bot instance.
     :param is_team: Whether the message is for the team chat.
@@ -13,15 +13,28 @@ def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     fishing_module = bot.modules.get_module("fishing")
     if fishing_module:
-        fish = fishing_module.fish(playername)
-        if fish and "fish_name" in fish:
-            # If a fish is caught, display its details
-            bot.add_to_chat_queue(is_team, f"{playername} caught a {fish['fish_name']} weighing {fish['weight']} lbs worth ${fish['price']}!")
-        elif fish:
-            # If the result is not a fish but contains a message, send it directly
-            bot.add_to_chat_queue(is_team, f"{playername}: {fish['error']}")
+        result = fishing_module.fish(playername)
+        if result:
+            if result.get("type") == "fish":
+                # If a fish is caught, display its details
+                bot.add_to_chat_queue(
+                    is_team,
+                    f"{playername} caught a {result['name']} weighing {result['weight']} lbs worth ${result['price']}!"
+                )
+            elif result.get("type") == "item":
+                # If an item is caught, display the item message
+                bot.add_to_chat_queue(
+                    is_team,
+                    f"{playername}: {result['message']}"
+                )
+            elif result.get("type") == "error":
+                # If an error occurs, display the error message
+                bot.add_to_chat_queue(
+                    is_team,
+                    f"{playername}: {result['message']}"
+                )
         else:
-            bot.add_to_chat_queue(is_team, f"{playername}: No fish were caught. Better luck next time!")
+            bot.add_to_chat_queue(is_team, f"{playername}: You reel in an empty line.")
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
 

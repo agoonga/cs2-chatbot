@@ -1,6 +1,7 @@
 [
     {
-        "fish_name": "Salmon",
+        "name": "Salmon",
+        "type": "fish",
         "min_weight": 2,
         "max_weight": 15,
         "price_multiplier": 1.2,
@@ -9,7 +10,8 @@
         "description": "As you bite into the salmon, you feel like you're dining in a fancy riverside restaurant."
     },
     {
-        "fish_name": "Trout",
+        "name": "Trout",
+        "type": "fish",
         "min_weight": 1,
         "max_weight": 10,
         "price_multiplier": 1.0,
@@ -18,7 +20,8 @@
         "description": "The trout tastes fresh, but you can't shake the feeling it was judging you as you caught it."
     },
     {
-        "fish_name": "Bass",
+        "name": "Bass",
+        "type": "fish",
         "min_weight": 3,
         "max_weight": 20,
         "price_multiplier": 1.5,
@@ -27,7 +30,8 @@
         "description": "The bass has a hearty flavor, and you feel a sense of accomplishment for reeling it in."
     },
     {
-        "fish_name": "Catfish",
+        "name": "Catfish",
+        "type": "fish",
         "min_weight": 5,
         "max_weight": 25,
         "price_multiplier": 1.8,
@@ -36,7 +40,8 @@
         "description": "The catfish tastes earthy, and you wonder if it was plotting revenge from the riverbed."
     },
     {
-        "fish_name": "Tuna",
+        "name": "Tuna",
+        "type": "fish",
         "min_weight": 10,
         "max_weight": 50,
         "price_multiplier": 2.5,
@@ -45,7 +50,8 @@
         "description": "The tuna is rich and meaty, making you feel like a sushi chef in training."
     },
     {
-        "fish_name": "Shark",
+        "name": "Shark",
+        "type": "fish",
         "min_weight": 50,
         "max_weight": 300,
         "price_multiplier": 5.0,
@@ -54,7 +60,8 @@
         "description": "As you bite into the shark, you feel a surge of power, as if you’ve conquered the ocean itself."
     },
     {
-        "fish_name": "Goldfish",
+        "name": "Goldfish",
+        "type": "fish",
         "min_weight": 0.1,
         "max_weight": 0.5,
         "price_multiplier": 0.8,
@@ -63,7 +70,8 @@
         "description": "The goldfish tastes like regret and childhood memories of carnival games."
     },
     {
-        "fish_name": "Piranha",
+        "name": "Piranha",
+        "type": "fish",
         "min_weight": 1,
         "max_weight": 5,
         "price_multiplier": 2.0,
@@ -72,7 +80,8 @@
         "description": "The piranha bites back as you eat it, but its spicy flavor is worth the risk."
     },
     {
-        "fish_name": "Swordfish",
+        "name": "Swordfish",
+        "type": "fish",
         "min_weight": 20,
         "max_weight": 100,
         "price_multiplier": 3.0,
@@ -81,7 +90,8 @@
         "description": "The swordfish tastes sharp and refined, like it was forged in the fires of the sea."
     },
     {
-        "fish_name": "Mackerel",
+        "name": "Mackerel",
+        "type": "fish",
         "min_weight": 1,
         "max_weight": 8,
         "price_multiplier": 1.1,
@@ -90,7 +100,8 @@
         "description": "The mackerel is light and flaky, but you feel like it’s judging your life choices."
     },
     {
-        "fish_name": "Eel",
+        "name": "Eel",
+        "type": "fish",
         "min_weight": 2,
         "max_weight": 12,
         "price_multiplier": 1.3,
@@ -99,7 +110,8 @@
         "description": "The eel tastes electric, sending a jolt of energy through your body."
     },
     {
-        "fish_name": "Carp",
+        "name": "Carp",
+        "type": "fish",
         "min_weight": 1,
         "max_weight": 15,
         "price_multiplier": 1.0,
@@ -108,7 +120,8 @@
         "description": "The carp tastes plain, but you feel a strange sense of calm as you eat it."
     },
     {
-        "fish_name": "Sturgeon",
+        "name": "Sturgeon",
+        "type": "fish",
         "min_weight": 10,
         "max_weight": 60,
         "price_multiplier": 2.8,
@@ -117,7 +130,8 @@
         "description": "The sturgeon tastes luxurious, and you wonder if you should have saved it for caviar."
     },
     {
-        "fish_name": "Barracuda",
+        "name": "Barracuda",
+        "type": "fish",
         "min_weight": 15,
         "max_weight": 80,
         "price_multiplier": 3.5,
@@ -126,7 +140,8 @@
         "description": "The barracuda tastes fierce, and you feel like you’ve unlocked a new level of danger."
     },
     {
-        "fish_name": "Marlin",
+        "name": "Marlin",
+        "type": "fish",
         "min_weight": 30,
         "max_weight": 150,
         "price_multiplier": 4.0,
@@ -135,7 +150,8 @@
         "description": "The marlin tastes like adventure, and you imagine yourself as a deep-sea explorer."
     },
     {
-        "fish_name": "Anchovy",
+        "name": "Anchovy",
+        "type": "fish",
         "min_weight": 0.05,
         "max_weight": 0.2,
         "price_multiplier": 0.5,
@@ -144,7 +160,8 @@
         "description": "The anchovy is salty and bold, perfect for pizza or questionable culinary experiments."
     },
     {
-        "fish_name": "Herring",
+        "name": "Herring",
+        "type": "fish",
         "min_weight": 0.5,
         "max_weight": 2,
         "price_multiplier": 0.9,
@@ -153,7 +170,8 @@
         "description": "The herring tastes smoky, and you feel like you’re at a Nordic feast."
     },
     {
-        "fish_name": "Snapper",
+        "name": "Snapper",
+        "type": "fish",
         "min_weight": 3,
         "max_weight": 18,
         "price_multiplier": 1.6,
@@ -162,7 +180,8 @@
         "description": "The snapper tastes vibrant, like a tropical vacation in every bite."
     },
     {
-        "fish_name": "Grouper",
+        "name": "Grouper",
+        "type": "fish",
         "min_weight": 8,
         "max_weight": 40,
         "price_multiplier": 2.2,
@@ -171,7 +190,8 @@
         "description": "The grouper tastes hearty, and you feel like you’ve earned a fisherman’s badge of honor."
     },
     {
-        "fish_name": "Halibut",
+        "name": "Halibut",
+        "type": "fish",
         "min_weight": 20,
         "max_weight": 70,
         "price_multiplier": 3.0,
@@ -180,7 +200,8 @@
         "description": "The halibut tastes delicate, and you feel like you’re dining in a five-star restaurant."
     },
     {
-        "fish_name": "Bluefin Tuna",
+        "name": "Bluefin Tuna",
+        "type": "fish",
         "min_weight": 50,
         "max_weight": 200,
         "price_multiplier": 4.5,
@@ -189,7 +210,8 @@
         "description": "The bluefin tuna tastes exquisite, and you feel like royalty with every bite."
     },
     {
-        "fish_name": "Whale Shark",
+        "name": "Whale Shark",
+        "type": "fish",
         "min_weight": 500,
         "max_weight": 2000,
         "price_multiplier": 10.0,
@@ -198,7 +220,8 @@
         "description": "As you bite into the whale shark, you feel a pang of guilt for eating such a gentle giant."
     },
     {
-        "fish_name": "Kraken",
+        "name": "Kraken",
+        "type": "fish",
         "min_weight": 1000,
         "max_weight": 5000,
         "price_multiplier": 20.0,
@@ -207,7 +230,8 @@
         "description": "The kraken tastes otherworldly, and you feel like you’ve angered the gods of the sea."
     },
     {
-        "fish_name": "Leviathan",
+        "name": "Leviathan",
+        "type": "fish",
         "min_weight": 2000,
         "max_weight": 10000,
         "price_multiplier": 25.0,
@@ -216,7 +240,8 @@
         "description": "The leviathan tastes ancient, and you feel like you’ve unlocked a forbidden secret."
     },
     {
-        "fish_name": "Sea Serpent",
+        "name": "Sea Serpent",
+        "type": "fish",
         "min_weight": 1500,
         "max_weight": 8000,
         "price_multiplier": 22.0,
@@ -225,7 +250,8 @@
         "description": "The sea serpent tastes fiery, and you feel like you’ve tamed a beast of legend."
     },
     {
-        "fish_name": "Phoenix Fish",
+        "name": "Phoenix Fish",
+        "type": "fish",
         "min_weight": 100,
         "max_weight": 500,
         "price_multiplier": 15.0,
@@ -234,7 +260,8 @@
         "description": "The phoenix fish reignites your spirit with every bite, leaving a warm glow in your chest."
     },
     {
-        "fish_name": "Dragonfish",
+        "name": "Dragonfish",
+        "type": "fish",
         "min_weight": 300,
         "max_weight": 1500,
         "price_multiplier": 18.0,
@@ -243,7 +270,8 @@
         "description": "The dragonfish tastes smoky and powerful, as if it was cooked by dragon fire."
     },
     {
-        "fish_name": "Celestial Koi",
+        "name": "Celestial Koi",
+        "type": "fish",
         "min_weight": 50,
         "max_weight": 300,
         "price_multiplier": 12.0,
@@ -252,7 +280,8 @@
         "description": "The celestial koi tastes divine, and you feel like you’ve touched the heavens."
     },
     {
-        "fish_name": "Abyssal Angler",
+        "name": "Abyssal Angler",
+        "type": "fish",
         "min_weight": 200,
         "max_weight": 1000,
         "price_multiplier": 20.0,
@@ -261,12 +290,23 @@
         "description": "The abyssal angler tastes dark and mysterious, like a secret from the ocean depths."
     },
     {
-        "fish_name": "Loch Ness Monster",
+        "name": "Loch Ness Monster",
+        "type": "fish",
         "min_weight": 1000,
         "max_weight": 5000,
         "price_multiplier": 30.0,
         "rarity": "Mythical",
         "catch_rate": 0.005,
         "description": "As you sink your teeth into the Loch Ness Monster, you look up and it says “Could I borrow about tree fitty?”"
+    },
+    {
+        "name": "Bravo Case",
+        "type": "item",
+        "min_weight": 0,
+        "max_weight": 0,
+        "price_multiplier": 0.0,
+        "rarity": "Uncommon",
+        "catch_rate": 10,
+        "description": "An old barnacle-laden Bravo case."
     }
 ]
