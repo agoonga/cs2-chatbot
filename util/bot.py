@@ -2,6 +2,7 @@ import os
 import logging  # Import the logging module
 from time import sleep
 import win32gui
+import keyboard
 
 from util.config import load_config
 from util.commands import command_registry
@@ -46,6 +47,15 @@ class Bot:
         self.exec_path = self.config.get("exec_path")  # Path to the chat configuration file
         self.commands = command_registry  # Command registry to manage commands
         self.modules = module_registry  # Module registry to manage modules
+        self.paused = False  # Add a paused attribute
+
+        # Set up keybinds for pause and resume buttons
+        pause_buttons = self.config.get("pause_buttons", "tab,b,y,u").split(",")
+        resume_button = self.config.get("resume_button", "enter")
+
+        for button in pause_buttons:
+            keyboard.add_hotkey(button.strip(), self.set_paused, args=(True,))
+        keyboard.add_hotkey(resume_button.strip(), self.set_paused, args=(False,))
 
         # Load commands from the "cmds" directory
         commands_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cmds")
@@ -89,14 +99,26 @@ class Bot:
                 sleep(0.5)
 
                 # Load the chat message into the game
+                while self.paused:
+                    sleep(0.1)
+
                 load_chat(self.load_chat_key_win32)
                 sleep(0.5)
 
                 # Send the chat message
+                while self.paused:
+                    sleep(0.1)
+
                 send_chat(self.send_chat_key_win32)
                 sleep(0.5)
             except Exception as e:
                 self.logger.error(f"Error processing chat message: {e}")
+
+    def set_paused(self, paused: bool) -> None:
+        """Set the paused state of the bot."""
+        self.paused = paused
+        state = "paused" if paused else "resumed"
+        self.logger.info(f"Bot {state}.")
 
     def run(self):
         """Main loop to monitor the console log and process commands."""

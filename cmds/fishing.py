@@ -1,5 +1,4 @@
 from util.commands import command_registry
-from util.module_registry import module_registry
 
 @command_registry.register("cast")
 def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:

@@ -17,3 +17,11 @@ exec_path = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global
 # prefix
 # set this to whatever you want commands to start with (@cmd)
 command_prefix = "@"
+
+# pause buttons
+# set this to the buttons you want to pause the output loop on
+pause_buttons = "b,tab,y,`,alt+tab"
+
+# resume button
+# set this to the button you want to resume the output loop
+resume_button = "enter"
