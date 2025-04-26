@@ -115,15 +115,14 @@ class Bot:
                     continue
 
                 # Parse the line to extract playername, is_team, and chattext
-                try:
-                    is_team, playername, chattext = self.parse_chat_line(line)
-                except ValueError as e:
-                    self.logger.error(f"Error parsing line: {line}\n{e}")
-                    continue
+                is_team, playername, chattext = self.parse_chat_line(line)
+                if not playername or not chattext:
+                    continue  # Skip invalid lines silently
 
                 # Pass the parsed arguments to all modules that are reading input
                 for module_name, module_instance in self.modules.modules.items():
-                    if getattr(module_instance, "reading_input", True):  # Check if the module is reading input
+                    # Check if the module has a `process` method and is reading input
+                    if hasattr(module_instance, "process") and getattr(module_instance, "reading_input", True):
                         try:
                             response = module_instance.process(playername, is_team, chattext)
                             if response:
@@ -164,6 +163,6 @@ class Bot:
             chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "י").strip()
 
             return is_team, playername, chattext
-        except (ValueError, IndexError) as e:
-            self.logger.error(f"Invalid chat line format: {line}")
-            raise ValueError(f"Invalid chat line format: {line}") from e
+        except (ValueError, IndexError):
+            # Silently ignore invalid chat lines
+            return None, None, None
