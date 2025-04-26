@@ -51,11 +51,12 @@ class Bot:
 
         # Set up keybinds for pause and resume buttons
         pause_buttons = self.config.get("pause_buttons", "tab,b,y,u").split(",")
-        resume_button = self.config.get("resume_button", "enter")
+        resume_buttons = self.config.get("resume_buttons", "enter,esc").split(",")
 
         for button in pause_buttons:
             keyboard.add_hotkey(button.strip(), self.set_paused, args=(True,))
-        keyboard.add_hotkey(resume_button.strip(), self.set_paused, args=(False,))
+        for button in resume_buttons:
+            keyboard.add_hotkey(button.strip(), self.set_paused, args=(False,))
 
         # Load commands and modules
         self.load_commands()
