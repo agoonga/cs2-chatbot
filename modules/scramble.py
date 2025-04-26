@@ -1,7 +1,10 @@
 import random
 import os
 
+from util.module_registry import module_registry
+
 class Scramble:
+    load_after = ["economy"]  # Load after the economy module
     def __init__(self):
         self.current_word = None
         self.scrambled_word = None
@@ -9,6 +12,7 @@ class Scramble:
         self.is_team_game = False
         self.word_list = self.load_word_list()
         self.reading_input = False  # Indicates whether the module is actively processing input
+        self.economy = module_registry.get_module("economy")  # Retrieve the Economy module from the module registry
 
     def load_word_list(self):
         """
@@ -26,8 +30,11 @@ class Scramble:
 
         :param is_team: Whether the game is team-only.
         """
+        # check that there isnt already a game running
         if not self.word_list:
             raise ValueError("Scramble dictionary is empty.")
+        if self.reading_input:
+            raise ValueError("A game is already in progress. Please finish the current game before starting a new one.")
         self.current_word = random.choice(self.word_list)
         self.scrambled_word = ''.join(random.sample(self.current_word, len(self.current_word)))
         self.winner = None
@@ -55,5 +62,8 @@ class Scramble:
             if normalized_input.startswith(normalized_word):
                 self.winner = playername
                 self.reading_input = False  # Deactivate the module after the game ends
-                return f"{playername} unscrambled the word '{self.current_word}' correctly and wins!"
+                # add $10 to the player's balance
+                if self.economy:
+                    self.economy.add_balance(playername, 100)
+                return f"{playername} unscrambled the word '{self.current_word}' correctly and wins $10!"
         return None

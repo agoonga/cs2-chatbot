@@ -52,7 +52,7 @@ def sack_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     if fishing_module:
         sack = fishing_module.get_sack(playername)
         if sack:
-            sack_contents = ", ".join([f"{fish['fish_name']} ({fish['weight']} lbs, ${fish['price']})" for fish in sack])
+            sack_contents = ", ".join([f"{fish['name']} ({fish['weight']} lbs, ${fish['price']})" for fish in sack])
             bot.add_to_chat_queue(is_team, f"{playername}'s sack contains: {sack_contents}")
         else:
             bot.add_to_chat_queue(is_team, f"{playername}: Your sack is empty.")
