@@ -7,7 +7,6 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -17,14 +16,15 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: >
+        run: |
           python -m pip install --upgrade pip
-
-          pip install -r requirements.txt  # Install dependencies; modify if using requirements.txt
+          pip install -r requirements.txt
+        shell: cmd
 
       - name: Package Application with PyInstaller
         run: |
           pyinstaller cs2chatbot.spec
+        shell: cmd
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
