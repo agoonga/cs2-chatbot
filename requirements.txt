@@ -4,6 +4,6 @@ pywin32
 importlib
 importlib-metadata
 pyinstaller
-pysqlite3-binary
+pysqlite3-binary==0.5.4
 PyQt6
 screeninfo
