@@ -11,14 +11,14 @@ class Fishing:
     load_after = ["inventory", "economy"]  # Load after the inventory and economy modules
     def __init__(self):
         self.fish_data = self.load_fish_data()
-        appdata_dir = os.path.dirname(get_config_path())  # Get the AppData directory
+        appdata_dir = os.path.dirname(get_config_path())  # Get the app data directory
         self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "fish.db")
         self.initialize_database()
 
     def load_fish_data(self):
         """Load fish data from a JSON file."""
-        appdata_dir = os.path.dirname(get_config_path())  # Get the AppData directory
-        fish_json_path = appdata_dir if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "fish.json")
+        appdata_dir = os.path.dirname(get_config_path())  # Get the app data directory
+        fish_json_path = os.path.join(appdata_dir, "fish.json") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "fish.json")
         try:
             with open(fish_json_path, mode='r', encoding='utf-8') as file:
                 return json.load(file)

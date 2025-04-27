@@ -44,6 +44,7 @@ class CommandRegistry:
 
                 # Inspect the module for functions decorated with @register
                 for _, obj in inspect.getmembers(module, inspect.isfunction):
+                    self.logger.info(f"Attempting to load command: {obj.__name__}")
                     if getattr(obj, "is_bot_command", False):
                         self.commands[obj.command_name] = obj
 
@@ -54,6 +55,15 @@ class CommandRegistry:
         else:
             raise ValueError(f"Command '{command_name}' not found.")
 
+    def set_logger(self, logger):
+        """Set a custom logger."""
+        if self.logger:
+            self.logger.removeHandler(self.logger.handlers[0])
+        self.logger = logger
+
+    def __len__(self):
+        """Return the number of registered commands."""
+        return len(self.commands)
 
 # Create a global instance of CommandRegistry
 command_registry = CommandRegistry()

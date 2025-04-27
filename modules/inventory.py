@@ -13,10 +13,19 @@ class Inventory:
     def __init__(self):
         appdata_dir = os.path.dirname(get_config_path())
         self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "inventory.db")
-        self.initialize_database()
-        cases_path = appdata_dir if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "cases.json")
-        with open(cases_path, "r") as file:
-            self.cases = json.load(file)
+        try:
+            self.initialize_database()
+        except Exception as e:
+            print(f"Error initializing database: {e}")
+            # add info to error
+            raise Exception(f"Error initializing database: {e}")
+        cases_path = os.path.join(appdata_dir, "cases.json") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "cases.json")
+        try:
+            with open(cases_path, "r") as file:
+                self.cases = json.load(file)
+        except Exception as e:
+            print(f"Error loading cases: {e}")
+            raise Exception(f"Error loading cases: {e}")
         self.economy = module_registry.get_module("economy")
 
     def initialize_database(self):

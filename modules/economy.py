@@ -5,7 +5,7 @@ import os
 
 class Economy:
     def __init__(self):
-        appdata_dir = os.path.dirname(get_config_path())  # Get the AppData directory
+        appdata_dir = os.path.dirname(get_config_path())  # Get the app data directory
         self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "economy.db")
         self.initialize_database()
 

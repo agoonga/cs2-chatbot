@@ -8,9 +8,9 @@ import sys
 def get_config_path() -> str:
     """Get the path to the config.toml file."""
     if hasattr(sys, '_MEIPASS'):  # Check if running in packaged mode
-        # Determine the AppData directory based on the operating system
+        # Determine the directory based on the operating system
         if platform.system() == "Windows":
-            appdata_dir = os.getenv("APPDATA")  # Get the AppData directory on Windows
+            appdata_dir = os.path.join(os.getenv("USERPROFILE"), "Documents")  # Get the Documents directory on Windows
         elif platform.system() == "Darwin":  # macOS
             appdata_dir = os.path.expanduser("~/Library/Application Support")
         elif platform.system() == "Linux":
@@ -18,7 +18,7 @@ def get_config_path() -> str:
         else:
             raise OSError(f"Unsupported operating system: {platform.system()}")
 
-        # Create a subdirectory for your application in AppData
+        # Create a subdirectory for your application in Documents
         app_config_dir = os.path.join(appdata_dir, "CS2ChatBot")
         os.makedirs(app_config_dir, exist_ok=True)  # Ensure the directory exists
         return os.path.join(app_config_dir, "config.toml")
@@ -27,7 +27,7 @@ def get_config_path() -> str:
         return os.path.join(os.path.dirname(os.path.dirname(__file__)), "config.toml")
 
 def copy_files_to_appdata():
-    """Copy necessary files to the AppData directory."""
+    """Copy necessary files to the app data directory."""
     appdata_dir = os.path.dirname(get_config_path())
     files_to_copy = [
         ("modules/data/cases.json", "cases.json"),

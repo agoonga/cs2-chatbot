@@ -62,7 +62,9 @@ class Bot:
         self.console_log_path = self.config.get("console_log_path")  # Path to the console log file
         self.exec_path = self.config.get("exec_path")  # Path to the chat configuration file
         self.commands = command_registry  # Command registry to manage commands
-        self.modules = module_registry  # Module registry to manage modules
+        self.commands.set_logger(self.logger)
+        self.modules = module_registry # Module registry to manage modules
+        self.modules.set_logger(self.logger)
         self.paused = False  # Add a paused attribute
         self.running = True  # Add a running flag to control the main loop
         self.stop_event = threading.Event()  # Event to signal when the bot should stop
@@ -95,7 +97,7 @@ class Bot:
         """Load commands from the 'cmds' directory."""
         commands_dir = resource_path("cmds")
         self.commands.load_commands(commands_dir)
-        self.logger.info(f"Loaded commands from {commands_dir}")
+        self.logger.info(f"Loaded {len(self.commands)} commands from {commands_dir}")
 
     def load_modules(self):
         """Load modules from the 'modules' directory."""
@@ -105,7 +107,7 @@ class Bot:
             print(f"Modules directory does not exist: {modules_dir}")
             return
         self.modules.load_modules(modules_dir)
-        self.logger.info(f"Loaded modules from {modules_dir}")
+        self.logger.info(f"Loaded {len(self.modules)} modules from {modules_dir}")
 
     def reload_commands(self, command_names=None):
         """Reload specific commands or all commands if no names are provided."""
@@ -230,7 +232,9 @@ class Bot:
             
         # Load commands and modules
         self.load_commands()
+        self.logger.info("Commands loaded.")
         self.load_modules()
+        self.logger.info("Modules loaded.")
 
         self.logger.info("Commands and modules loaded.")
         # Connect to the Counter-Strike 2 game window

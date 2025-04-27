@@ -48,8 +48,14 @@ class ModuleRegistry:
                 load_after = getattr(module_class, "load_after", [])
                 if all(dep in loaded_modules for dep in load_after):
                     # Instantiate the class and register it
-                    module_instance = module_class()
-                    self.register(module_name, module_instance)
+                    self.logger.info(f"Loading module: {module_name}")
+                    try:
+                        module_instance = module_class()
+                        self.register(module_name, module_instance)
+                        self.logger.info(f"Module '{module_name}' loaded successfully.")
+                    except Exception as e:
+                        self.logger.error(f"Failed to load module '{module_name}': {e}")
+                        raise e
                     loaded_modules.add(module_name)
                     del modules_to_load[module_name]
                     loaded_in_iteration = True
@@ -76,6 +82,15 @@ class ModuleRegistry:
         """List all registered module names."""
         return list(self.modules.keys())
 
+    def set_logger(self, logger):
+        """Set a custom logger."""
+        if self.logger:
+            self.logger.removeHandler(self.logger.handlers[0])
+        self.logger = logger
 
+    def __len__(self):
+        """Return the number of registered modules."""
+        return len(self.modules)
+    
 # Create a global instance of ModuleRegistry
 module_registry = ModuleRegistry()
