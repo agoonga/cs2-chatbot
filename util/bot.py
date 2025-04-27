@@ -159,11 +159,15 @@ class Bot:
 
     def connect_to_cs2(self):
         """Connect to the Counter-Strike 2 window."""
-        self.logger.info("Connecting to Counter-Strike 2 window...")
+        self.logger.info("Waiting for Counter-Strike 2 window...")
+        self.ui_instance.update_status("Waiting for CS2 to open...")
         cs2_hwnd = win32gui.FindWindow(None, "Counter-Strike 2")  # Find the CS2 window
-        if cs2_hwnd == 0:
-            self.logger.error("Counter-Strike 2 is not running.")
-            raise Exception("Counter-Strike 2 is not running.")  # Raise an error if the game is not running
+
+        # Wait for the CS2 window to appear
+        while cs2_hwnd == 0 and not self.stop_event.is_set():
+            cs2_hwnd = win32gui.FindWindow(None, "Counter-Strike 2")
+            self._interruptible_sleep(0.5)
+            
         win32gui.SetForegroundWindow(cs2_hwnd)  # Bring the CS2 window to the foreground
         self.logger.info("Connected to Counter-Strike 2 window.")
 
