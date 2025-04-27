@@ -13,7 +13,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.13.3'
+          python-version: '3.10'
           
       - name: Download Visual C++ Redistributable DLLs
         run: |
@@ -32,7 +32,8 @@ jobs:
 
       - name: Package Application with PyInstaller
         run: |
-          pyinstaller cs2chatbot.spec
+          python --version
+          pyinstaller --log-level DEBUG cs2chatbot.spec
         shell: cmd
 
       - name: Upload artifact
