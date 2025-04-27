@@ -7,7 +7,7 @@ import threading
 from PyQt6.QtCore import QTimer  # Import QTimer
 import sys
 
-from util.config import load_config
+from util.config import load_config, copy_files_to_appdata
 from util.commands import command_registry
 from util.module_registry import module_registry
 from util.chat_utils import write_chat_to_cfg, load_chat, send_chat
@@ -76,16 +76,6 @@ class Bot:
         for button in resume_buttons:
             keyboard.add_hotkey(button.strip(), self.set_paused, args=(False,))
 
-        # Load commands and modules
-        self.load_commands()
-        self.load_modules()
-
-        self.logger.info("Commands and modules loaded.")
-        # Connect to the Counter-Strike 2 game window
-        self.connect_to_cs2()
-        self.chat_queue_thread.start()  # Start the chat queue processing thread
-        self.ui_instance.update_status("Ready")
-        self.state = "Ready"  # Update the state to "Ready"
 
     def stop(self):
         """Stop the bot and clean up resources."""
@@ -234,6 +224,20 @@ class Bot:
         if not os.path.exists(self.console_log_path):
             self.logger.error(f"Console log file {self.console_log_path} does not exist.")
             raise FileNotFoundError(f"Console log file {self.console_log_path} does not exist.")
+        
+        if hasattr(sys, '_MEIPASS'):
+            copy_files_to_appdata()
+            
+        # Load commands and modules
+        self.load_commands()
+        self.load_modules()
+
+        self.logger.info("Commands and modules loaded.")
+        # Connect to the Counter-Strike 2 game window
+        self.connect_to_cs2()
+        self.chat_queue_thread.start()  # Start the chat queue processing thread
+        self.ui_instance.update_status("Ready")
+        self.state = "Ready"  # Update the state to "Ready"
 
         with open(self.console_log_path, "r", encoding="utf-8") as log_file:
             log_file.seek(0, os.SEEK_END)  # Move to the end of the file

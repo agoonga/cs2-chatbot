@@ -14,7 +14,9 @@ class Inventory:
         appdata_dir = os.path.dirname(get_config_path())
         self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "inventory.db")
         self.initialize_database()
-        self.cases = json.load(open(os.path.join("modules", "data", "cases.json")))
+        cases_path = appdata_dir if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "cases.json")
+        with open(cases_path, "r") as file:
+            self.cases = json.load(file)
         self.economy = module_registry.get_module("economy")
 
     def initialize_database(self):

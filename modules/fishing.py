@@ -17,7 +17,8 @@ class Fishing:
 
     def load_fish_data(self):
         """Load fish data from a JSON file."""
-        fish_json_path = os.path.join("modules", "data", "fish.json")
+        appdata_dir = os.path.dirname(get_config_path())  # Get the AppData directory
+        fish_json_path = appdata_dir if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "fish.json")
         try:
             with open(fish_json_path, mode='r', encoding='utf-8') as file:
                 return json.load(file)

@@ -1,4 +1,5 @@
 import os
+import shutil
 import toml
 import platform
 import sys
@@ -25,6 +26,26 @@ def get_config_path() -> str:
         # Return the config path in the project directory for development mode
         return os.path.join(os.path.dirname(os.path.dirname(__file__)), "config.toml")
 
+def copy_files_to_appdata():
+    """Copy necessary files to the AppData directory."""
+    appdata_dir = os.path.dirname(get_config_path())
+    files_to_copy = [
+        ("modules/data/cases.json", "cases.json"),
+        ("modules/data/fish.json", "fish.json"),
+        ("modules/data/scramble_dict.txt", "scramble_dict.txt"),
+    ]
+
+    for src, dest in files_to_copy:
+        src_path = os.path.join(os.path.dirname(__file__), "..", src)
+        dest_path = os.path.join(appdata_dir, dest)
+        print(f"Copying {src_path} to {dest_path}")
+
+        if not os.path.exists(dest_path):
+            try:
+                shutil.copy(src_path, dest_path)
+                print(f"Copied {src} to {dest_path}")
+            except FileNotFoundError:
+                print(f"Error: {src_path} not found. Ensure the file exists in the development environment.")
 
 def get_default_steam_paths() -> dict:
     """Get the default Steam directories based on the user's operating system."""

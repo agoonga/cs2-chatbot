@@ -80,4 +80,5 @@ class Economy:
         """, (limit,))
         top_players = cursor.fetchall()
         conn.close()
+        top_players = [{"name": player[0], "balance": player[1]} for player in top_players]
         return top_players

@@ -1,5 +1,6 @@
 import random
 import os
+import sys
 
 from util.module_registry import module_registry
 
@@ -18,7 +19,8 @@ class Scramble:
         """
         Load the scramble dictionary from a file.
         """
-        file_path = os.path.join(os.path.dirname(__file__), "data", "scramble_dict.txt")
+        appdata_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(appdata_dir, "data", "scramble_dict.txt") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "scramble_dict.txt")
         if not os.path.exists(file_path):
             return []
         with open(file_path, "r") as f:

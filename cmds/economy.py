@@ -32,8 +32,8 @@ def top_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     if economy_module:
         top_players = economy_module.get_top_balances()
         if top_players:
-            top_list = "\n".join([f"{i+1}. {player['name']} - ${player['balance']:.2f}" for i, player in enumerate(top_players)])
-            bot.add_to_chat_queue(is_team, f"Top players:\n{top_list}")
+            top_list = ", ".join([f"{i+1}. {player['name']} - ${player['balance']:.2f}" for i, player in enumerate(top_players)])
+            bot.add_to_chat_queue(is_team, f"{playername}: Top players: {top_list}")
         else:
             bot.add_to_chat_queue(is_team, f"{playername}: No players found.")
     else:
