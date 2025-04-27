@@ -1,7 +1,7 @@
 from util.commands import command_registry
 from util.module_registry import module_registry
 
-@command_registry.register("flip")
+@command_registry.register("flip", aliases=["gamble", "coinflip"])
 def flip_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     Flip a coin to gamble an amount or the entire balance with "all".

@@ -1,6 +1,6 @@
 from util.commands import command_registry
 
-@command_registry.register("cast")
+@command_registry.register("cast", aliases=["fish", "gofish"])
 def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     Simulate casting a fishing rod to catch a fish or item.
@@ -37,7 +37,7 @@ def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
 
-@command_registry.register("sack")
+@command_registry.register("sack", aliases=["bag"])
 def sack_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     Display the contents of the player's fishing sack.

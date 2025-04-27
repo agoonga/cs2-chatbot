@@ -1,7 +1,7 @@
 from util.commands import command_registry
 from util.module_registry import module_registry
 
-@command_registry.register("balance")
+@command_registry.register("balance", aliases=["bal", "money"])
 def balance_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     Display the player's current balance.
@@ -18,7 +18,7 @@ def balance_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Economy module not found.")
 
-@command_registry.register("top")
+@command_registry.register("top", aliases=["leaderboard", "topplayers"])
 def top_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     Display the top players in the economy.

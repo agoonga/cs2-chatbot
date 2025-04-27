@@ -14,7 +14,7 @@ class CommandRegistry:
         self.logger = logger
         self.commands = {}
 
-    def register(self, command_name):
+    def register(self, command_name, aliases=None):
         """Decorator to register a command."""
         def decorator(func):
             @functools.wraps(func)
@@ -24,6 +24,12 @@ class CommandRegistry:
             wrapper.command_name = command_name
             wrapper.is_bot_command = True
             self.commands[command_name] = func
+            if aliases:
+                for alias in aliases:
+                    self.commands[alias] = func
+                    self.logger.info(f"Command '{alias}' registered as an alias for '{command_name}'.")
+            else:
+                self.logger.info(f"Command '{command_name}' registered.")
             return wrapper
 
         return decorator

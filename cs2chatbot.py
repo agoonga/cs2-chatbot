@@ -13,11 +13,10 @@ def start_bot(bot):
 if __name__ == "__main__":
     # Initialize the QApplication
     app = QApplication(sys.argv)
-    icon = QIcon(os.path.join("assets","img","meef.ico"))  # Load the icon
-    print(f"Meef icon: {icon}")
-    print(f"Meef icon path: {icon.name()}")
-    print(f"Meef icon path: {os.path.join('assets','img','meef.ico')}")
-    print(f"Meef icon exists: {not icon.isNull()}")
+    icon_path = os.path.join("assets", "img", "meef.ico")  # Load the icon
+    if hasattr(sys, '_MEIPASS'):
+        icon_path = os.path.join(sys._MEIPASS, "assets", "img", "meef.ico")
+    icon = QIcon(icon_path)  # Create a QIcon object
     app.setWindowIcon(icon)  # Set the application icon
 
 

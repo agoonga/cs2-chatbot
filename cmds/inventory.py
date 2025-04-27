@@ -1,7 +1,7 @@
 from util.commands import command_registry
 from util.module_registry import module_registry
 
-@command_registry.register("inventory")
+@command_registry.register("inventory", aliases=["inv"])
 def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     Display the contents of the player's inventory.
@@ -21,7 +21,7 @@ def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> Non
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Inventory module not found.")
 
-@command_registry.register("open")
+@command_registry.register("open", aliases=["case"])
 def open_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     Open a case from the player's inventory.
