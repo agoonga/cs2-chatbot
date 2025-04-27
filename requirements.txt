@@ -3,4 +3,7 @@ keyboard
 pywin32
 importlib
 importlib-metadata
-
+pyinstaller
+pysqlite3
+PyQt6
+screeninfo
