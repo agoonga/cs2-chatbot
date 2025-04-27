@@ -3,7 +3,17 @@ import importlib.util as importlib_util
 import inspect
 
 class ModuleRegistry:
-    def __init__(self):
+    def __init__(self, logger=None):
+        if logger is None:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.setLevel(logging.DEBUG)
+            handler = logging.StreamHandler()
+            handler.setLevel(logging.DEBUG)
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            handler.setFormatter(formatter)
+            logger.addHandler(handler)
+        self.logger = logger
         self.modules = {}
 
     def register(self, module_name, module_instance):
@@ -33,6 +43,7 @@ class ModuleRegistry:
         while modules_to_load:
             loaded_in_iteration = False
             for module_name, module_class in list(modules_to_load.items()):
+                self.logger.info(f"Attempting to load module: {module_name}")
                 # Check if the module has a load_after attribute
                 load_after = getattr(module_class, "load_after", [])
                 if all(dep in loaded_modules for dep in load_after):
@@ -45,6 +56,9 @@ class ModuleRegistry:
 
             if not loaded_in_iteration:
                 # If no modules were loaded in this iteration, there is a circular dependency
+                self.logger.critical(
+                    f"Circular dependency detected among modules: {', '.join(modules_to_load.keys())}"
+                )
                 raise RuntimeError(
                     f"Circular dependency detected among modules: {', '.join(modules_to_load.keys())}"
                 )
@@ -55,6 +69,7 @@ class ModuleRegistry:
         if module_name in self.modules:
             return self.modules[module_name]
         else:
+            self.logger.error(f"Module '{module_name}' not found.")
             raise ValueError(f"Module '{module_name}' not found.")
 
     def list_modules(self):
