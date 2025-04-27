@@ -8,6 +8,7 @@ a = Analysis(
     binaries=[
         ('dlls/vcruntime140.dll', '.'),  # Visual C++ Redistributable DLLs
         ('dlls/msvcp140.dll', '.'),
+        ('C:\\Python310\\python310.dll', '.')
     ],
     datas=[
         ('util', 'util'),  # Include the util directory
