@@ -1,4 +1,3 @@
-from main import Bot
 import random
 import sqlite3
 import json

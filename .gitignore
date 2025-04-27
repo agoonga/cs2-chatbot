@@ -175,3 +175,4 @@ cython_debug/
 modules/data/fish.db
 modules/data/economy.db
 modules/data/inventory.db
+.vscode/launch.json
