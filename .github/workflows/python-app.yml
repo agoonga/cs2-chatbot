@@ -32,7 +32,7 @@ jobs:
 
       - name: Package Application with PyInstaller
         run: |
-          pyinstaller cs2chatbot.spec
+          pyinstaller --onefile --log-level DEBUG cs2chatbot.spec
         shell: cmd
 
       - name: Upload artifact
