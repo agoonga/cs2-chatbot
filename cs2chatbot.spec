@@ -5,7 +5,10 @@ block_cipher = None
 a = Analysis(
     ['cs2chatbot.py'],  # Entry point of your application
     pathex=[],
-    binaries=[],
+    binaries=[
+        ('dlls/vcruntime140.dll', '.'),  # Visual C++ Redistributable DLLs
+        ('dlls/msvcp140.dll', '.'),
+    ],
     datas=[
         ('util', 'util'),  # Include the util directory
         ('modules', 'modules'),  # Include the modules directory
