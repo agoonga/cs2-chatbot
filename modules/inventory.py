@@ -2,14 +2,17 @@ import os
 import random
 import sqlite3
 import json
+import sys
 
+from util.config import get_config_path
 from util.module_registry import module_registry
 
 class Inventory:
     load_after = ["economy"]  # Load after the economy module
     
     def __init__(self):
-        self.db_path = os.path.join("modules", "data", "inventory.db")
+        appdata_dir = os.path.dirname(get_config_path())
+        self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "inventory.db")
         self.initialize_database()
         self.cases = json.load(open(os.path.join("modules", "data", "cases.json")))
         self.economy = module_registry.get_module("economy")

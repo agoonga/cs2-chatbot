@@ -175,3 +175,6 @@ modules/data/fish.db
 modules/data/economy.db
 modules/data/inventory.db
 .vscode/launch.json
+db/economy.db
+db/fish.db
+db/inventory.db

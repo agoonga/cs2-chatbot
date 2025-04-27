@@ -1,9 +1,12 @@
+import sys
+from util.config import get_config_path
 import sqlite3
 import os
 
 class Economy:
     def __init__(self):
-        self.db_path = os.path.join("modules", "data", "economy.db")
+        appdata_dir = os.path.dirname(get_config_path())  # Get the AppData directory
+        self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "economy.db")
         self.initialize_database()
 
     def initialize_database(self):

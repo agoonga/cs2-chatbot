@@ -2,14 +2,17 @@ import random
 import sqlite3
 import json
 import os
+import sys
 
+from util.config import get_config_path
 from util.module_registry import module_registry
 
 class Fishing:
     load_after = ["inventory", "economy"]  # Load after the inventory and economy modules
     def __init__(self):
         self.fish_data = self.load_fish_data()
-        self.db_path = os.path.join("modules", "data", "fish.db")
+        appdata_dir = os.path.dirname(get_config_path())  # Get the AppData directory
+        self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "fish.db")
         self.initialize_database()
 
     def load_fish_data(self):
