@@ -23,7 +23,6 @@ jobs:
 
       - name: Package Application with PyInstaller
         run: |
-          dir
           pyinstaller cs2chatbot.spec
         shell: cmd
 
