@@ -20,4 +20,7 @@ def femboy_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     # Determine if the player is a femboy
     is_femboy = femboy_chance > 75
 
-    bot.add_to_chat_queue(is_team, f'{playername}: "I am a {"femboy" if is_femboy else "not a femboy"} ({femboy_chance}%)"')
+    if femboy == playername.lower():
+        bot.add_to_chat_queue(is_team, f'{playername}: "I am a {"femboy" if is_femboy else "not a femboy"} ({femboy_chance}%)"')
+    else:
+        bot.add_to_chat_queue(is_team, f'{playername}: "{femboy} is a {"femboy" if is_femboy else "not a femboy"} ({femboy_chance}%)"')
