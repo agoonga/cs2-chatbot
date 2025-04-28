@@ -115,7 +115,7 @@ class UI(QMainWindow):
             else:
                 subprocess.call(["xdg-open", config_path])  # Linux
         except Exception as e:
-            print(f"Failed to open config file: {e}")
+            raise Exception(f"Error opening config file: {e}")
 
     def _create_minimize_button(self):
         """Create a custom minimize button."""
@@ -167,7 +167,6 @@ class UI(QMainWindow):
 
     def update_status(self, text):
         """Update the status label text on the main thread."""
-        print(f"Updating status: {text}")
         self.status_label.setText(f"Status: {text}")
 
     def close_window(self):

@@ -102,9 +102,7 @@ class Bot:
     def load_modules(self):
         """Load modules from the 'modules' directory."""
         modules_dir = resource_path("modules")
-        print(f"Resolved modules directory: {modules_dir}")
         if not os.path.exists(modules_dir):
-            print(f"Modules directory does not exist: {modules_dir}")
             return
         self.modules.load_modules(modules_dir)
         self.logger.info(f"Loaded {len(self.modules)} modules from {modules_dir}")

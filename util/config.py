@@ -4,7 +4,6 @@ import toml
 import platform
 import sys
 
-
 def get_config_path() -> str:
     """Get the path to the config.toml file."""
     if hasattr(sys, '_MEIPASS'):  # Check if running in packaged mode
@@ -38,14 +37,12 @@ def copy_files_to_appdata():
     for src, dest in files_to_copy:
         src_path = os.path.join(os.path.dirname(__file__), "..", src)
         dest_path = os.path.join(appdata_dir, dest)
-        print(f"Copying {src_path} to {dest_path}")
 
         if not os.path.exists(dest_path):
             try:
                 shutil.copy(src_path, dest_path)
-                print(f"Copied {src} to {dest_path}")
             except FileNotFoundError:
-                print(f"Error: {src_path} not found. Ensure the file exists in the development environment.")
+                raise FileNotFoundError(f"Source file {src_path} not found.")
 
 def get_default_steam_paths() -> dict:
     """Get the default Steam directories based on the user's operating system."""
@@ -92,7 +89,6 @@ def load_config() -> dict:
     """Load the configuration from the config.toml file."""
     config_path = get_config_path()
     if not os.path.exists(config_path):
-        print(f"Config file not found. Generating default config at {config_path}.")
         return generate_default_config()
     with open(config_path, "r") as f:
         return toml.load(f)

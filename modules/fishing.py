@@ -24,7 +24,6 @@ class Fishing:
             with open(fish_json_path, mode='r', encoding='utf-8') as file:
                 return json.load(file)
         except FileNotFoundError:
-            print(f"Error: {fish_json_path} not found.")
             return []
 
     def initialize_database(self):
@@ -64,7 +63,6 @@ class Fishing:
         # Check player's inventory for fishing gear
         sack = self.inventory.get_item_by_type(playername, "sack")
         if sack:
-            print(f"Found sack: {sack}")
             sack = sack[0][1]
             # Assuming the sack has a size attribute
             attributes = sack.get("attributes", {})
@@ -89,7 +87,6 @@ class Fishing:
     def fish(self, user_id):
         """Simulate fishing and store the result in the database or inventory."""
         if not self.fish_data:
-            print("No fish data available.")
             return None
 
         # Check the current number of fish in the user's sack
@@ -106,12 +103,10 @@ class Fishing:
         fish_count = int(fish_count[0]) if fish_count else 0
 
         # Enforce fish limit
-        print(f"User {user_id} has {fish_count} fish in their sack.")
         sack_size = self.calculate_sack_size(user_id)  # Get the sack size
         conn.close()
 
         if sack_size > 0 and fish_count >= sack_size:
-            print(f"User {user_id} has reached the limit of 5 fish.")
             return {"type": "error", "message": f"Your sack can only hold {sack_size} fish."}
 
         # Randomly select a fish or item based on catch rate
@@ -127,7 +122,6 @@ class Fishing:
         total_catch_rate = fish_catch_rate + (fish_catch_rate *  miss_chance)  # Adjust the total catch rate based on miss chance
         random_roll = random.uniform(0, total_catch_rate)
         cumulative_rate = 0
-        print(f"User {user_id} rolled a {random_roll} against a total catch rate of {total_catch_rate} (miss chance: {miss_chance}). Minimum rarity: {minimum_rarity}")
 
         for item in fish_around:
             cumulative_rate += item["catch_rate"]
@@ -251,7 +245,6 @@ class Fishing:
         try:
             economy = module_registry.get_module("economy")
         except ValueError:
-            print("Economy module not found.")
             return "Economy module not found."
 
         conn = sqlite3.connect(self.db_path)

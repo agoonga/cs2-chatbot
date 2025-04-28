@@ -16,15 +16,12 @@ class Inventory:
         try:
             self.initialize_database()
         except Exception as e:
-            print(f"Error initializing database: {e}")
-            # add info to error
             raise Exception(f"Error initializing database: {e}")
         cases_path = os.path.join(appdata_dir, "cases.json") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "cases.json")
         try:
             with open(cases_path, mode="r", encoding="utf-8") as file:
                 self.cases = json.load(file)
         except Exception as e:
-            print(f"Error loading cases: {e}")
             raise Exception(f"Error loading cases: {e}")
         self.economy = module_registry.get_module("economy")
 
@@ -32,7 +29,6 @@ class Inventory:
         """Initialize the SQLite database for storing user inventories."""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        print("Initializing database...")
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS user_inventory (
                 user_id TEXT NOT NULL,
@@ -55,7 +51,6 @@ class Inventory:
         item_data = item_data if isinstance(item_data, str) else json.dumps(item_data)
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        print(f"Adding item: {item_name} to user: {user_id} with data: {item_data} and quantity: {quantity}")
         cursor.execute("""
             INSERT INTO user_inventory (user_id, item_name, item_data, quantity)
             VALUES (?, ?, ?, ?)
@@ -69,7 +64,6 @@ class Inventory:
         """Remove an item from the user's inventory."""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        print(f"Removing item: {item_name} from user: {user_id} with quantity: {quantity}")
         cursor.execute("""
             SELECT quantity FROM user_inventory
             WHERE user_id = ? AND item_name = ? COLLATE NOCASE
@@ -96,7 +90,6 @@ class Inventory:
         """Get items of a specific type from the user's inventory."""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        print(f"Getting items of type: {item_type} for user: {playername}")
         cursor.execute("""
             SELECT item_name, item_data, quantity FROM user_inventory
             WHERE user_id = ?
@@ -133,10 +126,8 @@ class Inventory:
 
     def open_case(self, user_id, case_name):
         """Open a case and add a random item to the user's inventory."""
-        print(f"Opening case: {case_name} for user: {user_id}")
         if case_name:
             user_inv = self.list_inventory(user_id)
-            print(f"User inventory: {user_inv}")
 
             # check if has case
             if not any(case_name in item for item in user_inv):

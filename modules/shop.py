@@ -25,7 +25,6 @@ class Shop:
         """Find the category of an item by its name."""
         for category, items in categories.items():
             for item in items:
-                print(f"Checking item '{item['name']}' in category '{category}'")  # Debugging line
                 if item["name"].lower() == item_name.lower() or item_name.lower() in [alias.lower() for alias in item.get("aliases", [])]:
                     return category
         return None
@@ -56,7 +55,6 @@ class Shop:
         try:
             quantity = int(quantity)
         except ValueError:
-            print(f"Invalid quantity '{quantity}' for player '{playername}'. Must be an integer.")
             return {"error": "Invalid quantity."}
 
         item_name = item_name.lower()
@@ -98,7 +96,6 @@ class Shop:
                 if isinstance(trying_to_buy["replaces"], str):
                     trying_to_buy["replaces"] = [trying_to_buy["replaces"]]
                 for replace in trying_to_buy["replaces"]:
-                    print(f"Removing replaced item '{replace}' from inventory for player '{playername}'.")
                     self.inventory.remove_item(playername, replace, quantity)
             return {"success": f"You bought {f'{quantity} x' if quantity > 1 else 'a'} '{trying_to_buy['name']}'. Your new balance is ${money_left}."}
         except Exception as e:
