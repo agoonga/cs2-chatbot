@@ -49,13 +49,15 @@ class Inventory:
     def add_item(self, user_id, item_name, item_data, quantity=1):
         """Add an item to the user's inventory."""
         item_data = item_data if isinstance(item_data, str) else json.dumps(item_data)
+        # replace any escape characters in item_data
+        item_data = item_data.replace("\\\\", "\\").replace("\\'", "'")
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         cursor.execute("""
             INSERT INTO user_inventory (user_id, item_name, item_data, quantity)
             VALUES (?, ?, ?, ?)
             ON CONFLICT(user_id, item_name) DO UPDATE SET quantity = quantity + ?
-        """, (user_id, item_name, json.dumps(item_data), quantity, quantity))
+        """, (user_id, item_name, item_data, quantity, quantity))
         conn.commit()
         conn.close()
         return f"Added {quantity} x {item_name} ({item_data}) to {user_id}'s inventory."
