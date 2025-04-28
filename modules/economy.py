@@ -85,7 +85,9 @@ class Economy:
         """, (limit,))
         top_players = cursor.fetchall()
         conn.close()
+        new_top_players = []
         for player in top_players:
-            player[1] = round(player[1], 2)
+            new_top_players.append((player[0], round(player[1], 2)))
+        top_players = sorted(new_top_players, key=lambda x: x[1], reverse=True)
         top_players = [{"name": player[0], "balance": player[1]} for player in top_players]
         return top_players

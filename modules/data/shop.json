@@ -2,51 +2,215 @@
     "Rods": [
         {
             "name": "Ceramic Pole Rod",
+            "aliases": ["Ceramic Pole", "Ceramic Rod", "Ceramic"],
             "price": 249.99,
             "description": "A lightweight rod with ceramic guides.",
             "type": "rod",
             "replaces": null,
-            "max": 1
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0.8,
+                "fish_minimum_rarity": "Uncommon"
+            }
         },
         {
             "name": "Bass Pro Rod",
+            "aliases": ["Bass Pro", "Bass Rod"],
             "price": 499.99,
             "description": "A rod made of high-quality materials. It feels good in your hand.",
             "type": "rod",
             "replaces": "Ceramic Pole Rod",
-            "max": 1
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0.7,
+                "fish_minimum_rarity": "Rare"
+            }
         },
         {
             "name": "Carbon Fiber Rod",
+            "aliases": ["Carbon Fiber", "Carbon Rod"],
             "price": 739.99,
             "description": "The rod feels like a feather in your hand.",
             "type": "rod",
             "replaces": ["Ceramic Pole Rod", "Bass Pro Rod"],
-            "max": 1
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0.6,
+                "fish_minimum_rarity": "Rare"
+            }
         },
         {
             "name": "Titanium Rod",
+            "aliases": ["Titanium"],
             "price": 24999.99,
             "description": "A rod made of titanium. The game warden doesn't know if he should be impressed or angry.",
             "type": "rod",
             "replaces": "Carbon Fiber Rod",
-            "max": 1
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0.4,
+                "fish_minimum_rarity": "Rare"
+            }
         },
         {
             "name": "Big Game Rod",
+            "aliases": ["Big Game", "Big Rod"],
             "price": 49999.99,
             "description": "You can catch a whale with this rod. Just don't let it get away.",
             "type": "rod",
             "replaces": "Titanium Rod",
-            "max": 1
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0.2,
+                "fish_minimum_rarity": "Rare"
+            }
         },
         {
             "name": "Goldenrod",
-            "price": 12599.99,
+            "aliases": ["Golden Rod", "Gold Rod"],
+            "price": 124999.99,
             "description": "A rod made of pure gold. Fish swarm to the surface to admire it.",
             "type": "rod",
             "replaces": "Big Game Rod",
-            "max": 1
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0,
+                "fish_minimum_rarity": "Rare"
+            }
+        }
+    ],
+    "Sacks": [
+        {
+            "name": "Small Fishing Sack",
+            "aliases": ["Small Sack", "Sack"],
+            "price": 249.99,
+            "description": "A small sack for carrying fish.",
+            "type": "sack",
+            "replaces": null,
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 7
+            }
+        },
+        {
+            "name": "Medium Fishing Sack",
+            "aliases": ["Medium Sack"],
+            "price": 499.99,
+            "description": "A medium sack for carrying fish.",
+            "type": "sack",
+            "replaces": "Small Fishing Sack",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 10
+            }
+        },
+        {
+            "name": "Large Fishing Sack",
+            "aliases": ["Large Sack"],
+            "price": 999.99,
+            "description": "A large sack for carrying fish.",
+            "type": "sack",
+            "replaces": "Medium Fishing Sack",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 15
+            }
+        },
+        {
+            "name": "Fish Cooler",
+            "aliases": ["Cooler"],
+            "price": 1499.99,
+            "description": "A small cooler for keeping fish fresh. It has two cupholders.",
+            "type": "sack",
+            "replaces": "Large Fishing Sack",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 20
+            }
+        },
+        {
+            "name": "Frigloo Brand Fish Cooler",
+            "aliases": ["Frigloo Cooler", "Frigloo", "Frigloo Brand", "Frigloo Fish Cooler"],
+            "price": 2499.99,
+            "description": "A larger cooler than the last one. It has a built-in fish finder.",
+            "type": "sack",
+            "replaces": "Fish Cooler",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 25
+            }
+        },
+        {
+            "name": "Sketi Brand Fish Cooler",
+            "aliases": ["Sketi Cooler", "Sketi", "Sketi Brand", "Sketi Fish Cooler"],
+            "price": 4999.99,
+            "description": "A cooler that can fit many fish. It comes with a cutting board and a knife.",
+            "type": "sack",
+            "replaces": "Frigloo Brand Fish Cooler",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 30
+            }
+        },
+        {
+            "name": "Big Game Fish Cooler",
+            "aliases": ["Big Game Cooler", "Big Game", "Big Cooler"],
+            "price": 14999.99,
+            "description": "A cooler that seems almost too big for your boat.",
+            "type": "sack",
+            "replaces": "Sketi Brand Fish Cooler",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 35
+            }
+        },
+        {
+            "name": "Chest Freezer",
+            "aliases": ["Chest", "Freezer"],
+            "price": 24999.99,
+            "description": "A chest freezer. Who needs a cooler when you have this?",
+            "type": "sack",
+            "replaces": "Big Game Fish Cooler",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 40
+            }
+        },
+        {
+            "name": "French Door Refrigerator",
+            "aliases": ["French Door", "Refrigerator", "Fridge"],
+            "price": 49999.99,
+            "description": "A refrigerator with a freezer. It has a built-in ice maker. What were you thinking?",
+            "type": "sack",
+            "replaces": "Chest Freezer",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 45
+            }
+        },
+        {
+            "name": "Walk-in Freezer",
+            "aliases": ["Walk-in", "Walk-in Freezer", "Walk In"],
+            "price": 124999.99,
+            "description": "A walk-in freezer. You are confused as to how it's bigger on the inside.",
+            "type": "sack",
+            "replaces": "French Door Refrigerator",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": 50
+            }
+        },
+        {
+            "name": "Black Hole",
+            "aliases": ["Black Hole", "Blackhole"],
+            "price": 499999.99,
+            "description": "A handheld black hole. It can hold an infinite amount of fish. Seriously, how did you get this?",
+            "type": "sack",
+            "replaces": "Walk-in Freezer",
+            "max": 1,
+            "attributes": {
+                "fish_capacity": -1
+            }
         }
     ]
 }

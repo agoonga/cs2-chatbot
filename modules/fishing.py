@@ -14,6 +14,7 @@ class Fishing:
         appdata_dir = os.path.dirname(get_config_path())  # Get the app data directory
         self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "fish.db")
         self.initialize_database()
+        self.inventory = module_registry.get_module("inventory")  # Retrieve the Inventory module from the module registry
 
     def load_fish_data(self):
         """Load fish data from a JSON file."""
@@ -42,6 +43,49 @@ class Fishing:
         conn.commit()
         conn.close()
 
+    def calculate_miss_chance(self, playername):
+        """
+        Calculate the chance of missing a fish based on the player's stats.
+        """
+        # Check player's inventory for fishing gear
+        rod = self.inventory.get_item_by_type(playername, "rod")
+        if rod:
+            # Assuming the rod has a miss chance attribute
+            rod = rod[0][1]
+            attributes = rod.get("attributes", {})
+            if "fish_none_rate_multiplier" in attributes:
+                return 0.3 * attributes["fish_none_rate_multiplier"]
+        return 0.3  # Default miss chance if no rod is found
+            
+    def calculate_sack_size(self, playername):
+        """
+        Calculate the sack size based on the player's stats.
+        """
+        # Check player's inventory for fishing gear
+        sack = self.inventory.get_item_by_type(playername, "sack")
+        if sack:
+            print(f"Found sack: {sack}")
+            sack = sack[0][1]
+            # Assuming the sack has a size attribute
+            attributes = sack.get("attributes", {})
+            if "fish_capacity" in attributes:
+                return attributes["fish_capacity"]
+        return 5 # Default sack size if no sack is found
+        
+    def get_minimum_rarity(self, playername):
+        """
+        Get the minimum rarity of fish that can be caught based on the player's stats.
+        """
+        # Check player's inventory for fishing gear
+        rod = self.inventory.get_item_by_type(playername, "rod")
+        if rod:
+            # Assuming the rod has a rarity attribute
+            rod = rod[0][1]
+            attributes = rod.get("attributes", {})
+            if "fish_minimum_rarity" in attributes:
+                return attributes["fish_minimum_rarity"]
+        return "Common"
+    
     def fish(self, user_id):
         """Simulate fishing and store the result in the database or inventory."""
         if not self.fish_data:
@@ -61,22 +105,31 @@ class Fishing:
         # Convert fish_count to an integer
         fish_count = int(fish_count[0]) if fish_count else 0
 
+        # Enforce fish limit
         print(f"User {user_id} has {fish_count} fish in their sack.")
-
-        # Enforce the limit of 5 fish
-        if fish_count >= 5:
-            conn.close()
-            print(f"User {user_id} has reached the limit of 5 fish.")
-            return {"type": "error", "message": "You cannot carry more than 5 fish in your sack."}
-
+        sack_size = self.calculate_sack_size(user_id)  # Get the sack size
         conn.close()
 
-        # Randomly select a fish or item based on catch rate
-        total_catch_rate = sum(item["catch_rate"] for item in self.fish_data)
-        random_roll = random.uniform(0, total_catch_rate * 1.2)
-        cumulative_rate = 0
+        if sack_size > 0 and fish_count >= sack_size:
+            print(f"User {user_id} has reached the limit of 5 fish.")
+            return {"type": "error", "message": f"Your sack can only hold {sack_size} fish."}
 
+        # Randomly select a fish or item based on catch rate
+        rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythical"] # Rarities increasing in value
+        minimum_rarity = self.get_minimum_rarity(user_id)  # Get the minimum rarity
+        fish_around = []
         for item in self.fish_data:
+            if item["rarity"] == minimum_rarity or item["rarity"] in rarities[rarities.index(minimum_rarity):]:
+                fish_around.append(item)
+        
+        fish_catch_rate = sum(item["catch_rate"] for item in fish_around)  # Calculate the total catch rate for the filtered fish
+        miss_chance = self.calculate_miss_chance(user_id)  # Calculate the miss chance
+        total_catch_rate = fish_catch_rate + (fish_catch_rate *  miss_chance)  # Adjust the total catch rate based on miss chance
+        random_roll = random.uniform(0, total_catch_rate)
+        cumulative_rate = 0
+        print(f"User {user_id} rolled a {random_roll} against a total catch rate of {total_catch_rate} (miss chance: {miss_chance}). Minimum rarity: {minimum_rarity}")
+
+        for item in fish_around:
             cumulative_rate += item["catch_rate"]
             if random_roll <= cumulative_rate:
                 if item["type"] == "fish":
@@ -89,8 +142,7 @@ class Fishing:
                     return {"name": item["name"], "type": "fish", "weight": weight, "price": price}
                 elif item["type"] == "item":
                     # Add the item to the inventory
-                    inventory = module_registry.get_module("inventory")
-                    inventory.add_item(user_id, item["name"], "case", 1)
+                    self.inventory.add_item(user_id, item, "case", 1)
                     return {"name": item["name"], "type": "item", "message": f"You found a {item['name']}!"}
 
     def add_fish_to_db(self, user_id, name, weight, price):

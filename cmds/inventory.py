@@ -17,7 +17,15 @@ def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> Non
         if not inventory_list:
             bot.add_to_chat_queue(is_team, f"{playername}: Rummaging through your inventory, you find nothing but dust.")
             return
-        bot.add_to_chat_queue(is_team, f"{playername}'s inventory: {', '.join([f'{item[2]} x {item[0]}' for item in inventory_list])}")
+        inv_items = []
+        for item in inventory_list:
+            item_name = item[0]
+            item_count = item[2]
+            if item_count > 1:
+                inv_items.append(f"{item_name} x {item_count}")
+            else:
+                inv_items.append(item_name)
+        bot.add_to_chat_queue(is_team, f"{playername}'s inventory: {', '.join(inv_items)}")
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Inventory module not found.")
 

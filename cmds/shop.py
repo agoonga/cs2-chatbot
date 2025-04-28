@@ -26,6 +26,8 @@ def shop_command(bot, is_team: bool, playername: str, chattext: str) -> None:
                 bot.add_to_chat_queue(is_team, f"{playername}: No items available in the shop.")
                 return
 
+            if type(items) is dict and "error" in items:
+                return bot.add_to_chat_queue(is_team, f"{playername}: {items['error']}")
             # Format the item list for display
             item_list = []
             for item in items:

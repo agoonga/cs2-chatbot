@@ -12,10 +12,9 @@ class Shop:
         appdata_dir = os.path.dirname(get_config_path())
         shop_path = os.path.join(appdata_dir, "shop.json") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "shop.json")
         try:
-            with open(shop_path, "r") as file:
+            with open(shop_path, mode="r", encoding="utf-8") as file:
                 self.shop = json.load(file)
         except Exception as e:
-            print(f"Error loading shop: {e}")
             raise Exception(f"Error loading shop: {e}")
         self.economy = module_registry.get_module("economy")
         self.inventory = module_registry.get_module("inventory")
@@ -27,60 +26,79 @@ class Shop:
         for category, items in categories.items():
             for item in items:
                 print(f"Checking item '{item['name']}' in category '{category}'")  # Debugging line
-                if item["name"].lower() == item_name.lower():
+                if item["name"].lower() == item_name.lower() or item_name.lower() in [alias.lower() for alias in item.get("aliases", [])]:
                     return category
         return None
-    
+
+    def find_item(self, item_name, allowed_items):
+        """
+        Find an item in the allowed shop items by its name or aliases.
+
+        :param item_name: The name of the item to find.
+        :param allowed_items: The list of allowed shop items.
+        :return: The item if found, otherwise None.
+        """
+        for item in allowed_items["items"]:
+            if item["name"].lower() == item_name or item_name in [alias.lower() for alias in item.get("aliases", [])]:
+                return item
+        return None
+
     def buy(self, playername, item_name, quantity=1):
-        """Buy an item from the shop."""
-        # ensure quantity is an integer
+        """
+        Buy an item from the shop.
+
+        :param playername: The name of the player.
+        :param item_name: The name of the item to buy.
+        :param quantity: The quantity of the item to buy.
+        :return: A dictionary with success or error information.
+        """
+        # Ensure quantity is an integer
         try:
             quantity = int(quantity)
         except ValueError:
             print(f"Invalid quantity '{quantity}' for player '{playername}'. Must be an integer.")
             return {"error": "Invalid quantity."}
-        
-        item_name = item_name.lower()
-        print(f"Player '{playername}' is trying to buy {quantity} of '{item_name}'")
 
-        # check if the item is in the player's shop
+        item_name = item_name.lower()
+
+        # Check if the item is in the player's shop
         category = self.find_category(item_name, self.categories)
         if category is None:
             return {"error": "The shopkeeper sighs and says: 'I don't have that item.'"}
+
         allowed_items = self.get_shop_items(playername, category)
         if type(allowed_items) == dict and "error" in allowed_items.keys():
             return allowed_items
-        
-        trying_to_buy = None
-        for item in allowed_items["items"]:
-            if item["name"].lower() == item_name:
-                trying_to_buy = item
-                break
+
+        # Find the item using the new find_item method
+        trying_to_buy = self.find_item(item_name, allowed_items)
         if trying_to_buy is None:
-            print(f"Item '{item_name}' not found in the shop for player '{playername}'.")
             return {"error": "The shopkeeper sighs and says: 'I don't have that item.'"}
 
-        # check if quantity is valid
+        # Check if quantity is valid
         if quantity < 1:
             return {"error": "Invalid quantity."}
         if quantity > 1:
-            # check if the item is a stackable item
-            if trying_to_buy.max is not None and quantity > trying_to_buy["max"]:
+            # Check if the item is a stackable item
+            if trying_to_buy.get("max") is not None and quantity > trying_to_buy["max"]:
                 return {"error": f"You can only have {trying_to_buy['max']} of this item at a time."}
-        
-        # check if the player has enough money
+
+        # Check if the player has enough money
         player_money = self.economy.get_balance(playername)
         if player_money < trying_to_buy["price"] * quantity:
             return {"error": "The shopkeeper says: 'Isn't that too rich for your blood?'"}
-        
-        # add the item to the player's inventory
+
+        # Add the item to the player's inventory
         try:
             self.economy.deduct_balance(playername, trying_to_buy["price"] * quantity)
             money_left = self.economy.get_balance(playername)
-            self.inventory.add_item(playername, trying_to_buy["name"], trying_to_buy["type"], quantity)
+            self.inventory.add_item(playername, trying_to_buy["name"], trying_to_buy, quantity)
             if trying_to_buy.get("replaces") is not None:
-                # remove the replaced item from the inventory
+                # Remove the replaced item from the inventory
+                if isinstance(trying_to_buy["replaces"], str):
+                    trying_to_buy["replaces"] = [trying_to_buy["replaces"]]
                 for replace in trying_to_buy["replaces"]:
+                    print(f"Removing replaced item '{replace}' from inventory for player '{playername}'.")
                     self.inventory.remove_item(playername, replace, quantity)
             return {"success": f"You bought {f'{quantity} x' if quantity > 1 else 'a'} '{trying_to_buy['name']}'. Your new balance is ${money_left}."}
         except Exception as e:
@@ -93,17 +111,14 @@ class Shop:
         self.categories = {}
         for category, items in self.shop.items():
             self.categories[category] = items
-        print(f"Shop categories loaded: {self.categories}")  # Debugging line
 
     def get_categories(self):
         """Get the available categories in the shop."""
-        print("Requested shop categories")
         return self.categories.keys()
 
     def get_shop_items(self, playername, category=None):
         """Get the items in the shop, optionally filtered by category."""
         category = category.lower() if category else None
-        print(f"Player '{playername}' requested items in category '{category}'")  # Debugging line
         chosen_category = None
         for cat in self.categories.keys():
             if cat.lower() == category:
@@ -116,7 +131,6 @@ class Shop:
         if not items:
             return {"error": "No items available in this category."}
 
-        print(f"Items in category '{category}': {items}")  # Debugging line
         items = self._add_allowed_count_to_shop(playername, items)
         return {"items": items}
 
@@ -130,23 +144,30 @@ class Shop:
         user_has = [item[0] for item in inventory]
 
         allowed_shop_items = []
+        stop_at_items = []
         # see if any of the items replace anything (item["replaces"])
         if any(item.get("replaces") is not None for item in items):
-            for item in items:
+            for item in reversed(items):
                 if item.get("name") in user_has:
-                    continue
+                    break
+                if item.get("name") in stop_at_items:
+                    break
                 if item.get("replaces") is not None:
                     # check if the item is in the inventory
                     if type(item["replaces"]) == str:
                         if item["replaces"] in user_has:
                             allowed_shop_items.append(item)
+                            stop_at_items.append(item["replaces"])
                             continue
                     else:
                         # check if any of the items in the replaces list are in the inventory
                         for replace in item["replaces"]:
                             if replace in user_has:
                                 allowed_shop_items.append(item)
+                                stop_at_items.append(replace)
+                                break
                 else:
+                    # if the item is not in the inventory, add it to the allowed shop items
                     allowed_shop_items.append(item)
         else:
             # if no items replace anything, check for max count (item["max"])
@@ -169,6 +190,6 @@ class Shop:
                 else:
                     allowed_shop_items.append(item)
 
-        print(f"Allowed shop items for player '{playername}': {allowed_shop_items}")  # Debugging line
-        print(f"User inventory: {user_has}")  # Debugging line
+        if not allowed_shop_items:
+            return {"error": "The shopkeeper says: 'I don't have anything for you.'"}
         return allowed_shop_items
