@@ -136,7 +136,7 @@ class Fishing:
                     return {"name": item["name"], "type": "fish", "weight": weight, "price": price}
                 elif item["type"] == "item":
                     # Add the item to the inventory
-                    self.inventory.add_item(user_id, item, "case", 1)
+                    self.inventory.add_item(user_id, item["name"], item, 1)
                     return {"name": item["name"], "type": "item", "message": f"You found a {item['name']}!"}
 
     def add_fish_to_db(self, user_id, name, weight, price):
