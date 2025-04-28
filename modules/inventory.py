@@ -60,7 +60,7 @@ class Inventory:
             INSERT INTO user_inventory (user_id, item_name, item_data, quantity)
             VALUES (?, ?, ?, ?)
             ON CONFLICT(user_id, item_name) DO UPDATE SET quantity = quantity + ?
-        """, (user_id, item_name, item_data, quantity, quantity))
+        """, (user_id, item_name, json.dumps(item_data), quantity, quantity))
         conn.commit()
         conn.close()
         return f"Added {quantity} x {item_name} ({item_data}) to {user_id}'s inventory."
