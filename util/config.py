@@ -32,6 +32,7 @@ def copy_files_to_appdata():
         ("modules/data/cases.json", "cases.json"),
         ("modules/data/fish.json", "fish.json"),
         ("modules/data/scramble_dict.txt", "scramble_dict.txt"),
+        ("modules/data/shop.json", "shop.json"),
     ]
 
     for src, dest in files_to_copy:
