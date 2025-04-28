@@ -33,14 +33,19 @@ class Economy:
         """, (user_id,))
         result = cursor.fetchone()
         conn.close()
-        return result[0] if result else 0.0
+        # round to nearest 0.01
+        if result:
+            result = round(result[0], 2)
+        else:
+            result = 0.0
+        return result
 
     def add_balance(self, user_id, amount):
         """Add an amount to the user's balance."""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         current_balance = self.get_balance(user_id)
-        new_balance = current_balance + amount
+        new_balance = round(current_balance + amount, 2)
         cursor.execute("""
             INSERT INTO user_balances (user_id, balance)
             VALUES (?, ?)
@@ -58,7 +63,7 @@ class Economy:
         if current_balance < amount:
             conn.close()
             return {"error": "Insufficient funds."}
-        new_balance = current_balance - amount
+        new_balance = round(current_balance - amount, 2)
         cursor.execute("""
             UPDATE user_balances
             SET balance = ?
@@ -80,5 +85,7 @@ class Economy:
         """, (limit,))
         top_players = cursor.fetchall()
         conn.close()
+        for player in top_players:
+            player[1] = round(player[1], 2)
         top_players = [{"name": player[0], "balance": player[1]} for player in top_players]
         return top_players

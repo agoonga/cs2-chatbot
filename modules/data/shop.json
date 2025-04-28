@@ -1,0 +1,52 @@
+{
+    "Rods": [
+        {
+            "name": "Ceramic Pole Rod",
+            "price": 249.99,
+            "description": "A lightweight rod with ceramic guides.",
+            "type": "rod",
+            "replaces": null,
+            "max": 1
+        },
+        {
+            "name": "Bass Pro Rod",
+            "price": 499.99,
+            "description": "A rod made of high-quality materials. It feels good in your hand.",
+            "type": "rod",
+            "replaces": "Ceramic Pole Rod",
+            "max": 1
+        },
+        {
+            "name": "Carbon Fiber Rod",
+            "price": 739.99,
+            "description": "The rod feels like a feather in your hand.",
+            "type": "rod",
+            "replaces": ["Ceramic Pole Rod", "Bass Pro Rod"],
+            "max": 1
+        },
+        {
+            "name": "Titanium Rod",
+            "price": 24999.99,
+            "description": "A rod made of titanium. The game warden doesn't know if he should be impressed or angry.",
+            "type": "rod",
+            "replaces": "Carbon Fiber Rod",
+            "max": 1
+        },
+        {
+            "name": "Big Game Rod",
+            "price": 49999.99,
+            "description": "You can catch a whale with this rod. Just don't let it get away.",
+            "type": "rod",
+            "replaces": "Titanium Rod",
+            "max": 1
+        },
+        {
+            "name": "Goldenrod",
+            "price": 12599.99,
+            "description": "A rod made of pure gold. Fish swarm to the surface to admire it.",
+            "type": "rod",
+            "replaces": "Big Game Rod",
+            "max": 1
+        }
+    ]
+}

@@ -82,6 +82,7 @@ class UI(QMainWindow):
     def _create_wrench_button(self):
         """Create a custom wrench button to open the config file."""
         self.wrench_button = QPushButton("🔧", self.central_widget)  # Use a wrench emoji as the icon
+        self.wrench_button.setToolTip("Edit Config")
         self.wrench_button.setStyleSheet(
             f"color: {self.foreground_color}; background-color: #1a1b26; "
             f"font: 11pt Consolas; border: none;"
@@ -119,6 +120,7 @@ class UI(QMainWindow):
     def _create_minimize_button(self):
         """Create a custom minimize button."""
         self.minimize_button = QPushButton("━", self.central_widget)
+        self.minimize_button.setToolTip("Minimize")
         self.minimize_button.setStyleSheet(
             f"color: {self.foreground_color}; background-color: #1a1b26; "
             f"font: 11pt Consolas; border: none;"
@@ -142,6 +144,7 @@ class UI(QMainWindow):
     def _create_close_button(self):
         """Create a custom close button."""
         self.close_button = QPushButton("Ｘ", self.central_widget)
+        self.close_button.setToolTip("Close")
         self.close_button.setStyleSheet(
             f"color: {self.foreground_color}; background-color: #1a1b26; "
             f"font: 11pt Consolas; border: none;"
