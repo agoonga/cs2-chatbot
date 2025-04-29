@@ -127,9 +127,20 @@ def bait_command(bot, is_team: bool, playername: str, chattext: str) -> None:
             result = fishing_module.clear_bait(playername)
             bot.add_to_chat_queue(is_team, f"{playername}: {result}")
             return
-        
+
         # If the user provided bait, use it
         bait_name = chattext.strip()
+
+        if chattext.lower() == "last":
+            # Use the last fish in the sack
+            sack = fishing_module.get_sack(playername)
+            if not sack:
+                bot.add_to_chat_queue(is_team, f"{playername}: Your sack is empty.")
+                return
+            last_fish = sack[-1]
+            bait_name = last_fish.get("name")
+            
+        
         result = fishing_module.bait(playername, bait_name)
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
