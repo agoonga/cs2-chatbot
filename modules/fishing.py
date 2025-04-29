@@ -151,8 +151,8 @@ class Fishing:
             if bait_rarity_index > minimum_rarity_index:
                 minimum_rarity = bait_rarity
 
-            # Decrease the miss chance
-            miss_chance /= 4
+            # Increase the miss chance
+            miss_chance = 0.1 * (bait_rarity_index - minimum_rarity_index) + miss_chance
         
         fish_around = []
         for item in self.fish_data:
