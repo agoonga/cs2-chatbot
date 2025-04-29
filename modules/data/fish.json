@@ -55,7 +55,7 @@
         "min_weight": 50,
         "max_weight": 300,
         "price_multiplier": 5.0,
-        "rarity": "Legendary",
+        "rarity": "Rare",
         "catch_rate": 1,
         "description": "As you bite into the shark, you feel a surge of power, as if you’ve conquered the ocean itself."
     },
