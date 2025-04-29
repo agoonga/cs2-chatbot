@@ -1,12 +1,13 @@
 import platform
 import subprocess
 from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QFrame
-from PyQt6.QtCore import Qt, QTimer, QRectF  # Import QRectF
-from PyQt6.QtGui import QRegion, QPainterPath, QIcon, QCursor  # Import QCursor
+from PyQt6.QtCore import Qt, QTimer, QRectF, QSettings 
+from PyQt6.QtGui import QRegion, QPainterPath, QCursor
 from PyQt6.QtWidgets import QGraphicsOpacityEffect
 import os
 import sys
 import screeninfo
+
 
 class UI(QMainWindow):
     def __init__(self):
@@ -14,8 +15,11 @@ class UI(QMainWindow):
         self.is_minimized = False
         self.restoring = False
         self.minimizing = False
+        self.dragging = False
+        self.pos_drag_start = None
         self.current_alpha = 0.4
         self.bot = None
+        self.settings = QSettings("CS2ChatBot", "UI")
 
         # Window setup
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
@@ -29,13 +33,24 @@ class UI(QMainWindow):
         self.active_background = "#414868"
         self.separator_color = "#292e42"
 
-        # Position the window on the right-hand side of the screen
-        screen = screeninfo.get_monitors()[0]
-        screen_width, screen_height = screen.width, screen.height
+        # Position the window on the right-hand side of the primary screen
+        monitors = screeninfo.get_monitors()
+        primary_screen = next((s for s in monitors if s.is_primary), monitors[0])
+        screen_width, screen_height = primary_screen.width, primary_screen.height
         window_width, window_height = 300, 80
         x_position = screen_width - window_width - 10
         y_position = (screen_height - window_height) // 2
+
+        # Check for saved position
+        saved_pos = self.settings.value("window_position", None)
+        if saved_pos:
+            x_position, y_position = map(int, saved_pos.split(","))
+        else:
+            # Save the position for future reference
+            self.settings.setValue("window_position", f"{x_position},{y_position}")
+
         self.setGeometry(x_position, y_position, window_width, window_height)
+
 
         # Apply rounded corners
         self._create_rounded_rectangle(10)
@@ -254,6 +269,51 @@ class UI(QMainWindow):
     def _reset_minimizing_flag(self):
         """Reset the minimizing flag after a short delay."""
         self.minimizing = False
+
+    def mouseMoveEvent(self, event):
+        """Handle mouse movement events."""
+        # Check if the window is minimized
+        if self.is_minimized:
+            return
+
+        # Check if the mouse is over the window
+        if self.dragging:
+            # If the mouse is inside the window, update the window position
+            d_mouse = event.pos() - self.pos_drag_start
+            new_window_pos = self.pos() + d_mouse
+            print(d_mouse, new_window_pos)
+            self.move(new_window_pos)
+
+        return super().mouseMoveEvent(event)
+
+    def mousePressEvent(self, event):
+        """Handle mouse press events."""
+        # Check if the window is minimized
+        if self.is_minimized:
+            return
+
+        # Check if the mouse is over the window above the separator
+        if event.button() == Qt.MouseButton.LeftButton and event.pos().y() < 38 and not self.dragging:
+            # Start dragging the window
+            self.dragging = True
+            self.pos_drag_start = event.pos()
+            self.setCursor(QCursor(Qt.CursorShape.SizeAllCursor))
+            
+        return super().mousePressEvent(event)
+
+    def mouseReleaseEvent(self, event):
+        """Handle mouse release events."""
+        # Check if the window is minimized
+        if self.is_minimized:
+            return
+
+        if event.button() == Qt.MouseButton.LeftButton and self.dragging:
+            # Stop dragging the window
+            self.dragging = False
+            self.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
+            self.settings.setValue("window_position", f"{self.x()},{self.y()}")  # Save the new position
+
+        return super().mouseReleaseEvent(event)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
