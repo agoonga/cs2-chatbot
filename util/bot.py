@@ -171,12 +171,20 @@ class Bot:
 
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         """Add a message to the chat queue."""
-        # clean message
+        # Clean message
         chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "י").strip()
+        if not chattext:
+            return
+        # Check if a duplicate message is already in the queue
+        with self.chat_queue_lock:
+            for queued_is_team, queued_chattext in self.chat_queue:
+                if queued_chattext == chattext and queued_is_team == is_team:
+                    self.logger.debug(f"Duplicate message found in queue: {chattext} (team: {is_team})")
+                    return
         self.logger.debug(f"Adding message to chat queue: {chattext} (team: {is_team})")
         self.chat_queue.append((is_team, chattext))  # Append the message to the queue
         self.logger.info(f"{len(self.chat_queue)} messages in queue.")
-        self.logger.info(self.chat_queue)
+        self.logger.debug(self.chat_queue)
         self.ui_instance.update_status(f"{self.state} ({len(self.chat_queue)} msgs in queue)")
 
 
