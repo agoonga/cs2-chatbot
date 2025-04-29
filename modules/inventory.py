@@ -173,3 +173,21 @@ class Inventory:
             if not case_name:
                 return None
             return self.open_case(user_id, case_name)
+
+    def get_item_by_name(self, user_id, item_name):
+        """Get an item by its name from the user's inventory."""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT item_name, item_data, quantity FROM user_inventory
+            WHERE user_id = ? AND item_name = ? COLLATE NOCASE
+        """, (user_id, item_name))
+        result = cursor.fetchone()
+        conn.close()
+        if not result:
+            return None
+        return {
+            "name": result[0],
+            "data": json.loads(result[1]),
+            "quantity": result[2]
+        }

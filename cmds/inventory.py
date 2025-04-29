@@ -53,3 +53,27 @@ def open_command(bot, is_team: bool, playername: str, chattext: str) -> None:
             bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Inventory module not found.")
+
+@command_registry.register("inspect")
+def inspect_command(bot, is_team: bool, playername: str, chattext: str) -> None:
+    """
+    Inspect an item in the player's inventory.
+
+    :param bot: The Bot instance.
+    :param is_team: Whether the message is for the team chat.
+    :param playername: The name of the player.
+    :param chattext: The name of the item to inspect.
+    """
+    inventory_module: InventoryModule = bot.modules.get_module("inventory")
+    if inventory_module:
+        item_name = chattext.strip()
+        if not item_name:
+            bot.add_to_chat_queue(is_team, f"{playername}: Please specify an item to inspect.")
+            return
+        result = inventory_module.get_item_by_name(playername, item_name)["data"]["description"]
+        if not result:
+            bot.add_to_chat_queue(is_team, f"{playername}: A run-of-the-mill {item_name}.")
+            return
+        bot.add_to_chat_queue(is_team, f"{playername}: {result}")
+    else:
+        bot.add_to_chat_queue(is_team, f"{playername}: Inventory module not found.")
