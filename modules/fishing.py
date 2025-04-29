@@ -6,6 +6,7 @@ import sys
 
 from util.config import get_config_path
 from util.module_registry import module_registry
+from modules.inventory import Inventory as InventoryModule
 
 class Fishing:
     load_after = ["inventory", "economy"]  # Load after the inventory and economy modules
@@ -14,7 +15,7 @@ class Fishing:
         appdata_dir = os.path.dirname(get_config_path())  # Get the app data directory
         self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "fish.db")
         self.initialize_database()
-        self.inventory = module_registry.get_module("inventory")  # Retrieve the Inventory module from the module registry
+        self.inventory: InventoryModule = module_registry.get_module("inventory")  # Retrieve the Inventory module from the module registry
 
     def load_fish_data(self):
         """Load fish data from a JSON file."""
@@ -36,9 +37,21 @@ class Fishing:
                 user_id TEXT NOT NULL,
                 name TEXT NOT NULL,
                 weight REAL NOT NULL,
-                price REAL NOT NULL
+                price REAL NOT NULL,
+                bait INTEGER DEFAULT 0
             )
         """)
+
+        # Create bait column if it doesn't exist
+        cursor.execute("""
+            PRAGMA table_info(caught_fish)
+        """)
+        columns = [column[1] for column in cursor.fetchall()]
+        if "bait" not in columns:
+            cursor.execute("""
+                ALTER TABLE caught_fish ADD COLUMN bait INTEGER DEFAULT 0
+            """)
+
         conn.commit()
         conn.close()
 
@@ -112,13 +125,41 @@ class Fishing:
         # Randomly select a fish or item based on catch rate
         rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythical"] # Rarities increasing in value
         minimum_rarity = self.get_minimum_rarity(user_id)  # Get the minimum rarity
+        fish_catch_rate = sum(item["catch_rate"] for item in fish_around)  # Calculate the total catch rate for the filtered fish
+        miss_chance = self.calculate_miss_chance(user_id)  # Calculate the miss chance
+
+        # Check if the player has a bait set
+        bait = self.get_bait(user_id)
+        if bait:
+            # Remove the bait from the sack
+            self.remove_fish_from_sack(user_id, bait["id"])
+            # Remove the bait from the database
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            cursor.execute("""
+                DELETE FROM caught_fish
+                WHERE id = ?
+            """, (bait["id"],))
+            conn.commit()
+            conn.close()
+
+            # Check the rarity of the bait
+            bait_rarity = bait.get("rarity", "Common")
+            bait_rarity_index = rarities.index(bait_rarity)
+            minimum_rarity_index = rarities.index(minimum_rarity)
+            
+            # If the bait rarity is higher than the minimum rarity, set the minimum rarity to the bait's rarity
+            if bait_rarity_index > minimum_rarity_index:
+                minimum_rarity = bait_rarity
+
+            # Decrease the miss chance
+            miss_chance /= 4
+        
         fish_around = []
         for item in self.fish_data:
             if item["rarity"] == minimum_rarity or item["rarity"] in rarities[rarities.index(minimum_rarity):]:
                 fish_around.append(item)
         
-        fish_catch_rate = sum(item["catch_rate"] for item in fish_around)  # Calculate the total catch rate for the filtered fish
-        miss_chance = self.calculate_miss_chance(user_id)  # Calculate the miss chance
         total_catch_rate = fish_catch_rate + (fish_catch_rate *  miss_chance)  # Adjust the total catch rate based on miss chance
         random_roll = random.uniform(0, total_catch_rate)
         cumulative_rate = 0
@@ -158,13 +199,13 @@ class Fishing:
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         cursor.execute("""
-            SELECT id, name, weight, price
+            SELECT id, name, weight, price, bait
             FROM caught_fish
             WHERE user_id = ?
         """, (user_id,))
         result = cursor.fetchall()
         conn.close()
-        return [{"id": row[0], "name": row[1], "weight": row[2], "price": row[3]} for row in result]
+        return [{"id": row[0], "name": row[1], "weight": row[2], "price": row[3], "bait": row[4]} for row in result]
 
     def clear_sack(self, user_id):
         """Remove all fish caught by the user."""
@@ -320,4 +361,126 @@ class Fishing:
             
             return f"You sold a {name} for ${price:.2f}! Your new balance is ${new_balance:.2f}."
 
+    def bait(self, playername, bait_name):
+        """
+        Use a specific fish to bait the next catch.
+        If no fish is provided, it will use the cheapest fish in the sack.
 
+        :param playername: The name of the player.
+        :param bait_name: The name of the bait to add.
+        :return: A message indicating the result of the operation.
+        """
+        # Check if the player has any fish in their sack
+        sack = self.get_sack(playername)
+        if not sack:
+            return "Your sack is empty. You have no fish to use as bait."
+        
+        # If no bait name is provided, use the cheapest fish in the sack
+        if not bait_name:
+            # Find the cheapest fish in the sack
+            cheapest_fish = min(sack, key=lambda x: x["price"])
+            bait_id = cheapest_fish["id"]
+        else:
+            # Sanitize the bait name input
+            bait_name = bait_name.strip()
+
+            # Check if the specified fish is in the sack
+            for fish in sack:
+                if fish["name"].lower() == bait_name.lower():
+                    bait_name = fish["name"]
+                    bait_id = fish["id"]
+                    break
+            else:
+                return f"There were no '{bait_name}' found in your sack."
+            
+        # Check that there is no bait already set
+        bait = self.get_bait(playername)
+        if bait:
+            # If there is a fish provided that is not the bait fish, set the bait to the provided fish
+            if bait["id"] != bait_id:
+                # Set the bait to the provided fish
+                bait_name = bait["name"]
+                bait_id = bait["id"]
+                self.set_bait(playername, bait_id)
+                return f"You will use a {bait_name} as bait for your next catch."
+
+            return f"You already have a bait set: {bait['name']}."
+
+        # Add the fish to bait for the player
+        self.set_bait(playername, bait_id)
+        return f"You will use a {bait_name} as bait for your next catch."
+    
+    def get_bait(self, playername):
+        """
+        Get the bait set for the player.
+
+        :param playername: The name of the player.
+        :return: The bait set for the player or None if no bait is set.
+        """
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT id, name
+            FROM caught_fish
+            WHERE user_id = ? AND bait = 1
+            LIMIT 1
+        """, (playername,))
+        bait = cursor.fetchone()
+        conn.close()
+        
+        if bait:
+            # Get the corresponding fish data
+            fish_data = next((fish for fish in self.fish_data if fish["name"].lower() == bait[1].lower()), None)
+            if fish_data:
+                return {
+                    "id": bait[0],
+                    "name": bait[1],
+                    "rarity": fish_data.get("rarity", "Common"),
+                    "description": fish_data.get("description", "No description available.")
+                }
+        return None
+    
+    def set_bait(self, playername, bait_id):
+        """
+        Set the bait for the player.
+
+        :param playername: The name of the player.
+        :param bait_id: The ID of the bait fish.
+        """
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+
+        # Unset any existing bait for the player
+        cursor.execute("""
+            UPDATE caught_fish
+            SET bait = 0
+            WHERE user_id = ? AND bait = 1
+        """, (playername,))
+
+        # Set the bait for the player
+        cursor.execute("""
+            UPDATE caught_fish
+            SET bait = 1
+            WHERE id = ? AND user_id = ?
+        """, (bait_id, playername))
+
+        conn.commit()
+        conn.close()
+        return True
+
+    def remove_fish_from_sack(self, user_id, fish_id):
+        """
+        Remove a specific fish from the user's sack.
+
+        :param user_id: The ID of the user.
+        :param fish_id: The ID of the fish to remove.
+        """
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("""
+            DELETE FROM caught_fish
+            WHERE id = ? AND user_id = ?
+        """, (fish_id, user_id))
+        conn.commit()
+        conn.close()
+    
