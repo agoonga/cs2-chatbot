@@ -125,7 +125,6 @@ class Fishing:
         # Randomly select a fish or item based on catch rate
         rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythical"] # Rarities increasing in value
         minimum_rarity = self.get_minimum_rarity(user_id)  # Get the minimum rarity
-        fish_catch_rate = sum(item["catch_rate"] for item in fish_around)  # Calculate the total catch rate for the filtered fish
         miss_chance = self.calculate_miss_chance(user_id)  # Calculate the miss chance
 
         # Check if the player has a bait set
@@ -160,6 +159,7 @@ class Fishing:
             if item["rarity"] == minimum_rarity or item["rarity"] in rarities[rarities.index(minimum_rarity):]:
                 fish_around.append(item)
         
+        fish_catch_rate = sum(item["catch_rate"] for item in fish_around)  # Calculate the total catch rate for the filtered fish
         total_catch_rate = fish_catch_rate + (fish_catch_rate *  miss_chance)  # Adjust the total catch rate based on miss chance
         random_roll = random.uniform(0, total_catch_rate)
         cumulative_rate = 0
