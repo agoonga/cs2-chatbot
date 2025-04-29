@@ -223,7 +223,6 @@ class Bot:
 
     def run(self):
         """Main loop to monitor the console log and process commands."""
-        self.logger.info("Starting bot main loop...")
         if not os.path.exists(self.console_log_path):
             self.logger.error(f"Console log file {self.console_log_path} does not exist.")
             self.ui_instance.update_status("ERR: Check config paths!")
@@ -242,8 +241,6 @@ class Bot:
         # Connect to the Counter-Strike 2 game window
         self.connect_to_cs2()
         self.chat_queue_thread.start()  # Start the chat queue processing thread
-        self.ui_instance.update_status("Ready")
-        self.state = "Ready"  # Update the state to "Ready"
 
         self.logger.info("Attempting to read console log...")
         self.ui_instance.update_status("Looking for console.log...")
@@ -258,12 +255,19 @@ class Bot:
         pause_buttons = self.config.get("pause_buttons", "tab,b,y,u").split(",")
         resume_buttons = self.config.get("resume_buttons", "enter,esc").split(",")
 
+        self.logger.info("Registering hotkeys...")
+        self.ui_instance.update_status("Registering hotkeys...")
+
         for button in pause_buttons:
             keyboard.add_hotkey(button.strip(), self.set_paused, args=(True,))
         for button in resume_buttons:
             keyboard.add_hotkey(button.strip(), self.set_paused, args=(False,))
 
 
+        self.ui_instance.update_status("Ready")
+        self.state = "Ready"  # Update the state to "Ready"
+
+        self.logger.info("Starting bot main loop...")
         while self.running:  # Check the running flag in the loop
             line = log_file.readline()
             if not line:
@@ -332,3 +336,4 @@ class Bot:
                 break
             sleep(interval)
             elapsed += interval
+            
