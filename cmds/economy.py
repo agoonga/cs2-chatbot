@@ -1,5 +1,5 @@
 from util.commands import command_registry
-from util.module_registry import module_registry
+from modules.economy import Economy as EconomyModule
 
 @command_registry.register("balance", aliases=["bal", "money"])
 def balance_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -11,7 +11,7 @@ def balance_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
     """
-    economy_module = bot.modules.get_module("economy")
+    economy_module: EconomyModule = bot.modules.get_module("economy")
     if economy_module:
         balance = economy_module.get_balance(playername)
         bot.add_to_chat_queue(is_team, f"{playername}, your current balance is ${balance:.2f}.")
@@ -28,7 +28,7 @@ def top_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
     """
-    economy_module = bot.modules.get_module("economy")
+    economy_module: EconomyModule = bot.modules.get_module("economy")
     if economy_module:
         top_players = economy_module.get_top_balances()
         if top_players:

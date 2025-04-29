@@ -40,16 +40,55 @@
             }
         },
         {
+            "name": "Graphite Rod",
+            "aliases": ["Graphite", "Graphite Rod"],
+            "price": 1299.99,
+            "description": "A rod made of graphite, offering excellent sensitivity and strength.",
+            "type": "rod",
+            "replaces": "Carbon Fiber Rod",
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0.55,
+                "fish_minimum_rarity": "Rare"
+            }
+        },
+        {
+            "name": "NanoFlex Rod",
+            "aliases": ["NanoFlex", "NanoFlex Rod"],
+            "price": 2499.99,
+            "description": "A cutting-edge rod with nanotechnology for unparalleled performance.",
+            "type": "rod",
+            "replaces": "Graphite Rod",
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0.5,
+                "fish_minimum_rarity": "Epic"
+            }
+        },
+        {
+            "name": "Diamond Tip Rod",
+            "aliases": ["Diamond Tip", "Diamond Rod"],
+            "price": 4999.99,
+            "description": "A rod with a diamond-coated tip for maximum durability and precision.",
+            "type": "rod",
+            "replaces": "NanoFlex Rod",
+            "max": 1,
+            "attributes": {
+                "fish_none_rate_multiplier": 0.45,
+                "fish_minimum_rarity": "Epic"
+            }
+        },
+        {
             "name": "Titanium Rod",
             "aliases": ["Titanium"],
             "price": 24999.99,
             "description": "A rod made of titanium. The game warden doesn't know if he should be impressed or angry.",
             "type": "rod",
-            "replaces": "Carbon Fiber Rod",
+            "replaces": "Diamond Tip Rod",
             "max": 1,
             "attributes": {
                 "fish_none_rate_multiplier": 0.4,
-                "fish_minimum_rarity": "Rare"
+                "fish_minimum_rarity": "Epic"
             }
         },
         {
@@ -62,7 +101,7 @@
             "max": 1,
             "attributes": {
                 "fish_none_rate_multiplier": 0.2,
-                "fish_minimum_rarity": "Rare"
+                "fish_minimum_rarity": "Epic"
             }
         },
         {
@@ -75,7 +114,7 @@
             "max": 1,
             "attributes": {
                 "fish_none_rate_multiplier": 0,
-                "fish_minimum_rarity": "Rare"
+                "fish_minimum_rarity": "Epic"
             }
         }
     ],

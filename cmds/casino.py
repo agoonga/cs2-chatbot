@@ -1,5 +1,5 @@
 from util.commands import command_registry
-from util.module_registry import module_registry
+from modules.casino import Casino as CasinoModule
 
 @command_registry.register("flip", aliases=["gamble", "coinflip"])
 def flip_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -11,7 +11,7 @@ def flip_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: The amount to gamble (optional, or "all").
     """
-    casino_module = bot.modules.get_module("casino")
+    casino_module: CasinoModule = bot.modules.get_module("casino")
     if casino_module:
         try:
             # Check if the user wants to flip their entire balance
@@ -31,3 +31,4 @@ def flip_command(bot, is_team: bool, playername: str, chattext: str) -> None:
             bot.add_to_chat_queue(is_team, f"{playername}: Invalid amount. Please enter a valid number.")
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Casino module not found.")
+        

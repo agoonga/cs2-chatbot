@@ -1,4 +1,5 @@
 from util.commands import command_registry
+from modules.fishing import Fishing as FishingModule
 
 @command_registry.register("cast", aliases=["fish", "gofish"])
 def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -10,7 +11,7 @@ def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
     """
-    fishing_module = bot.modules.get_module("fishing")
+    fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
         result = fishing_module.fish(playername)
         if result:
@@ -47,7 +48,7 @@ def sack_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
     """
-    fishing_module = bot.modules.get_module("fishing")
+    fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
         sack = fishing_module.get_sack(playername)
         if sack:
@@ -68,7 +69,7 @@ def eat_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: The name of the fish to eat.
     """
-    fishing_module = bot.modules.get_module("fishing")
+    fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
         fish_name = chattext.strip()
         result = fishing_module.eat(playername, fish_name if fish_name else None)
@@ -86,7 +87,7 @@ def sell_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: The name of the fish to sell, or 'all' to sell all fish.
     """
-    fishing_module = bot.modules.get_module("fishing")
+    fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
         fish_name = chattext.strip() if chattext else None
         result = fishing_module.sell_fish(playername, fish_name)

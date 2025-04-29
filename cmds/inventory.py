@@ -1,5 +1,5 @@
 from util.commands import command_registry
-from util.module_registry import module_registry
+from modules.inventory import Inventory as InventoryModule
 
 @command_registry.register("inventory", aliases=["inv"])
 def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -11,7 +11,7 @@ def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> Non
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
     """
-    inventory_module = bot.modules.get_module("inventory")
+    inventory_module: InventoryModule = bot.modules.get_module("inventory")
     if inventory_module:
         inventory_list = inventory_module.list_inventory(playername)
         if not inventory_list:
@@ -39,7 +39,7 @@ def open_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: The name of the case to open.
     """
-    inventory_module = bot.modules.get_module("inventory")
+    inventory_module: InventoryModule = bot.modules.get_module("inventory")
     if inventory_module:
         case_name = chattext.strip()
         if not case_name:

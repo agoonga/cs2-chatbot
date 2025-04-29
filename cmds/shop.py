@@ -1,4 +1,5 @@
 from util.commands import command_registry
+from modules.shop import Shop as ShopModule
 
 @command_registry.register("shop")
 def shop_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -10,7 +11,7 @@ def shop_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: The category to filter by (optional).
     """
-    shop_module = bot.modules.get_module("shop")
+    shop_module: ShopModule = bot.modules.get_module("shop")
     if shop_module:
         category = chattext.strip() if chattext else None
         if not category:
@@ -56,7 +57,7 @@ def buy_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param playername: The name of the player.
     :param chattext: The item name and optional quantity (e.g., "item_name 2").
     """
-    shop_module = bot.modules.get_module("shop")
+    shop_module: ShopModule = bot.modules.get_module("shop")
     if shop_module:
         if not chattext.strip():
             bot.add_to_chat_queue(is_team, f"{playername}: Please specify an item to buy.")

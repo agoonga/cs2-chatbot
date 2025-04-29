@@ -1,4 +1,5 @@
 from util.commands import command_registry
+from modules.scramble import Scramble as ScrambleModule
 
 @command_registry.register("scramble")
 def scramble_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -10,7 +11,7 @@ def scramble_command(bot, is_team: bool, playername: str, chattext: str) -> None
     :param playername: The name of the player.
     :param chattext: The word to scramble.
     """
-    scramble_module = bot.modules.get_module("scramble")
+    scramble_module: ScrambleModule = bot.modules.get_module("scramble")
     if scramble_module:
         scramble_module.start_new_game(is_team)
         bot.add_to_chat_queue(is_team, f"First person to unscramble the word wins: {scramble_module.scrambled_word}")
