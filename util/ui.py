@@ -113,6 +113,7 @@ class UI(QMainWindow):
             }}
             QPushButton:pressed {{
                 background-color: #0f1017;  /* Even darker */
+            }}
             """
         )
         self.wrench_button.setGeometry(210, 10, 20, 20)  # Position to the left of the minimize button
@@ -151,6 +152,7 @@ class UI(QMainWindow):
             }}
             QPushButton:pressed {{
                 background-color: #0f1017;  /* Even darker */
+            }}
             """
         )
         self.minimize_button.setGeometry(240, 10, 20, 20)
@@ -175,6 +177,7 @@ class UI(QMainWindow):
             }}
             QPushButton:pressed {{
                 background-color: #0f1017;  /* Even darker */
+            }}
             """
         )
         self.close_button.setGeometry(270, 10, 20, 20)
@@ -183,7 +186,7 @@ class UI(QMainWindow):
     def update_status(self, text):
         """Update the status label text on the main thread."""
         self.status_label.setText(f"Status: {text}")
-
+    
     def close_window(self):
         """Close the window and stop the bot."""
         if hasattr(self, "bot") and self.bot:
@@ -281,7 +284,6 @@ class UI(QMainWindow):
             # If the mouse is inside the window, update the window position
             d_mouse = event.pos() - self.pos_drag_start
             new_window_pos = self.pos() + d_mouse
-            print(d_mouse, new_window_pos)
             self.move(new_window_pos)
 
         return super().mouseMoveEvent(event)
