@@ -10,6 +10,7 @@ def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
+    :help cast: Cast your fishing rod to catch a fish or item. (alias: fish, gofish)
     """
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
@@ -47,6 +48,7 @@ def sack_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
+    :help sack: Display the contents of your fishing sack. (alias: bag)
     """
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
@@ -77,6 +79,7 @@ def eat_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The name of the fish to eat.
+    :help eat: Eat a fish from your sack.
     """
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
@@ -95,6 +98,7 @@ def sell_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The name of the fish to sell, or 'all' to sell all fish.
+    :help sell: Sell a fish from your sack or 'all' fish.
     """
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
@@ -113,6 +117,7 @@ def bait_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The name of the bait to use.
+    :help bait: Use a fish as bait to increase your chances of catching a bigger one. 'last' to use the last fish in your sack, 'clear' to clear bait.
     """
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:

@@ -132,7 +132,7 @@ class Inventory:
             user_inv = self.list_inventory(user_id)
 
             # check if has case
-            if not any(case_name in item for item in user_inv):
+            if not any(case_name.lower() in item for item in user_inv):
                 return f"You don't have a {case_name} to open."
             
             # check if case is valid

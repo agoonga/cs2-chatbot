@@ -10,6 +10,7 @@ def femboy_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: If True, send the message to the team chat. If False, send it to the global chat.
     :param playername: The name of the player.
     :param chattext: The name to check against (optional).
+    :help femboy: Check if you or a provided name is a femboy.
     """
     femboy = chattext.strip().lower() if chattext.strip() else playername.lower()
 

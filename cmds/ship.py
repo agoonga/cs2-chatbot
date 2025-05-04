@@ -10,6 +10,7 @@ def ship_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: If True, send the message to the team chat. If False, send it to the global chat.
     :param playername: The name of the player.
     :param chattext: The name to "ship" with the player.
+    :help ship: Generate a compatibility percentage between you and another name.
     """
     if not chattext.strip():
         bot.add_to_chat_queue(is_team, f"{playername}: Please provide a name to ship with!")

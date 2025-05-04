@@ -10,6 +10,7 @@ def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> Non
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
+    :help inventory: Display the contents of your inventory. (alias: inv)
     """
     inventory_module: InventoryModule = bot.modules.get_module("inventory")
     if inventory_module:
@@ -38,6 +39,7 @@ def open_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The name of the case to open.
+    :help open: Open a case from your inventory. (alias: case)
     """
     inventory_module: InventoryModule = bot.modules.get_module("inventory")
     if inventory_module:
@@ -63,6 +65,7 @@ def inspect_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The name of the item to inspect.
+    :help inspect: Inspect an item in your inventory.
     """
     inventory_module: InventoryModule = bot.modules.get_module("inventory")
     if inventory_module:

@@ -1,4 +1,5 @@
 import functools
+from thefuzz import process, fuzz
 
 class CommandRegistry:
     def __init__(self, logger=None):
@@ -23,6 +24,8 @@ class CommandRegistry:
 
             wrapper.command_name = command_name
             wrapper.is_bot_command = True
+            wrapper.aliases = aliases if aliases else []
+
             self.commands[command_name] = func
             if aliases:
                 for alias in aliases:
@@ -56,16 +59,22 @@ class CommandRegistry:
 
     def execute(self, command_name, *args, **kwargs):
         """Execute a registered command."""
-        if command_name in self.commands:
+        if command_name.lower() in self.commands:
             return self.commands[command_name](*args, **kwargs)
         else:
-            raise ValueError(f"Command '{command_name}' not found.")
+            best_match, score = process.extractOne(command_name, self.commands.keys(), scorer=fuzz.ratio)
+            self.logger.warning(f"Command '{command_name}' not found. Did you mean '{best_match}'? (Score: {score})")
+            return f"Command '{command_name}' not found. Did you mean '{best_match}'?"
 
     def set_logger(self, logger):
         """Set a custom logger."""
         if self.logger:
             self.logger.removeHandler(self.logger.handlers[0])
         self.logger = logger
+
+    def get_all_commands(self):
+        """Return a list of all registered commands."""
+        return self.commands
 
     def __len__(self):
         """Return the number of registered commands."""

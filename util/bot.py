@@ -163,7 +163,7 @@ class Bot:
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         """Add a message to the chat queue."""
         # Clean message
-        chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "י").strip()
+        chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "ʹ").replace("\"", "ʺ").strip()
         if not chattext:
             return
         # Check if a duplicate message is already in the queue
@@ -295,11 +295,10 @@ class Bot:
                     command_name = chattext[len(self.prefix):].split(" ")[0]
                     command_args = chattext[len(self.prefix) + len(command_name):].strip()
 
-                    if command_name in self.commands.commands:
-                        self.logger.info(f"Executing command: {command_name} with args: {command_args}")
-                        self.commands.execute(command_name, self, is_team, playername, command_args)
-                    else:
-                        self.logger.warning(f"Unknown command: {command_name}")
+                    self.logger.info(f"Executing command: {command_name} with args: {command_args}")
+                    res = self.commands.execute(command_name, self, is_team, playername, command_args)
+                    if isinstance(res, str):
+                        self.add_to_chat_queue(is_team, res)
                 except Exception as e:
                     self.logger.error(f"Error executing command: {line}\n{e}")
 
