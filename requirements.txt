@@ -6,4 +6,5 @@ importlib-metadata
 pyinstaller
 PyQt6
 screeninfo
+platformdirs
 thefuzz
