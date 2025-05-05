@@ -10,6 +10,7 @@ def flip_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The amount to gamble (optional, or "all").
+    :help flip: Flip a coin to gamble an amount or the entire balance with "all". (alias: gamble, coinflip)
     """
     casino_module: CasinoModule = bot.modules.get_module("casino")
     if casino_module:

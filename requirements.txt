@@ -7,3 +7,4 @@ pyinstaller
 PyQt6
 screeninfo
 platformdirs
+thefuzz

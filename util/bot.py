@@ -11,6 +11,7 @@ from util.config import load_config, copy_files_to_appdata
 from util.commands import command_registry
 from util.module_registry import module_registry
 from util.chat_utils import write_chat_to_cfg, load_chat, send_chat
+from util.ui import UI
 import util.keys as keys
 
 
@@ -25,7 +26,7 @@ def resource_path(relative_path):
 class Bot:
     def __init__(self, ui_instance) -> None:
         """Initialize the bot with configuration, commands, and chat queue."""
-        self.ui_instance = ui_instance  # Store the UI instance
+        self.ui_instance: UI = ui_instance  # Store the UI instance
         self.ui_instance.update_status("Initializing bot...")
         self.state = "Initializing..."  # Initialize the state
         # Set up logging
@@ -68,16 +69,6 @@ class Bot:
         self.paused = False  # Add a paused attribute
         self.running = True  # Add a running flag to control the main loop
         self.stop_event = threading.Event()  # Event to signal when the bot should stop
-
-        # Set up keybinds for pause and resume buttons
-        pause_buttons = self.config.get("pause_buttons", "tab,b,y,u").split(",")
-        resume_buttons = self.config.get("resume_buttons", "enter,esc").split(",")
-
-        for button in pause_buttons:
-            keyboard.add_hotkey(button.strip(), self.set_paused, args=(True,))
-        for button in resume_buttons:
-            keyboard.add_hotkey(button.strip(), self.set_paused, args=(False,))
-
 
     def stop(self):
         """Stop the bot and clean up resources."""
@@ -172,7 +163,7 @@ class Bot:
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         """Add a message to the chat queue."""
         # Clean message
-        chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "י").strip()
+        chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "ʹ").replace("\"", "ʺ").strip()
         if not chattext:
             return
         # Check if a duplicate message is already in the queue
@@ -232,10 +223,10 @@ class Bot:
 
     def run(self):
         """Main loop to monitor the console log and process commands."""
-        self.logger.info("Starting bot main loop...")
         if not os.path.exists(self.console_log_path):
             self.logger.error(f"Console log file {self.console_log_path} does not exist.")
-            raise FileNotFoundError(f"Console log file {self.console_log_path} does not exist.")
+            self.ui_instance.update_status("ERR: Check config paths!")
+            return
         
         if hasattr(sys, '_MEIPASS'):
             copy_files_to_appdata()
@@ -250,46 +241,66 @@ class Bot:
         # Connect to the Counter-Strike 2 game window
         self.connect_to_cs2()
         self.chat_queue_thread.start()  # Start the chat queue processing thread
+
+        self.logger.info("Attempting to read console log...")
+        self.ui_instance.update_status("Looking for console.log...")
+
+        try:
+            log_file = open(self.console_log_path, "r", encoding="utf-8")
+        except FileNotFoundError:
+            self.logger.error(f"Console log file {self.console_log_path} has somehow deleted itself between the start of the bot main loop and now.")
+        log_file.seek(0, os.SEEK_END)  # Move to the end of the file
+
+        # Set up keybinds for pause and resume buttons
+        pause_buttons = self.config.get("pause_buttons", "tab,b,y,u").split(",")
+        resume_buttons = self.config.get("resume_buttons", "enter,esc").split(",")
+
+        self.logger.info("Registering hotkeys...")
+        self.ui_instance.update_status("Registering hotkeys...")
+
+        for button in pause_buttons:
+            keyboard.add_hotkey(button.strip(), self.set_paused, args=(True,))
+        for button in resume_buttons:
+            keyboard.add_hotkey(button.strip(), self.set_paused, args=(False,))
+
+
         self.ui_instance.update_status("Ready")
         self.state = "Ready"  # Update the state to "Ready"
 
-        with open(self.console_log_path, "r", encoding="utf-8") as log_file:
-            log_file.seek(0, os.SEEK_END)  # Move to the end of the file
+        self.logger.info("Starting bot main loop...")
+        while self.running:  # Check the running flag in the loop
+            line = log_file.readline()
+            if not line:
+                continue
 
-            while self.running:  # Check the running flag in the loop
-                line = log_file.readline()
-                if not line:
-                    continue
+            # Parse the line to extract playername, is_team, and chattext
+            is_team, playername, chattext = self.parse_chat_line(line)
+            if not playername or not chattext:
+                continue  # Skip invalid lines silently
 
-                # Parse the line to extract playername, is_team, and chattext
-                is_team, playername, chattext = self.parse_chat_line(line)
-                if not playername or not chattext:
-                    continue  # Skip invalid lines silently
-
-                # Pass the parsed arguments to all modules that are reading input
-                for module_name, module_instance in self.modules.modules.items():
-                    # Check if the module has a `process` method and is reading input
-                    if hasattr(module_instance, "process") and getattr(module_instance, "reading_input", True):
-                        try:
-                            response = module_instance.process(playername, is_team, chattext)
-                            if response:
-                                self.add_to_chat_queue(is_team, response)
-                        except Exception as e:
-                            self.logger.error(f"Error in module '{module_name}' while processing line: {e}")
-
-                # Process commands if the line contains the command prefix
-                if chattext.startswith(self.prefix):
+            # Pass the parsed arguments to all modules that are reading input
+            for module_name, module_instance in self.modules.modules.items():
+                # Check if the module has a `process` method and is reading input
+                if hasattr(module_instance, "process") and getattr(module_instance, "reading_input", True):
                     try:
-                        command_name = chattext[len(self.prefix):].split(" ")[0]
-                        command_args = chattext[len(self.prefix) + len(command_name):].strip()
-
-                        if command_name in self.commands.commands:
-                            self.logger.info(f"Executing command: {command_name} with args: {command_args}")
-                            self.commands.execute(command_name, self, is_team, playername, command_args)
-                        else:
-                            self.logger.warning(f"Unknown command: {command_name}")
+                        response = module_instance.process(playername, is_team, chattext)
+                        if response:
+                            self.add_to_chat_queue(is_team, response)
                     except Exception as e:
-                        self.logger.error(f"Error executing command: {line}\n{e}")
+                        self.logger.error(f"Error in module '{module_name}' while processing line: {e}")
+
+            # Process commands if the line contains the command prefix
+            if chattext.startswith(self.prefix):
+                try:
+                    command_name = chattext[len(self.prefix):].split(" ")[0]
+                    command_args = chattext[len(self.prefix) + len(command_name):].strip()
+
+                    self.logger.info(f"Executing command: {command_name} with args: {command_args}")
+                    res = self.commands.execute(command_name, self, is_team, playername, command_args)
+                    if isinstance(res, str):
+                        self.add_to_chat_queue(is_team, res)
+                except Exception as e:
+                    self.logger.error(f"Error executing command: {line}\n{e}")
 
 
         self.logger.info("Bot main loop exited.")
@@ -324,3 +335,4 @@ class Bot:
                 break
             sleep(interval)
             elapsed += interval
+            

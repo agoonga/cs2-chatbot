@@ -10,6 +10,7 @@ def scramble_command(bot, is_team: bool, playername: str, chattext: str) -> None
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The word to scramble.
+    :help scramble: Start a new scramble game.
     """
     scramble_module: ScrambleModule = bot.modules.get_module("scramble")
     if scramble_module:

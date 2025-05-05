@@ -10,6 +10,7 @@ def shop_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The category to filter by (optional).
+    :help shop: List the categories available, and items in 'shop <category>'.
     """
     shop_module: ShopModule = bot.modules.get_module("shop")
     if shop_module:
@@ -56,6 +57,7 @@ def buy_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: The item name and optional quantity (e.g., "item_name 2").
+    :help buy: Buy an item from the shop.
     """
     shop_module: ShopModule = bot.modules.get_module("shop")
     if shop_module:

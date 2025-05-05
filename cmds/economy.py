@@ -10,6 +10,7 @@ def balance_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
+    :help balance: Display the player's current balance. (alias: bal, money)
     """
     economy_module: EconomyModule = bot.modules.get_module("economy")
     if economy_module:
@@ -27,6 +28,7 @@ def top_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
     :param chattext: Additional text (ignored for this command).
+    :help top: Display the top players in the economy. (alias: leaderboard, topplayers)
     """
     economy_module: EconomyModule = bot.modules.get_module("economy")
     if economy_module:
