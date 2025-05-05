@@ -13,7 +13,7 @@ class Fishing:
     def __init__(self):
         self.fish_data = self.load_fish_data()
         appdata_dir = os.path.dirname(get_config_path())  # Get the app data directory
-        self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "fish.db")
+        self.db_path = os.path.join(appdata_dir, "fish.db")
         self.initialize_database()
         self.inventory: InventoryModule = module_registry.get_module("inventory")  # Retrieve the Inventory module from the module registry
 

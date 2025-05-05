@@ -12,7 +12,7 @@ class Inventory:
     
     def __init__(self):
         appdata_dir = os.path.dirname(get_config_path())
-        self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "inventory.db")
+        self.db_path = os.path.join(appdata_dir, "inventory.db")
         try:
             self.initialize_database()
         except Exception as e:
