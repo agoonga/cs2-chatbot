@@ -64,8 +64,8 @@ class Scramble:
             if normalized_input.startswith(normalized_word):
                 self.winner = playername
                 self.reading_input = False  # Deactivate the module after the game ends
-                # add $10 to the player's balance
+                # add $100 to the player's balance
                 if self.economy:
                     self.economy.add_balance(playername, 100)
-                return f"{playername} unscrambled the word '{self.current_word}' correctly and wins $10!"
+                return f"{playername} unscrambled the word '{self.current_word}' correctly and wins $100!"
         return None
