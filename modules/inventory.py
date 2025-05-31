@@ -6,6 +6,7 @@ import sys
 
 from util.config import get_config_path
 from util.module_registry import module_registry
+from modules.economy import Economy
 
 class Inventory:
     load_after = ["economy"]  # Load after the economy module
@@ -23,7 +24,7 @@ class Inventory:
                 self.cases = json.load(file)
         except Exception as e:
             raise Exception(f"Error loading cases: {e}")
-        self.economy = module_registry.get_module("economy")
+        self.economy: Economy = module_registry.get_module("economy")
 
     def initialize_database(self):
         """Initialize the SQLite database for storing user inventories."""

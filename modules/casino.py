@@ -1,11 +1,13 @@
 import random
+
 from util.module_registry import module_registry
+from modules.economy import Economy
 
 class Casino:
     load_after = ["economy"]  # Load after the economy module
     def __init__(self):
         # Retrieve the Economy module from the module registry
-        self.economy = module_registry.get_module("economy")
+        self.economy: Economy = module_registry.get_module("economy")
 
     def flip(self, user_id, amount=10):
         """

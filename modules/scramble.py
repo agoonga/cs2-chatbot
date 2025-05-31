@@ -3,6 +3,7 @@ import os
 import sys
 
 from util.module_registry import module_registry
+from modules.economy import Economy
 
 class Scramble:
     load_after = ["economy"]  # Load after the economy module
@@ -13,7 +14,7 @@ class Scramble:
         self.is_team_game = False
         self.word_list = self.load_word_list()
         self.reading_input = False  # Indicates whether the module is actively processing input
-        self.economy = module_registry.get_module("economy")  # Retrieve the Economy module from the module registry
+        self.economy: Economy = module_registry.get_module("economy")  # Retrieve the Economy module from the module registry
 
     def load_word_list(self):
         """
