@@ -4,6 +4,8 @@ import sys
 
 from util.config import get_config_path
 from util.module_registry import module_registry
+from modules.economy import Economy
+from modules.inventory import Inventory
 
 class Shop:
     load_after = ["economy", "inventory"]  # Load after the economy and inventory modules
@@ -16,8 +18,8 @@ class Shop:
                 self.shop = json.load(file)
         except Exception as e:
             raise Exception(f"Error loading shop: {e}")
-        self.economy = module_registry.get_module("economy")
-        self.inventory = module_registry.get_module("inventory")
+        self.economy: Economy = module_registry.get_module("economy")
+        self.inventory: Inventory = module_registry.get_module("inventory")
 
         self.load_shop_categories()
 
@@ -138,7 +140,7 @@ class Shop:
             inventory = []
         
         # get the item names from the inventory
-        user_has = [item[0] for item in inventory]
+        user_has = [item['name'] for item in inventory]
 
         allowed_shop_items = []
         stop_at_items = []
