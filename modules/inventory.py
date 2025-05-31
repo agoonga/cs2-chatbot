@@ -124,7 +124,7 @@ class Inventory:
         conn.close()
         if not items:
             return None
-        return [(item[0], item[1], item[2]) for item in items]
+        return [{'name': item[0], 'data': item[1], 'quantity': item[2]} for item in items]
 
     def open_case(self, user_id, case_name):
         """Open a case and add a random item to the user's inventory."""
@@ -132,7 +132,7 @@ class Inventory:
             user_inv = self.list_inventory(user_id)
 
             # check if has case
-            if not any(case_name.lower() in item for item in user_inv):
+            if not any(case_name.lower() in item['name'].lower() for item in user_inv):
                 return f"You don't have a {case_name} to open."
             
             # check if case is valid
@@ -168,7 +168,7 @@ class Inventory:
                 return f"Rummaging through your inventory, you find nothing but dust."
             
             # find first item that has "Case" in it
-            case_name = next((item[0] for item in user_inv if "Case" in item[0]), None)
+            case_name = next((item['name'] for item in user_inv if "Case" in item['name']), None)
 
             if not case_name:
                 return None

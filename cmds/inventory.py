@@ -20,8 +20,8 @@ def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> Non
             return
         inv_items = []
         for item in inventory_list:
-            item_name = item[0]
-            item_count = item[2]
+            item_name = item['name']
+            item_count = item['quantity']
             if item_count > 1:
                 inv_items.append(f"{item_name} x {item_count}")
             else:
