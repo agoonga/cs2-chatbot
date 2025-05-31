@@ -297,6 +297,7 @@ class Fishing:
                 SELECT price
                 FROM caught_fish
                 WHERE user_id = ?
+                AND bait = 0
             """, (user_id,))
             fish_prices = cursor.fetchall()
 
@@ -310,6 +311,7 @@ class Fishing:
             cursor.execute("""
                 DELETE FROM caught_fish
                 WHERE user_id = ?
+                AND bait = 0
             """, (user_id,))
             conn.commit()
             conn.close()
