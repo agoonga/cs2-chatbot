@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Marlboro Red",
+        "description": "The ciggy of choice for a night on the pond.",
+        "price": 11.99,
+        "effects": [
+            "fishing.case_rate_10"
+        ]
+    },
+    {
+        "name": "Newport Menthol",
+        "description": "We ain't in o block no more, but we still got that menthol kick.",
+        "price": 11.99,
+        "effects": [
+            "fishing.miss_rate_20"
+        ]
+    },
+    {
+        "name": "American Spirit",
+        "description": "The organic choice for the angry fisherman.",
+        "price": 11.99,
+        "effects": [
+            "fishing.catch_rate_20"
+        ]
+    },
+    {
+        "name": "Snus",
+        "description": "For those who like to keep their hands clean while fishing.",
+        "price": 11.99,
+        "effects": [
+            "fishing.catch_rate_10"
+        ]
+    },
+    {
+        "name": "Copenhagen Long Cut",
+        "description": "Grab a spit cup and some hookers, it's time to fish.",
+        "price": 11.99,
+        "effects": [
+            "fishing.miss_rate_10"
+        ]
+    },
+    {
+        "name": "Zyn Wintergreen",
+        "description": "Pack a lip pillow and relax.",
+        "price": 11.99,
+        "effects": [
+            "fishing.case_rate_20"
+        ]
+    }
+]

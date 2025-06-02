@@ -1,5 +1,10 @@
 {
     "fishing": {
+        "miss_rate_10": {
+            "mult": 0.9,
+            "duration": 120,
+            "description": "Miss Rate -10%"
+        },
         "miss_rate_20": {
             "mult": 0.8,
             "duration": 120,
@@ -19,6 +24,16 @@
             "mult": 1.1,
             "duration": 120,
             "description": "Case Rate +10%"
+        },
+        "case_rate_20": {
+            "mult": 1.2,
+            "duration": 120,
+            "description": "Case Rate +20%"
+        },
+        "catch_rate_10": {
+            "mult": 1.1,
+            "duration": 120,
+            "description": "Catch Rate +10%"
         },
         "catch_rate_20": {
             "mult": 1.2,
