@@ -251,5 +251,54 @@
                 "fish_capacity": -1
             }
         }
+    ],
+    "Beer": [
+        {
+            "name": "Coffee",
+            "price": 2.99,
+            "description": "Brewed two days ago, this cup o' joe is still strong enough to wake the dead.",
+            "type": "beer",
+            "attributes": {
+                "effects": [
+                    "fishing.miss_rate_20"
+                ]
+            }
+        },
+        {
+            "name": "Busch Apple",
+            "aliases": ["Busch Apple Beer", "Busch"],
+            "price": 3.99,
+            "description": "Canned college student piss on a fall day.",
+            "type": "beer",
+            "attributes": {
+                "effects": [
+                    "fishing.legendary_rate_20"
+                ]
+            }
+        },
+        {
+            "name": "Natty Light",
+            "aliases": ["Natural Light", "Natty"],
+            "price": 2.49,
+            "description": "The cheapest you could find at the gas station.",
+            "type": "beer",
+            "attributes": {
+                "effects": [
+                    "casino.luck_15"
+                ]
+            }
+        },
+        {
+            "name": "Pabst Blue Ribbon",
+            "aliases": ["Pabst", "PBR"],
+            "price": 2.99,
+            "description": "The can is cold, the beer is cold, and the taste is... well, it's beer.",
+            "type": "beer",
+            "attributes": {
+                "effects": [
+                    "fishing.price_50"
+                ]
+            }
+        }
     ]
 }

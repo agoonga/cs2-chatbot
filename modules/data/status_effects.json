@@ -1,0 +1,36 @@
+{
+    "fishing": {
+        "miss_rate_20": {
+            "mult": 0.8,
+            "duration": 120,
+            "description": "Miss Rate -20%"
+        },
+        "legendary_rate_20": {
+            "mult": 1.2,
+            "duration": 120,
+            "description": "Legendary Fish Rate +20%"
+        },
+        "price_50": {
+            "mult": 1.5,
+            "duration": 120,
+            "description": "Fish Sell Price +50%"
+        },
+        "case_rate_10": {
+            "mult": 1.1,
+            "duration": 120,
+            "description": "Case Rate +10%"
+        },
+        "catch_rate_20": {
+            "mult": 1.2,
+            "duration": 120,
+            "description": "Catch Rate +20%"
+        }
+    },
+    "casino": {
+        "luck_15": {
+            "mult": 1.15,
+            "duration": 120,
+            "description": "Gambling Luck +15%"
+        }
+    }
+}

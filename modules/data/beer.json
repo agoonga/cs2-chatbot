@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Coffee",
+        "price": 2.99,
+        "description": "Brewed two days ago, this cup o' joe is still strong enough to wake the dead.",
+        "effects": [
+            "fishing.miss_rate_20"
+        ]
+    },
+    {
+        "name": "Busch Apple",
+        "price": 3.99,
+        "description": "Canned college student piss on a fall day.",
+        "effects": [
+            "fishing.legendary_rate_20"
+        ]
+    },
+    {
+        "name": "Natty Light",
+        "price": 2.49,
+        "description": "The cheapest you could find at the gas station.",
+        "effects": [
+            "casino.luck_15"
+        ]
+    },
+    {
+        "name": "Pabst Blue Ribbon",
+        "price": 2.99,
+        "description": "The can is cold, the beer is cold, and the taste is... well, it's beer.",
+        "effects": [
+            "fishing.price_50"
+        ]
+    }
+]

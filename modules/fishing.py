@@ -7,6 +7,7 @@ import sys
 from util.config import get_config_path
 from util.module_registry import module_registry
 from modules.inventory import Inventory as InventoryModule
+from modules.status_effects import StatusEffects as StatusEffectsModule
 
 class Fishing:
     load_after = ["inventory", "economy"]  # Load after the inventory and economy modules
@@ -16,6 +17,7 @@ class Fishing:
         self.db_path = os.path.join(appdata_dir if hasattr(sys, '_MEIPASS') else "db", "fish.db")
         self.initialize_database()
         self.inventory: InventoryModule = module_registry.get_module("inventory")  # Retrieve the Inventory module from the module registry
+        self.status_effects: StatusEffectsModule = module_registry.get_module("status_effects")  # Retrieve the StatusEffects module from the module registry
 
     def load_fish_data(self):
         """Load fish data from a JSON file."""
@@ -59,6 +61,8 @@ class Fishing:
         """
         Calculate the chance of missing a fish based on the player's stats.
         """
+        miss_chance = 0.3  # Base miss chance
+
         # Check player's inventory for fishing gear
         rod = self.inventory.get_item_by_type(playername, "rod")
         if rod:
@@ -66,8 +70,15 @@ class Fishing:
             rod = rod[0][1]
             attributes = rod.get("attributes", {})
             if "fish_none_rate_multiplier" in attributes:
-                return 0.3 * attributes["fish_none_rate_multiplier"]
-        return 0.3  # Default miss chance if no rod is found
+                miss_chance = miss_chance * attributes["fish_none_rate_multiplier"]
+        
+        # Check player's status effects
+        effects = self.status_effects.get_effects(playername)
+        for effect in effects:
+            if effect.get("module_id") == "fishing" and effect.get("effect_id").startswith("miss_rate"):
+                miss_chance = miss_chance * effect.get("mult", 1)
+        
+        return miss_chance
             
     def calculate_sack_size(self, playername):
         """
@@ -154,10 +165,30 @@ class Fishing:
             # Increase the miss chance
             miss_chance = 0.1 * (bait_rarity_index - minimum_rarity_index) + miss_chance
         
+        # get fish around
         fish_around = []
         for item in self.fish_data:
             if item["rarity"] == minimum_rarity or item["rarity"] in rarities[rarities.index(minimum_rarity):]:
                 fish_around.append(item)
+        
+        # alter catch rate based on status effects
+        effects = self.status_effects.get_effects(user_id)
+        for effect in effects:
+            # legendary_rate effect
+            if effect.get("module_id") == "fishing" and effect.get("effect_id").startswith("legendary_rate"):
+                for item in fish_around:
+                    if item["rarity"] == "Legendary":
+                        item["catch_rate"] *= effect.get("mult", 1)
+            # catch_rate effect
+            if effect.get("module_id") == "fishing" and effect.get("effect_id").startswith("catch_rate"):
+                for item in fish_around:
+                    item["catch_rate"] *= effect.get("mult", 1)
+            # case_rate effect
+            if effect.get("module_id") == "fishing" and effect.get("effect_id").startswith("case_rate"):
+                for item in fish_around:
+                    if item["type"] == "item":
+                        item["catch_rate"] *= effect.get("mult", 1)
+                    
         
         fish_catch_rate = sum(item["catch_rate"] for item in fish_around)  # Calculate the total catch rate for the filtered fish
         total_catch_rate = fish_catch_rate + (fish_catch_rate *  miss_chance)  # Adjust the total catch rate based on miss chance
@@ -171,7 +202,12 @@ class Fishing:
                     # Randomize the weight of the fish
                     weight = round(random.uniform(item["min_weight"], item["max_weight"]), 2)
                     # Calculate the price based on the weight and price multiplier
-                    price = round(weight * item["price_multiplier"], 2)
+                    price = weight * item["price_multiplier"]
+                    # price status effect
+                    for effect in effects:
+                        if effect.get("module_id") == "fishing" and effect.get("effect_id").startswith("price"):
+                            price *= effect.get("mult", 1)
+                    price = round(price, 2)
                     # Add the fish to the database
                     self.add_fish_to_db(user_id, item["name"], weight, price)
                     return {"name": item["name"], "type": "fish", "weight": weight, "price": price}
