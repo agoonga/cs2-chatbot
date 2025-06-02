@@ -27,4 +27,4 @@ def drink_command(bot, is_team: bool, playername: str, chattext: str) -> None:
             result = tobacco_module.smoke_tobacco(playername, chattext.strip())
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: tobacco module not found.")
+        bot.add_to_chat_queue(is_team, f"{playername}: Tobacco module not found.")
