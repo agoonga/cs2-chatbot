@@ -22,7 +22,6 @@ class Shop:
         self.inventory: Inventory = module_registry.get_module("inventory")
 
         self.load_shop_categories()
-        print(f"Shop data loaded: {self.categories}")
 
     def find_category(self, item_name, categories):
         """Find the category of an item by its name."""

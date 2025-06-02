@@ -178,4 +178,4 @@ modules/data/inventory.db
 db/economy.db
 db/fish.db
 db/inventory.db
-modules/status_effects.py
+db/status_effects.db

@@ -2,12 +2,15 @@ import random
 
 from util.module_registry import module_registry
 from modules.economy import Economy
+from modules.status_effects import StatusEffects
 
 class Casino:
-    load_after = ["economy"]  # Load after the economy module
+    load_after = ["economy", "status_effects"]  # Load after the economy module
     def __init__(self):
         # Retrieve the Economy module from the module registry
         self.economy: Economy = module_registry.get_module("economy")
+        # Retrieve the StatusEffects module from the module registry
+        self.status_effects: StatusEffects = module_registry.get_module("status_effects")
 
     def flip(self, user_id, amount=10):
         """
@@ -23,7 +26,13 @@ class Casino:
             return f"Insufficient funds. Your current balance is ${current_balance:.2f}."
 
         # Perform the coin flip
-        outcome = random.choice(["heads", "tails"])
+        # Get cutoff from status effects
+        status_effects = self.status_effects.get_effects(user_id)
+        cutoff = 0.5
+        for effect in status_effects:
+            if effect["effect_id"] == "luck":
+                cutoff *= effect["mult"]
+        outcome = "heads" if random.random() < cutoff else "tails"
         if outcome == "heads":
             # User wins, double the amount
             self.economy.add_balance(user_id, amount)
