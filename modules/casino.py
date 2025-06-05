@@ -20,6 +20,9 @@ class Casino:
         :param amount: The amount to gamble (default is 10).
         :return: A message with the result of the flip.
         """
+        if amount <= 0:
+            return "No way jose, pick a number greater than 0."
+
         # Ensure the user has enough balance
         current_balance = self.economy.get_balance(user_id)
         if current_balance < amount:
