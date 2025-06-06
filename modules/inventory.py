@@ -3,6 +3,7 @@ import random
 import sqlite3
 import json
 import sys
+from thefuzz import process, fuzz
 
 from util.config import get_config_path
 from util.module_registry import module_registry
@@ -192,3 +193,24 @@ class Inventory:
             "data": json.loads(result[1]),
             "quantity": result[2]
         }
+
+    def get_item_by_name_fuzzy(self, user_id, item_name):
+        """Get an item by its name from the user's inventory using fuzzy matching."""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT item_name FROM user_inventory
+            WHERE user_id = ?
+        """, (user_id,))
+        items = cursor.fetchall()
+        conn.close()
+        
+        if not items:
+            return None
+        
+        item_names = [item[0] for item in items]
+        best_match = process.extractOne(item_name, item_names, scorer=fuzz.ratio)
+        
+        if best_match and best_match[1] >= 80:
+            return self.get_item_by_name(user_id, best_match[0])
+        return None

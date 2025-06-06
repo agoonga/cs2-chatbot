@@ -53,7 +53,7 @@ class Beer:
             return f"Beer '{beer}' not found."
         
         # Check if the player has the beer in their inventory
-        if not self.inventory.get_item_by_name(playername, beer_data["name"]):
+        if not self.inventory.get_item_by_name_fuzzy(playername, beer_data["name"]):
             return f"You don't have any {beer_data['name']} to drink."
         
         # Remove the beer from the inventory

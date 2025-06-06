@@ -73,7 +73,7 @@ def inspect_command(bot, is_team: bool, playername: str, chattext: str) -> None:
         if not item_name:
             bot.add_to_chat_queue(is_team, f"{playername}: Please specify an item to inspect.")
             return
-        result = inventory_module.get_item_by_name(playername, item_name)["data"]["description"]
+        result = inventory_module.get_item_by_name_fuzzy(playername, item_name)["data"]["description"]
         if not result:
             bot.add_to_chat_queue(is_team, f"{playername}: A run-of-the-mill {item_name}.")
             return

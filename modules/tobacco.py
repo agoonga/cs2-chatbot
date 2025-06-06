@@ -53,7 +53,7 @@ class Tobacco:
             return f"Tobacco '{tobacco}' not found."
         
         # Check if the player has the tobacco in their inventory
-        if not self.inventory.get_item_by_name(playername, tobacco_data["name"]):
+        if not self.inventory.get_item_by_name_fuzzy(playername, tobacco_data["name"]):
             return f"You don't have any {tobacco_data['name']} to chuff."
         
         # Remove the tobacco from the inventory

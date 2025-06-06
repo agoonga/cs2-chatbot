@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+from thefuzz import process, fuzz
 
 from util.config import get_config_path
 from util.module_registry import module_registry
@@ -29,6 +30,10 @@ class Shop:
             for item in items:
                 if item["name"].lower() == item_name.lower() or item_name.lower() in [alias.lower() for alias in item.get("aliases", [])]:
                     return category
+                best_match, score = process.extractOne(item_name.lower(), [i["name"].lower() for i in items], scorer=fuzz.ratio)
+                if best_match and score >= 80:
+                    return category
+
         return None
 
     def find_item(self, item_name, allowed_items):
@@ -42,6 +47,13 @@ class Shop:
         for item in allowed_items["items"]:
             if item["name"].lower() == item_name or item_name in [alias.lower() for alias in item.get("aliases", [])]:
                 return item
+        
+        best_match, score = process.extractOne(item_name, [item["name"].lower() for item in allowed_items["items"]], scorer=fuzz.ratio)
+        if best_match and score >= 60:
+            for item in allowed_items["items"]:
+                if item["name"].lower() == best_match:
+                    return item
+
         return None
 
     def buy(self, playername, item_name, quantity=1):
