@@ -64,7 +64,8 @@ class CommandRegistry:
         else:
             best_match, score = process.extractOne(command_name, self.commands.keys(), scorer=fuzz.ratio)
             self.logger.warning(f"Command '{command_name}' not found. Did you mean '{best_match}'? (Score: {score})")
-            return f"Command '{command_name}' not found. Did you mean '{best_match}'?"
+            playername = kwargs.get('playername', '')
+            return f"{f'{playername}: ' if playername else ''}Command '{command_name}' not found. Did you mean '{best_match}'?"
 
     def set_logger(self, logger):
         """Set a custom logger."""
