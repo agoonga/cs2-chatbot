@@ -2,32 +2,19 @@ import os
 import shutil
 import toml
 import platform
+import platformdirs
 import sys
 
 def get_config_path() -> str:
     """Get the path to the config.toml file."""
-    if hasattr(sys, '_MEIPASS'):  # Check if running in packaged mode
-        # Determine the directory based on the operating system
-        if platform.system() == "Windows":
-            appdata_dir = os.path.join(os.getenv("USERPROFILE"), "Documents")  # Get the Documents directory on Windows
-        elif platform.system() == "Darwin":  # macOS
-            appdata_dir = os.path.expanduser("~/Library/Application Support")
-        elif platform.system() == "Linux":
-            appdata_dir = os.path.expanduser("~/.config")
-        else:
-            raise OSError(f"Unsupported operating system: {platform.system()}")
-
-        # Create a subdirectory for your application in Documents
-        app_config_dir = os.path.join(appdata_dir, "CS2ChatBot")
-        os.makedirs(app_config_dir, exist_ok=True)  # Ensure the directory exists
-        return os.path.join(app_config_dir, "config.toml")
-    else:
-        # Return the config path in the project directory for development mode
-        return os.path.join(os.path.dirname(os.path.dirname(__file__)), "config.toml")
+    appname = "CS2ChatBot"
+    app_config_dir = platformdirs.user_data_path(appname)
+    app_config_dir.mkdir(parents=True, exist_ok=True)
+    return app_config_dir / "config.toml"
 
 def copy_files_to_appdata():
     """Copy necessary files to the app data directory."""
-    appdata_dir = os.path.dirname(get_config_path())
+    appdata_dir = get_config_path().parent 
     files_to_copy = [
         ("modules/data/cases.json", "cases.json"),
         ("modules/data/fish.json", "fish.json"),
@@ -80,7 +67,6 @@ def generate_default_config() -> dict:
         "resume_buttons": "enter,esc",
     }
     config_path = get_config_path()
-    os.makedirs(os.path.dirname(config_path), exist_ok=True)  # Ensure the directory exists
     with open(config_path, "w") as f:
         toml.dump(default_config, f)
     return default_config
@@ -89,7 +75,7 @@ def generate_default_config() -> dict:
 def load_config() -> dict:
     """Load the configuration from the config.toml file."""
     config_path = get_config_path()
-    if not os.path.exists(config_path):
+    if not config_path.exists():
         return generate_default_config()
     with open(config_path, "r") as f:
         return toml.load(f)

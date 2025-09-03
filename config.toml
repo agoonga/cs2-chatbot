@@ -1,18 +1,18 @@
 # load_chat_key: this key will be used to load the chat messages
 # should be a key that you don't use in cs2, default is "kp_1"
-load_chat_key = "kp_1"
+load_chat_key = "l"
 
 # send_chat_key: this key will be used to send the chat message
 # should be a key that you don't use in cs2, default is "kp_2"
-send_chat_key = "kp_2"
+send_chat_key = "k"
 
 # console.log path
 # set this to the path of console.log in the cs2 directory
-console_log_path = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/console.log"
+console_log_path = "E:\\SteamLibrary\\steamapps\\common\\Counter-Strike Global Offensive\\game\\csgo\\console.log"
 
 # exec path
 # set this to the .cfg file that will be used for chat
-exec_path = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/chat.cfg"
+exec_path = "E:\\SteamLibrary\\steamapps\\common\\Counter-Strike Global Offensive\\game\\csgo\\cfg\\chat.cfg"
 
 # prefix
 # set this to whatever you want commands to start with (@cmd)
