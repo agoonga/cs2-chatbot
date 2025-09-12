@@ -1,7 +1,7 @@
 import os
 import logging  # Import the logging module
 from time import sleep
-import win32gui
+# import win32gui
 import keyboard
 import threading
 from PyQt6.QtCore import QTimer  # Import QTimer
@@ -57,9 +57,9 @@ class Bot:
         self.config = load_config()  # Load configuration from config.toml
         self.prefix = self.config.get("command_prefix", "@")  # Command prefix (e.g., "@")
         self.load_chat_key = self.config.get("load_chat_key", "kp_1")  # Key to load chat
-        self.load_chat_key_win32 = keys.KEYS[self.load_chat_key]  # Win32 key code for load chat key
+        self.load_chat_key_linux = keys.KEYS[self.load_chat_key]  # Win32 key code for load chat key
         self.send_chat_key = self.config.get("send_chat_key", "kp_2")  # Key to send chat
-        self.send_chat_key_win32 = keys.KEYS[self.send_chat_key]  # Win32 key code for send chat key
+        self.send_chat_key_linux = keys.KEYS[self.send_chat_key]  # Win32 key code for send chat key
         self.console_log_path = self.config.get("console_log_path")  # Path to the console log file
         self.exec_path = self.config.get("exec_path")  # Path to the chat configuration file
         self.commands = command_registry  # Command registry to manage commands
@@ -150,14 +150,14 @@ class Bot:
         """Connect to the Counter-Strike 2 window."""
         self.logger.info("Waiting for Counter-Strike 2 window...")
         self.ui_instance.update_status("Waiting for CS2 to open...")
-        cs2_hwnd = win32gui.FindWindow(None, "Counter-Strike 2")  # Find the CS2 window
+        # cs2_hwnd = win32gui.FindWindow(None, "Counter-Strike 2")  # Find the CS2 window
 
         # Wait for the CS2 window to appear
-        while cs2_hwnd == 0 and not self.stop_event.is_set():
-            cs2_hwnd = win32gui.FindWindow(None, "Counter-Strike 2")
-            self._interruptible_sleep(0.5)
+        # while cs2_hwnd == 0 and not self.stop_event.is_set():
+        #     cs2_hwnd = win32gui.FindWindow(None, "Counter-Strike 2")
+        #     self._interruptible_sleep(0.5)
             
-        win32gui.SetForegroundWindow(cs2_hwnd)  # Bring the CS2 window to the foreground
+        # win32gui.SetForegroundWindow(cs2_hwnd)  # Bring the CS2 window to the foreground
         self.logger.info("Connected to Counter-Strike 2 window.")
 
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
@@ -206,7 +206,7 @@ class Bot:
                 while self.paused and not self.stop_event.is_set():
                     self._interruptible_sleep(0.1)
 
-                send_chat(self.send_chat_key_win32)
+                send_chat(self.send_chat_key_linux)
                 self._interruptible_sleep(0.5)
             except Exception as e:
                 # self.logger.error(f"Error processing chat message: {e}")

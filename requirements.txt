@@ -1,9 +1,9 @@
 toml
 keyboard
-pywin32
 importlib
 importlib-metadata
 pyinstaller
 PyQt6
 screeninfo
 thefuzz
+pyautogui
