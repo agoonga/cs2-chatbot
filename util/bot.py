@@ -57,9 +57,9 @@ class Bot:
         self.config = load_config()  # Load configuration from config.toml
         self.prefix = self.config.get("command_prefix", "@")  # Command prefix (e.g., "@")
         self.load_chat_key = self.config.get("load_chat_key", "kp_1")  # Key to load chat
-        self.load_chat_key_linux = keys.KEYS[self.load_chat_key]  # Win32 key code for load chat key
+        self.load_chat_key_linux = keys.get_key(self.load_chat_key)  # Win32 key code for load chat key
         self.send_chat_key = self.config.get("send_chat_key", "kp_2")  # Key to send chat
-        self.send_chat_key_linux = keys.KEYS[self.send_chat_key]  # Win32 key code for send chat key
+        self.send_chat_key_linux = keys.get_key(self.send_chat_key)  # Win32 key code for send chat key
         self.console_log_path = self.config.get("console_log_path")  # Path to the console log file
         self.exec_path = self.config.get("exec_path")  # Path to the chat configuration file
         self.commands = command_registry  # Command registry to manage commands
