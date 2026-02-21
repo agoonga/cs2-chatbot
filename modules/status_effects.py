@@ -1,7 +1,6 @@
 import json
 import os
 import sys
-from copy import deepcopy
 from time import time
 
 from util.database import DatabaseConnection
@@ -26,23 +25,19 @@ class StatusEffects:
         """Find an effect data by its name."""
         if self.status_effect_data is None:
             return None
-
-        module_id = module_id.strip().lower()
-        effect_id = effect_id.strip().lower()
         
-        if module_id in self.status_effect_data.keys():
-            module_to_search = self.status_effect_data[module_id]
-            if effect_id in module_to_search.keys():
-                found_effect = deepcopy(module_to_search[effect_id])
-                found_effect["module_id"] = module_id
-                found_effect["effect_id"] = effect_id
+        if module_id.lower() in self.status_effect_data.keys():
+            module_to_search = self.status_effect_data[module_id.lower()]
+            if effect_id.lower() in module_to_search.keys():
+                found_effect = module_to_search[effect_id.lower()]
+                found_effect["module_id"] = module_id.lower()
+                found_effect["effect_id"] = effect_id.lower()
                 return found_effect
         
         return None
 
     def add_effect(self, playername, effect_name):
         """Add a status effect to the user."""
-        effect_name = effect_name.strip().lower()
         module_id, effect_id = effect_name.split(".", 1)
         effect_data = self.find_effect(module_id, effect_id)
         if effect_data is None:
@@ -50,7 +45,9 @@ class StatusEffects:
         
         # check if the effect already exists
         active_effects = self.get_effects(playername)
+        print(active_effects)
         existing_effect = next((e for e in active_effects if e["effect_id"] == effect_id), None)
+        print(existing_effect)
         
         with DatabaseConnection() as cursor:
             if existing_effect:
@@ -92,11 +89,7 @@ class StatusEffects:
 
         active_effects = []
         for (effect_name, expires_at) in active_effect_names:
-            if "." not in effect_name:
-                continue
             effect = self.find_effect(*effect_name.split(".", 1))
-            if effect is None:
-                continue
             effect["duration"] = expires_at - int(time())
             active_effects.append(effect)
 
@@ -115,7 +108,6 @@ class StatusEffects:
 
     def get_description(self, effect_name):
         """Get the description of a status effect."""
-        effect_name = effect_name.strip().lower()
         module_id, effect_id = effect_name.split(".", 1)
         effect_data = self.find_effect(module_id, effect_id)
         if effect_data is None:

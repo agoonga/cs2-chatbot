@@ -9,21 +9,30 @@ def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> Non
     :param bot: The Bot instance.
     :param is_team: Whether the message is for the team chat.
     :param playername: The name of the player.
-    :param chattext: Additional text (ignored for this command).
+    :param chattext: Additional text.
     :help inventory: Display the contents of your inventory. (alias: inv)
     """
     inventory_module: InventoryModule = bot.modules.get_module("inventory")
     if inventory_module:
-        inventory_list = inventory_module.list_inventory(playername)
-        if not inventory_list:
-            bot.add_to_chat_queue(is_team, f"{playername}: Rummaging through your inventory, you find nothing but dust.")
-            return
-        inv_items = []
-        for item in inventory_list:
-            item_name = item['name']
-            item_count = item['quantity']
-            inv_items.append(f"{item_name} x{item_count}")
-        bot.add_to_chat_queue(is_team, f"{playername}'s inventory: {', '.join(inv_items)}")
+        item_type = chattext.strip().rstrip("s") if chattext.strip() else None  # normalize e.g. "rods" -> "rod"
+        if item_type:
+            items = inventory_module.get_item_by_type(playername, item_type)
+            if not items:
+                bot.add_to_chat_queue(is_team, f"{playername}: You have no {chattext.strip()} in your inventory.")
+                return
+            inv_items = [f"{item[0]} x{item[2]}" for item in items]
+            bot.add_to_chat_queue(is_team, f"{playername}'s {chattext.strip()}: {', '.join(inv_items)}")
+        else:
+            inventory_list = inventory_module.list_inventory(playername)
+            if not inventory_list:
+                bot.add_to_chat_queue(is_team, f"{playername}: Rummaging through your inventory, you find nothing but dust.")
+                return
+            inv_items = []
+            for item in inventory_list:
+                item_name = item['name']
+                item_count = item['quantity']
+                inv_items.append(f"{item_name} x{item_count}")
+            bot.add_to_chat_queue(is_team, f"{playername}'s inventory: {', '.join(inv_items)}")
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Inventory module not found.")
 

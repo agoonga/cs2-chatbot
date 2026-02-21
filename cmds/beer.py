@@ -15,16 +15,19 @@ def drink_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     inventory_module: InventoryModule = bot.modules.get_module("inventory")
     beer_module: BeerModule = bot.modules.get_module("beer")
+    beers = inventory_module.get_item_by_type(playername, "beer")
+    if not beers:
+        bot.add_to_chat_queue(is_team, f"{playername}: You don't have any beer to drink.")
+        return
     if beer_module:
         if not chattext.strip():
             # get the last beer from the player's inventory
-            beers = inventory_module.get_item_by_type(playername, "beer")
-            if not beers:
-                bot.add_to_chat_queue(is_team, f"{playername}: You have no beer to drink.")
-                return
             result = beer_module.drink_beer(playername, beers[-1][0])
         else:
-            result = beer_module.drink_beer(playername, chattext.strip())
+            if chattext.strip().lower() == "all":
+                result = beer_module.drink_all_beer(playername, beers)
+            else:
+                result = beer_module.drink_beer(playername, chattext.strip())
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
         bot.add_to_chat_queue(is_team, f"{playername}: Beer module not found.")

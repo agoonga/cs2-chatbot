@@ -22,11 +22,6 @@ def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
                     is_team,
                     f"{playername} caught a {result['name']} weighing {result['weight']} lbs worth ${result['price']}!"
                 )
-            elif result.get("type") == "autosold_fish":
-                bot.add_to_chat_queue(
-                    is_team,
-                    f"{playername} caught a {result['name']}, autosold for ${result['price']}!"
-                )
             elif result.get("type") == "item":
                 # If an item is caught, display the item message
                 bot.add_to_chat_queue(

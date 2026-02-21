@@ -1,5 +1,6 @@
 import os
 import logging
+import sys
 import threading
 import win32gui
 import keyboard
@@ -32,7 +33,7 @@ class CS2Client:
         file_handler.setFormatter(file_formatter)
         
         # Stream handler for logging to the console
-        console_handler = logging.StreamHandler()
+        console_handler = logging.StreamHandler(stream=open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1))
         console_handler.setLevel(logging.INFO)
         console_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
         console_handler.setFormatter(console_formatter)
@@ -210,7 +211,7 @@ class CS2Client:
         self.chat_queue_thread.start()
         
         # Set up keybinds
-        pause_buttons = self.config.get("pause_buttons", "tab,b,y,u").split(",")
+        pause_buttons = self.config.get("pause_buttons", "tab,b,p").split(",")
         resume_buttons = self.config.get("resume_buttons", "enter,esc").split(",")
         
         self.logger.info("Registering hotkeys...")
@@ -237,7 +238,7 @@ class CS2Client:
         # Open console log file
         self.logger.info("Attempting to read console log...")
         try:
-            log_file = open(self.console_log_path, "r", encoding="utf-8")
+            log_file = open(self.console_log_path, "r", encoding="utf-8", errors="ignore")
         except FileNotFoundError:
             self.logger.error(f"Console log file {self.console_log_path} not found.")
             return

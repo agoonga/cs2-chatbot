@@ -19,16 +19,6 @@ CREATE TABLE IF NOT EXISTS caught_fish (
 -- Create index on user_id for faster queries
 CREATE INDEX IF NOT EXISTS idx_caught_fish_user_id ON caught_fish(user_id);
 
--- Autosell fish preferences table
-CREATE TABLE IF NOT EXISTS autosell_fish (
-    user_id TEXT NOT NULL,
-    fish_name TEXT NOT NULL,
-    PRIMARY KEY (user_id, fish_name)
-);
-
--- Create index on user_id for faster autosell lookups
-CREATE INDEX IF NOT EXISTS idx_autosell_fish_user_id ON autosell_fish(user_id);
-
 -- Trophy fish table
 CREATE TABLE IF NOT EXISTS trophy_fish (
     id SERIAL PRIMARY KEY,

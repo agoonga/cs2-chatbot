@@ -296,7 +296,7 @@
         "max_weight": 190,
         "price_multiplier": 4.6,
         "rarity": "Legendary",
-        "catch_rate": 1.25,
+        "catch_rate": 0.95,
         "description": "The sailfish tastes swift and elegant, like it was still racing through the waves."
     },
     {
@@ -516,7 +516,7 @@
         "max_weight": 0,
         "price_multiplier": 0.0,
         "rarity": "Uncommon",
-        "catch_rate": 5,
+        "catch_rate": 10,
         "description": "An old barnacle-laden Bravo case."
     },
     {

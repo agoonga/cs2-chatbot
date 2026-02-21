@@ -30,11 +30,6 @@
             "duration": 120,
             "description": "Case Rate +20%"
         },
-        "item_rate_40": {
-            "mult": 1.4,
-            "duration": 120,
-            "description": "Item Rate +40%"
-        },
         "catch_rate_10": {
             "mult": 1.1,
             "duration": 120,

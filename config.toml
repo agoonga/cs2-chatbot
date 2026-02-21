@@ -8,15 +8,15 @@ send_chat_key = "kp_2"
 
 # console.log path
 # set this to the path of console.log in the cs2 directory
-console_log_path = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/console.log"
+console_log_path = "E:/SteamLibrary/steamapps/common/Counter-Strike Global Offensive/game/csgo/console.log"
 
 # exec path
 # set this to the .cfg file that will be used for chat
-exec_path = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/chat.cfg"
+exec_path = "E:/SteamLibrary/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/chat.cfg"
 
-# prefix
+# prefix	
 # set this to whatever you want commands to start with (@cmd)
-command_prefix = "@"
+command_prefix = "!"
 
 # Database configuration
 [database]
@@ -28,8 +28,8 @@ password = "bot_password"
 
 # pause buttons
 # set this to the buttons you want to pause the output loop on
-pause_buttons = "b,tab,y,`,alt+tab"
+pause_buttons = "b,tab,`,alt+tab,p"
 
 # resume button
 # set this to the button you want to resume the output loop
-resume_buttons = "enter,esc"
+resume_buttons = "esc,enter"

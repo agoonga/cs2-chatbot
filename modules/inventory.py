@@ -15,25 +15,45 @@ class Inventory:
     def __init__(self):
         appdata_dir = os.path.dirname(get_config_path())
         cases_path = os.path.join(appdata_dir, "cases.json") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "cases.json")
+        items_path = os.path.join(appdata_dir, "fish.json") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "fish.json")
+        shop_path = os.path.join(appdata_dir, "shop.json") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "shop.json")
         try:
             with open(cases_path, mode="r", encoding="utf-8") as file:
-                self.cases = json.load(file)
+                case_data = json.load(file)
+                self.case = {}
+                for item in case_data:
+                    self.case[item["name"]] = item
         except Exception as e:
             raise Exception(f"Error loading cases: {e}")
+        try:
+            with open(items_path, mode="r", encoding="utf-8") as file:
+                items_data = json.load(file)
+                self.items = {}
+                for item in items_data:
+                    self.items[item["name"]] = item
+        except Exception as e:
+            raise Exception(f"Error loading items: {e}")
+        try:
+            with open(shop_path, mode="r", encoding="utf-8") as file:
+                shop_data = json.load(file)
+                self.shop = {}
+                for category in shop_data.values():
+                    for item in category:
+                        self.shop[item["name"]] = item
+        except Exception as e:
+            raise Exception(f"Error loading shop data: {e}")
+        
         self.economy: Economy = module_registry.get_module("economy")
 
-    def add_item(self, user_id, item_name, item_data, quantity=1):
+    def add_item(self, user_id, item_name, quantity=1):
         """Add an item to the user's inventory."""
-        item_data = item_data if isinstance(item_data, str) else json.dumps(item_data)
-        # replace any escape characters in item_data
-        item_data = item_data.replace("\\\\", "\\").replace("\\'", "'")
         with DatabaseConnection() as cursor:
             cursor.execute("""
-                INSERT INTO user_inventory (user_id, item_name, item_data, quantity)
-                VALUES (%s, %s, %s, %s)
+                INSERT INTO user_inventory (user_id, item_name, quantity)
+                VALUES (%s, %s, %s)
                 ON CONFLICT(user_id, item_name) DO UPDATE SET quantity = user_inventory.quantity + %s
-            """, (user_id, item_name, item_data, quantity, quantity))
-        return f"Added {quantity} x {item_name} ({item_data}) to {user_id}'s inventory."
+            """, (user_id, item_name, quantity, quantity))
+        return f"Added {quantity} x {item_name} to {user_id}'s inventory."
 
     def remove_item(self, user_id, item_name, quantity=1):
         """Remove an item from the user's inventory."""
@@ -61,7 +81,7 @@ class Inventory:
         """Get items of a specific type from the user's inventory."""
         with DatabaseConnection() as cursor:
             cursor.execute("""
-                SELECT item_name, item_data, quantity FROM user_inventory
+                SELECT item_name, quantity FROM user_inventory
                 WHERE user_id = %s
             """, (playername,))
             items = cursor.fetchall()
@@ -70,8 +90,8 @@ class Inventory:
         found_items = []
         for item in items:
             item_name = item[0]
-            item_data = json.loads(item[1])
-            quantity = item[2]
+            item_data = self.shop.get(item_name) or (self.items).get(item_name)
+            quantity = item[1]
             item_type_value = item_data.get("type")
             if item_type_value and item_type_value.lower() == item_type.lower():
                 found_items.append((item_name, item_data, quantity))
@@ -84,13 +104,13 @@ class Inventory:
         """List all items in the user's inventory."""
         with DatabaseConnection() as cursor:
             cursor.execute("""
-                SELECT item_name, item_data, quantity FROM user_inventory
+                SELECT item_name, quantity FROM user_inventory
                 WHERE user_id = %s
             """, (user_id,))
             items = cursor.fetchall()
         if not items:
             return None
-        return [{'name': item[0], 'data': item[1], 'quantity': item[2]} for item in items]
+        return [{'name': item[0],'quantity': item[1]} for item in items]
 
     def open_case(self, user_id, case_name):
         """Open a case and add a random item to the user's inventory."""
@@ -144,7 +164,7 @@ class Inventory:
         """Get an item by its name from the user's inventory."""
         with DatabaseConnection() as cursor:
             cursor.execute("""
-                SELECT item_name, item_data, quantity FROM user_inventory
+                SELECT item_name, quantity FROM user_inventory
                 WHERE user_id = %s AND item_name ILIKE %s
             """, (user_id, item_name))
             result = cursor.fetchone()
@@ -152,8 +172,8 @@ class Inventory:
             return None
         return {
             "name": result[0],
-            "data": json.loads(result[1]),
-            "quantity": result[2]
+            "data": self.shop.get(result[0]) or self.items.get(result[0]),
+            "quantity": result[1]
         }
 
     def get_item_by_name_fuzzy(self, user_id, item_name):
