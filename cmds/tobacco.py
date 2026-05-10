@@ -20,11 +20,11 @@ def drink_command(bot, is_team: bool, playername: str, chattext: str) -> None:
             # get the last tobacco from the player's inventory
             tobaccos = inventory_module.get_item_by_type(playername, "tobacco")
             if not tobaccos:
-                bot.add_to_chat_queue(is_team, f"{playername}: You have no tobacco to chuff.")
+                bot.add_to_chat_queue(is_team, bot.t("commands.smoke.no_tobacco", player=playername))
                 return
-            result = tobacco_module.smoke_tobacco(playername, tobaccos[-1][0])
+            result = tobacco_module.smoke_tobacco(playername, tobaccos[-1][0], t=bot.t)
         else:
-            result = tobacco_module.smoke_tobacco(playername, chattext.strip())
+            result = tobacco_module.smoke_tobacco(playername, chattext.strip(), t=bot.t)
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Tobacco module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.smoke.module_not_found", player=playername))

@@ -22,6 +22,13 @@ class Inventory:
             raise Exception(f"Error loading cases: {e}")
         self.economy: Economy = module_registry.get_module("economy")
 
+    def _translate(self, t, key, default_text, **kwargs):
+        if callable(t):
+            translated = t(key, **kwargs)
+            if translated != key:
+                return translated
+        return default_text.format(**kwargs)
+
     def add_item(self, user_id, item_name, item_data, quantity=1):
         """Add an item to the user's inventory."""
         item_data = item_data if isinstance(item_data, str) else json.dumps(item_data)
@@ -92,19 +99,29 @@ class Inventory:
             return None
         return [{'name': item[0], 'data': item[1], 'quantity': item[2]} for item in items]
 
-    def open_case(self, user_id, case_name):
+    def open_case(self, user_id, case_name, t=None):
         """Open a case and add a random item to the user's inventory."""
         if case_name:
             user_inv = self.list_inventory(user_id)
 
             # check if has case
             if not any(case_name.lower() in item['name'].lower() for item in user_inv):
-                return f"You don't have a {case_name} to open."
+                return self._translate(
+                    t,
+                    "commands.inventory.open.no_case_named",
+                    "You don't have a {case_name} to open.",
+                    case_name=case_name,
+                )
             
             # check if case is valid
             valid_cases = [case["name"] for case in self.cases]
             if case_name not in valid_cases:
-                return f"{case_name} is not a valid case."
+                return self._translate(
+                    t,
+                    "commands.inventory.open.invalid_case",
+                    "{case_name} is not a valid case.",
+                    case_name=case_name,
+                )
             
             # open the case
             # get first case whose ["name"] matches case_name
@@ -125,20 +142,31 @@ class Inventory:
             self.remove_item(user_id, case_name, 1)
             
             self.economy.add_balance(user_id, item['price'])
-            return f"You opened a {case_name} and got a {item['name']} worth {item['price']}! You sell it and pocket the change."
+            return self._translate(
+                t,
+                "commands.inventory.open.opened_case",
+                "You opened a {case_name} and got a {item_name} worth {price}! You sell it and pocket the change.",
+                case_name=case_name,
+                item_name=item['name'],
+                price=item['price'],
+            )
 
         else:
             # open the first case in the inventory
             user_inv = self.list_inventory(user_id)
             if not user_inv:
-                return f"Rummaging through your inventory, you find nothing but dust."
+                return self._translate(
+                    t,
+                    "commands.inventory.empty",
+                    "Rummaging through your inventory, you find nothing but dust.",
+                )
             
             # find first item that has "Case" in it
             case_name = next((item['name'] for item in user_inv if "Case" in item['name']), None)
 
             if not case_name:
                 return None
-            return self.open_case(user_id, case_name)
+            return self.open_case(user_id, case_name, t=t)
 
     def get_item_by_name(self, user_id, item_name):
         """Get an item by its name from the user's inventory."""

@@ -14,35 +14,30 @@ def cast_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
-        result = fishing_module.fish(playername)
+        result = fishing_module.fish(playername, t=bot.t)
         if result:
             if result.get("type") == "fish":
                 # If a fish is caught, display its details
-                bot.add_to_chat_queue(
-                    is_team,
-                    f"{playername} caught a {result['name']} weighing {result['weight']} lbs worth ${result['price']}!"
-                )
+                message = bot.t("commands.fishing.cast_success_fish",
+                    player=playername, name=result['name'], 
+                    weight=result['weight'], price=result['price'])
+                bot.add_to_chat_queue(is_team, message)
             elif result.get("type") == "autosold_fish":
-                bot.add_to_chat_queue(
-                    is_team,
-                    f"{playername} caught a {result['name']}, autosold for ${result['price']}!"
-                )
+                message = bot.t("commands.fishing.cast_success_autosold",
+                    player=playername, name=result['name'], price=result['price'])
+                bot.add_to_chat_queue(is_team, message)
             elif result.get("type") == "item":
                 # If an item is caught, display the item message
-                bot.add_to_chat_queue(
-                    is_team,
-                    f"{playername}: {result['message']}"
-                )
+                bot.add_to_chat_queue(is_team, f"{playername}: {result['message']}")
             elif result.get("type") == "error":
                 # If an error occurs, display the error message
-                bot.add_to_chat_queue(
-                    is_team,
-                    f"{playername}: {result['message']}"
-                )
+                bot.add_to_chat_queue(is_team, f"{playername}: {result['message']}")
         else:
-            bot.add_to_chat_queue(is_team, f"{playername}: You reel in an empty line.")
+            message = bot.t("commands.fishing.empty_line", player=playername)
+            bot.add_to_chat_queue(is_team, message)
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
+        message = bot.t("commands.fishing.module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)
 
 @command_registry.register("sack", aliases=["bag"])
 def sack_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -71,11 +66,15 @@ def sack_command(bot, is_team: bool, playername: str, chattext: str) -> None:
                     fish_name = f"{fish_name} (bait)"
                 sack_contents.append(f"{fish_name} ({weight} lbs, ${price})")
             sack_contents_str = ", ".join(sack_contents)
-            bot.add_to_chat_queue(is_team, f"{playername}'s sack contains: {sack_contents_str}")
+            message = bot.t("commands.fishing.sack_contents", 
+                player=playername, contents=sack_contents_str)
+            bot.add_to_chat_queue(is_team, message)
         else:
-            bot.add_to_chat_queue(is_team, f"{playername}: Your sack is empty.")
+            message = bot.t("commands.fishing.sack_empty", player=playername)
+            bot.add_to_chat_queue(is_team, message)
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
+        message = bot.t("commands.fishing.sack_module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)
 
 @command_registry.register("eat")
 def eat_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -91,10 +90,11 @@ def eat_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
         fish_name = chattext.strip()
-        result = fishing_module.eat(playername, fish_name if fish_name else None)
+        result = fishing_module.eat(playername, fish_name if fish_name else None, t=bot.t)
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
+        message = bot.t("commands.fishing.eat_module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)
 
 @command_registry.register("sell")
 def sell_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -110,10 +110,11 @@ def sell_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
         fish_name = chattext.strip() if chattext else None
-        result = fishing_module.sell_fish(playername, fish_name)
+        result = fishing_module.sell_fish(playername, fish_name, t=bot.t)
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
+        message = bot.t("commands.fishing.sell_module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)
 
 @command_registry.register("bait")
 def bait_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -131,7 +132,8 @@ def bait_command(bot, is_team: bool, playername: str, chattext: str) -> None:
         if not chattext:
             bait = fishing_module.get_bait(playername)
             if not bait:
-                bot.add_to_chat_queue(is_team, f"{playername}: You don't have any bait set.")
+                message = bot.t("commands.fishing.bait_no_bait_set", player=playername)
+                bot.add_to_chat_queue(is_team, message)
                 return
         
         # Check if the user wants to clear bait
@@ -147,16 +149,18 @@ def bait_command(bot, is_team: bool, playername: str, chattext: str) -> None:
             # Use the last fish in the sack
             sack = fishing_module.get_sack(playername)
             if not sack:
-                bot.add_to_chat_queue(is_team, f"{playername}: Your sack is empty.")
+                message = bot.t("commands.fishing.bait_sack_empty", player=playername)
+                bot.add_to_chat_queue(is_team, message)
                 return
             last_fish = sack[-1]
             bait_name = last_fish.get("name")
             
         
-        result = fishing_module.bait(playername, bait_name)
+        result = fishing_module.bait(playername, bait_name, t=bot.t)
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
+        message = bot.t("commands.fishing.bait_module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)
 
 @command_registry.register("sellall")
 def sellall_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -171,7 +175,8 @@ def sellall_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """
     fishing_module: FishingModule = bot.modules.get_module("fishing")
     if fishing_module:
-        result = fishing_module.sell_fish(playername, "all")
+        result = fishing_module.sell_fish(playername, "all", t=bot.t)
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
+        message = bot.t("commands.fishing.sell_module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)

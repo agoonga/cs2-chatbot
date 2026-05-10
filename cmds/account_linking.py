@@ -15,7 +15,7 @@ def link_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     account_linking = bot.modules.get_module("account_linking")
     
     if not account_linking:
-        bot.add_to_chat_queue(is_team, f"{playername}: Account linking module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.link.module_not_found", player=playername))
         return
     
     code = chattext.strip()
@@ -29,11 +29,16 @@ def link_command(bot, is_team: bool, playername: str, chattext: str) -> None:
         generated_code = account_linking.generate_code(platform, playername)
         bot.add_to_chat_queue(
             is_team,
-            f"{playername}: Use code {generated_code} to link another account. Code expires in {account_linking.code_expiry_minutes} minutes."
+            bot.t(
+                "commands.link.code_generated",
+                player=playername,
+                code=generated_code,
+                minutes=account_linking.code_expiry_minutes,
+            )
         )
     else:
         # Use a code to link accounts
-        result = account_linking.use_code(code, platform, playername)
+        result = account_linking.use_code(code, platform, playername, t=bot.t)
         
         if "error" in result:
             bot.add_to_chat_queue(is_team, f"{playername}: {result['error']}")
@@ -55,16 +60,16 @@ def linked_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     account_linking = bot.modules.get_module("account_linking")
     
     if not account_linking:
-        bot.add_to_chat_queue(is_team, f"{playername}: Account linking module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.link.module_not_found", player=playername))
         return
     
     platform = getattr(bot, 'platform', 'cs2')
     linked_accounts = account_linking.get_linked_accounts(platform, playername)
     
     if not linked_accounts:
-        bot.add_to_chat_queue(is_team, f"{playername}: No linked accounts found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.link.no_linked_accounts", player=playername))
         return
     
     # Format the output
     accounts_str = ", ".join([f"{plat}:{ident}" for plat, ident in linked_accounts])
-    bot.add_to_chat_queue(is_team, f"{playername}'s linked accounts: {accounts_str}")
+    bot.add_to_chat_queue(is_team, bot.t("commands.link.linked_accounts", player=playername, accounts=accounts_str))

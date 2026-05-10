@@ -24,6 +24,13 @@ class Shop:
 
         self.load_shop_categories()
 
+    def _translate(self, t, key, default_text, **kwargs):
+        if callable(t):
+            translated = t(key, **kwargs)
+            if translated != key:
+                return translated
+        return default_text.format(**kwargs)
+
     def find_category(self, item_name, categories):
         """Find the category of an item by its name."""
         for category, items in categories.items():
@@ -56,7 +63,7 @@ class Shop:
 
         return None
 
-    def buy(self, playername, item_name, quantity=1):
+    def buy(self, playername, item_name, quantity=1, t=None):
         """
         Buy an item from the shop.
 
@@ -69,36 +76,49 @@ class Shop:
         try:
             quantity = int(quantity)
         except ValueError:
-            return {"error": "Invalid quantity."}
+            return {"error": self._translate(t, "commands.shop.invalid_quantity", "Invalid quantity.")}
 
         item_name = item_name.lower()
 
         # Check if the item is in the player's shop
         category = self.find_category(item_name, self.categories)
         if category is None:
-            return {"error": "The shopkeeper sighs and says: 'I don't have that item.'"}
+            return {"error": self._translate(t, "commands.shop.item_not_found", "The shopkeeper sighs and says: 'I don't have that item.'")}
 
-        allowed_items = self.get_shop_items(playername, category)
+        allowed_items = self.get_shop_items(playername, category, t=t)
         if type(allowed_items) == dict and "error" in allowed_items.keys():
             return allowed_items
 
         # Find the item using the new find_item method
         trying_to_buy = self.find_item(item_name, allowed_items)
         if trying_to_buy is None:
-            return {"error": "The shopkeeper sighs and says: 'I don't have that item.'"}
+            return {"error": self._translate(t, "commands.shop.item_not_found", "The shopkeeper sighs and says: 'I don't have that item.'")}
 
         # Check if quantity is valid
         if quantity < 1:
-            return {"error": "Invalid quantity."}
+            return {"error": self._translate(t, "commands.shop.invalid_quantity", "Invalid quantity.")}
         if quantity > 1:
             # Check if the item is a stackable item
             if trying_to_buy.get("max") is not None and quantity > trying_to_buy["max"]:
-                return {"error": f"You can only have {trying_to_buy['max']} of this item at a time."}
+                return {
+                    "error": self._translate(
+                        t,
+                        "commands.shop.max_quantity_reached",
+                        "You can only have {max_count} of this item at a time.",
+                        max_count=trying_to_buy['max'],
+                    )
+                }
 
         # Check if the player has enough money
         player_money = self.economy.get_balance(playername)
         if player_money < trying_to_buy["price"] * quantity:
-            return {"error": "The shopkeeper says: 'Isn't that too rich for your blood?'"}
+            return {
+                "error": self._translate(
+                    t,
+                    "commands.shop.insufficient_funds",
+                    "The shopkeeper says: 'Isn't that too rich for your blood?'",
+                )
+            }
 
         # Add the item to the player's inventory
         try:
@@ -111,9 +131,25 @@ class Shop:
                     trying_to_buy["replaces"] = [trying_to_buy["replaces"]]
                 for replace in trying_to_buy["replaces"]:
                     self.inventory.remove_item(playername, replace, quantity)
-            return {"success": f"You bought {f'{quantity} x' if quantity > 1 else 'a'} '{trying_to_buy['name']}'. Your new balance is ${money_left}."}
+            return {
+                "success": self._translate(
+                    t,
+                    "commands.shop.purchase_success",
+                    "You bought {quantity} x '{item_name}'. Your new balance is ${money_left}.",
+                    quantity=quantity,
+                    item_name=trying_to_buy['name'],
+                    money_left=money_left,
+                )
+            }
         except Exception as e:
-            return {"error": f"Error while processing the purchase: {e}"}
+            return {
+                "error": self._translate(
+                    t,
+                    "commands.shop.purchase_processing_error",
+                    "Error while processing the purchase: {error}",
+                    error=e,
+                )
+            }
                 
         
 
@@ -127,7 +163,7 @@ class Shop:
         """Get the available categories in the shop."""
         return self.categories.keys()
 
-    def get_shop_items(self, playername, category=None):
+    def get_shop_items(self, playername, category=None, t=None):
         """Get the items in the shop, optionally filtered by category."""
         category = category.lower() if category else None
         chosen_category = None
@@ -136,16 +172,23 @@ class Shop:
                 chosen_category = cat
                 break
         if not chosen_category:
-            return {"error": "Category not found. Available categories: " + ", ".join(self.categories.keys())}
+            return {
+                "error": self._translate(
+                    t,
+                    "commands.shop.category_not_found",
+                    "Category not found. Available categories: {categories}",
+                    categories=", ".join(self.categories.keys()),
+                )
+            }
         
         items = self.categories[chosen_category]
         if not items:
-            return {"error": "No items available in this category."}
+            return {"error": self._translate(t, "commands.shop.no_items_in_category", "No items available in this category.")}
 
-        items = self._add_allowed_count_to_shop(playername, items)
+        items = self._add_allowed_count_to_shop(playername, items, t=t)
         return {"items": items}
 
-    def _add_allowed_count_to_shop(self, playername, items):
+    def _add_allowed_count_to_shop(self, playername, items, t=None):
         """Add the allowed count to each item in the shop."""
         inventory = self.inventory.list_inventory(playername)
         if not inventory:
@@ -202,5 +245,5 @@ class Shop:
                     allowed_shop_items.append(item)
 
         if not allowed_shop_items:
-            return {"error": "The shopkeeper says: 'I don't have anything for you.'"}
+            return {"error": self._translate(t, "commands.shop.nothing_for_you", "The shopkeeper says: 'I don't have anything for you.'")}
         return allowed_shop_items

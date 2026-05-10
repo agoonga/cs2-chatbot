@@ -18,6 +18,14 @@ class Fishing:
         self.status_effects: StatusEffectsModule = module_registry.get_module("status_effects")  # Retrieve the StatusEffects module from the module registry
         self.economy = module_registry.get_module("economy")
 
+    def _translate(self, t, key, default_text, **kwargs):
+        """Translate via callback when available, otherwise use default text."""
+        if callable(t):
+            translated = t(key, **kwargs)
+            if translated != key:
+                return translated
+        return default_text.format(**kwargs)
+
     def load_fish_data(self):
         """Load fish data from a JSON file."""
         appdata_dir = os.path.dirname(get_config_path())  # Get the app data directory
@@ -90,7 +98,7 @@ class Fishing:
                 return attributes["fish_minimum_rarity"]
         return "Common"
     
-    def fish(self, user_id):
+    def fish(self, user_id, t=None):
         """Simulate fishing and store the result in the database or inventory."""
         if not self.fish_data:
             return None
@@ -110,7 +118,15 @@ class Fishing:
         # Enforce fish limit
         sack_size = self.calculate_sack_size(user_id)  # Get the sack size
         if sack_size > 0 and fish_count >= sack_size:
-            return {"type": "error", "message": f"Your sack can only hold {sack_size} fish."}
+            return {
+                "type": "error",
+                "message": self._translate(
+                    t,
+                    "commands.fishing.sack_limit_reached",
+                    "Your sack can only hold {sack_size} fish.",
+                    sack_size=sack_size,
+                ),
+            }
 
         # Randomly select a fish or item based on catch rate
         rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythical"] # Rarities increasing in value
@@ -374,7 +390,7 @@ class Fishing:
         """List all available fish and items."""
         return self.fish_data
 
-    def eat(self, user_id, name=None):
+    def eat(self, user_id, name=None, t=None):
         """
         Eat the first fish matching the given name from the user's sack, or the first fish if no name is provided.
 
@@ -407,7 +423,14 @@ class Fishing:
             fish = cursor.fetchone()
 
             if not fish:
-                return "Your sack is empty." if not name else f"There were no '{name}' found in your sack."
+                if not name:
+                    return self._translate(t, "commands.fishing.eat_sack_empty", "Your sack is empty.")
+                return self._translate(
+                    t,
+                    "commands.fishing.eat_fish_not_found",
+                    "There were no '{name}' found in your sack.",
+                    name=name,
+                )
 
             fish_id, name = fish
 
@@ -420,11 +443,11 @@ class Fishing:
         # Retrieve the fish description from the fish data
         for fish_data in self.fish_data:
             if fish_data["name"].lower() == name.lower():
-                return fish_data.get("description", "You ate the fish.")
+                return fish_data.get("description", self._translate(t, "commands.fishing.ate_fish", "You ate the fish."))
 
-        return "You ate the fish."
+        return self._translate(t, "commands.fishing.ate_fish", "You ate the fish.")
 
-    def sell_fish(self, user_id, name=None):
+    def sell_fish(self, user_id, name=None, t=None):
         """
         Sell the first fish matching the given name from the user's sack, or sell all fish if 'all' is provided.
 
@@ -446,7 +469,11 @@ class Fishing:
                 fish_prices = cursor.fetchall()
 
                 if not fish_prices:
-                    return "Your sack is empty. You have no fish to sell."
+                    return self._translate(
+                        t,
+                        "commands.fishing.sell_all_sack_empty",
+                        "Your sack is empty. You have no fish to sell.",
+                    )
 
                 total_earnings = float(sum(price[0] for price in fish_prices))
 
@@ -459,7 +486,13 @@ class Fishing:
                 # Add the earnings to the user's balance
                 new_balance = self.economy.add_balance(user_id, total_earnings)
 
-                return f"You sold all your fish for a total of ${total_earnings:.2f}! Your new balance is ${new_balance:.2f}."
+                return self._translate(
+                    t,
+                    "commands.fishing.sold_all_fish",
+                    "You sold all your fish for a total of ${total_earnings:.2f}! Your new balance is ${new_balance:.2f}.",
+                    total_earnings=total_earnings,
+                    new_balance=new_balance,
+                )
             else:
                 # Sell the first fish in the sack or the first matching fish
                 if name:
@@ -485,7 +518,18 @@ class Fishing:
                 fish = cursor.fetchone()
 
                 if not fish:
-                    return "Your sack is empty." if not name else f"There were no '{name}' found in your sack."
+                    if not name:
+                        return self._translate(
+                            t,
+                            "commands.fishing.sell_sack_empty",
+                            "Your sack is empty.",
+                        )
+                    return self._translate(
+                        t,
+                        "commands.fishing.sell_fish_not_found",
+                        "There were no '{name}' found in your sack.",
+                        name=name,
+                    )
 
                 fish_id, name, price = fish
 
@@ -497,9 +541,16 @@ class Fishing:
                 # Add the earnings to the user's balance
                 new_balance = self.economy.add_balance(user_id, float(price))
                 
-                return f"You sold a {name} for ${price:.2f}! Your new balance is ${new_balance:.2f}."
+                return self._translate(
+                    t,
+                    "commands.fishing.sold_single_fish",
+                    "You sold a {name} for ${price:.2f}! Your new balance is ${new_balance:.2f}.",
+                    name=name,
+                    price=price,
+                    new_balance=new_balance,
+                )
 
-    def bait(self, playername, bait_name):
+    def bait(self, playername, bait_name, t=None):
         """
         Use a specific fish to bait the next catch.
         If no fish is provided, it will use the cheapest fish in the sack.
@@ -511,7 +562,11 @@ class Fishing:
         # Check if the player has any fish in their sack
         sack = self.get_sack(playername)
         if not sack:
-            return "Your sack is empty. You have no fish to use as bait."
+            return self._translate(
+                t,
+                "commands.fishing.bait_no_fish_to_use",
+                "Your sack is empty. You have no fish to use as bait.",
+            )
         
         # If no bait name is provided, use the cheapest fish in the sack
         if not bait_name:
@@ -529,7 +584,12 @@ class Fishing:
                     bait_id = fish["id"]
                     break
             else:
-                return f"There were no '{bait_name}' found in your sack."
+                return self._translate(
+                    t,
+                    "commands.fishing.bait_not_found",
+                    "There were no '{bait_name}' found in your sack.",
+                    bait_name=bait_name,
+                )
             
         # Check that there is no bait already set
         bait = self.get_bait(playername)
@@ -540,13 +600,28 @@ class Fishing:
                 bait_name = bait["name"]
                 bait_id = bait["id"]
                 self.set_bait(playername, bait_id)
-                return f"You will use a {bait_name} as bait for your next catch."
+                return self._translate(
+                    t,
+                    "commands.fishing.bait_set_next",
+                    "You will use a {bait_name} as bait for your next catch.",
+                    bait_name=bait_name,
+                )
 
-            return f"You already have a bait set: {bait['name']}."
+            return self._translate(
+                t,
+                "commands.fishing.bait_already_set",
+                "You already have a bait set: {bait_name}.",
+                bait_name=bait['name'],
+            )
 
         # Add the fish to bait for the player
         self.set_bait(playername, bait_id)
-        return f"You will use a {bait_name} as bait for your next catch."
+        return self._translate(
+            t,
+            "commands.fishing.bait_set_next",
+            "You will use a {bait_name} as bait for your next catch.",
+            bait_name=bait_name,
+        )
     
     def get_bait(self, playername):
         """

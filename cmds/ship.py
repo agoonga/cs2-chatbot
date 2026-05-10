@@ -13,7 +13,7 @@ def ship_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     :help ship: Generate a compatibility percentage between you and another name.
     """
     if not chattext.strip():
-        bot.add_to_chat_queue(is_team, f"{playername}: Please provide a name to ship with!")
+        bot.add_to_chat_queue(is_team, bot.t("commands.ship.provide_name", player=playername))
         return
 
     # Concatenate playername and chattext, sort the characters, and use it as the random seed
@@ -24,4 +24,7 @@ def ship_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     compatibility = random.randint(0, 100)
 
     # Send the result to the chat
-    bot.add_to_chat_queue(is_team, f"{playername} and {chattext.strip()} are {compatibility}% compatible!")
+    bot.add_to_chat_queue(
+        is_team,
+        bot.t("commands.ship.compatibility", player=playername, target=chattext.strip(), compatibility=compatibility),
+    )

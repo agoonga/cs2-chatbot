@@ -33,6 +33,7 @@ services:
         condition: service_healthy
     volumes:
       - ./modules/data:/app/modules/data:ro
+      - ./strings:/app/strings:ro
       - ./config.toml:/app/config.toml:ro
     restart: unless-stopped
 

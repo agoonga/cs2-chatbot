@@ -13,7 +13,7 @@ def daily_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     """View or claim your daily quest. Usage: @daily [claim]"""
     quest_module = bot.modules.get_module('quests')
     if not quest_module:
-        bot.add_to_chat_queue(is_team, "Quest system not available.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.quest.system_not_available"))
         return
     
     args = chattext.split()
@@ -30,9 +30,12 @@ def daily_command(bot, is_team: bool, playername: str, chattext: str) -> None:
         # Check when next quest is available
         time_remaining = quest_module.get_time_until_next_quest(playername)
         if time_remaining:
-            bot.add_to_chat_queue(is_team, f"Next daily quest available in {_format_time_remaining(time_remaining)}")
+            bot.add_to_chat_queue(
+                is_team,
+                bot.t("commands.quest.next_available_in", time_remaining=_format_time_remaining(time_remaining)),
+            )
         else:
-            bot.add_to_chat_queue(is_team, "No daily quest available.")
+            bot.add_to_chat_queue(is_team, bot.t("commands.quest.no_daily_available"))
         return
     
     # Check progress

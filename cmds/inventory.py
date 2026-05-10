@@ -16,16 +16,16 @@ def inventory_command(bot, is_team: bool, playername: str, chattext: str) -> Non
     if inventory_module:
         inventory_list = inventory_module.list_inventory(playername)
         if not inventory_list:
-            bot.add_to_chat_queue(is_team, f"{playername}: Rummaging through your inventory, you find nothing but dust.")
+            bot.add_to_chat_queue(is_team, bot.t("commands.inventory.empty", player=playername))
             return
         inv_items = []
         for item in inventory_list:
             item_name = item['name']
             item_count = item['quantity']
             inv_items.append(f"{item_name} x{item_count}")
-        bot.add_to_chat_queue(is_team, f"{playername}'s inventory: {', '.join(inv_items)}")
+        bot.add_to_chat_queue(is_team, bot.t("commands.inventory.contents", player=playername, items=', '.join(inv_items)))
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Inventory module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.inventory.module_not_found", player=playername))
 
 @command_registry.register("open", aliases=["case"])
 def open_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -42,16 +42,16 @@ def open_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     if inventory_module:
         case_name = chattext.strip()
         if not case_name:
-            result = inventory_module.open_case(playername, None)
+            result = inventory_module.open_case(playername, None, t=bot.t)
             if not result:
-                bot.add_to_chat_queue(is_team, f"{playername}: You have no cases to open.")
+                bot.add_to_chat_queue(is_team, bot.t("commands.inventory.open.no_cases", player=playername))
                 return
             bot.add_to_chat_queue(is_team, f"{playername}: {result}")
         else:
-            result = inventory_module.open_case(playername, case_name)
+            result = inventory_module.open_case(playername, case_name, t=bot.t)
             bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Inventory module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.inventory.module_not_found", player=playername))
 
 @command_registry.register("inspect")
 def inspect_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -68,12 +68,12 @@ def inspect_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     if inventory_module:
         item_name = chattext.strip()
         if not item_name:
-            bot.add_to_chat_queue(is_team, f"{playername}: Please specify an item to inspect.")
+            bot.add_to_chat_queue(is_team, bot.t("commands.inventory.inspect.specify_item", player=playername))
             return
         result = inventory_module.get_item_by_name_fuzzy(playername, item_name)["data"]["description"]
         if not result:
-            bot.add_to_chat_queue(is_team, f"{playername}: A run-of-the-mill {item_name}.")
+            bot.add_to_chat_queue(is_team, bot.t("commands.inventory.inspect.default_description", player=playername, item_name=item_name))
             return
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Inventory module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.inventory.module_not_found", player=playername))

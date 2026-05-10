@@ -1,0 +1,233 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player}, {weight} lbs ağırlığında ve ${price} değerinde bir {name} yakaladı!",
+      "cast_success_autosold": "{player}, bir {name} yakaladı ve otomatik olarak ${price} karşılığında sattı!",
+      "empty_line": "{player}: Boş bir misina çekiyorsun.",
+      "sack_limit_reached": "Çuvalın yalnızca {sack_size} balık alabilir.",
+      "sold_all_fish": "Tüm balıklarını toplam ${total_earnings:.2f} karşılığında sattın! Yeni bakiyen ${new_balance:.2f}.",
+      "module_not_found": "{player}: Balıkçılık modülü bulunamadı.",
+      "sack_contents": "{player} adlı oyuncunun çuvalında şunlar var: {contents}",
+      "sack_empty": "{player}: Çuvalın boş.",
+      "sack_module_not_found": "{player}: Balıkçılık modülü bulunamadı.",
+      "eat_module_not_found": "{player}: Balıkçılık modülü bulunamadı.",
+      "sell_module_not_found": "{player}: Balıkçılık modülü bulunamadı.",
+      "bait_no_bait_set": "{player}: Ayarlanmış bir yemin yok.",
+      "bait_cleared": "{player}: Yem temizlendi.",
+      "bait_module_not_found": "{player}: Balıkçılık modülü bulunamadı.",
+      "bait_sack_empty": "{player}: Çuvalın boş.",
+      "sell_all_sack_empty": "Çuvalın boş. Satacak balığın yok.",
+      "sell_sack_empty": "Çuvalın boş.",
+      "sell_fish_not_found": "Çuvalında '{name}' bulunamadı.",
+      "sold_single_fish": "Bir {name} ${price:.2f} karşılığında sattın! Yeni bakiyen ${new_balance:.2f}.",
+      "eat_sack_empty": "Çuvalın boş.",
+      "eat_fish_not_found": "Çuvalında '{name}' bulunamadı.",
+      "ate_fish": "Balığı yedin.",
+      "bait_no_fish_to_use": "Çuvalın boş. Yem olarak kullanacak balığın yok.",
+      "bait_not_found": "Çuvalında '{bait_name}' bulunamadı.",
+      "bait_set_next": "Bir sonraki avında yem olarak {bait_name} kullanacaksın.",
+      "bait_already_set": "Zaten ayarlanmış bir yemin var: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: Bira modülü bulunamadı.",
+      "no_beer": "{player}: İçecek biran yok.",
+      "beer_not_found": "'{beer}' birası bulunamadı.",
+      "no_beer_named": "İçecek {beer_name} biran yok.",
+      "drank": "Bir {beer_name} içtin. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: Kumarhane modülü bulunamadı.",
+      "no_balance": "{player}: Bahis yapacak bakiyen yok.",
+      "invalid_amount": "{player}: Geçersiz miktar. Lütfen geçerli bir sayı gir.",
+      "amount_must_be_positive": "Olmaz öyle şey, 0'dan büyük bir sayı seç.",
+      "insufficient_funds": "Yetersiz bakiye. Mevcut bakiyen ${current_balance:.2f}.",
+      "win_heads": "Yazı geldi ve ${amount:.2f} kazandın! Yeni bakiyen ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "Tura geldi ve ${amount:.2f} kaybettin. Yeni bakiyen ${new_balance:.2f}.{chance_suffix}"
+    },
+    "inventory": {
+      "module_not_found": "{player}: Envanter modülü bulunamadı.",
+      "empty": "{player}: Envanterini karıştırıyorsun ama tozdan başka bir şey bulamıyorsun.",
+      "contents": "{player} adlı oyuncunun envanteri: {items}",
+      "open": {
+        "no_cases": "{player}: Açacak kasan yok.",
+        "no_case_named": "Açacak {case_name} kasan yok.",
+        "invalid_case": "{case_name} geçerli bir kasa değil.",
+        "opened_case": "Bir {case_name} açtın ve {price} değerinde bir {item_name} aldın! Hemen satıp parayı cebe attın."
+      },
+      "inspect": {
+        "specify_item": "{player}: İncelemek için bir eşya belirt.",
+        "default_description": "{player}: Sıradan bir {item_name}."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Karıştırma modülü bulunamadı.",
+      "start": "Kelimeyi ilk çözen kazanır: {word}",
+      "winner": "{player}, '{word}' kelimesini doğru çözdü ve $100 kazandı!"
+    },
+    "smoke": {
+      "module_not_found": "{player}: Tütün modülü bulunamadı.",
+      "no_tobacco": "{player}: İçecek tütünün yok.",
+      "tobacco_not_found": "'{tobacco}' tütünü bulunamadı.",
+      "no_tobacco_named": "İçecek {tobacco_name} tütünün yok.",
+      "smoked": "{tobacco_name} içtin. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: Hesap bağlama modülü bulunamadı.",
+      "code_generated": "{player}: Başka bir hesabı bağlamak için {code} kodunu kullan. Kod {minutes} dakika içinde sona erecek.",
+      "no_linked_accounts": "{player}: Bağlı hesap bulunamadı.",
+      "linked_accounts": "{player} adlı oyuncunun bağlı hesapları: {accounts}",
+      "invalid_code": "Geçersiz kod. Kontrol edip tekrar dene.",
+      "code_expired": "Kodun süresi doldu. Lütfen yenisini oluştur.",
+      "cannot_link_self": "Bir hesap kendi kendine bağlanamaz.",
+      "already_linked_different_ids": "Farklı hesap kimliklerine bağlı hesaplar birleştirilemez.",
+      "success": "{target_platform} kullanıcısı \"{target_identifier}\", {source_platform} kullanıcısı \"{source_identifier}\" ile başarıyla bağlandı."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Balıkçılık modülü bulunamadı.",
+      "list_empty": "{player}: Otomatik satış listesi boş.",
+      "list": "{player}: Otomatik satılacak balıklar: {fish_list}",
+      "usage_add": "{player}: Kullanım: @autosell add <fish>",
+      "usage_remove": "{player}: Kullanım: @autosell remove <fish>",
+      "usage_general": "{player}: Kullanım: @autosell [add|remove] <fish>, @autosell clear veya listelemek için sadece @autosell."
+    },
+    "quest": {
+      "system_not_available": "Görev sistemi kullanılamıyor.",
+      "next_available_in": "Bir sonraki günlük görev {time_remaining} sonra açılacak",
+      "no_daily_available": "Kullanılabilir günlük görev yok."
+    },
+    "ship": {
+      "provide_name": "{player}: Ship yapmak için bir isim gir!",
+      "compatibility": "{player} ve {target} %{compatibility} uyumlu!"
+    },
+    "status": {
+      "module_not_found": "{player}: Durum etkileri modülü bulunamadı.",
+      "no_effects": "{player}: Etkin durum etkin yok.",
+      "effects_list": "{player} adlı oyuncunun durum etkileri: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Kupa modülü yüklenmedi.",
+      "empty_case": "{player}: Kupa vitrinin boş. Balık eklemek için trophy add <fish_name> kullan!",
+      "usage_add": "{player}: Kullanım: trophy add <fish_name>",
+      "usage_remove": "{player}: Kullanım: trophy remove <number>",
+      "number_must_be_numeric": "{player}: Kupa numarası sayı olmalı.",
+      "unknown_subcommand": "{player}: Bilinmeyen alt komut. Kullanım: trophy [add <fish_name> | remove <number>]"
+    },
+    "shop": {
+      "available_categories": "{player}: Kullanılabilir kategoriler: {categories}",
+      "no_items_available": "{player}: Dükkanda hiç eşya yok.",
+      "shop_items": "{player}: Dükkandaki eşyalar: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, maksimum: {item_max})",
+      "module_not_found": "{player}: Dükkan modülü bulunamadı.",
+      "buy_no_item_specified": "{player}: Satın almak için bir eşya belirt.",
+      "buy_module_not_found": "{player}: Dükkan modülü bulunamadı.",
+      "rods_shortcut_help": "Dükkandaki oltaları göster.",
+      "invalid_quantity": "Geçersiz miktar.",
+      "item_not_found": "Dükkan sahibi iç geçirip diyor ki: 'O eşya bende yok.'",
+      "max_quantity_reached": "Bu eşyadan aynı anda en fazla {max_count} tane taşıyabilirsin.",
+      "insufficient_funds": "Dükkan sahibi diyor ki: 'Bu sana biraz pahalı gelmedi mi?'",
+      "purchase_success": "{quantity} adet '{item_name}' satın aldın. Yeni bakiyen ${money_left}.",
+      "purchase_processing_error": "Satın alma işlenirken hata oluştu: {error}",
+      "category_not_found": "Kategori bulunamadı. Kullanılabilir kategoriler: {categories}",
+      "no_items_in_category": "Bu kategoride eşya yok.",
+      "nothing_for_you": "Dükkan sahibi diyor ki: 'Senin için hiçbir şeyim yok.'"
+    },
+    "economy": {
+      "balance_response": "{player}, mevcut bakiyen ${balance}.",
+      "top_players_list": "{player}: En iyi oyuncular: {list}",
+      "top_no_players": "{player}: Hiç oyuncu bulunamadı.",
+      "module_not_found": "{player}: Ekonomi modülü bulunamadı."
+    },
+    "help": {
+      "no_help_available": "{player}: '{command}' için yardım bulunamadı.",
+      "available_commands": "{player}: Kullanılabilir komutlar: {list}",
+      "module_not_found": "{player}: Yardım modülü bulunamadı."
+    },
+    "femboy": {
+      "self_is": "{player}: Ben bir femboyum ({chance}%)",
+      "self_is_not": "{player}: Ben bir femboy değilim ({chance}%)",
+      "target_is": "{player}: {target} bir femboy ({chance}%)",
+      "target_is_not": "{player}: {target} bir femboy değil ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "Modül bulunamadı: {module}",
+    "command_not_found": "{player}: '{command}' komutu bulunamadı.",
+    "command_not_found_with_suggestion": "{player}: '{command}' komutu bulunamadı. Acaba '{suggestion}' mi demek istedin?",
+    "invalid_input": "Geçersiz giriş",
+    "insufficient_funds": "Yetersiz bakiye",
+    "item_not_found": "Eşya bulunamadı"
+  },
+  "help_texts": {
+    "cast": "Balık ya da eşya yakalamak için oltanı at. (takma adlar: fish, gofish)",
+    "sack": "Balık çuvalının içeriğini göster. (takma ad: bag)",
+    "eat": "Çuvalındaki bir balığı ye.",
+    "sell": "Çuvalındaki bir balığı sat veya hepsi için 'all' kullan.",
+    "bait": "Daha büyük balık tutma şansını artırmak için balığı yem olarak kullan. Son balık için 'last', temizlemek için 'clear'.",
+    "shop": "Kullanılabilir kategorileri ve 'shop <kategori>' içindeki eşyaları listele.",
+    "buy": "Dükkandan bir eşya satın al.",
+    "rods": "Dükkandaki oltaları göster.",
+    "balance": "Oyuncunun mevcut bakiyesini göster. (takma adlar: bal, money)",
+    "top": "Ekonomideki en iyi oyuncuları göster. (takma adlar: leaderboard, topplayers)",
+    "help": "Komut listesini veya belirli bir komutun yardımını göster. (takma ad: commands)"
+  },
+  "help_command_names": {
+    "cast": "at",
+    "sack": "çuval",
+    "eat": "ye",
+    "sell": "sat",
+    "bait": "yem",
+    "sellall": "hepsinisat",
+    "shop": "dukkan",
+    "buy": "satinal",
+    "rods": "oltalar",
+    "smoke": "tutunic",
+    "drink": "biraiç",
+    "open": "ac",
+    "inspect": "incele",
+    "autosell": "otomatiksat",
+    "link": "bagla",
+    "linked": "bagli",
+    "flip": "yazitura",
+    "trophy": "kupa",
+    "ship": "ship",
+    "femboy": "femboy",
+    "daily": "gunluk",
+    "quest": "gorev",
+    "balance": "bakiye",
+    "top": "zirve",
+    "help": "yardim",
+    "inventory": "envanter",
+    "status": "durum",
+    "scramble": "karistir"
+  },
+  "command_aliases": {
+    "cast": ["at", "baliktut"],
+    "sack": ["çuval", "cuval"],
+    "eat": ["ye"],
+    "sell": ["sat"],
+    "bait": ["yem"],
+    "sellall": ["hepsinisat"],
+    "shop": ["dukkan", "dükkan"],
+    "buy": ["satinal", "satınal"],
+    "rods": ["oltalar"],
+    "balance": ["bakiye"],
+    "top": ["zirve"],
+    "help": ["yardim", "yardım", "komutlar"],
+    "link": ["bagla", "bağla"],
+    "linked": ["bagli", "bağlı"],
+    "quest": ["gorev", "görev"],
+    "autosell": ["otomatiksat"],
+    "inventory": ["envanter"],
+    "open": ["ac", "aç"],
+    "inspect": ["incele"],
+    "drink": ["biraiç", "biraic", "iç", "ic"],
+    "smoke": ["tutunic", "tutuniç", "paket"],
+    "flip": ["yazitura"],
+    "status": ["durum"],
+    "trophy": ["kupa"],
+    "ship": ["ship"],
+    "daily": ["gunluk", "günlük"],
+    "scramble": ["karistir", "karıştır"]
+  }
+}

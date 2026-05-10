@@ -15,9 +15,12 @@ def balance_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     economy_module: EconomyModule = bot.modules.get_module("economy")
     if economy_module:
         balance = economy_module.get_balance(playername)
-        bot.add_to_chat_queue(is_team, f"{playername}, your current balance is ${balance:.2f}.")
+        message = bot.t("commands.economy.balance_response",
+            player=playername, balance=balance)
+        bot.add_to_chat_queue(is_team, message)
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Economy module not found.")
+        message = bot.t("commands.economy.module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)
 
 @command_registry.register("top", aliases=["leaderboard", "topplayers"])
 def top_command(bot, is_team: bool, playername: str, chattext: str) -> None:
@@ -35,8 +38,12 @@ def top_command(bot, is_team: bool, playername: str, chattext: str) -> None:
         top_players = economy_module.get_top_balances()
         if top_players:
             top_list = ", ".join([f"{i+1}. {player['name']} - ${player['balance']:.2f}" for i, player in enumerate(top_players)])
-            bot.add_to_chat_queue(is_team, f"{playername}: Top players: {top_list}")
+            message = bot.t("commands.economy.top_players_list",
+                player=playername, list=top_list)
+            bot.add_to_chat_queue(is_team, message)
         else:
-            bot.add_to_chat_queue(is_team, f"{playername}: No players found.")
+            message = bot.t("commands.economy.top_no_players", player=playername)
+            bot.add_to_chat_queue(is_team, message)
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Economy module not found.")
+        message = bot.t("commands.economy.module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)

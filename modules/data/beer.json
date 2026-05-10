@@ -30,5 +30,21 @@
         "effects": [
             "fishing.price_50"
         ]
+    },
+    {
+        "name": "Beck's",
+        "price": 3.79,
+        "description": "A crisp German pilsner that tastes like the first good decision you've made all week.",
+        "effects": [
+            "fishing.catch_rate_10"
+        ]
+    },
+    {
+        "name": "Paulaner Hefe-Weissbier",
+        "price": 4.49,
+        "description": "Cloudy, bready, and suspiciously classy for a fishing trip.",
+        "effects": [
+            "fishing.price_20"
+        ]
     }
 ]

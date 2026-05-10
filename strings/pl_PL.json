@@ -1,0 +1,233 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player} złapał(a) {name} ważącego(ej) {weight} lbs o wartości ${price}!",
+      "cast_success_autosold": "{player} złapał(a) {name}, automatycznie sprzedany za ${price}!",
+      "empty_line": "{player}: Wyciągasz pustą żyłkę.",
+      "sack_limit_reached": "Twój worek może pomieścić tylko {sack_size} ryb.",
+      "sold_all_fish": "Sprzedałeś wszystkie ryby za łącznie ${total_earnings:.2f}! Twoje nowe saldo to ${new_balance:.2f}.",
+      "module_not_found": "{player}: Nie znaleziono modułu wędkowania.",
+      "sack_contents": "Worek {player} zawiera: {contents}",
+      "sack_empty": "{player}: Twój worek jest pusty.",
+      "sack_module_not_found": "{player}: Nie znaleziono modułu wędkowania.",
+      "eat_module_not_found": "{player}: Nie znaleziono modułu wędkowania.",
+      "sell_module_not_found": "{player}: Nie znaleziono modułu wędkowania.",
+      "bait_no_bait_set": "{player}: Nie masz ustawionej przynęty.",
+      "bait_cleared": "{player}: Przynęta wyczyszczona.",
+      "bait_module_not_found": "{player}: Nie znaleziono modułu wędkowania.",
+      "bait_sack_empty": "{player}: Twój worek jest pusty.",
+      "sell_all_sack_empty": "Twój worek jest pusty. Nie masz ryb do sprzedania.",
+      "sell_sack_empty": "Twój worek jest pusty.",
+      "sell_fish_not_found": "Nie znaleziono '{name}' w twoim worku.",
+      "sold_single_fish": "Sprzedałeś(aś) {name} za ${price:.2f}! Twoje nowe saldo to ${new_balance:.2f}.",
+      "eat_sack_empty": "Twój worek jest pusty.",
+      "eat_fish_not_found": "Nie znaleziono '{name}' w twoim worku.",
+      "ate_fish": "Zjadłeś rybę.",
+      "bait_no_fish_to_use": "Twój worek jest pusty. Nie masz ryb do użycia jako przynęta.",
+      "bait_not_found": "Nie znaleziono '{bait_name}' w twoim worku.",
+      "bait_set_next": "Następny połów będzie z przynętą {bait_name}.",
+      "bait_already_set": "Masz już ustawioną przynętę: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: Nie znaleziono modułu piwa.",
+      "no_beer": "{player}: Nie masz piwa do wypicia.",
+      "beer_not_found": "Piwo '{beer}' nie zostało znalezione.",
+      "no_beer_named": "Nie masz {beer_name} do wypicia.",
+      "drank": "Wypijasz {beer_name}. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: Nie znaleziono modułu kasyna.",
+      "no_balance": "{player}: Nie masz salda do hazardu.",
+      "invalid_amount": "{player}: Nieprawidłowa kwota. Wpisz poprawną liczbę.",
+      "amount_must_be_positive": "Bez jaj, wybierz liczbę większą od 0.",
+      "insufficient_funds": "Brak środków. Twoje aktualne saldo to ${current_balance:.2f}.",
+      "win_heads": "Wypadł orzeł i wygrałeś ${amount:.2f}! Twoje nowe saldo to ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "Wypadła reszka i przegrałeś ${amount:.2f}. Twoje nowe saldo to ${new_balance:.2f}.{chance_suffix}"
+    },
+    "inventory": {
+      "module_not_found": "{player}: Nie znaleziono modułu ekwipunku.",
+      "empty": "{player}: Przeszukujesz ekwipunek, ale znajdujesz tylko kurz.",
+      "contents": "Ekwipunek {player}: {items}",
+      "open": {
+        "no_cases": "{player}: Nie masz żadnych skrzynek do otwarcia.",
+        "no_case_named": "Nie masz {case_name} do otwarcia.",
+        "invalid_case": "{case_name} nie jest poprawną skrzynką.",
+        "opened_case": "Otworzyłeś(aś) {case_name} i dostałeś(aś) {item_name} warte {price}! Sprzedajesz to i zgarniasz gotówkę."
+      },
+      "inspect": {
+        "specify_item": "{player}: Podaj przedmiot do sprawdzenia.",
+        "default_description": "{player}: Zwykły {item_name}."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Nie znaleziono modułu scramble.",
+      "start": "Pierwsza osoba, która odgadnie słowo, wygrywa: {word}",
+      "winner": "{player} poprawnie odgadł(a) słowo '{word}' i wygrywa $100!"
+    },
+    "smoke": {
+      "module_not_found": "{player}: Nie znaleziono modułu tytoniu.",
+      "no_tobacco": "{player}: Nie masz tytoniu do palenia.",
+      "tobacco_not_found": "Tytoń '{tobacco}' nie został znaleziony.",
+      "no_tobacco_named": "Nie masz {tobacco_name} do palenia.",
+      "smoked": "Palisz {tobacco_name}. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: Nie znaleziono modułu łączenia kont.",
+      "code_generated": "{player}: Użyj kodu {code}, aby połączyć inne konto. Kod wygasa za {minutes} minut.",
+      "no_linked_accounts": "{player}: Nie znaleziono połączonych kont.",
+      "linked_accounts": "Połączone konta {player}: {accounts}",
+      "invalid_code": "Nieprawidłowy kod. Sprawdź i spróbuj ponownie.",
+      "code_expired": "Kod wygasł. Wygeneruj nowy.",
+      "cannot_link_self": "Nie można połączyć konta z samym sobą.",
+      "already_linked_different_ids": "Nie można połączyć kont już przypisanych do różnych identyfikatorów.",
+      "success": "Pomyślnie połączono użytkownika {target_platform} \"{target_identifier}\" z użytkownikiem {source_platform} \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Nie znaleziono modułu wędkowania.",
+      "list_empty": "{player}: Lista automatycznej sprzedaży jest pusta.",
+      "list": "{player}: Ryby do autosprzedaży: {fish_list}",
+      "usage_add": "{player}: Użycie: @autosell add <fish>",
+      "usage_remove": "{player}: Użycie: @autosell remove <fish>",
+      "usage_general": "{player}: Użycie: @autosell [add|remove] <fish>, @autosell clear albo samo @autosell, aby wyświetlić listę."
+    },
+    "quest": {
+      "system_not_available": "System zadań jest niedostępny.",
+      "next_available_in": "Następne codzienne zadanie będzie dostępne za {time_remaining}",
+      "no_daily_available": "Brak dostępnego codziennego zadania."
+    },
+    "ship": {
+      "provide_name": "{player}: Podaj nazwę do shipowania!",
+      "compatibility": "{player} i {target} są zgodni w {compatibility}%!"
+    },
+    "status": {
+      "module_not_found": "{player}: Nie znaleziono modułu efektów statusu.",
+      "no_effects": "{player}: Nie masz aktywnych efektów statusu.",
+      "effects_list": "Efekty statusu {player}: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Moduł trofeów nie został załadowany.",
+      "empty_case": "{player}: Twoja gablotka z trofeami jest pusta. Użyj trophy add <fish_name>, aby dodać rybę!",
+      "usage_add": "{player}: Użycie: trophy add <fish_name>",
+      "usage_remove": "{player}: Użycie: trophy remove <number>",
+      "number_must_be_numeric": "{player}: Numer trofeum musi być liczbą.",
+      "unknown_subcommand": "{player}: Nieznana podkomenda. Użyj: trophy [add <fish_name> | remove <number>]"
+    },
+    "shop": {
+      "available_categories": "{player}: Dostępne kategorie: {categories}",
+      "no_items_available": "{player}: W sklepie nie ma dostępnych przedmiotów.",
+      "shop_items": "{player}: Dostępne przedmioty w sklepie: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, maks.: {item_max})",
+      "module_not_found": "{player}: Nie znaleziono modułu sklepu.",
+      "buy_no_item_specified": "{player}: Podaj przedmiot do kupienia.",
+      "buy_module_not_found": "{player}: Nie znaleziono modułu sklepu.",
+      "rods_shortcut_help": "Wyświetl dostępne w sklepie wędki.",
+      "invalid_quantity": "Nieprawidłowa ilość.",
+      "item_not_found": "Sklepikarz wzdycha i mówi: 'Nie mam tego przedmiotu.'",
+      "max_quantity_reached": "Możesz mieć tylko {max_count} szt. tego przedmiotu naraz.",
+      "insufficient_funds": "Sklepikarz mówi: 'To chyba trochę za drogo dla ciebie?'",
+      "purchase_success": "Kupiłeś(aś) {quantity} x '{item_name}'. Twoje nowe saldo to ${money_left}.",
+      "purchase_processing_error": "Błąd podczas przetwarzania zakupu: {error}",
+      "category_not_found": "Nie znaleziono kategorii. Dostępne kategorie: {categories}",
+      "no_items_in_category": "W tej kategorii nie ma dostępnych przedmiotów.",
+      "nothing_for_you": "Sklepikarz mówi: 'Nie mam dla ciebie nic.'"
+    },
+    "economy": {
+      "balance_response": "{player}, twoje aktualne saldo to ${balance}.",
+      "top_players_list": "{player}: Najlepsi gracze: {list}",
+      "top_no_players": "{player}: Nie znaleziono graczy.",
+      "module_not_found": "{player}: Nie znaleziono modułu ekonomii."
+    },
+    "help": {
+      "no_help_available": "{player}: Brak pomocy dla '{command}'.",
+      "available_commands": "{player}: Dostępne komendy: {list}",
+      "module_not_found": "{player}: Nie znaleziono modułu pomocy."
+    },
+    "femboy": {
+      "self_is": "{player}: Jestem femboyem ({chance}%)",
+      "self_is_not": "{player}: Nie jestem femboyem ({chance}%)",
+      "target_is": "{player}: {target} jest femboyem ({chance}%)",
+      "target_is_not": "{player}: {target} nie jest femboyem ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "Nie znaleziono modułu: {module}",
+    "command_not_found": "{player}: Nie znaleziono komendy '{command}'.",
+    "command_not_found_with_suggestion": "{player}: Nie znaleziono komendy '{command}'. Czy chodziło o '{suggestion}'?",
+    "invalid_input": "Nieprawidłowe dane wejściowe",
+    "insufficient_funds": "Niewystarczające środki",
+    "item_not_found": "Nie znaleziono przedmiotu"
+  },
+  "help_texts": {
+    "cast": "Rzuć wędkę, aby złapać rybę lub przedmiot. (alias: fish, gofish)",
+    "sack": "Pokaż zawartość swojego worka. (alias: bag)",
+    "eat": "Zjedz rybę ze swojego worka.",
+    "sell": "Sprzedaj rybę ze swojego worka lub użyj 'all', aby sprzedać wszystko.",
+    "bait": "Użyj ryby jako przynęty, aby zwiększyć szansę na większy połów. 'last' używa ostatniej ryby, 'clear' czyści przynętę.",
+    "shop": "Wyświetl dostępne kategorie i przedmioty w 'shop <kategoria>'.",
+    "buy": "Kup przedmiot w sklepie.",
+    "rods": "Pokaż dostępne w sklepie wędki.",
+    "balance": "Pokaż aktualne saldo gracza. (alias: bal, money)",
+    "top": "Pokaż najlepszych graczy w ekonomii. (alias: leaderboard, topplayers)",
+    "help": "Pokaż listę dostępnych komend lub pomoc dla konkretnej komendy. (alias: commands)"
+  },
+  "help_command_names": {
+    "cast": "rzut",
+    "sack": "worek",
+    "eat": "jedz",
+    "sell": "sprzedaj",
+    "bait": "przyneta",
+    "sellall": "sprzedajwszystko",
+    "shop": "sklep",
+    "buy": "kup",
+    "rods": "wedki",
+    "smoke": "pal",
+    "drink": "pij",
+    "open": "otworz",
+    "inspect": "sprawdz",
+    "autosell": "autosprzedaz",
+    "link": "polacz",
+    "linked": "polaczone",
+    "flip": "moneta",
+    "trophy": "trofeum",
+    "ship": "ship",
+    "femboy": "femboy",
+    "daily": "codziennie",
+    "quest": "zadanie",
+    "balance": "saldo",
+    "top": "ranking",
+    "help": "pomoc",
+    "inventory": "ekwipunek",
+    "status": "status",
+    "scramble": "mieszaj"
+  },
+  "command_aliases": {
+    "cast": ["rzut", "lowienie"],
+    "sack": ["worek"],
+    "eat": ["jedz"],
+    "sell": ["sprzedaj"],
+    "bait": ["przyneta"],
+    "sellall": ["sprzedajwszystko"],
+    "shop": ["sklep"],
+    "buy": ["kup"],
+    "rods": ["wedki"],
+    "balance": ["saldo"],
+    "top": ["ranking"],
+    "help": ["pomoc", "komendy"],
+    "link": ["polacz"],
+    "linked": ["polaczone"],
+    "daily": ["codziennie"],
+    "quest": ["zadanie"],
+    "autosell": ["autosprzedaz"],
+    "inventory": ["ekwipunek"],
+    "open": ["otworz"],
+    "inspect": ["sprawdz"],
+    "drink": ["pij"],
+    "smoke": ["pal"],
+    "flip": ["moneta"],
+    "status": ["status"],
+    "trophy": ["trofeum"],
+    "ship": ["ship"],
+    "scramble": ["mieszaj"]
+  }
+}

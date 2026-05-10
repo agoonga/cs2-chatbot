@@ -52,13 +52,26 @@ class DiscordClient(commands.Bot):
         # Load configuration
         self.config = load_config()
         self.discord_token = os.getenv('DISCORD_BOT_TOKEN') or self.config.get('discord_bot_token')
-        self.command_prefix = self.config.get('discord_command_prefix', '@')
+        raw_discord_prefix = self.config.get('discord_command_prefix', self.config.get('command_prefix', '@'))
+        self.command_prefixes = self._parse_prefixes(raw_discord_prefix)
         
         if not self.discord_token:
             self.logger.error("Discord bot token not found in environment or config!")
             raise ValueError("Discord bot token is required")
         
         self.logger.info(f"Discord client initialized with server URL: {self.server_url}")
+
+    def _parse_prefixes(self, raw_prefixes):
+        """Normalize command prefixes from config into a list."""
+        if isinstance(raw_prefixes, list):
+            prefixes = [str(p).strip() for p in raw_prefixes if str(p).strip()]
+            return prefixes or ["@"]
+
+        if isinstance(raw_prefixes, str):
+            prefixes = [p.strip() for p in raw_prefixes.split(",") if p.strip()]
+            return prefixes or ["@"]
+
+        return ["@"]
     
     async def on_ready(self):
         """Called when the bot successfully connects to Discord."""
@@ -74,8 +87,8 @@ class DiscordClient(commands.Bot):
         # Process the message
         chattext = message.content.strip()
         
-        # Check if the message starts with the command prefix
-        if not chattext.startswith(self.command_prefix):
+        # Check if the message starts with any configured command prefix
+        if not any(chattext.startswith(prefix) for prefix in self.command_prefixes):
             return
         
         # Extract playername (use Discord username, not display name)
@@ -104,13 +117,17 @@ class DiscordClient(commands.Bot):
             self.logger.info(f"Sending POST to: {url}")
             self.logger.info(f"Payload: is_team={is_team}, playername={playername}, chattext={chattext}")
             
+            # Get language from adapter config
+            language = self.config.get("adapters", {}).get("discord", {}).get("language", "en_US")
+            
             response = requests.post(
                 url,
                 json={
                     "is_team": is_team,
                     "playername": playername,
                     "chattext": chattext,
-                    "platform": "discord"
+                    "platform": "discord",
+                    "language": language
                 },
                 timeout=5
             )

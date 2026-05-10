@@ -19,7 +19,7 @@ import time
 def start_server():
     """Start the backend server."""
     from server import run_server
-    print("Starting backend server...")
+    print("Starting backend server (language per-request, default: English)...")
     run_server(host='127.0.0.1', port=8080)
 
 
@@ -27,7 +27,11 @@ def start_client():
     """Start the CS2 client."""
     from client.adapters.cs2 import CS2Client
     print("Starting CS2 client...")
-    client = CS2Client(server_url="http://127.0.0.1:8080")
+    try:
+        client = CS2Client(server_url="http://127.0.0.1:8080")
+    except RuntimeError as e:
+        print(f"CS2 client not started: {e}")
+        return
     
     try:
         client.run()

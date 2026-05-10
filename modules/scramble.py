@@ -44,7 +44,14 @@ class Scramble:
         self.is_team_game = is_team
         self.reading_input = True  # Activate the module for processing input
 
-    def process(self, playername: str, is_team: bool, chattext: str) -> str:
+    def _translate(self, t, key, default_text, **kwargs):
+        if callable(t):
+            translated = t(key, **kwargs)
+            if translated != key:
+                return translated
+        return default_text.format(**kwargs)
+
+    def process(self, playername: str, is_team: bool, chattext: str, t=None) -> str:
         """
         Process a player's guess and check if they unscramble the word.
 
@@ -68,5 +75,11 @@ class Scramble:
                 # add $100 to the player's balance
                 if self.economy:
                     self.economy.add_balance(playername, 100)
-                return f"{playername} unscrambled the word '{self.current_word}' correctly and wins $100!"
+                return self._translate(
+                    t,
+                    "commands.scramble.winner",
+                    "{player} unscrambled the word '{word}' correctly and wins $100!",
+                    player=playername,
+                    word=self.current_word,
+                )
         return None

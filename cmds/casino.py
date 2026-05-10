@@ -19,17 +19,17 @@ def flip_command(bot, is_team: bool, playername: str, chattext: str) -> None:
             if chattext.strip().lower() == "all":
                 amount = casino_module.economy.get_balance(playername)
                 if amount <= 0:
-                    bot.add_to_chat_queue(is_team, f"{playername}: You have no balance to gamble.")
+                    bot.add_to_chat_queue(is_team, bot.t("commands.flip.no_balance", player=playername))
                     return
             else:
                 # Parse the amount from the chat text
                 amount = float(chattext.strip()) if chattext.strip() else 10
 
             # Perform the flip
-            result = casino_module.flip(playername, amount)
+            result = casino_module.flip(playername, amount, t=bot.t)
             bot.add_to_chat_queue(is_team, f"{playername}: {result}")
         except ValueError:
-            bot.add_to_chat_queue(is_team, f"{playername}: Invalid amount. Please enter a valid number.")
+            bot.add_to_chat_queue(is_team, bot.t("commands.flip.invalid_amount", player=playername))
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Casino module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.flip.module_not_found", player=playername))
         

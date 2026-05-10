@@ -44,17 +44,29 @@ class Beer:
         
         return None
 
-    def drink_beer(self, playername, beer):
+    def _translate(self, t, key, default_text, **kwargs):
+        if callable(t):
+            translated = t(key, **kwargs)
+            if translated != key:
+                return translated
+        return default_text.format(**kwargs)
+
+    def drink_beer(self, playername, beer, t=None):
         """
         Simulate drinking a beer.
         """
         beer_data = self.find_beer(beer)
         if beer_data is None:
-            return f"Beer '{beer}' not found."
+            return self._translate(t, "commands.drink.beer_not_found", "Beer '{beer}' not found.", beer=beer)
         
         # Check if the player has the beer in their inventory
         if not self.inventory.get_item_by_name_fuzzy(playername, beer_data["name"]):
-            return f"You don't have any {beer_data['name']} to drink."
+            return self._translate(
+                t,
+                "commands.drink.no_beer_named",
+                "You don't have any {beer_name} to drink.",
+                beer_name=beer_data["name"],
+            )
         
         # Remove the beer from the inventory
         self.inventory.remove_item(playername, beer_data["name"], 1)
@@ -62,8 +74,19 @@ class Beer:
         # Apply the effects of drinking the beer
         effect_descs = []
         for effect in beer_data.get("effects", []):
-            self.status_effects.add_effect(playername, effect)
-            effect_descs.append(self.status_effects.get_description(effect))
+            normalized_effect = effect.strip().lower()
+            result = self.status_effects.add_effect(playername, normalized_effect)
+            description = self.status_effects.get_description(normalized_effect)
+            if result is not True and description is None:
+                effect_descs.append(str(result))
+            elif description:
+                effect_descs.append(description)
         
-        return f"You drink a {beer_data['name']}. ({', '.join(effect_descs)})"
+        return self._translate(
+            t,
+            "commands.drink.drank",
+            "You drink a {beer_name}. ({effects})",
+            beer_name=beer_data["name"],
+            effects=', '.join(effect_descs),
+        )
 

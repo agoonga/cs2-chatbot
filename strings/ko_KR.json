@@ -1,0 +1,233 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player}이(가) {weight} lbs 무게의 {name}를 잡았습니다! 가치는 ${price}입니다!",
+      "cast_success_autosold": "{player}이(가) {name}를 잡았고 자동으로 ${price}에 판매되었습니다!",
+      "empty_line": "{player}: 빈 줄을 끌어올렸습니다.",
+      "sack_limit_reached": "가방에는 최대 {sack_size}마리의 물고기만 담을 수 있습니다.",
+      "sold_all_fish": "모든 물고기를 총 ${total_earnings:.2f}에 판매했습니다! 새 잔액은 ${new_balance:.2f}입니다.",
+      "module_not_found": "{player}: 낚시 모듈을 찾을 수 없습니다.",
+      "sack_contents": "{player}의 가방 내용: {contents}",
+      "sack_empty": "{player}: 가방이 비어 있습니다.",
+      "sack_module_not_found": "{player}: 낚시 모듈을 찾을 수 없습니다.",
+      "eat_module_not_found": "{player}: 낚시 모듈을 찾을 수 없습니다.",
+      "sell_module_not_found": "{player}: 낚시 모듈을 찾을 수 없습니다.",
+      "bait_no_bait_set": "{player}: 설정된 미끼가 없습니다.",
+      "bait_cleared": "{player}: 미끼가 초기화되었습니다.",
+      "bait_module_not_found": "{player}: 낚시 모듈을 찾을 수 없습니다.",
+      "bait_sack_empty": "{player}: 가방이 비어 있습니다.",
+      "sell_all_sack_empty": "가방이 비어 있습니다. 팔 물고기가 없습니다.",
+      "sell_sack_empty": "가방이 비어 있습니다.",
+      "sell_fish_not_found": "가방에서 '{name}'를 찾을 수 없습니다.",
+      "sold_single_fish": "{name}를 ${price:.2f}에 판매했습니다! 새 잔액은 ${new_balance:.2f}입니다.",
+      "eat_sack_empty": "가방이 비어 있습니다.",
+      "eat_fish_not_found": "가방에서 '{name}'를 찾을 수 없습니다.",
+      "ate_fish": "물고기를 먹었습니다.",
+      "bait_no_fish_to_use": "가방이 비어 있습니다. 미끼로 사용할 물고기가 없습니다.",
+      "bait_not_found": "가방에서 '{bait_name}'를 찾을 수 없습니다.",
+      "bait_set_next": "다음 잡을 때 {bait_name}를 미끼로 사용합니다.",
+      "bait_already_set": "이미 설정된 미끼가 있습니다: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: 맥주 모듈을 찾을 수 없습니다.",
+      "no_beer": "{player}: 마실 맥주가 없습니다.",
+      "beer_not_found": "맥주 '{beer}'를 찾을 수 없습니다.",
+      "no_beer_named": "마실 {beer_name}가 없습니다.",
+      "drank": "{beer_name}를 마셨습니다. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: 카지노 모듈을 찾을 수 없습니다.",
+      "no_balance": "{player}: 도박할 잔액이 없습니다.",
+      "invalid_amount": "{player}: 잘못된 금액입니다. 올바른 숫자를 입력하세요.",
+      "amount_must_be_positive": "0보다 큰 숫자를 선택하세요.",
+      "insufficient_funds": "잔액이 부족합니다. 현재 잔액은 ${current_balance:.2f}입니다.",
+      "win_heads": "앞면이 나와 ${amount:.2f}를 얻었습니다! 새 잔액은 ${new_balance:.2f}입니다.{chance_suffix}",
+      "lose_tails": "뒷면이 나와 ${amount:.2f}를 잃었습니다. 새 잔액은 ${new_balance:.2f}입니다.{chance_suffix}"
+    },
+    "inventory": {
+      "module_not_found": "{player}: 인벤토리 모듈을 찾을 수 없습니다.",
+      "empty": "{player}: 인벤토리를 뒤졌지만 먼지밖에 없습니다.",
+      "contents": "{player}의 인벤토리: {items}",
+      "open": {
+        "no_cases": "{player}: 열 수 있는 케이스가 없습니다.",
+        "no_case_named": "{case_name} 케이스가 없습니다.",
+        "invalid_case": "{case_name}은(는) 유효한 케이스가 아닙니다.",
+        "opened_case": "{case_name}를 열어 {price} 가치의 {item_name}를 얻었습니다! 바로 팔아서 돈을 챙겼습니다."
+      },
+      "inspect": {
+        "specify_item": "{player}: 확인할 아이템을 지정하세요.",
+        "default_description": "{player}: 평범한 {item_name}입니다."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: 스크램블 모듈을 찾을 수 없습니다.",
+      "start": "가장 먼저 단어를 맞히는 사람이 승리합니다: {word}",
+      "winner": "{player}이(가) '{word}'를 정확히 맞혀 $100를 얻었습니다!"
+    },
+    "smoke": {
+      "module_not_found": "{player}: 담배 모듈을 찾을 수 없습니다.",
+      "no_tobacco": "{player}: 피울 담배가 없습니다.",
+      "tobacco_not_found": "담배 '{tobacco}'를 찾을 수 없습니다.",
+      "no_tobacco_named": "피울 {tobacco_name}가 없습니다.",
+      "smoked": "{tobacco_name}를 피웠습니다. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: 계정 연결 모듈을 찾을 수 없습니다.",
+      "code_generated": "{player}: 다른 계정을 연결하려면 코드 {code}를 사용하세요. 코드는 {minutes}분 후 만료됩니다.",
+      "no_linked_accounts": "{player}: 연결된 계정이 없습니다.",
+      "linked_accounts": "{player}의 연결된 계정: {accounts}",
+      "invalid_code": "잘못된 코드입니다. 확인 후 다시 시도하세요.",
+      "code_expired": "코드가 만료되었습니다. 새로 생성하세요.",
+      "cannot_link_self": "계정은 자기 자신과 연결할 수 없습니다.",
+      "already_linked_different_ids": "서로 다른 계정 ID에 연결된 계정은 연결할 수 없습니다.",
+      "success": "{target_platform} 사용자 \"{target_identifier}\"를 {source_platform} 사용자 \"{source_identifier}\"와 성공적으로 연결했습니다."
+    },
+    "autosell": {
+      "module_not_found": "{player}: 낚시 모듈을 찾을 수 없습니다.",
+      "list_empty": "{player}: 자동 판매 목록이 비어 있습니다.",
+      "list": "{player}: 자동 판매 물고기: {fish_list}",
+      "usage_add": "{player}: 사용법: @autosell add <fish>",
+      "usage_remove": "{player}: 사용법: @autosell remove <fish>",
+      "usage_general": "{player}: 사용법: @autosell [add|remove] <fish>, @autosell clear, 또는 목록을 보려면 @autosell"
+    },
+    "quest": {
+      "system_not_available": "퀘스트 시스템을 사용할 수 없습니다.",
+      "next_available_in": "다음 일일 퀘스트는 {time_remaining} 후에 가능합니다",
+      "no_daily_available": "사용 가능한 일일 퀘스트가 없습니다."
+    },
+    "ship": {
+      "provide_name": "{player}: 짝지을 이름을 입력하세요!",
+      "compatibility": "{player}와 {target}는 {compatibility}% 호환됩니다!"
+    },
+    "status": {
+      "module_not_found": "{player}: 상태 효과 모듈을 찾을 수 없습니다.",
+      "no_effects": "{player}: 활성 상태 효과가 없습니다.",
+      "effects_list": "{player}의 상태 효과: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "트로피 모듈이 로드되지 않았습니다.",
+      "empty_case": "{player}: 트로피 케이스가 비어 있습니다. trophy add <fish_name>로 물고기를 추가하세요!",
+      "usage_add": "{player}: 사용법: trophy add <fish_name>",
+      "usage_remove": "{player}: 사용법: trophy remove <number>",
+      "number_must_be_numeric": "{player}: 트로피 번호는 숫자여야 합니다.",
+      "unknown_subcommand": "{player}: 알 수 없는 하위 명령입니다. 사용법: trophy [add <fish_name> | remove <number>]"
+    },
+    "shop": {
+      "available_categories": "{player}: 사용 가능한 카테고리: {categories}",
+      "no_items_available": "{player}: 상점에 아이템이 없습니다.",
+      "shop_items": "{player}: 사용 가능한 상점 아이템: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, 최대: {item_max})",
+      "module_not_found": "{player}: 상점 모듈을 찾을 수 없습니다.",
+      "buy_no_item_specified": "{player}: 구매할 아이템을 지정하세요.",
+      "buy_module_not_found": "{player}: 상점 모듈을 찾을 수 없습니다.",
+      "rods_shortcut_help": "상점에서 사용 가능한 낚싯대를 봅니다.",
+      "invalid_quantity": "잘못된 수량입니다.",
+      "item_not_found": "상점 주인이 한숨을 쉬며 말합니다: '그 아이템은 없습니다.'",
+      "max_quantity_reached": "이 아이템은 동시에 {max_count}개까지만 가질 수 있습니다.",
+      "insufficient_funds": "상점 주인이 말합니다: '그건 당신에게 너무 비싸지 않나요?'",
+      "purchase_success": "{item_name}를 {quantity}개 샀습니다. 새 잔액은 ${money_left}입니다.",
+      "purchase_processing_error": "구매 처리 중 오류 발생: {error}",
+      "category_not_found": "카테고리를 찾을 수 없습니다. 사용 가능한 카테고리: {categories}",
+      "no_items_in_category": "이 카테고리에는 사용할 수 있는 아이템이 없습니다.",
+      "nothing_for_you": "상점 주인이 말합니다: '당신을 위한 물건은 없습니다.'"
+    },
+    "economy": {
+      "balance_response": "{player}, 현재 잔액은 ${balance}입니다.",
+      "top_players_list": "{player}: 상위 플레이어: {list}",
+      "top_no_players": "{player}: 플레이어를 찾을 수 없습니다.",
+      "module_not_found": "{player}: 경제 모듈을 찾을 수 없습니다."
+    },
+    "help": {
+      "no_help_available": "{player}: '{command}'에 대한 도움말이 없습니다.",
+      "available_commands": "{player}: 사용 가능한 명령: {list}",
+      "module_not_found": "{player}: 도움말 모듈을 찾을 수 없습니다."
+    },
+    "femboy": {
+      "self_is": "{player}: 나는 페미보이입니다 ({chance}%)",
+      "self_is_not": "{player}: 나는 페미보이가 아닙니다 ({chance}%)",
+      "target_is": "{player}: {target}는 페미보이입니다 ({chance}%)",
+      "target_is_not": "{player}: {target}는 페미보이가 아닙니다 ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "모듈을 찾을 수 없습니다: {module}",
+    "command_not_found": "{player}: '{command}' 명령을 찾을 수 없습니다.",
+    "command_not_found_with_suggestion": "{player}: '{command}' 명령을 찾을 수 없습니다. '{suggestion}'를 원하셨나요?",
+    "invalid_input": "잘못된 입력",
+    "insufficient_funds": "잔액이 부족합니다",
+    "item_not_found": "아이템을 찾을 수 없습니다"
+  },
+  "help_texts": {
+    "cast": "낚싯대를 던져 물고기나 아이템을 잡습니다. (별칭: fish, gofish)",
+    "sack": "낚시 가방의 내용을 표시합니다. (별칭: bag)",
+    "eat": "가방에 있는 물고기를 먹습니다.",
+    "sell": "가방에 있는 물고기 또는 'all'을 판매합니다.",
+    "bait": "더 큰 물고기를 잡을 확률을 높이기 위해 물고기를 미끼로 사용합니다. 마지막 물고기는 'last', 미끼 해제는 'clear'.",
+    "shop": "사용 가능한 카테고리와 'shop <카테고리>'의 아이템을 나열합니다.",
+    "buy": "상점에서 아이템을 구매합니다.",
+    "rods": "상점에서 사용 가능한 낚싯대를 봅니다.",
+    "balance": "플레이어의 현재 잔액을 표시합니다. (별칭: bal, money)",
+    "top": "경제 상위 플레이어를 표시합니다. (별칭: leaderboard, topplayers)",
+    "help": "사용 가능한 명령 목록 또는 특정 명령의 도움말을 표시합니다. (별칭: commands)"
+  },
+  "help_command_names": {
+    "cast": "낚기",
+    "sack": "가방",
+    "eat": "먹기",
+    "sell": "팔기",
+    "bait": "미끼",
+    "sellall": "전부팔기",
+    "shop": "상점",
+    "buy": "구매",
+    "rods": "낚싯대",
+    "smoke": "피우기",
+    "drink": "마시기",
+    "open": "열기",
+    "inspect": "확인",
+    "autosell": "자동판매",
+    "link": "연결",
+    "linked": "연결됨",
+    "flip": "동전던지기",
+    "trophy": "트로피",
+    "ship": "ship",
+    "femboy": "femboy",
+    "daily": "일일",
+    "quest": "퀘스트",
+    "balance": "잔액",
+    "top": "순위",
+    "help": "도움말",
+    "inventory": "인벤토리",
+    "status": "상태",
+    "scramble": "섞기"
+  },
+  "command_aliases": {
+    "cast": ["낚기", "낚시"],
+    "sack": ["가방"],
+    "eat": ["먹기"],
+    "sell": ["팔기"],
+    "bait": ["미끼"],
+    "sellall": ["전부팔기"],
+    "shop": ["상점"],
+    "buy": ["구매"],
+    "rods": ["낚싯대"],
+    "balance": ["잔액"],
+    "top": ["순위"],
+    "help": ["도움말", "명령"],
+    "link": ["연결"],
+    "linked": ["연결됨"],
+    "daily": ["일일"],
+    "quest": ["퀘스트"],
+    "autosell": ["자동판매"],
+    "inventory": ["인벤토리"],
+    "open": ["열기"],
+    "inspect": ["확인"],
+    "drink": ["마시기"],
+    "smoke": ["피우기"],
+    "flip": ["동전던지기"],
+    "status": ["상태"],
+    "trophy": ["트로피"],
+    "ship": ["ship"],
+    "scramble": ["섞기"]
+  }
+}

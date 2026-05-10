@@ -1,4 +1,4 @@
-import os
+﻿import os
 import logging  # Import the logging module
 from time import sleep
 import win32gui
@@ -10,6 +10,7 @@ from util.config import load_config, copy_files_to_appdata
 from util.commands import command_registry
 from util.module_registry import module_registry
 from util.chat_utils import write_chat_to_cfg, load_chat, send_chat
+from util.localization import initialize_localization, get_localization_manager
 import util.keys as keys
 
 
@@ -51,7 +52,14 @@ class Bot:
         self.stop_event = threading.Event()  # Event to signal when the bot should stop
 
         self.config = load_config()  # Load configuration from config.toml
-        self.prefix = self.config.get("command_prefix", "@")  # Command prefix (e.g., "@")
+        self.prefixes = self._parse_prefixes(self.config.get("command_prefix", "@"))
+        
+        # Initialize localization for CS2 adapter
+        cs2_language = self.config.get("adapters", {}).get("cs2", {}).get("language", "en_US")
+        self._localization = initialize_localization(strings_dir=resource_path("strings"), default_language=cs2_language)
+        self.language = cs2_language
+        self.logger.info(f"Initialized localization with language: {self.language}")
+        
         self.load_chat_key = self.config.get("load_chat_key", "kp_1")  # Key to load chat
         self.load_chat_key_win32 = keys.KEYS[self.load_chat_key]  # Win32 key code for load chat key
         self.send_chat_key = self.config.get("send_chat_key", "kp_2")  # Key to send chat
@@ -65,6 +73,30 @@ class Bot:
         self.paused = False  # Add a paused attribute
         self.running = True  # Add a running flag to control the main loop
         self.stop_event = threading.Event()  # Event to signal when the bot should stop
+
+    def _parse_prefixes(self, raw_prefixes):
+        """Normalize command prefixes from config into a list."""
+        if isinstance(raw_prefixes, list):
+            prefixes = [str(p).strip() for p in raw_prefixes if str(p).strip()]
+            return prefixes or ["@"]
+
+        if isinstance(raw_prefixes, str):
+            prefixes = [p.strip() for p in raw_prefixes.split(",") if p.strip()]
+            return prefixes or ["@"]
+
+        return ["@"]
+
+    def _extract_command(self, chattext: str):
+        """Extract command name and args for any configured prefix."""
+        for prefix in self.prefixes:
+            if chattext.startswith(prefix):
+                remainder = chattext[len(prefix):].strip()
+                if not remainder:
+                    return None
+                command_name = remainder.split(" ")[0]
+                command_args = remainder[len(command_name):].strip()
+                return command_name, command_args
+        return None
 
     def stop(self):
         """Stop the bot and clean up resources."""
@@ -152,7 +184,7 @@ class Bot:
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         """Add a message to the chat queue."""
         # Clean message
-        chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "ʹ").replace("\"", "ʺ").strip()
+        chattext = chattext.replace(";", "Í¾").replace("/", "/â€‹").replace("'", "Ê¹").replace("\"", "Êº").strip()
         if not chattext:
             return
         # Check if a duplicate message is already in the queue
@@ -166,6 +198,18 @@ class Bot:
         self.logger.info(f"{len(self.chat_queue)} messages in queue.")
         self.logger.debug(self.chat_queue)
 
+    def t(self, key: str, **kwargs) -> str:
+        """
+        Get a translated string by key.
+        
+        Args:
+            key: Dot-separated key path (e.g., "commands.fishing.cast_success_fish")
+            **kwargs: Format arguments for string interpolation
+            
+        Returns:
+            Translated string
+        """
+        return self._localization.get_string(key, language=self.language, **kwargs)
 
     def _chat_queue_worker(self) -> None:
         """Process the chat queue."""
@@ -282,11 +326,11 @@ class Bot:
                     except Exception as e:
                         self.logger.error(f"Error in module '{module_name}' while processing line: {e}")
 
-            # Process commands if the line contains the command prefix
-            if chattext.startswith(self.prefix):
+            # Process commands if the line starts with any configured prefix
+            command_parts = self._extract_command(chattext)
+            if command_parts:
                 try:
-                    command_name = chattext[len(self.prefix):].split(" ")[0]
-                    command_args = chattext[len(self.prefix) + len(command_name):].strip()
+                    command_name, command_args = command_parts
 
                     self.logger.info(f"Executing command: {command_name} with args: {command_args}")
                     res = self.commands.execute(command_name, self, is_team, playername, command_args)
@@ -308,11 +352,11 @@ class Bot:
             chatline = line.split("] ", 1)[1].rsplit(": ", 1)  # Use rsplit to split at the last occurrence of ": "
             playername = chatline[0].strip().replace("\u200e", "")
             playername = playername.split("\ufe6b")[0].split("[DEAD]")[0].strip()
-            playername = playername.replace("/", "/​").replace("'", "י")
+            playername = playername.replace("/", "/â€‹").replace("'", "×™")
 
             # Extract and sanitize the chat text
             chattext = chatline[1].strip()
-            chattext = chattext.replace(";", ";").replace("/", "/​").replace("'", "י").strip()
+            chattext = chattext.replace(";", "Í¾").replace("/", "/â€‹").replace("'", "×™").strip()
 
             return is_team, playername, chattext
         except (ValueError, IndexError):

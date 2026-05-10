@@ -1,0 +1,233 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player} fick en {name} som väger {weight} lbs och är värd ${price}!",
+      "cast_success_autosold": "{player} fick en {name}, autosåld för ${price}!",
+      "empty_line": "{player}: Du vevar in en tom lina.",
+      "sack_limit_reached": "Din säck kan bara hålla {sack_size} fiskar.",
+      "sold_all_fish": "Du sålde all din fisk för totalt ${total_earnings:.2f}! Ditt nya saldo är ${new_balance:.2f}.",
+      "module_not_found": "{player}: Fiskemodulen hittades inte.",
+      "sack_contents": "{player}s säck innehåller: {contents}",
+      "sack_empty": "{player}: Din säck är tom.",
+      "sack_module_not_found": "{player}: Fiskemodulen hittades inte.",
+      "eat_module_not_found": "{player}: Fiskemodulen hittades inte.",
+      "sell_module_not_found": "{player}: Fiskemodulen hittades inte.",
+      "bait_no_bait_set": "{player}: Du har inget bete valt.",
+      "bait_cleared": "{player}: Betet rensades.",
+      "bait_module_not_found": "{player}: Fiskemodulen hittades inte.",
+      "bait_sack_empty": "{player}: Din säck är tom.",
+      "sell_all_sack_empty": "Din säck är tom. Du har ingen fisk att sälja.",
+      "sell_sack_empty": "Din säck är tom.",
+      "sell_fish_not_found": "Det fanns ingen '{name}' i din säck.",
+      "sold_single_fish": "Du sålde en {name} för ${price:.2f}! Ditt nya saldo är ${new_balance:.2f}.",
+      "eat_sack_empty": "Din säck är tom.",
+      "eat_fish_not_found": "Det fanns ingen '{name}' i din säck.",
+      "ate_fish": "Du åt fisken.",
+      "bait_no_fish_to_use": "Din säck är tom. Du har ingen fisk att använda som bete.",
+      "bait_not_found": "Det fanns ingen '{bait_name}' i din säck.",
+      "bait_set_next": "Du kommer att använda {bait_name} som bete för din nästa fångst.",
+      "bait_already_set": "Du har redan ett bete valt: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: Ölmodulen hittades inte.",
+      "no_beer": "{player}: Du har ingen öl att dricka.",
+      "beer_not_found": "Ölen '{beer}' hittades inte.",
+      "no_beer_named": "Du har ingen {beer_name} att dricka.",
+      "drank": "Du dricker en {beer_name}. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: Kasinomodulen hittades inte.",
+      "no_balance": "{player}: Du har inget saldo att spela för.",
+      "invalid_amount": "{player}: Ogiltigt belopp. Ange ett giltigt nummer.",
+      "amount_must_be_positive": "Nä du, välj ett nummer större än 0.",
+      "insufficient_funds": "Otillräckliga pengar. Ditt nuvarande saldo är ${current_balance:.2f}.",
+      "win_heads": "Det blev krona och du vann ${amount:.2f}! Ditt nya saldo är ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "Det blev klave och du förlorade ${amount:.2f}. Ditt nya saldo är ${new_balance:.2f}.{chance_suffix}"
+    },
+    "inventory": {
+      "module_not_found": "{player}: Inventariemodulen hittades inte.",
+      "empty": "{player}: Du rotar i inventariet men hittar inget annat än damm.",
+      "contents": "{player}s inventarie: {items}",
+      "open": {
+        "no_cases": "{player}: Du har inga lådor att öppna.",
+        "no_case_named": "Du har ingen {case_name} att öppna.",
+        "invalid_case": "{case_name} är inte en giltig låda.",
+        "opened_case": "Du öppnade en {case_name} och fick en {item_name} värd {price}! Du säljer den direkt och stoppar pengarna i fickan."
+      },
+      "inspect": {
+        "specify_item": "{player}: Ange en sak att inspektera.",
+        "default_description": "{player}: En helt vanlig {item_name}."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Blandningsmodulen hittades inte.",
+      "start": "Första personen som löser ordet vinner: {word}",
+      "winner": "{player} löste ordet '{word}' korrekt och vinner $100!"
+    },
+    "smoke": {
+      "module_not_found": "{player}: Tobaksmodulen hittades inte.",
+      "no_tobacco": "{player}: Du har ingen tobak att röka.",
+      "tobacco_not_found": "Tobaken '{tobacco}' hittades inte.",
+      "no_tobacco_named": "Du har ingen {tobacco_name} att röka.",
+      "smoked": "Du röker {tobacco_name}. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: Modulen för kontolänkning hittades inte.",
+      "code_generated": "{player}: Använd koden {code} för att länka ett annat konto. Koden går ut om {minutes} minuter.",
+      "no_linked_accounts": "{player}: Inga länkade konton hittades.",
+      "linked_accounts": "{player}s länkade konton: {accounts}",
+      "invalid_code": "Ogiltig kod. Kontrollera och försök igen.",
+      "code_expired": "Koden har gått ut. Generera en ny.",
+      "cannot_link_self": "Det går inte att länka ett konto till sig självt.",
+      "already_linked_different_ids": "Det går inte att länka konton som redan är kopplade till olika konto-ID:n.",
+      "success": "Lyckades länka {target_platform}-användaren \"{target_identifier}\" till {source_platform}-användaren \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Fiskemodulen hittades inte.",
+      "list_empty": "{player}: Autosäljlistan är tom.",
+      "list": "{player}: Fiskar i autosälj: {fish_list}",
+      "usage_add": "{player}: Användning: @autosell add <fish>",
+      "usage_remove": "{player}: Användning: @autosell remove <fish>",
+      "usage_general": "{player}: Användning: @autosell [add|remove] <fish>, @autosell clear eller bara @autosell för att visa listan."
+    },
+    "quest": {
+      "system_not_available": "Uppdragssystemet är inte tillgängligt.",
+      "next_available_in": "Nästa dagliga uppdrag blir tillgängligt om {time_remaining}",
+      "no_daily_available": "Inget dagligt uppdrag finns tillgängligt."
+    },
+    "ship": {
+      "provide_name": "{player}: Ange ett namn att shippa med!",
+      "compatibility": "{player} och {target} är {compatibility}% kompatibla!"
+    },
+    "status": {
+      "module_not_found": "{player}: Statusmodulen hittades inte.",
+      "no_effects": "{player}: Du har inga aktiva statuseffekter.",
+      "effects_list": "{player}s statuseffekter: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Trofémodulen är inte laddad.",
+      "empty_case": "{player}: Din troféhylla är tom. Använd trophy add <fish_name> för att lägga till fisk!",
+      "usage_add": "{player}: Användning: trophy add <fish_name>",
+      "usage_remove": "{player}: Användning: trophy remove <number>",
+      "number_must_be_numeric": "{player}: Trofénumret måste vara ett tal.",
+      "unknown_subcommand": "{player}: Okänt underkommando. Använd: trophy [add <fish_name> | remove <number>]"
+    },
+    "shop": {
+      "available_categories": "{player}: Tillgängliga kategorier: {categories}",
+      "no_items_available": "{player}: Det finns inga saker i butiken.",
+      "shop_items": "{player}: Tillgängliga butikssaker: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, max: {item_max})",
+      "module_not_found": "{player}: Butiksmodulen hittades inte.",
+      "buy_no_item_specified": "{player}: Ange en sak att köpa.",
+      "buy_module_not_found": "{player}: Butiksmodulen hittades inte.",
+      "rods_shortcut_help": "Visa tillgängliga fiskespön i butiken.",
+      "invalid_quantity": "Ogiltigt antal.",
+      "item_not_found": "Butiksägaren suckar och säger: 'Den saken har jag inte.'",
+      "max_quantity_reached": "Du kan bara ha {max_count} av den här saken åt gången.",
+      "insufficient_funds": "Butiksägaren säger: 'Är inte det lite för dyrt för dig?'",
+      "purchase_success": "Du köpte {quantity} x '{item_name}'. Ditt nya saldo är ${money_left}.",
+      "purchase_processing_error": "Fel när köpet behandlades: {error}",
+      "category_not_found": "Kategorin hittades inte. Tillgängliga kategorier: {categories}",
+      "no_items_in_category": "Det finns inga saker i den här kategorin.",
+      "nothing_for_you": "Butiksägaren säger: 'Jag har inget för dig.'"
+    },
+    "economy": {
+      "balance_response": "{player}, ditt nuvarande saldo är ${balance}.",
+      "top_players_list": "{player}: Toppspelare: {list}",
+      "top_no_players": "{player}: Inga spelare hittades.",
+      "module_not_found": "{player}: Ekonomimodulen hittades inte."
+    },
+    "help": {
+      "no_help_available": "{player}: Ingen hjälp finns för '{command}'.",
+      "available_commands": "{player}: Tillgängliga kommandon: {list}",
+      "module_not_found": "{player}: Hjälpmodulen hittades inte."
+    },
+    "femboy": {
+      "self_is": "{player}: Jag är en femboy ({chance}%)",
+      "self_is_not": "{player}: Jag är inte en femboy ({chance}%)",
+      "target_is": "{player}: {target} är en femboy ({chance}%)",
+      "target_is_not": "{player}: {target} är inte en femboy ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "Modulen hittades inte: {module}",
+    "command_not_found": "{player}: Kommandot '{command}' hittades inte.",
+    "command_not_found_with_suggestion": "{player}: Kommandot '{command}' hittades inte. Menade du '{suggestion}'?",
+    "invalid_input": "Ogiltig inmatning",
+    "insufficient_funds": "Otillräckliga pengar",
+    "item_not_found": "Sak hittades inte"
+  },
+  "help_texts": {
+    "cast": "Kasta ditt spö för att fånga en fisk eller en sak. (alias: fish, gofish)",
+    "sack": "Visa innehållet i din fiskesäck. (alias: bag)",
+    "eat": "Ät en fisk från din säck.",
+    "sell": "Sälj en fisk från din säck eller 'all' för att sälja allt.",
+    "bait": "Använd en fisk som bete för att öka chansen att få något större. 'last' använder sista fisken, 'clear' tar bort betet.",
+    "shop": "Lista tillgängliga kategorier och saker i 'shop <kategori>'.",
+    "buy": "Köp en sak i butiken.",
+    "rods": "Visa tillgängliga fiskespön i butiken.",
+    "balance": "Visa spelarens nuvarande saldo. (alias: bal, money)",
+    "top": "Visa toppspelarna i ekonomin. (alias: leaderboard, topplayers)",
+    "help": "Visa listan över tillgängliga kommandon eller hjälp för ett särskilt kommando. (alias: commands)"
+  },
+  "help_command_names": {
+    "cast": "kasta",
+    "sack": "sack",
+    "eat": "ät",
+    "sell": "sälj",
+    "bait": "bete",
+    "sellall": "säljallt",
+    "shop": "butik",
+    "buy": "köp",
+    "rods": "spön",
+    "smoke": "rök",
+    "drink": "drick",
+    "open": "öppna",
+    "inspect": "inspektera",
+    "autosell": "autosälj",
+    "link": "länka",
+    "linked": "länkade",
+    "flip": "slantsingling",
+    "trophy": "trofé",
+    "ship": "ship",
+    "femboy": "femboy",
+    "daily": "daglig",
+    "quest": "uppdrag",
+    "balance": "saldo",
+    "top": "toppen",
+    "help": "hjälp",
+    "inventory": "inventarie",
+    "status": "status",
+    "scramble": "blanda"
+  },
+  "command_aliases": {
+    "cast": ["kasta", "fiska"],
+    "sack": ["sack"],
+    "eat": ["ät", "at"],
+    "sell": ["sälj", "salj"],
+    "bait": ["bete"],
+    "sellall": ["säljallt", "saljallt"],
+    "shop": ["butik"],
+    "buy": ["köp", "kop"],
+    "rods": ["spön", "spon"],
+    "balance": ["saldo"],
+    "top": ["toppen"],
+    "help": ["hjälp", "hjalp", "kommandon"],
+    "link": ["länka", "lanka"],
+    "linked": ["länkade", "lankade"],
+    "quest": ["uppdrag"],
+    "autosell": ["autosälj", "autosalj"],
+    "inventory": ["inventarie"],
+    "open": ["öppna", "oppna"],
+    "inspect": ["inspektera"],
+    "drink": ["drick"],
+    "smoke": ["rök", "rok"],
+    "flip": ["slantsingling"],
+    "status": ["status"],
+    "trophy": ["trofé", "trofe"],
+    "ship": ["ship"],
+    "daily": ["daglig"],
+    "scramble": ["blanda"]
+  }
+}

@@ -12,7 +12,14 @@ class Casino:
         # Retrieve the StatusEffects module from the module registry
         self.status_effects: StatusEffects = module_registry.get_module("status_effects")
 
-    def flip(self, user_id, amount=10):
+    def _translate(self, t, key, default_text, **kwargs):
+        if callable(t):
+            translated = t(key, **kwargs)
+            if translated != key:
+                return translated
+        return default_text.format(**kwargs)
+
+    def flip(self, user_id, amount=10, t=None):
         """
         Flip a coin to gamble an amount.
 
@@ -21,12 +28,17 @@ class Casino:
         :return: A message with the result of the flip.
         """
         if amount <= 0:
-            return "No way jose, pick a number greater than 0."
+            return self._translate(t, "commands.flip.amount_must_be_positive", "No way jose, pick a number greater than 0.")
 
         # Ensure the user has enough balance
         current_balance = self.economy.get_balance(user_id)
         if current_balance < amount:
-            return f"Insufficient funds. Your current balance is ${current_balance:.2f}."
+            return self._translate(
+                t,
+                "commands.flip.insufficient_funds",
+                "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+                current_balance=current_balance,
+            )
 
         # Perform the coin flip
         # Get cutoff from status effects
@@ -45,8 +57,22 @@ class Casino:
         if outcome == "heads":
             # User wins, double the amount
             self.economy.add_balance(user_id, amount)
-            return f"You flipped heads and won ${amount:.2f}! Your new balance is ${self.economy.get_balance(user_id):.2f}.{chance_suffix}"
+            return self._translate(
+                t,
+                "commands.flip.win_heads",
+                "You flipped heads and won ${amount:.2f}! Your new balance is ${new_balance:.2f}.{chance_suffix}",
+                amount=amount,
+                new_balance=self.economy.get_balance(user_id),
+                chance_suffix=chance_suffix,
+            )
         else:
             # User loses, deduct the amount
             self.economy.deduct_balance(user_id, amount)
-            return f"You flipped tails and lost ${amount:.2f}. Your new balance is ${self.economy.get_balance(user_id):.2f}.{chance_suffix}"
+            return self._translate(
+                t,
+                "commands.flip.lose_tails",
+                "You flipped tails and lost ${amount:.2f}. Your new balance is ${new_balance:.2f}.{chance_suffix}",
+                amount=amount,
+                new_balance=self.economy.get_balance(user_id),
+                chance_suffix=chance_suffix,
+            )

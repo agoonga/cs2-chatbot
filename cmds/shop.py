@@ -16,16 +16,20 @@ def shop_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     if shop_module:
         category = chattext.strip() if chattext else None
         if not category:
-            bot.add_to_chat_queue(is_team, f"{playername}: Available categories: {', '.join(shop_module.get_categories())}")
+            categories_str = ", ".join(shop_module.get_categories())
+            message = bot.t("commands.shop.available_categories", 
+                player=playername, categories=categories_str)
+            bot.add_to_chat_queue(is_team, message)
             return
-        result = shop_module.get_shop_items(playername, category.lower())
+        result = shop_module.get_shop_items(playername, category.lower(), t=bot.t)
 
         if "error" in result:
             bot.add_to_chat_queue(is_team, f"{playername}: {result['error']}")
         else:
             items = result["items"]
             if not items:
-                bot.add_to_chat_queue(is_team, f"{playername}: No items available in the shop.")
+                message = bot.t("commands.shop.no_items_available", player=playername)
+                bot.add_to_chat_queue(is_team, message)
                 return
 
             if type(items) is dict and "error" in items:
@@ -37,15 +41,31 @@ def shop_command(bot, is_team: bool, playername: str, chattext: str) -> None:
                 item_price = item["price"]
                 item_max = item.get("max", 1)
                 if item_max > 1:
-                    item_list.append(f"{item_name} (${item_price:.2f}, max: {item_max})")
+                    item_list.append(
+                        bot.t(
+                            "commands.shop.item_entry_with_max",
+                            item_name=item_name,
+                            item_price=item_price,
+                            item_max=item_max,
+                        )
+                    )
                 else:
-                    item_list.append(f"{item_name} (${item_price:.2f})")
+                    item_list.append(
+                        bot.t(
+                            "commands.shop.item_entry",
+                            item_name=item_name,
+                            item_price=item_price,
+                        )
+                    )
 
             # Join the item list into a single string
             item_list_str = ", ".join(item_list)
-            bot.add_to_chat_queue(is_team, f"{playername}: Available shop items: {item_list_str}")
+            message = bot.t("commands.shop.shop_items",
+                player=playername, items=item_list_str)
+            bot.add_to_chat_queue(is_team, message)
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Shop module not found.")
+        message = bot.t("commands.shop.module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)
 
     
 @command_registry.register("buy")
@@ -62,7 +82,8 @@ def buy_command(bot, is_team: bool, playername: str, chattext: str) -> None:
     shop_module: ShopModule = bot.modules.get_module("shop")
     if shop_module:
         if not chattext.strip():
-            bot.add_to_chat_queue(is_team, f"{playername}: Please specify an item to buy.")
+            message = bot.t("commands.shop.buy_no_item_specified", player=playername)
+            bot.add_to_chat_queue(is_team, message)
             return
 
         # Parse the item name and quantity
@@ -75,13 +96,14 @@ def buy_command(bot, is_team: bool, playername: str, chattext: str) -> None:
             item_name = parts[0] + " " + parts[1]
 
         # Attempt to buy the item
-        result = shop_module.buy(playername, item_name, quantity)
+        result = shop_module.buy(playername, item_name, quantity, t=bot.t)
         if "error" in result:
             bot.add_to_chat_queue(is_team, f"{playername}: {result['error']}")
         else:
             bot.add_to_chat_queue(is_team, f"{playername}: {result['success']}")
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Shop module not found.")
+        message = bot.t("commands.shop.buy_module_not_found", player=playername)
+        bot.add_to_chat_queue(is_team, message)
 
 @command_registry.register("rods")
 def rods_command(bot, is_team: bool, playername: str, chattext: str) -> None:

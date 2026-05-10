@@ -299,6 +299,30 @@
                     "fishing.price_50"
                 ]
             }
+        },
+        {
+            "name": "Beck's",
+            "aliases": ["Becks", "Becks Beer"],
+            "price": 3.79,
+            "description": "A crisp German pilsner that tastes like the first good decision you've made all week.",
+            "type": "beer",
+            "attributes": {
+                "effects": [
+                    "fishing.catch_rate_10"
+                ]
+            }
+        },
+        {
+            "name": "Paulaner Hefe-Weissbier",
+            "aliases": ["Paulaner", "Hefe", "Weissbier"],
+            "price": 4.49,
+            "description": "Cloudy, bready, and suspiciously classy for a fishing trip.",
+            "type": "beer",
+            "attributes": {
+                "effects": [
+                    "fishing.price_20"
+                ]
+            }
         }
     ],
     "Tobacco": [
@@ -371,6 +395,30 @@
             "attributes": {
                 "effects": [
                     "fishing.case_rate_20"
+                ]
+            }
+        },
+        {
+            "name": "Pueblo Blue",
+            "aliases": ["Pueblo", "Pueblo Tobacco", "Pueblo Blue Tobacco"],
+            "description": "Additive-free smokes for the angler who insists on keeping it natural.",
+            "price": 10.99,
+            "type": "tobacco",
+            "attributes": {
+                "effects": [
+                    "fishing.catch_rate_10"
+                ]
+            }
+        },
+        {
+            "name": "West Yellow",
+            "aliases": ["West", "West Tobacco", "West Yellow Tobacco"],
+            "description": "Dry, sharp, and strong enough to make the lake air feel polite.",
+            "price": 10.99,
+            "type": "tobacco",
+            "attributes": {
+                "effects": [
+                    "fishing.miss_rate_10"
                 ]
             }
         }

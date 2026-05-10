@@ -16,7 +16,7 @@ def autosell_command(bot, is_team: bool, playername: str, chattext: str) -> None
     fishing_module: FishingModule = bot.modules.get_module("fishing")
 
     if not fishing_module:
-        bot.add_to_chat_queue(is_team, f"{playername}: Fishing module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.autosell.module_not_found", player=playername))
         return
 
     args = chattext.strip().split()
@@ -24,9 +24,12 @@ def autosell_command(bot, is_team: bool, playername: str, chattext: str) -> None
     if not args:
         fish_names = fishing_module.list_autosell_fish(playername)
         if not fish_names:
-            bot.add_to_chat_queue(is_team, f"{playername}: Autosell list is empty.")
+            bot.add_to_chat_queue(is_team, bot.t("commands.autosell.list_empty", player=playername))
             return
-        bot.add_to_chat_queue(is_team, f"{playername}: Autosell fish: {', '.join(fish_names)}")
+        bot.add_to_chat_queue(
+            is_team,
+            bot.t("commands.autosell.list", player=playername, fish_list=', '.join(fish_names)),
+        )
         return
 
     action = args[0].lower()
@@ -34,7 +37,7 @@ def autosell_command(bot, is_team: bool, playername: str, chattext: str) -> None
 
     if action == "add":
         if not fish_name:
-            bot.add_to_chat_queue(is_team, f"{playername}: Usage: @autosell add <fish>")
+            bot.add_to_chat_queue(is_team, bot.t("commands.autosell.usage_add", player=playername))
             return
         _, message = fishing_module.add_autosell_fish(playername, fish_name)
         bot.add_to_chat_queue(is_team, f"{playername}: {message}")
@@ -42,7 +45,7 @@ def autosell_command(bot, is_team: bool, playername: str, chattext: str) -> None
 
     if action == "remove":
         if not fish_name:
-            bot.add_to_chat_queue(is_team, f"{playername}: Usage: @autosell remove <fish>")
+            bot.add_to_chat_queue(is_team, bot.t("commands.autosell.usage_remove", player=playername))
             return
         _, message = fishing_module.remove_autosell_fish(playername, fish_name)
         bot.add_to_chat_queue(is_team, f"{playername}: {message}")
@@ -55,5 +58,5 @@ def autosell_command(bot, is_team: bool, playername: str, chattext: str) -> None
 
     bot.add_to_chat_queue(
         is_team,
-        f"{playername}: Usage: @autosell [add|remove] <fish>, @autosell clear, or @autosell to list."
+        bot.t("commands.autosell.usage_general", player=playername)
     )

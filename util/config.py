@@ -91,7 +91,7 @@ def load_config() -> dict:
     config_path = get_config_path()
     if not os.path.exists(config_path):
         return generate_default_config()
-    with open(config_path, "r") as f:
+    with open(config_path, "r", encoding="utf-8-sig") as f:
         return toml.load(f)
 
 class ConfigWrapper:

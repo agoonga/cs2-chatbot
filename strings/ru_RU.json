@@ -1,0 +1,233 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player} поймал(а) {name} весом {weight} lbs стоимостью ${price}!",
+      "cast_success_autosold": "{player} поймал(а) {name}, автоматически продано за ${price}!",
+      "empty_line": "{player}: Вы вытянули пустую леску.",
+      "sack_limit_reached": "Ваш мешок может содержать только {sack_size} рыб.",
+      "sold_all_fish": "Вы продали всю рыбу на сумму ${total_earnings:.2f}! Ваш новый баланс: ${new_balance:.2f}.",
+      "module_not_found": "{player}: Модуль рыбалки не найден.",
+      "sack_contents": "Мешок {player} содержит: {contents}",
+      "sack_empty": "{player}: Ваш мешок пуст.",
+      "sack_module_not_found": "{player}: Модуль рыбалки не найден.",
+      "eat_module_not_found": "{player}: Модуль рыбалки не найден.",
+      "sell_module_not_found": "{player}: Модуль рыбалки не найден.",
+      "bait_no_bait_set": "{player}: У вас не выбрана наживка.",
+      "bait_cleared": "{player}: Наживка очищена.",
+      "bait_module_not_found": "{player}: Модуль рыбалки не найден.",
+      "bait_sack_empty": "{player}: Ваш мешок пуст.",
+      "sell_all_sack_empty": "Ваш мешок пуст. У вас нет рыбы для продажи.",
+      "sell_sack_empty": "Ваш мешок пуст.",
+      "sell_fish_not_found": "В вашем мешке не найдено '{name}'.",
+      "sold_single_fish": "Вы продали {name} за ${price:.2f}! Ваш новый баланс: ${new_balance:.2f}.",
+      "eat_sack_empty": "Ваш мешок пуст.",
+      "eat_fish_not_found": "В вашем мешке не найдено '{name}'.",
+      "ate_fish": "Вы съели рыбу.",
+      "bait_no_fish_to_use": "Ваш мешок пуст. У вас нет рыбы для наживки.",
+      "bait_not_found": "В вашем мешке не найдено '{bait_name}'.",
+      "bait_set_next": "Вы будете использовать {bait_name} как наживку для следующего улова.",
+      "bait_already_set": "У вас уже установлена наживка: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: Модуль пива не найден.",
+      "no_beer": "{player}: У вас нет пива, чтобы выпить.",
+      "beer_not_found": "Пиво '{beer}' не найдено.",
+      "no_beer_named": "У вас нет {beer_name}, чтобы выпить.",
+      "drank": "Вы выпили {beer_name}. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: Модуль казино не найден.",
+      "no_balance": "{player}: У вас нет баланса для ставки.",
+      "invalid_amount": "{player}: Неверная сумма. Введите корректное число.",
+      "amount_must_be_positive": "Ставка должна быть больше 0.",
+      "insufficient_funds": "Недостаточно средств. Ваш текущий баланс: ${current_balance:.2f}.",
+      "win_heads": "Выпал орел, вы выиграли ${amount:.2f}! Ваш новый баланс: ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "Выпала решка, вы проиграли ${amount:.2f}. Ваш новый баланс: ${new_balance:.2f}.{chance_suffix}"
+    },
+    "inventory": {
+      "module_not_found": "{player}: Модуль инвентаря не найден.",
+      "empty": "{player}: Вы роетесь в инвентаре, но находите только пыль.",
+      "contents": "Инвентарь {player}: {items}",
+      "open": {
+        "no_cases": "{player}: У вас нет кейсов для открытия.",
+        "no_case_named": "У вас нет кейса {case_name} для открытия.",
+        "invalid_case": "{case_name} не является допустимым кейсом.",
+        "opened_case": "Вы открыли {case_name} и получили {item_name} стоимостью {price}! Вы сразу продали его и забрали деньги."
+      },
+      "inspect": {
+        "specify_item": "{player}: Укажите предмет для осмотра.",
+        "default_description": "{player}: Обычный {item_name}."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Модуль scramble не найден.",
+      "start": "Первый, кто разгадает слово, побеждает: {word}",
+      "winner": "{player} правильно разгадывает слово '{word}' и получает $100!"
+    },
+    "smoke": {
+      "module_not_found": "{player}: Модуль табака не найден.",
+      "no_tobacco": "{player}: У вас нет табака, чтобы курить.",
+      "tobacco_not_found": "Табак '{tobacco}' не найден.",
+      "no_tobacco_named": "У вас нет {tobacco_name}, чтобы курить.",
+      "smoked": "Вы закурили {tobacco_name}. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: Модуль привязки аккаунтов не найден.",
+      "code_generated": "{player}: Используйте код {code}, чтобы привязать другой аккаунт. Код истекает через {minutes} минут.",
+      "no_linked_accounts": "{player}: Связанные аккаунты не найдены.",
+      "linked_accounts": "Связанные аккаунты {player}: {accounts}",
+      "invalid_code": "Неверный код. Проверьте и попробуйте снова.",
+      "code_expired": "Срок действия кода истек. Сгенерируйте новый.",
+      "cannot_link_self": "Нельзя привязать аккаунт к самому себе.",
+      "already_linked_different_ids": "Нельзя привязать аккаунты, уже связанные с разными ID аккаунтов.",
+      "success": "Успешно привязан пользователь {target_platform} \"{target_identifier}\" к пользователю {source_platform} \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Модуль рыбалки не найден.",
+      "list_empty": "{player}: Список автопродажи пуст.",
+      "list": "{player}: Рыба в автопродаже: {fish_list}",
+      "usage_add": "{player}: Использование: @autosell add <fish>",
+      "usage_remove": "{player}: Использование: @autosell remove <fish>",
+      "usage_general": "{player}: Использование: @autosell [add|remove] <fish>, @autosell clear, или @autosell для списка."
+    },
+    "quest": {
+      "system_not_available": "Система квестов недоступна.",
+      "next_available_in": "Следующий ежедневный квест будет доступен через {time_remaining}",
+      "no_daily_available": "Ежедневный квест недоступен."
+    },
+    "ship": {
+      "provide_name": "{player}: Укажите имя для шипа!",
+      "compatibility": "Совместимость {player} и {target}: {compatibility}%!"
+    },
+    "status": {
+      "module_not_found": "{player}: Модуль эффектов статуса не найден.",
+      "no_effects": "{player}: У вас нет активных эффектов статуса.",
+      "effects_list": "Эффекты статуса {player}: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Модуль трофеев не загружен.",
+      "empty_case": "{player}: Ваш трофейный стенд пуст. Используйте trophy add <fish_name>, чтобы добавить рыбу!",
+      "usage_add": "{player}: Использование: trophy add <fish_name>",
+      "usage_remove": "{player}: Использование: trophy remove <number>",
+      "number_must_be_numeric": "{player}: Номер трофея должен быть числом.",
+      "unknown_subcommand": "{player}: Неизвестная подкоманда. Используйте: trophy [add <fish_name> | remove <number>]"
+    },
+    "shop": {
+      "available_categories": "{player}: Доступные категории: {categories}",
+      "no_items_available": "{player}: В магазине нет доступных предметов.",
+      "shop_items": "{player}: Доступные предметы магазина: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, макс.: {item_max})",
+      "module_not_found": "{player}: Модуль магазина не найден.",
+      "buy_no_item_specified": "{player}: Укажите предмет для покупки.",
+      "buy_module_not_found": "{player}: Модуль магазина не найден.",
+      "rods_shortcut_help": "Посмотреть доступные удочки в магазине.",
+      "invalid_quantity": "Неверное количество.",
+      "item_not_found": "Продавец вздыхает: 'У меня нет такого предмета.'",
+      "max_quantity_reached": "У вас может быть не больше {max_count} таких предметов одновременно.",
+      "insufficient_funds": "Продавец говорит: 'Для тебя это слишком дорого.'",
+      "purchase_success": "Вы купили {quantity} x '{item_name}'. Ваш новый баланс: ${money_left}.",
+      "purchase_processing_error": "Ошибка при обработке покупки: {error}",
+      "category_not_found": "Категория не найдена. Доступные категории: {categories}",
+      "no_items_in_category": "В этой категории нет доступных предметов.",
+      "nothing_for_you": "Продавец говорит: 'Для тебя у меня ничего нет.'"
+    },
+    "economy": {
+      "balance_response": "{player}, ваш текущий баланс ${balance}.",
+      "top_players_list": "{player}: Топ игроков: {list}",
+      "top_no_players": "{player}: Игроки не найдены.",
+      "module_not_found": "{player}: Модуль экономики не найден."
+    },
+    "help": {
+      "no_help_available": "{player}: Нет справки для '{command}'.",
+      "available_commands": "{player}: Доступные команды: {list}",
+      "module_not_found": "{player}: Модуль помощи не найден."
+    },
+    "femboy": {
+      "self_is": "{player}: Я фембой ({chance}%)",
+      "self_is_not": "{player}: Я не фембой ({chance}%)",
+      "target_is": "{player}: {target} - фембой ({chance}%)",
+      "target_is_not": "{player}: {target} - не фембой ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "Модуль не найден: {module}",
+    "command_not_found": "{player}: Команда '{command}' не найдена.",
+    "command_not_found_with_suggestion": "{player}: Команда '{command}' не найдена. Возможно, вы имели в виду '{suggestion}'?",
+    "invalid_input": "Неверный ввод",
+    "insufficient_funds": "Недостаточно средств",
+    "item_not_found": "Предмет не найден"
+  },
+  "help_texts": {
+    "cast": "Забросьте удочку, чтобы поймать рыбу или предмет. (alias: fish, gofish)",
+    "sack": "Показать содержимое вашего мешка. (alias: bag)",
+    "eat": "Съесть рыбу из вашего мешка.",
+    "sell": "Продать рыбу из мешка или 'all' для продажи всего.",
+    "bait": "Используйте рыбу как наживку. 'last' - последняя рыба, 'clear' - очистить наживку.",
+    "shop": "Показать категории и предметы в 'shop <category>'.",
+    "buy": "Купить предмет в магазине.",
+    "rods": "Посмотреть доступные удочки в магазине.",
+    "balance": "Показать текущий баланс игрока. (alias: bal, money)",
+    "top": "Показать топ игроков в экономике. (alias: leaderboard, topplayers)",
+    "help": "Показать список доступных команд или справку по команде. (alias: commands)"
+  },
+  "help_command_names": {
+    "cast": "ловить",
+    "sack": "мешок",
+    "eat": "есть",
+    "sell": "продать",
+    "bait": "наживка",
+    "sellall": "продатьвсе",
+    "shop": "магазин",
+    "buy": "купить",
+    "rods": "удочки",
+    "smoke": "курить",
+    "drink": "пить",
+    "open": "открыть",
+    "inspect": "осмотреть",
+    "autosell": "автопродажа",
+    "link": "связать",
+    "linked": "связанные",
+    "flip": "монетка",
+    "trophy": "трофей",
+    "ship": "шип",
+    "femboy": "femboy",
+    "daily": "ежедневно",
+    "quest": "квест",
+    "balance": "баланс",
+    "top": "рейтинг",
+    "help": "помощь",
+    "inventory": "инвентарь",
+    "status": "статус",
+    "scramble": "мешать"
+  },
+  "command_aliases": {
+    "cast": ["ловить"],
+    "sack": ["мешок"],
+    "eat": ["есть"],
+    "sell": ["продать"],
+    "bait": ["наживка"],
+    "sellall": ["продатьвсе"],
+    "shop": ["магазин"],
+    "buy": ["купить"],
+    "rods": ["удочки"],
+    "balance": ["баланс"],
+    "top": ["рейтинг"],
+    "help": ["помощь", "команды"],
+    "link": ["связать"],
+    "linked": ["связанные"],
+    "daily": ["ежедневно"],
+    "quest": ["квест"],
+    "autosell": ["автопродажа"],
+    "inventory": ["инвентарь"],
+    "open": ["открыть"],
+    "inspect": ["осмотреть"],
+    "drink": ["пить"],
+    "smoke": ["курить"],
+    "flip": ["монетка"],
+    "status": ["статус"],
+    "trophy": ["трофей"],
+    "ship": ["шип"],
+    "scramble": ["мешать"]
+  }
+}

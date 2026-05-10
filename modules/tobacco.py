@@ -44,17 +44,29 @@ class Tobacco:
         
         return None
 
-    def smoke_tobacco(self, playername, tobacco):
+    def _translate(self, t, key, default_text, **kwargs):
+        if callable(t):
+            translated = t(key, **kwargs)
+            if translated != key:
+                return translated
+        return default_text.format(**kwargs)
+
+    def smoke_tobacco(self, playername, tobacco, t=None):
         """
         Simulate smoking tobacco
         """
         tobacco_data = self.find_tobacco(tobacco)
         if tobacco_data is None:
-            return f"Tobacco '{tobacco}' not found."
+            return self._translate(t, "commands.smoke.tobacco_not_found", "Tobacco '{tobacco}' not found.", tobacco=tobacco)
         
         # Check if the player has the tobacco in their inventory
         if not self.inventory.get_item_by_name_fuzzy(playername, tobacco_data["name"]):
-            return f"You don't have any {tobacco_data['name']} to chuff."
+            return self._translate(
+                t,
+                "commands.smoke.no_tobacco_named",
+                "You don't have any {tobacco_name} to chuff.",
+                tobacco_name=tobacco_data["name"],
+            )
         
         # Remove the tobacco from the inventory
         self.inventory.remove_item(playername, tobacco_data["name"], 1)
@@ -70,5 +82,11 @@ class Tobacco:
             elif description:
                 effect_descs.append(description)
         
-        return f"You chuff a {tobacco_data['name']}. ({', '.join(effect_descs)})"
+        return self._translate(
+            t,
+            "commands.smoke.smoked",
+            "You chuff a {tobacco_name}. ({effects})",
+            tobacco_name=tobacco_data["name"],
+            effects=', '.join(effect_descs),
+        )
 

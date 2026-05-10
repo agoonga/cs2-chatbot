@@ -12,7 +12,7 @@ def trophy_command(server, is_team: bool, playername: str, args: str) -> str:
     """
     trophy_module = server.modules.get_module("trophy")
     if not trophy_module:
-        return "Trophy module not loaded."
+        return server.t("commands.trophy.module_not_loaded")
     
     args = args.strip()
     
@@ -21,7 +21,7 @@ def trophy_command(server, is_team: bool, playername: str, args: str) -> str:
         trophies = trophy_module.get_trophies(playername)
         
         if not trophies:
-            return f"{playername}: Your trophy case is empty. Use trophy add <fish_name> to add fish!"
+            return server.t("commands.trophy.empty_case", player=playername)
         
         # Format trophy display
         lines = [f"{playername}'s Trophy Case:"]
@@ -43,7 +43,7 @@ def trophy_command(server, is_team: bool, playername: str, args: str) -> str:
     
     if subcommand == "add":
         if len(parts) < 2:
-            return f"{playername}: Usage: trophy add <fish_name>"
+            return server.t("commands.trophy.usage_add", player=playername)
         
         fish_name = parts[1].strip()
         result = trophy_module.add_trophy(playername, fish_name)
@@ -55,12 +55,12 @@ def trophy_command(server, is_team: bool, playername: str, args: str) -> str:
     
     elif subcommand == "remove":
         if len(parts) < 2:
-            return f"{playername}: Usage: trophy remove <number>"
+            return server.t("commands.trophy.usage_remove", player=playername)
         
         try:
             trophy_number = int(parts[1].strip())
         except ValueError:
-            return f"{playername}: Trophy number must be a number."
+            return server.t("commands.trophy.number_must_be_numeric", player=playername)
         
         result = trophy_module.remove_trophy(playername, trophy_number)
         
@@ -70,4 +70,4 @@ def trophy_command(server, is_team: bool, playername: str, args: str) -> str:
             return f"{playername}: {result['message']}"
     
     else:
-        return f"{playername}: Unknown subcommand. Use: trophy [add <fish_name> | remove <number>]"
+        return server.t("commands.trophy.unknown_subcommand", player=playername)

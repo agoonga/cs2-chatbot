@@ -21,6 +21,7 @@ COPY server/ ./server/
 COPY modules/ ./modules/
 COPY cmds/ ./cmds/
 COPY util/ ./util/
+COPY strings/ ./strings/
 COPY config.toml .
 
 # Copy data files

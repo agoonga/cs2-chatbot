@@ -46,5 +46,21 @@
         "effects": [
             "fishing.item_rate_40"
         ]
+    },
+    {
+        "name": "Pueblo Blue",
+        "description": "Additive-free smokes for the angler who insists on keeping it natural.",
+        "price": 10.99,
+        "effects": [
+            "fishing.catch_rate_10"
+        ]
+    },
+    {
+        "name": "West Yellow",
+        "description": "Dry, sharp, and strong enough to make the lake air feel polite.",
+        "price": 10.99,
+        "effects": [
+            "fishing.miss_rate_10"
+        ]
     }
 ]

@@ -15,6 +15,13 @@ class AccountLinking:
         """Initialize the account linking module."""
         self.code_length = 6
         self.code_expiry_minutes = 10
+
+    def _translate(self, t, key, default_text, **kwargs):
+        if callable(t):
+            translated = t(key, **kwargs)
+            if translated != key:
+                return translated
+        return default_text.format(**kwargs)
     
     def generate_code(self, platform: str, identifier: str) -> str:
         """
@@ -45,7 +52,7 @@ class AccountLinking:
         
         return code
     
-    def use_code(self, code: str, target_platform: str, target_identifier: str) -> dict:
+    def use_code(self, code: str, target_platform: str, target_identifier: str, t=None) -> dict:
         """
         Use a linking code to link two accounts.
         
@@ -65,18 +72,18 @@ class AccountLinking:
             result = cursor.fetchone()
             
             if not result:
-                return {"error": "Invalid code. Please check and try again."}
+                return {"error": self._translate(t, "commands.link.invalid_code", "Invalid code. Please check and try again.")}
             
             source_platform, source_identifier, expires_at = result
             
             # Check if expired
             if datetime.now() > expires_at:
                 cursor.execute("DELETE FROM link_codes WHERE code = %s", (code,))
-                return {"error": "Code has expired. Please generate a new one."}
+                return {"error": self._translate(t, "commands.link.code_expired", "Code has expired. Please generate a new one.")}
             
             # Check if trying to link the same account
             if source_platform == target_platform and source_identifier == target_identifier:
-                return {"error": "Cannot link an account to itself."}
+                return {"error": self._translate(t, "commands.link.cannot_link_self", "Cannot link an account to itself.")}
             
             # Check if either account is already linked
             cursor.execute("""
@@ -92,7 +99,13 @@ class AccountLinking:
                 account_ids = set(link[0] for link in existing_links)
                 
                 if len(account_ids) > 1:
-                    return {"error": "Cannot link accounts that are already linked to different account IDs."}
+                    return {
+                        "error": self._translate(
+                            t,
+                            "commands.link.already_linked_different_ids",
+                            "Cannot link accounts that are already linked to different account IDs.",
+                        )
+                    }
                 
                 account_id = account_ids.pop()
                 
@@ -177,7 +190,15 @@ class AccountLinking:
         
         return {
             "success": True,
-            "message": f"Successfully linked {target_platform} user \"{target_identifier}\" to {source_platform} user \"{source_identifier}\".",
+            "message": self._translate(
+                t,
+                "commands.link.success",
+                "Successfully linked {target_platform} user \"{target_identifier}\" to {source_platform} user \"{source_identifier}\".",
+                target_platform=target_platform,
+                target_identifier=target_identifier,
+                source_platform=source_platform,
+                source_identifier=source_identifier,
+            ),
             "account_id": account_id
         }
     

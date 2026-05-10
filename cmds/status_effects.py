@@ -17,9 +17,9 @@ def status_command(bot, is_team: bool, playername: str, chattext: str) -> None:
         effects = status_effects_module.get_effects(playername)
         effect_names = [f"{effect['description']} ({effect['duration']}s)" for effect in effects]
         if not effects:
-            bot.add_to_chat_queue(is_team, f"{playername}: You have no active status effects.")
+            bot.add_to_chat_queue(is_team, bot.t("commands.status.no_effects", player=playername))
             return
         effect_list = ", ".join(effect_names)
-        bot.add_to_chat_queue(is_team, f"{playername}'s status effects: {effect_list}")
+        bot.add_to_chat_queue(is_team, bot.t("commands.status.effects_list", player=playername, effects=effect_list))
     else:
-        bot.add_to_chat_queue(is_team, f"{playername}: Status Effects module not found.")
+        bot.add_to_chat_queue(is_team, bot.t("commands.status.module_not_found", player=playername))
