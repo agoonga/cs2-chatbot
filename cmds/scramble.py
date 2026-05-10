@@ -14,10 +14,11 @@ def scramble_command(bot, is_team: bool, playername: str, chattext: str) -> None
     """
     scramble_module: ScrambleModule = bot.modules.get_module("scramble")
     if scramble_module:
-        scramble_module.start_new_game(is_team)
+        session_id = bot.get_request_session() if hasattr(bot, "get_request_session") else "default"
+        scrambled_word = scramble_module.start_new_game(session_id, is_team)
         bot.add_to_chat_queue(
             is_team,
-            bot.t("commands.scramble.start", word=scramble_module.scrambled_word),
+            bot.t("commands.scramble.start", word=scrambled_word),
         )
     else:
         bot.add_to_chat_queue(is_team, bot.t("commands.scramble.module_not_found", player=playername))

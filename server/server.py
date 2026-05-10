@@ -55,6 +55,7 @@ class BotServer:
         self._localization = initialize_localization(strings_dir=resource_path("strings"), default_language="en_US")
         self.language = "en_US"  # Default language, will be overridden per-request
         self._request_language = ContextVar("request_language", default="en_US")
+        self._request_session = ContextVar("request_session", default="default")
         
         # Initialize database connection pool
         self.logger.info("Initializing database connection pool...")
@@ -119,7 +120,7 @@ class BotServer:
         self.modules.load_modules(modules_dir)
         self.logger.info(f"Loaded {len(self.modules)} modules from {modules_dir}")
         
-    def process_message(self, is_team: bool, playername: str, chattext: str, language: str = "en_US") -> List[Dict]:
+    def process_message(self, is_team: bool, playername: str, chattext: str, language: str = "en_US", session_id: str = "default") -> List[Dict]:
         """Process a message and return list of responses.
         
         Args:
@@ -131,6 +132,7 @@ class BotServer:
         # Set language for this request (request-scoped to avoid cross-request bleed).
         self.language = language
         language_token = self._request_language.set(language)
+        session_token = self._request_session.set(session_id or "default")
         import time
         start_time = time.time()
         
@@ -138,15 +140,30 @@ class BotServer:
             # Clear response queue for this message
             self._response_queue = []
 
+            command_parts = self._extract_command(chattext)
+
+            # Plain text is only meaningful when a scramble session is active.
+            if not command_parts and not self._has_active_scramble_session(session_id):
+                self.logger.debug(f"Ignoring non-command message for inactive session: {session_id}")
+                return []
+
             # Pass to modules that are reading input
             module_start = time.time()
             for module_name, module_instance in self.modules.modules.items():
                 if hasattr(module_instance, "process") and getattr(module_instance, "reading_input", True):
+                    if not command_parts and module_name != "scramble":
+                        continue
                     try:
                         try:
-                            response = module_instance.process(playername, is_team, chattext, t=self.t)
+                            if module_name == "scramble":
+                                response = module_instance.process(playername, is_team, chattext, session_id=session_id, t=self.t)
+                            else:
+                                response = module_instance.process(playername, is_team, chattext, t=self.t)
                         except TypeError:
-                            response = module_instance.process(playername, is_team, chattext)
+                            if module_name == "scramble":
+                                response = module_instance.process(playername, is_team, chattext, session_id=session_id)
+                            else:
+                                response = module_instance.process(playername, is_team, chattext)
                         if response:
                             self._response_queue.append({
                                 "is_team": is_team,
@@ -157,7 +174,6 @@ class BotServer:
             module_time = time.time() - module_start
 
             # Process commands if the line starts with any configured prefix
-            command_parts = self._extract_command(chattext)
             if command_parts:
                 try:
                     command_start = time.time()
@@ -188,10 +204,27 @@ class BotServer:
             return responses
         finally:
             self._request_language.reset(language_token)
+            self._request_session.reset(session_token)
 
     def get_request_language(self) -> str:
         """Get language for the current request context."""
         return self._request_language.get()
+
+    def get_request_session(self) -> str:
+        """Get session identifier for the current request context."""
+        return self._request_session.get()
+
+    def _has_active_scramble_session(self, session_id: str) -> bool:
+        """Return True when the scramble module has an active game for this session."""
+        scramble_module = self.modules.get_module("scramble")
+        if not scramble_module:
+            return False
+
+        games = getattr(scramble_module, "games", None)
+        if not isinstance(games, dict):
+            return False
+
+        return session_id in games
         
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         """Compatibility method for commands that expect this method."""
@@ -234,8 +267,10 @@ def process_message():
         chattext = data.get('chattext', '')
         platform = data.get('platform', 'unknown')
         language = data.get('language', 'en_US')  # Get language from request, default to English
+        session_id = data.get('session_id', 'default')
         
         bot_server.logger.info(f"DEBUG: Received language from request: {language}")
+        bot_server.logger.info(f"DEBUG: Received session from request: {session_id}")
         
         if not playername or not chattext:
             return jsonify({"error": "Missing required fields"}), 400
@@ -249,7 +284,7 @@ def process_message():
             playername = account_linking.get_preferred_identifier(platform, playername)
             
         # Process the message with the specified language
-        responses = bot_server.process_message(is_team, playername, chattext, language=language)
+        responses = bot_server.process_message(is_team, playername, chattext, language=language, session_id=session_id)
         
         return jsonify({"responses": responses}), 200
         

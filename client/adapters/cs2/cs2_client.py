@@ -3,6 +3,7 @@ import logging
 import threading
 import atexit
 import re
+import uuid
 import toml
 import win32gui
 import keyboard
@@ -58,6 +59,7 @@ class CS2Client:
         self.config = load_config()
         configured_language = self.config.get("adapters", {}).get("cs2", {}).get("language", "en_US")
         self.language = self._normalize_language_input(configured_language) or "en_US"
+        self.session_id = f"cs2-{uuid.uuid4().hex}"
         self.load_chat_key = self.config.get("load_chat_key", "kp_1")
         self.load_chat_key_win32 = keys.KEYS[self.load_chat_key]
         self.send_chat_key = self.config.get("send_chat_key", "kp_2")
@@ -74,6 +76,7 @@ class CS2Client:
         self.paused = False
         self.running = True
         self.stop_event = threading.Event()
+        self.logger.info(f"CS2 session initialized: {self.session_id}")
 
     def _acquire_instance_lock(self) -> bool:
         """Acquire a process lock to ensure only one CS2 client instance runs."""
@@ -443,7 +446,8 @@ class CS2Client:
                     "playername": playername,
                     "chattext": chattext,
                     "platform": "cs2",
-                    "language": language
+                    "language": language,
+                    "session_id": self.session_id,
                 },
                 timeout=5
             )

@@ -48,6 +48,7 @@ class DiscordClient(commands.Bot):
         # Add both handlers to the logger
         self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)
+        self.active_scramble_sessions = set()
         
         # Load configuration
         self.config = load_config()
@@ -86,19 +87,35 @@ class DiscordClient(commands.Bot):
         
         # Process the message
         chattext = message.content.strip()
-        
-        # Check if the message starts with any configured command prefix
-        if not any(chattext.startswith(prefix) for prefix in self.command_prefixes):
+        if not chattext:
             return
         
         # Extract playername (use Discord username, not display name)
         playername = str(message.author.name)
         is_team = isinstance(message.channel, discord.DMChannel)
+        session_id = getattr(message.channel, "name", None) or f"dm-{message.channel.id}"
+        is_prefixed = any(chattext.startswith(prefix) for prefix in self.command_prefixes)
+
+        if not is_prefixed and session_id not in self.active_scramble_sessions:
+            return
         
         self.logger.info(f"Received message from {playername}: {chattext} (DM: {is_team})")
         
         # Send to server for processing
-        responses = await self.send_to_server(is_team, playername, chattext)
+        responses = await self.send_to_server(is_team, playername, chattext, session_id=session_id)
+
+        if is_prefixed:
+            matched_prefix = next((prefix for prefix in self.command_prefixes if chattext.startswith(prefix)), None)
+            command_name = None
+            if matched_prefix:
+                remainder = chattext[len(matched_prefix):].strip()
+                if remainder:
+                    command_name = remainder.split()[0].lower()
+
+            if command_name == "scramble" and responses:
+                self.active_scramble_sessions.add(session_id)
+        elif responses:
+            self.active_scramble_sessions.discard(session_id)
         
         # Send responses back to Discord
         if responses:
@@ -110,12 +127,12 @@ class DiscordClient(commands.Bot):
                     except discord.errors.HTTPException as e:
                         self.logger.error(f"Failed to send message: {e}")
     
-    async def send_to_server(self, is_team: bool, playername: str, chattext: str) -> Optional[List[Dict]]:
+    async def send_to_server(self, is_team: bool, playername: str, chattext: str, session_id: Optional[str] = None) -> Optional[List[Dict]]:
         """Send a message to the server and get responses."""
         try:
             url = f"{self.server_url}/process_message"
             self.logger.info(f"Sending POST to: {url}")
-            self.logger.info(f"Payload: is_team={is_team}, playername={playername}, chattext={chattext}")
+            self.logger.info(f"Payload: is_team={is_team}, playername={playername}, chattext={chattext}, session_id={session_id}")
             
             # Get language from adapter config
             language = self.config.get("adapters", {}).get("discord", {}).get("language", "en_US")
@@ -127,7 +144,8 @@ class DiscordClient(commands.Bot):
                     "playername": playername,
                     "chattext": chattext,
                     "platform": "discord",
-                    "language": language
+                    "language": language,
+                    "session_id": session_id or "discord-default",
                 },
                 timeout=5
             )
