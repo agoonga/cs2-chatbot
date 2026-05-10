@@ -55,8 +55,9 @@ class Help:
         
         :return: List of command names without aliases.
         """
+        hidden_primary_commands = {"hit", "stand", "double"}
         primary_commands = []
         for cmd_name, cmd_func in self.commands.items():
-            if getattr(cmd_func, "command_name", None) == cmd_name:
+            if getattr(cmd_func, "command_name", None) == cmd_name and cmd_name not in hidden_primary_commands:
                 primary_commands.append(cmd_name)
         return primary_commands
