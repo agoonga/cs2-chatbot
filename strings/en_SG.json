@@ -180,6 +180,12 @@
       "self_is_not": "{player}: I am not a femboy ({chance}%)",
       "target_is": "{player}: {target} is a femboy ({chance}%)",
       "target_is_not": "{player}: {target} is not a femboy ({chance}%)"
+    },
+    "translate": {
+      "usage": "Usage: !translate <from> <to> <text>  e.g. !translate en zh nice gloves",
+      "unknown_lang": "Unknown language '{lang}'. Try: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "Translation failed. Please try again."
     }
   },
   "errors": {
@@ -236,37 +242,109 @@
     "help": "help",
     "inventory": "inventory",
     "status": "status",
-    "scramble": "scramble"
+    "scramble": "scramble",
+    "translate": "translate"
   },
   "command_aliases": {
-    "cast": ["fish", "gofish"],
-    "sack": ["bag"],
-    "eat": ["eat"],
-    "sell": ["sell"],
-    "bait": ["bait"],
-    "sellall": ["sellall"],
-    "shop": ["shop"],
-    "buy": ["buy"],
-    "rods": ["rods"],
-    "balance": ["bal", "money"],
-    "top": ["leaderboard", "topplayers"],
-    "help": ["commands", "cmds"],
-    "link": ["link"],
-    "linked": ["accounts"],
-    "quest": ["quest"],
-    "autosell": ["autosell"],
-    "inventory": ["inventory", "inv"],
-    "open": ["open", "case"],
-    "inspect": ["inspect"],
-    "drink": ["beer", "sip"],
-    "smoke": ["chuff", "pack"],
-    "flip": ["gamble", "coinflip"],
-    "blackjack": ["bj"],
-    "dice": ["roll"],
-    "status": ["effects"],
-    "trophy": ["trophy"],
-    "ship": ["ship"],
-    "daily": ["quest"],
-    "scramble": ["scramble"]
+    "cast": [
+      "fish",
+      "gofish"
+    ],
+    "sack": [
+      "bag"
+    ],
+    "eat": [
+      "eat"
+    ],
+    "sell": [
+      "sell"
+    ],
+    "bait": [
+      "bait"
+    ],
+    "sellall": [
+      "sellall"
+    ],
+    "shop": [
+      "shop"
+    ],
+    "buy": [
+      "buy"
+    ],
+    "rods": [
+      "rods"
+    ],
+    "balance": [
+      "bal",
+      "money"
+    ],
+    "top": [
+      "leaderboard",
+      "topplayers"
+    ],
+    "help": [
+      "commands",
+      "cmds"
+    ],
+    "link": [
+      "link"
+    ],
+    "linked": [
+      "accounts"
+    ],
+    "quest": [
+      "quest"
+    ],
+    "autosell": [
+      "autosell"
+    ],
+    "inventory": [
+      "inventory",
+      "inv"
+    ],
+    "open": [
+      "open",
+      "case"
+    ],
+    "inspect": [
+      "inspect"
+    ],
+    "drink": [
+      "beer",
+      "sip"
+    ],
+    "smoke": [
+      "chuff",
+      "pack"
+    ],
+    "flip": [
+      "gamble",
+      "coinflip"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "dice": [
+      "roll"
+    ],
+    "status": [
+      "effects"
+    ],
+    "trophy": [
+      "trophy"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "daily": [
+      "quest"
+    ],
+    "scramble": [
+      "scramble"
+    ],
+    "translate": [
+      "trans",
+      "tl"
+    ]
   }
 }

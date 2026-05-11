@@ -96,6 +96,12 @@
       "start": "First person to unscramble the word wins: {word}",
       "winner": "{player} unscrambled the word '{word}' correctly and wins $100!"
     },
+    "translate": {
+      "usage": "Usage: !translate <to> <text>  or  !translate <from> <to> <text>",
+      "unknown_lang": "Unknown language '{lang}'. Try: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "Translation failed. Please try again."
+    },
     "smoke": {
       "module_not_found": "{player}: Tobacco module not found.",
       "no_tobacco": "{player}: You have no tobacco to chuff.",
@@ -236,7 +242,8 @@
     "help": "help",
     "inventory": "inventory",
     "status": "status",
-    "scramble": "scramble"
+    "scramble": "scramble",
+    "translate": "translate"
   },
   "command_aliases": {
     "cast": ["fish", "gofish"],
@@ -267,6 +274,7 @@
     "trophy": ["trophy"],
     "ship": ["ship"],
     "daily": ["quest"],
-    "scramble": ["scramble"]
+    "scramble": ["scramble"],
+    "translate": ["trans", "tl"]
   }
 }

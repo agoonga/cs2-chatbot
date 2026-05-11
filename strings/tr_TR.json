@@ -180,6 +180,12 @@
       "self_is_not": "{player}: Ben bir femboy değilim ({chance}%)",
       "target_is": "{player}: {target} bir femboy ({chance}%)",
       "target_is_not": "{player}: {target} bir femboy değil ({chance}%)"
+    },
+    "translate": {
+      "usage": "Kullanım: !translate <from> <to> <text> ör. !translate zh güzel eldivenler",
+      "unknown_lang": "Bilinmeyen dil '{lang}'. Deneyin: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "Çeviri başarısız oldu. Lütfen tekrar deneyin."
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "help": "yardim",
     "inventory": "envanter",
     "status": "durum",
-    "scramble": "karistir"
+    "scramble": "karistir",
+    "translate": "tercüme etmek"
   },
   "command_aliases": {
     "cast": [
@@ -342,6 +349,10 @@
     ],
     "dice": [
       "roll"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

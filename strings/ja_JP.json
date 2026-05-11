@@ -180,6 +180,12 @@
       "usage_remove": "{player}: 使用法: トロフィーの削除 <番号>",
       "number_must_be_numeric": "{player}: トロフィー番号は数字になりません。",
       "unknown_subcommand": "{player}: 不明なサブコマンドです。使用: トロフィー [<fish_name> を追加 | <番号>を削除]"
+    },
+    "translate": {
+      "usage": "使用法: !translate <from> <to> <text> 例: !en zh を翻訳します 素敵な手袋",
+      "unknown_lang": "不明な言語「{lang}」です。試してください: en、zh、es、fr、de、it、nl、ru、ja、tr、sv、ko、pl、pt、hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "翻訳に失敗しました。もう一度試してください。"
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "help": "ヘルプ",
     "inventory": "もちもの",
     "status": "ステータス",
-    "scramble": "まぜる"
+    "scramble": "まぜる",
+    "translate": "翻訳する"
   },
   "command_aliases": {
     "cast": [
@@ -353,6 +360,10 @@
     ],
     "dice": [
       "roll"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

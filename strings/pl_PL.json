@@ -180,6 +180,12 @@
       "self_is_not": "{player}: Nie jestem femboyem ({chance}%)",
       "target_is": "{player}: {target} jest femboyem ({chance}%)",
       "target_is_not": "{player}: {target} nie jest femboyem ({chance}%)"
+    },
+    "translate": {
+      "usage": "Sposób użycia: !translate <z> <do> <tekst> np. !tłumacz pl zh ładne rękawiczki",
+      "unknown_lang": "Nieznany język „{lang}”. Spróbuj: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, cześć",
+      "result": "{player}: ({from_lang} → {to_lang}) {result}",
+      "error": "Tłumaczenie nie powiodło się. Spróbuj ponownie."
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "inventory": "ekwipunek",
     "status": "status",
     "scramble": "mieszaj",
-    "dice": "kostka do gry"
+    "dice": "kostka do gry",
+    "translate": "tłumaczyć"
   },
   "command_aliases": {
     "cast": [
@@ -327,6 +334,10 @@
     ],
     "dice": [
       "roll"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

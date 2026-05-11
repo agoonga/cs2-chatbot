@@ -180,6 +180,12 @@
       "self_is_not": "{player}：我不是女同性恋 ({chance}%)",
       "target_is": "{player}：{target} 是女同性恋 ({chance}%)",
       "target_is_not": "{player}：{target} 不是女同性恋 ({chance}%)"
+    },
+    "translate": {
+      "usage": "用法： !translate <from> <to> <text> 例如!translate en zh 漂亮的手套",
+      "unknown_lang": "未知语言“{lang}”。尝试：en、zh、es、fr、de、it、nl、ru、ja、tr、sv、ko、pl、pt、hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "翻译失败。请再试一次。"
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "help": "帮助",
     "inventory": "存货",
     "status": "地位",
-    "scramble": "争夺"
+    "scramble": "争夺",
+    "translate": "翻译"
   },
   "command_aliases": {
     "cast": [
@@ -247,10 +254,15 @@
       "bag"
     ],
     "eat": [
-      "eat"
+      "eat",
+      "吃"
     ],
     "sell": [
-      "sell"
+      "sell",
+      "卖",
+      "出售",
+      "售卖",
+      "塞奥尔"
     ],
     "bait": [
       "bait"
@@ -259,17 +271,22 @@
       "sellall"
     ],
     "shop": [
-      "shop"
+      "shop",
+      "商店",
+      "店铺"
     ],
     "buy": [
-      "buy"
+      "buy",
+      "买",
+      "购买"
     ],
     "rods": [
       "rods"
     ],
     "balance": [
       "bal",
-      "money"
+      "money",
+      "余额"
     ],
     "top": [
       "leaderboard",
@@ -277,7 +294,8 @@
     ],
     "help": [
       "commands",
-      "cmds"
+      "cmds",
+      "帮助"
     ],
     "link": [
       "link"
@@ -286,54 +304,81 @@
       "accounts"
     ],
     "quest": [
-      "quest"
+      "quest",
+      "任务"
     ],
     "autosell": [
-      "autosell"
+      "autosell",
+      "自动卖",
+      "自动售卖"
     ],
     "inventory": [
       "inventory",
-      "inv"
+      "inv",
+      "背包",
+      "库存"
     ],
     "open": [
       "open",
-      "case"
+      "case",
+      "打开"
     ],
     "inspect": [
-      "inspect"
+      "inspect",
+      "检查",
+      "查看"
     ],
     "drink": [
       "beer",
-      "sip"
+      "sip",
+      "喝"
     ],
     "smoke": [
       "chuff",
-      "pack"
+      "pack",
+      "抽",
+      "抽烟"
     ],
     "flip": [
       "gamble",
-      "coinflip"
+      "coinflip",
+      "抛硬币",
+      "硬币"
     ],
     "blackjack": [
-      "bj"
+      "bj",
+      "21点",
+      "二十一点"
     ],
     "dice": [
-      "roll"
+      "roll",
+      "投掷",
+      "掷",
+      "骰子"
     ],
     "status": [
-      "effects"
+      "effects",
+      "状态"
     ],
     "trophy": [
-      "trophy"
+      "trophy",
+      "奖杯"
     ],
     "ship": [
-      "ship"
+      "ship",
+      "配对"
     ],
     "daily": [
       "quest"
     ],
     "scramble": [
-      "scramble"
+      "scramble",
+      "拼词",
+      "打乱"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

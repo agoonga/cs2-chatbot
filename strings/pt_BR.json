@@ -180,6 +180,12 @@
       "usage_remove": "{player}: Uso: remoção de troféu <número>",
       "number_must_be_numeric": "{player}: O número do troféu deve ser um número.",
       "unknown_subcommand": "{player}: Subcomando desconhecido. Uso: troféu [add <fish_name> | removedor <número>]"
+    },
+    "translate": {
+      "usage": "Uso: !translate <from> <to> <text> por exemplo. !translate en zh lindas luvas",
+      "unknown_lang": "Idioma desconhecido '{lang}'. Tente: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "A tradução falhou. Por favor, tente novamente."
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "help": "ajuda",
     "inventory": "inventario",
     "status": "status",
-    "scramble": "embaralhar"
+    "scramble": "embaralhar",
+    "translate": "traduzir"
   },
   "command_aliases": {
     "cast": [
@@ -328,6 +335,10 @@
     ],
     "scramble": [
       "embaralhar"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

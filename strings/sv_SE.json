@@ -180,6 +180,12 @@
       "self_is_not": "{player}: Jag är inte en femboy ({chance}%)",
       "target_is": "{player}: {target} är en femboy ({chance}%)",
       "target_is_not": "{player}: {target} är inte en femboy ({chance}%)"
+    },
+    "translate": {
+      "usage": "Användning: !translate <from> <to> <text> t.ex. !translate en zh snygga handskar",
+      "unknown_lang": "Okänt språk '{lang}'. Prova: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "Översättning misslyckades. Försök igen."
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "inventory": "inventarie",
     "status": "status",
     "scramble": "blanda",
-    "dice": "tärningar"
+    "dice": "tärningar",
+    "translate": "översätta"
   },
   "command_aliases": {
     "cast": [
@@ -339,6 +346,10 @@
     ],
     "dice": [
       "roll"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

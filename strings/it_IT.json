@@ -180,6 +180,12 @@
       "usage_remove": "{player}: Utilizzo: rimozione trofeo <numero>",
       "number_must_be_numeric": "{player}: il numero del trofeo deve essere un numero.",
       "unknown_subcommand": "{player}: sottocomando sconosciuto. Usa: trofeo [aggiungi <nome_pesce> | rimuovi <numero>]"
+    },
+    "translate": {
+      "usage": "Utilizzo: !translate <from> <to> <text> ad es. !translate en zh bei guanti",
+      "unknown_lang": "Lingua sconosciuta '{lang}'. Prova: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "Traduzione fallita. Per favore riprova."
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "inventory": "inventario",
     "status": "stato",
     "scramble": "mischia",
-    "dice": "papà"
+    "dice": "papà",
+    "translate": "tradurre"
   },
   "command_aliases": {
     "cast": [
@@ -326,6 +333,10 @@
     ],
     "dice": [
       "roll"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

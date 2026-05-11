@@ -3,3 +3,4 @@ flask
 requests
 psycopg2-binary
 thefuzz
+deep-translator

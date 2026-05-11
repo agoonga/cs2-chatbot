@@ -180,6 +180,12 @@
       "self_is_not": "{player}: Я не фембой ({chance}%)",
       "target_is": "{player}: {target} - фембой ({chance}%)",
       "target_is_not": "{player}: {target} - не фембой ({chance}%)"
+    },
+    "translate": {
+      "usage": "Использование: !translate <from> <to> <text> например. !translate ru хорошие перчатки",
+      "unknown_lang": "Неизвестный язык «{lang}». Попробуйте: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "Перевод не удался. Пожалуйста, попробуйте еще раз."
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "inventory": "инвентарь",
     "status": "статус",
     "scramble": "мешать",
-    "dice": "кости"
+    "dice": "кости",
+    "translate": "переводить"
   },
   "command_aliases": {
     "cast": [
@@ -326,6 +333,10 @@
     ],
     "dice": [
       "roll"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

@@ -180,6 +180,12 @@
       "usage_remove": "{player}: Verwendung: Trophäe entfernen <Nummer>",
       "number_must_be_numeric": "{player}: Trophäennummer muss eine Zahl sein.",
       "unknown_subcommand": "{player}: Unbekannter Unterbefehl. Verwendung: Trophäe [add <fish_name> | <Nummer> entfernen]"
+    },
+    "translate": {
+      "usage": "Verwendung: !translate <from> <to> <text> z.B. !translate en zh schöne Handschuhe",
+      "unknown_lang": "Unbekannte Sprache „{lang}“. Versuchen Sie: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "Die Übersetzung ist fehlgeschlagen. Bitte versuchen Sie es erneut."
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "help": "hilfe",
     "inventory": "inventar",
     "status": "Status",
-    "scramble": "mischen"
+    "scramble": "mischen",
+    "translate": "übersetzen"
   },
   "command_aliases": {
     "cast": [
@@ -326,6 +333,10 @@
     ],
     "scramble": [
       "mischen"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

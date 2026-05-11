@@ -180,6 +180,12 @@
       "self_is_not": "{player}: मैं फेमबॉय नहीं हूं ({chance}%)",
       "target_is": "{player}: {target} एक फेमबॉय है ({chance}%)",
       "target_is_not": "{player}: {target} फ़ेम्बॉय नहीं है ({chance}%)"
+    },
+    "translate": {
+      "usage": "उपयोग: !translate <from> <to> <text> उदा. !अनुवाद एन zh अच्छे दस्ताने",
+      "unknown_lang": "अज्ञात भाषा '{lang}'. प्रयास करें: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "error": "अनुवाद विफल. कृपया पुन: प्रयास करें।"
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "help": "मदद",
     "inventory": "भंडार",
     "status": "स्थिति",
-    "scramble": "संघर्ष"
+    "scramble": "संघर्ष",
+    "translate": "अनुवाद"
   },
   "command_aliases": {
     "cast": [
@@ -334,6 +341,10 @@
     ],
     "scramble": [
       "scramble"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }

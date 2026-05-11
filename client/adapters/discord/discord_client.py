@@ -122,6 +122,11 @@ class DiscordClient(commands.Bot):
             "en": "en_US",
             "eng": "en_US",
             "english": "en_US",
+            "en_sg": "en_SG",
+            "ensg": "en_SG",
+            "sg": "en_SG",
+            "singapore": "en_SG",
+            "singaporean": "en_SG",
             "pt_br": "pt_BR",
             "pt": "pt_BR",
             "pr": "pt_BR",
@@ -170,6 +175,15 @@ class DiscordClient(commands.Bot):
             "ko": "ko_KR",
             "kor": "ko_KR",
             "korean": "ko_KR",
+            "zh_cn": "zh_CN",
+            "zh": "zh_CN",
+            "cn": "zh_CN",
+            "chinese": "zh_CN",
+            "mandarin": "zh_CN",
+            "hi_in": "hi_IN",
+            "hi": "hi_IN",
+            "hindi": "hi_IN",
+            "india": "hi_IN",
             "pl_pl": "pl_PL",
             "pl": "pl_PL",
             "pol": "pl_PL",
@@ -196,7 +210,7 @@ class DiscordClient(commands.Bot):
         normalized = self._normalize_language_input(args[0])
         if not normalized:
             await message.channel.send(
-                "Unknown language. Try: en_US, pt_BR, es_ES, fr_FR, de_DE, it_IT, nl_NL, ru_RU, ja_JP, tr_TR, sv_SE, ko_KR, pl_PL"
+                "Unknown language. Try: en_US, en_SG, pt_BR, es_ES, fr_FR, de_DE, it_IT, nl_NL, ru_RU, ja_JP, tr_TR, sv_SE, ko_KR, pl_PL, zh_CN, hi_IN"
             )
             return True
 

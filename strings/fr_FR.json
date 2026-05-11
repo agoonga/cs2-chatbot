@@ -180,6 +180,12 @@
       "usage_remove": "{player} : Utilisation : trophée supprimé <numéro>",
       "number_must_be_numeric": "{player}      : Le numéro du trophée doit être un nombre.",
       "unknown_subcommand": "{player}   : sous-commande inconnue. Utiliser : trophée [ajouter <fish_name> | supprimer <numéro>]"
+    },
+    "translate": {
+      "usage": "Utilisation : !translate <from> <to> <text> par ex. !translate en zh beaux gants",
+      "unknown_lang": "Langue inconnue '{lang}'. Essayez : en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player} : ({from_lang}→{to_lang}) {result}",
+      "error": "La traduction a échoué. Veuillez réessayer."
     }
   },
   "errors": {
@@ -236,7 +242,8 @@
     "help": "aide",
     "inventory": "inventaire",
     "status": "statut",
-    "scramble": "melange"
+    "scramble": "melange",
+    "translate": "traduire"
   },
   "command_aliases": {
     "cast": [
@@ -326,6 +333,10 @@
     ],
     "scramble": [
       "melange"
+    ],
+    "translate": [
+      "trans",
+      "tl"
     ]
   }
 }
