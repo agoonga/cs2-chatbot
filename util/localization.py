@@ -82,7 +82,7 @@ class LocalizationManager:
         Get a translated string by key.
         
         Args:
-            key: Dot-separated key path (e.g., "commands.fishing.cast_success")
+            key: Dot-separated key path (e.g., "commands.fishing.cast_success_fish")
             language: Optional language override. If not provided, uses current language.
             **kwargs: Format arguments for string interpolation
             

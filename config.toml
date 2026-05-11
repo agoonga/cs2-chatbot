@@ -14,7 +14,7 @@ pause_buttons = "b,tab,y,`,alt+tab"
 resume_buttons = "enter,esc"
 
 [adapters.cs2]
-language = "pl_PL"
+language = "es_ES"
 
 [adapters.discord]
 language = "en_US"

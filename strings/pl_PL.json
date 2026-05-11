@@ -202,7 +202,9 @@
     "blackjack": "Graj w blackjacka solo: blackjack <stawka|all>, blackjack hit, blackjack stand, blackjack double.",
     "balance": "Pokaż aktualne saldo gracza. (alias: bal, money)",
     "top": "Pokaż najlepszych graczy w ekonomii. (alias: leaderboard, topplayers)",
-    "help": "Pokaż listę dostępnych komend lub pomoc dla konkretnej komendy. (alias: commands)"
+    "help": "Pokaż listę dostępnych komend lub pomoc dla konkretnej komendy. (alias: commands)",
+    "flip": "Rzuć monetę, aby określić lub całość, aby wyjść saldo. (alias: hazard, rzut monetą)",
+    "dice": "Rzuć wylot (1-6) i wysunięty na ziemię (4-6), lub dostępną do kraju. Sposób użycia: kości <bet|all>high|niskie|1-6. (alias: rolka)"
   },
   "help_command_names": {
     "cast": "rzut",
@@ -222,10 +224,10 @@
     "link": "polacz",
     "linked": "polaczone",
     "flip": "moneta",
-    "blackjack": "blackjack",
+    "blackjack": "maczuga",
     "trophy": "trofeum",
-    "ship": "ship",
-    "femboy": "femboy",
+    "ship": "statek",
+    "femboy": "feboy",
     "daily": "codziennie",
     "quest": "zadanie",
     "balance": "saldo",
@@ -233,36 +235,98 @@
     "help": "pomoc",
     "inventory": "ekwipunek",
     "status": "status",
-    "scramble": "mieszaj"
+    "scramble": "mieszaj",
+    "dice": "kostka do gry"
   },
   "command_aliases": {
-    "cast": ["rzut", "lowienie"],
-    "sack": ["worek"],
-    "eat": ["jedz"],
-    "sell": ["sprzedaj"],
-    "bait": ["przyneta"],
-    "sellall": ["sprzedajwszystko"],
-    "shop": ["sklep"],
-    "buy": ["kup"],
-    "rods": ["wedki"],
-    "balance": ["saldo"],
-    "top": ["ranking"],
-    "help": ["pomoc", "komendy"],
-    "link": ["polacz"],
-    "linked": ["polaczone"],
-    "daily": ["codziennie"],
-    "quest": ["zadanie"],
-    "autosell": ["autosprzedaz"],
-    "inventory": ["ekwipunek"],
-    "open": ["otworz"],
-    "inspect": ["sprawdz"],
-    "drink": ["pij"],
-    "smoke": ["pal"],
-    "flip": ["moneta"],
-    "blackjack": ["bj"],
-    "status": ["status"],
-    "trophy": ["trofeum"],
-    "ship": ["ship"],
-    "scramble": ["mieszaj"]
+    "cast": [
+      "rzut",
+      "lowienie"
+    ],
+    "sack": [
+      "worek"
+    ],
+    "eat": [
+      "jedz"
+    ],
+    "sell": [
+      "sprzedaj"
+    ],
+    "bait": [
+      "przyneta"
+    ],
+    "sellall": [
+      "sprzedajwszystko"
+    ],
+    "shop": [
+      "sklep"
+    ],
+    "buy": [
+      "kup"
+    ],
+    "rods": [
+      "wedki"
+    ],
+    "balance": [
+      "saldo"
+    ],
+    "top": [
+      "ranking"
+    ],
+    "help": [
+      "pomoc",
+      "komendy"
+    ],
+    "link": [
+      "polacz"
+    ],
+    "linked": [
+      "polaczone"
+    ],
+    "daily": [
+      "codziennie"
+    ],
+    "quest": [
+      "zadanie"
+    ],
+    "autosell": [
+      "autosprzedaz"
+    ],
+    "inventory": [
+      "ekwipunek"
+    ],
+    "open": [
+      "otworz"
+    ],
+    "inspect": [
+      "sprawdz"
+    ],
+    "drink": [
+      "pij"
+    ],
+    "smoke": [
+      "pal"
+    ],
+    "flip": [
+      "moneta"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "status": [
+      "status"
+    ],
+    "trophy": [
+      "trofeum"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "scramble": [
+      "mieszaj"
+    ],
+    "dice": [
+      "roll"
+    ]
   }
 }

@@ -1,0 +1,272 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player} caught a {name} weighing {weight} lbs worth ${price}!",
+      "cast_success_autosold": "{player} caught a {name}, autosold for ${price}!",
+      "empty_line": "{player}: You reel in an empty line.",
+      "sack_limit_reached": "Your sack can only hold {sack_size} fish.",
+      "sold_all_fish": "You sold all your fish for a total of ${total_earnings:.2f}! Your new balance is ${new_balance:.2f}.",
+      "module_not_found": "{player}: Fishing module not found.",
+      "sack_contents": "{player}'s sack contains: {contents}",
+      "sack_empty": "{player}: Your sack is empty.",
+      "sack_module_not_found": "{player}: Fishing module not found.",
+      "eat_module_not_found": "{player}: Fishing module not found.",
+      "sell_module_not_found": "{player}: Fishing module not found.",
+      "bait_no_bait_set": "{player}: You don't have any bait set.",
+      "bait_cleared": "{player}: Bait cleared.",
+      "bait_module_not_found": "{player}: Fishing module not found.",
+      "bait_sack_empty": "{player}: Your sack is empty.",
+      "sell_all_sack_empty": "Your sack is empty. You have no fish to sell.",
+      "sell_sack_empty": "Your sack is empty.",
+      "sell_fish_not_found": "There were no '{name}' found in your sack.",
+      "sold_single_fish": "You sold a {name} for ${price:.2f}! Your new balance is ${new_balance:.2f}.",
+      "eat_sack_empty": "Your sack is empty.",
+      "eat_fish_not_found": "There were no '{name}' found in your sack.",
+      "ate_fish": "You ate the fish.",
+      "bait_no_fish_to_use": "Your sack is empty. You have no fish to use as bait.",
+      "bait_not_found": "There were no '{bait_name}' found in your sack.",
+      "bait_set_next": "You will use a {bait_name} as bait for your next catch.",
+      "bait_already_set": "You already have a bait set: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: Beer module not found.",
+      "no_beer": "{player}: You have no beer to drink.",
+      "beer_not_found": "Beer '{beer}' not found.",
+      "no_beer_named": "You don't have any {beer_name} to drink.",
+      "drank": "You drink a {beer_name}. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: Casino module not found.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "No way jose, pick a number greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "win_heads": "You flipped heads and won ${amount:.2f}! Your new balance is ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "You flipped tails and lost ${amount:.2f}. Your new balance is ${new_balance:.2f}.{chance_suffix}"
+    },
+    "blackjack": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: blackjack <bet|all> | blackjack hit | blackjack stand | blackjack double",
+      "invalid_amount": "Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "double_not_allowed": "You can only double down as your first move.",
+      "game_already_active": "You already have an active blackjack hand in this session.",
+      "started": "Blackjack started. Bet: ${bet:.2f}. Your hand: {player_hand} ({player_value}). Dealer: {dealer_up}, ?",
+      "no_active_game": "You have no active blackjack hand in this session.",
+      "hit": "You draw. Your hand: {player_hand} ({player_value}). Dealer: {dealer_up}, ?",
+      "bust": "Bust. Your hand: {player_hand} ({player_value}). You lose ${bet:.2f}. Balance: ${new_balance:.2f}.",
+      "stand_result": "{result} Your hand: {player_hand} ({player_value}). Dealer hand: {dealer_hand} ({dealer_value}). Balance: ${new_balance:.2f}.",
+      "win": "You win ${win_amount:.2f}!",
+      "lose": "You lose ${bet:.2f}.",
+      "push": "Push. Your bet is returned.",
+      "push_blackjack": "Push. Both you and dealer have blackjack. Your bet is returned. Balance: ${new_balance:.2f}.",
+      "player_blackjack": "Blackjack! You win ${win_amount:.2f}. Balance: ${new_balance:.2f}.",
+      "dealer_blackjack": "Dealer has blackjack. You lose ${bet:.2f}. Balance: ${new_balance:.2f}."
+    },
+    "dice": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: dice <bet|all> high|low|1-6",
+      "invalid_bet": "{player}: Invalid bet amount.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "invalid_guess": "Invalid guess. Use 'high', 'low', or a number 1-6.",
+      "rolled": "Rolled {roll}. Guessed {guess}. {result} Balance: ${new_balance:.2f}.",
+      "win": "You win ${win_amount:.2f}!",
+      "lose": "You lose ${bet:.2f}."
+    },
+    "inventory": {
+      "module_not_found": "{player}: Inventory module not found.",
+      "empty": "{player}: Rummaging through your inventory, you find nothing but dust.",
+      "contents": "{player}'s inventory: {items}",
+      "open": {
+        "no_cases": "{player}: You have no cases to open.",
+        "no_case_named": "You don't have a {case_name} to open.",
+        "invalid_case": "{case_name} is not a valid case.",
+        "opened_case": "You opened a {case_name} and got a {item_name} worth {price}! You sell it and pocket the change."
+      },
+      "inspect": {
+        "specify_item": "{player}: Please specify an item to inspect.",
+        "default_description": "{player}: A run-of-the-mill {item_name}."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Scramble module not found.",
+      "start": "First person to unscramble the word wins: {word}",
+      "winner": "{player} unscrambled the word '{word}' correctly and wins $100!"
+    },
+    "smoke": {
+      "module_not_found": "{player}: Tobacco module not found.",
+      "no_tobacco": "{player}: You have no tobacco to chuff.",
+      "tobacco_not_found": "Tobacco '{tobacco}' not found.",
+      "no_tobacco_named": "You don't have any {tobacco_name} to chuff.",
+      "smoked": "You chuff a {tobacco_name}. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: Account linking module not found.",
+      "code_generated": "{player}: Use code {code} to link another account. Code expires in {minutes} minutes.",
+      "no_linked_accounts": "{player}: No linked accounts found.",
+      "linked_accounts": "{player}'s linked accounts: {accounts}",
+      "invalid_code": "Invalid code. Please check and try again.",
+      "code_expired": "Code has expired. Please generate a new one.",
+      "cannot_link_self": "Cannot link an account to itself.",
+      "already_linked_different_ids": "Cannot link accounts that are already linked to different account IDs.",
+      "success": "Successfully linked {target_platform} user \"{target_identifier}\" to {source_platform} user \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Fishing module not found.",
+      "list_empty": "{player}: Autosell list is empty.",
+      "list": "{player}: Autosell fish: {fish_list}",
+      "usage_add": "{player}: Usage: @autosell add <fish>",
+      "usage_remove": "{player}: Usage: @autosell remove <fish>",
+      "usage_general": "{player}: Usage: @autosell [add|remove] <fish>, @autosell clear, or @autosell to list."
+    },
+    "quest": {
+      "system_not_available": "Quest system not available.",
+      "next_available_in": "Next daily quest available in {time_remaining}",
+      "no_daily_available": "No daily quest available."
+    },
+    "ship": {
+      "provide_name": "{player}: Please provide a name to ship with!",
+      "compatibility": "{player} and {target} are {compatibility}% compatible!"
+    },
+    "status": {
+      "module_not_found": "{player}: Status Effects module not found.",
+      "no_effects": "{player}: You have no active status effects.",
+      "effects_list": "{player}'s status effects: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Trophy module not loaded.",
+      "empty_case": "{player}: Your trophy case is empty. Use trophy add <fish_name> to add fish!",
+      "usage_add": "{player}: Usage: trophy add <fish_name>",
+      "usage_remove": "{player}: Usage: trophy remove <number>",
+      "number_must_be_numeric": "{player}: Trophy number must be a number.",
+      "unknown_subcommand": "{player}: Unknown subcommand. Use: trophy [add <fish_name> | remove <number>]"
+    },
+    "shop": {
+      "available_categories": "{player}: Available categories: {categories}",
+      "no_items_available": "{player}: No items available in the shop.",
+      "shop_items": "{player}: Available shop items: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, max: {item_max})",
+      "module_not_found": "{player}: Shop module not found.",
+      "buy_no_item_specified": "{player}: Please specify an item to buy.",
+      "buy_module_not_found": "{player}: Shop module not found.",
+      "rods_shortcut_help": "View available fishing rods in the shop.",
+      "invalid_quantity": "Invalid quantity.",
+      "item_not_found": "The shopkeeper sighs and says: 'I don't have that item.'",
+      "max_quantity_reached": "You can only have {max_count} of this item at a time.",
+      "insufficient_funds": "The shopkeeper says: 'Isn't that too rich for your blood?'",
+      "purchase_success": "You bought {quantity} x '{item_name}'. Your new balance is ${money_left}.",
+      "purchase_processing_error": "Error while processing the purchase: {error}",
+      "category_not_found": "Category not found. Available categories: {categories}",
+      "no_items_in_category": "No items available in this category.",
+      "nothing_for_you": "The shopkeeper says: 'I don't have anything for you.'"
+    },
+    "economy": {
+      "balance_response": "{player}, your current balance is ${balance}.",
+      "top_players_list": "{player}: Top players: {list}",
+      "top_no_players": "{player}: No players found.",
+      "module_not_found": "{player}: Economy module not found."
+    },
+    "help": {
+      "no_help_available": "{player}: No help available for '{command}'.",
+      "available_commands": "{player}: Available commands: {list}",
+      "module_not_found": "{player}: Help module not found."
+    },
+    "femboy": {
+      "self_is": "{player}: I am a femboy ({chance}%)",
+      "self_is_not": "{player}: I am not a femboy ({chance}%)",
+      "target_is": "{player}: {target} is a femboy ({chance}%)",
+      "target_is_not": "{player}: {target} is not a femboy ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "Module not found: {module}",
+    "command_not_found": "{player}: Command '{command}' not found.",
+    "command_not_found_with_suggestion": "{player}: Command '{command}' not found. Did you mean '{suggestion}'?",
+    "invalid_input": "Invalid input",
+    "insufficient_funds": "Insufficient funds",
+    "item_not_found": "Item not found"
+  },
+  "help_texts": {
+    "cast": "Cast your fishing rod to catch a fish or item. (alias: fish, gofish)",
+    "sack": "Display the contents of your fishing sack. (alias: bag)",
+    "eat": "Eat a fish from your sack.",
+    "sell": "Sell a fish from your sack or 'all' fish.",
+    "bait": "Use a fish as bait to increase your chances of catching a bigger one. 'last' to use the last fish in your sack, 'clear' to clear bait.",
+    "shop": "List the categories available, and items in 'shop <category>'.",
+    "buy": "Buy an item from the shop.",
+    "rods": "View available fishing rods in the shop.",
+    "flip": "Flip a coin to gamble an amount or 'all' for your balance. (alias: gamble, coinflip)",
+    "blackjack": "Play one-player blackjack: blackjack <bet|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Roll a dice (1-6) and bet on high (4-6), low (1-3), or an exact number. Usage: dice <bet|all> high|low|1-6. (alias: roll)",
+    "balance": "Display the player's current balance. (alias: bal, money)",
+    "top": "Display the top players in the economy. (alias: leaderboard, topplayers)",
+    "help": "Display the list of available commands or help for a specific command. (alias: commands)"
+  },
+  "help_command_names": {
+    "cast": "cast",
+    "sack": "sack",
+    "eat": "eat",
+    "sell": "sell",
+    "bait": "bait",
+    "sellall": "sellall",
+    "shop": "shop",
+    "buy": "buy",
+    "rods": "rods",
+    "smoke": "smoke",
+    "drink": "drink",
+    "open": "open",
+    "inspect": "inspect",
+    "autosell": "autosell",
+    "link": "link",
+    "linked": "linked",
+    "flip": "flip",
+    "blackjack": "blackjack",
+    "dice": "dice",
+    "trophy": "trophy",
+    "ship": "ship",
+    "femboy": "femboy",
+    "daily": "daily",
+    "quest": "quest",
+    "balance": "balance",
+    "top": "top",
+    "help": "help",
+    "inventory": "inventory",
+    "status": "status",
+    "scramble": "scramble"
+  },
+  "command_aliases": {
+    "cast": ["fish", "gofish"],
+    "sack": ["bag"],
+    "eat": ["eat"],
+    "sell": ["sell"],
+    "bait": ["bait"],
+    "sellall": ["sellall"],
+    "shop": ["shop"],
+    "buy": ["buy"],
+    "rods": ["rods"],
+    "balance": ["bal", "money"],
+    "top": ["leaderboard", "topplayers"],
+    "help": ["commands", "cmds"],
+    "link": ["link"],
+    "linked": ["accounts"],
+    "quest": ["quest"],
+    "autosell": ["autosell"],
+    "inventory": ["inventory", "inv"],
+    "open": ["open", "case"],
+    "inspect": ["inspect"],
+    "drink": ["beer", "sip"],
+    "smoke": ["chuff", "pack"],
+    "flip": ["gamble", "coinflip"],
+    "blackjack": ["bj"],
+    "dice": ["roll"],
+    "status": ["effects"],
+    "trophy": ["trophy"],
+    "ship": ["ship"],
+    "daily": ["quest"],
+    "scramble": ["scramble"]
+  }
+}

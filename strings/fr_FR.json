@@ -15,7 +15,18 @@
       "bait_no_bait_set": "{player}: Aucun appat selectionne.",
       "bait_cleared": "{player}: Appat retire.",
       "bait_module_not_found": "{player}: Module de peche introuvable.",
-      "bait_sack_empty": "{player}: Votre sac est vide."
+      "bait_sack_empty": "{player}: Votre sac est vide.",
+      "sell_all_sack_empty": "Votre sac est vide. Vous n'avez pas de poisson à vendre.",
+      "sell_sack_empty": "Votre sac est vide.",
+      "sell_fish_not_found": "Aucun « {name} » n’a été trouvé dans votre sac.",
+      "sold_single_fish": "Vous avez vendu un {name} pour {price:.2f} $  ! Votre nouveau vendu est de {new_balance:.2f} $.",
+      "eat_sack_empty": "Votre sac est vide.",
+      "eat_fish_not_found": "Aucun « {name} » n’a été trouvé dans votre sac.",
+      "ate_fish": "Tu as mangé le poisson.",
+      "bait_no_fish_to_use": "Votre sac est vide. Vous n'avez pas de poisson à utiliser comme appât.",
+      "bait_not_found": "Aucun « {bait_name} » n’a été trouvé dans votre sac.",
+      "bait_set_next": "Vous utiliserez un {bait_name} comme appât pour votre prochaine capture.",
+      "bait_already_set": "Vous disposez déjà d'un ensemble d'appâts : {bait_name}."
     },
     "drink": {
       "module_not_found": "{player}: Module biere introuvable.",
@@ -99,6 +110,76 @@
       "self_is_not": "{player}: Je ne suis pas femboy ({chance}%)",
       "target_is": "{player}: {target} est femboy ({chance}%)",
       "target_is_not": "{player}: {target} n'est pas femboy ({chance}%)"
+    },
+    "flip": {
+      "module_not_found": "{player}      : Module Casino introuvable.",
+      "no_balance": "{player} : Vous n'avez pas de solde pour jouer.",
+      "invalid_amount": "{player}     : Montant invalide. Veuillez saisir un numéro valide.",
+      "amount_must_be_positive": "Pas question José, choisis un nombre supérieur à 0.",
+      "insufficient_funds": "Fonds insuffisants. Votre vente actuelle est de {current_balance:.2f} $.",
+      "win_heads": "Vous avez fait tomber des têtes et gagné {amount:.2f} $ ! Votre nouveau vendu est de {new_balance:.2f}.{chance_suffix} $",
+      "lose_tails": "Vous avez renversé pile et perdu {amount:.2f} $. Votre nouveau vendu est de {new_balance:.2f}.{chance_suffix} $"
+    },
+    "inventory": {
+      "module_not_found": "{player} : Module d'inventaire introuvable.",
+      "empty": "{player} : En fouillant dans votre inventaire, vous ne trouvez que de la poussière.",
+      "contents": "Inventaire de {player} : {items}",
+      "open": {
+        "no_cases": "{player} : Vous n'avez aucun dossier à ouvrir.",
+        "no_case_named": "Vous n'avez pas de {case_name} à ouvrir.",
+        "invalid_case": "{case_name} n'est pas un cas valide.",
+        "opened_case": "Vous avez ouvert un {case_name} et obtenu un {item_name} d'une valeur de {price} ! Vous le vendez et empochez la monnaie."
+      },
+      "inspect": {
+        "specify_item": "{player} : Veuillez préciser un élément à inspecter.",
+        "default_description": "{player} : Un {item_name} ordinaire."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}      : module de brouillage introuvable.",
+      "start": "La première personne à déchiffrer le mot gagne : {word}",
+      "winner": "{player} a déchiffré correctement le mot « {word} » et gagne 100 $ !"
+    },
+    "link": {
+      "module_not_found": "{player}      : module de liaison de compte introuvable.",
+      "code_generated": "{player}      : utilisez le code {code} pour associer un autre compte. Le code expire dans {minutes} minutes.",
+      "no_linked_accounts": "{player}      : aucun compte associé trouvé.",
+      "linked_accounts": "Comptes associés à {player} : {accounts}",
+      "invalid_code": "Code invalide. Veuillez vérifier et réessayer.",
+      "code_expired": "Le code a expiré. Veuillez en générer un nouveau.",
+      "cannot_link_self": "Impossible de lier un compte à lui-même.",
+      "already_linked_different_ids": "Impossible de lier des comptes déjà liés à différents identifiants de compte.",
+      "success": "L'utilisateur {target_platform} \"{target_identifier}\" a été associé avec succès à l'utilisateur {source_platform} \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player} : Module de pêche introuvable.",
+      "list_empty": "{player}      : la liste de vente automatique est vide.",
+      "list": "{player} : Vente automatique de poisson : {fish_list}",
+      "usage_add": "{player}      : Utilisation   : @autosell ajouter <fish>",
+      "usage_remove": "{player}      : Utilisation   : @autosell supprimer <fish>",
+      "usage_general": "{player} : Utilisation : @autosell [ajouter|supprimer] <fish>, @autosell clear ou @autosell à la liste."
+    },
+    "quest": {
+      "system_not_available": "Système de quête non disponible.",
+      "next_available_in": "Prochaine quête quotidienne disponible en {time_remaining}",
+      "no_daily_available": "Aucune quête quotidienne disponible."
+    },
+    "ship": {
+      "provide_name": "{player}      : Veuillez fournir un nom avec lequel expédier !",
+      "compatibility": "{player} et {target} sont compatibles {compatibility}% !"
+    },
+    "status": {
+      "module_not_found": "{player}      : module d'effets d'état introuvable.",
+      "no_effects": "{player} : Vous n'avez aucun effet de statut actif.",
+      "effects_list": "Effets du statut de {player} : {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Module trophée non chargé.",
+      "empty_case": "{player} : Votre caisse à trophées est vide. Utilisez trophy add <fish_name> pour ajouter du poisson !",
+      "usage_add": "{player} : Utilisation : ajout du trophée <fish_name>",
+      "usage_remove": "{player} : Utilisation : trophée supprimé <numéro>",
+      "number_must_be_numeric": "{player}      : Le numéro du trophée doit être un nombre.",
+      "unknown_subcommand": "{player}   : sous-commande inconnue. Utiliser : trophée [ajouter <fish_name> | supprimer <numéro>]"
     }
   },
   "errors": {
@@ -118,9 +199,12 @@
     "shop": "Liste les categories disponibles et les objets dans 'shop <categorie>'.",
     "buy": "Achetez un objet dans la boutique.",
     "rods": "Voir les cannes disponibles dans la boutique.",
-    "blackjack": "Jouez au blackjack solo : blackjack <mise|all>, blackjack hit, blackjack stand, blackjack double.",    "dice": "Lancez les dés (1-6) et pariez sur haut (4-6), bas (1-3), ou un nombre exact. Utilisation: dés <mise|all> haut|bas|1-6. (alias: roll)",    "balance": "Affiche le solde du joueur. (alias: bal, money)",
+    "blackjack": "Jouez au blackjack solo : blackjack <mise|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Lancez les dés (1-6) et pariez sur haut (4-6), bas (1-3), ou un nombre exact. Utilisation: dés <mise|all> haut|bas|1-6. (alias: roll)",
+    "balance": "Affiche le solde du joueur. (alias: bal, money)",
     "top": "Affiche les meilleurs joueurs. (alias: leaderboard, topplayers)",
-    "help": "Affiche la liste des commandes ou l'aide d'une commande. (alias: commands)"
+    "help": "Affiche la liste des commandes ou l'aide d'une commande. (alias: commands)",
+    "flip": "Lancez une pièce pour mettre un montant ou « tout » pour votre vente. (alias : gamble, coinflip)"
   },
   "help_command_names": {
     "cast": "pecher",
@@ -140,8 +224,10 @@
     "link": "lier",
     "linked": "compteslies",
     "flip": "pileouface",
-    "blackjack": "blackjack",    "dice": "dés",    "trophy": "trophee",
-    "ship": "ship",
+    "blackjack": "blackjack",
+    "dice": "dés",
+    "trophy": "trophee",
+    "ship": "bateau",
     "femboy": "femboy",
     "daily": "quotidien",
     "quest": "quete",
@@ -153,32 +239,93 @@
     "scramble": "melange"
   },
   "command_aliases": {
-    "cast": ["pecher"],
-    "sack": ["sac"],
-    "eat": ["manger"],
-    "sell": ["vendre"],
-    "bait": ["appat"],
-    "sellall": ["toutvendre"],
-    "shop": ["boutique"],
-    "buy": ["acheter"],
-    "rods": ["cannes"],
-    "balance": ["solde"],
-    "top": ["classement"],
-    "help": ["aide", "commandes"],
-    "link": ["lier"],
-    "linked": ["compteslies"],
-    "daily": ["quotidien"],
-    "quest": ["quete"],
-    "autosell": ["autovente"],
-    "inventory": ["inventaire"],
-    "open": ["ouvrir"],
-    "inspect": ["inspecter"],
-    "drink": ["boire"],
-    "smoke": ["fumer"],
-    "flip": ["pileouface"],
-    "blackjack": ["bj"],
-    "status": ["statut"]    "dice": ["roll"],    "trophy": ["trophee"],
-    "ship": ["ship"],
-    "scramble": ["melange"]
+    "cast": [
+      "pecher"
+    ],
+    "sack": [
+      "sac"
+    ],
+    "eat": [
+      "manger"
+    ],
+    "sell": [
+      "vendre"
+    ],
+    "bait": [
+      "appat"
+    ],
+    "sellall": [
+      "toutvendre"
+    ],
+    "shop": [
+      "boutique"
+    ],
+    "buy": [
+      "acheter"
+    ],
+    "rods": [
+      "cannes"
+    ],
+    "balance": [
+      "solde"
+    ],
+    "top": [
+      "classement"
+    ],
+    "help": [
+      "aide",
+      "commandes"
+    ],
+    "link": [
+      "lier"
+    ],
+    "linked": [
+      "compteslies"
+    ],
+    "daily": [
+      "quotidien"
+    ],
+    "quest": [
+      "quete"
+    ],
+    "autosell": [
+      "autovente"
+    ],
+    "inventory": [
+      "inventaire"
+    ],
+    "open": [
+      "ouvrir"
+    ],
+    "inspect": [
+      "inspecter"
+    ],
+    "drink": [
+      "boire"
+    ],
+    "smoke": [
+      "fumer"
+    ],
+    "flip": [
+      "pileouface"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "status": [
+      "statut"
+    ],
+    "dice": [
+      "roll"
+    ],
+    "trophy": [
+      "trophee"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "scramble": [
+      "melange"
+    ]
   }
 }

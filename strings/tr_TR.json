@@ -202,7 +202,9 @@
     "blackjack": "Tek oyunculu blackjack oyna: blackjack <bahis|all>, blackjack hit, blackjack stand, blackjack double.",
     "balance": "Oyuncunun mevcut bakiyesini göster. (takma adlar: bal, money)",
     "top": "Ekonomideki en iyi oyuncuları göster. (takma adlar: leaderboard, topplayers)",
-    "help": "Komut listesini veya belirli bir komutun yardımını göster. (takma ad: commands)"
+    "help": "Komut listesini veya belirli bir komutun yardımını göster. (takma ad: commands)",
+    "flip": "Bakiyeniz karşılığında bir miktar veya 'tüm' ile kumar oynamak için yazı tura atın. (takma ad: kumar, yazı tura)",
+    "dice": "Bir zar atın (1-6) ve yüksek (4-6), düşük (1-3) veya tam bir sayıya bahis yapın. Kullanım: <bahis|hepsi> yüksek|düşük|1-6 zar. (takma adı: rulo)"
   },
   "help_command_names": {
     "cast": "at",
@@ -222,8 +224,10 @@
     "link": "bagla",
     "linked": "bagli",
     "flip": "yazitura",
-    "blackjack": "blackjack",    "dice": "zarlar",    "trophy": "kupa",
-    "ship": "ship",
+    "blackjack": "blackjack",
+    "dice": "zarlar",
+    "trophy": "kupa",
+    "ship": "gemi",
     "femboy": "femboy",
     "daily": "gunluk",
     "quest": "gorev",
@@ -235,33 +239,109 @@
     "scramble": "karistir"
   },
   "command_aliases": {
-    "cast": ["at", "baliktut"],
-    "sack": ["çuval", "cuval"],
-    "eat": ["ye"],
-    "sell": ["sat"],
-    "bait": ["yem"],
-    "sellall": ["hepsinisat"],
-    "shop": ["dukkan", "dükkan"],
-    "buy": ["satinal", "satınal"],
-    "rods": ["oltalar"],
-    "balance": ["bakiye"],
-    "top": ["zirve"],
-    "help": ["yardim", "yardım", "komutlar"],
-    "link": ["bagla", "bağla"],
-    "linked": ["bagli", "bağlı"],
-    "quest": ["gorev", "görev"],
-    "autosell": ["otomatiksat"],
-    "inventory": ["envanter"],
-    "open": ["ac", "aç"],
-    "inspect": ["incele"],
-    "drink": ["biraiç", "biraic", "iç", "ic"],
-    "smoke": ["tutunic", "tutuniç", "paket"],
-    "flip": ["yazitura"],
-    "blackjack": ["bj"],
-    "status": ["durum"],
-    "trophy": ["kupa"],
-    "ship": ["ship"],
-    "daily": ["gunluk", "günlük"],
-    "scramble": ["karistir", "karıştır"]
+    "cast": [
+      "at",
+      "baliktut"
+    ],
+    "sack": [
+      "çuval",
+      "cuval"
+    ],
+    "eat": [
+      "ye"
+    ],
+    "sell": [
+      "sat"
+    ],
+    "bait": [
+      "yem"
+    ],
+    "sellall": [
+      "hepsinisat"
+    ],
+    "shop": [
+      "dukkan",
+      "dükkan"
+    ],
+    "buy": [
+      "satinal",
+      "satınal"
+    ],
+    "rods": [
+      "oltalar"
+    ],
+    "balance": [
+      "bakiye"
+    ],
+    "top": [
+      "zirve"
+    ],
+    "help": [
+      "yardim",
+      "yardım",
+      "komutlar"
+    ],
+    "link": [
+      "bagla",
+      "bağla"
+    ],
+    "linked": [
+      "bagli",
+      "bağlı"
+    ],
+    "quest": [
+      "gorev",
+      "görev"
+    ],
+    "autosell": [
+      "otomatiksat"
+    ],
+    "inventory": [
+      "envanter"
+    ],
+    "open": [
+      "ac",
+      "aç"
+    ],
+    "inspect": [
+      "incele"
+    ],
+    "drink": [
+      "biraiç",
+      "biraic",
+      "iç",
+      "ic"
+    ],
+    "smoke": [
+      "tutunic",
+      "tutuniç",
+      "paket"
+    ],
+    "flip": [
+      "yazitura"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "status": [
+      "durum"
+    ],
+    "trophy": [
+      "kupa"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "daily": [
+      "gunluk",
+      "günlük"
+    ],
+    "scramble": [
+      "karistir",
+      "karıştır"
+    ],
+    "dice": [
+      "roll"
+    ]
   }
 }

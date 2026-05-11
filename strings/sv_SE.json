@@ -199,13 +199,16 @@
     "shop": "Lista tillgängliga kategorier och saker i 'shop <kategori>'.",
     "buy": "Köp en sak i butiken.",
     "rods": "Visa tillgängliga fiskespön i butiken.",
-    "blackjack": "Spela enspelar-blackjack: blackjack <insats|all>, blackjack hit, blackjack stand, blackjack double.",    "dice": "Slå tärningar (1-6) och satsa på högt (4-6), lågt (1-3) eller ett exakt nummer. Användning: tarningen <insats|all> högt|lågt|1-6. (alias: roll)",    "balance": "Visa spelarens nuvarande saldo. (alias: bal, money)",
+    "blackjack": "Spela enspelar-blackjack: blackjack <insats|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Slå tärningar (1-6) och satsa på högt (4-6), lågt (1-3) eller ett exakt nummer. Användning: tarningen <insats|all> högt|lågt|1-6. (alias: roll)",
+    "balance": "Visa spelarens nuvarande saldo. (alias: bal, money)",
     "top": "Visa toppspelarna i ekonomin. (alias: leaderboard, topplayers)",
-    "help": "Visa listan över tillgängliga kommandon eller hjälp för ett särskilt kommando. (alias: commands)"
+    "help": "Visa listan över tillgängliga kommandon eller hjälp för ett särskilt kommando. (alias: commands)",
+    "flip": "Vänd ett mynt för att spela ett belopp eller \"allt\" för ditt saldo. (alias: gamble, coinflip)"
   },
   "help_command_names": {
     "cast": "kasta",
-    "sack": "sack",
+    "sack": "säck",
     "eat": "ät",
     "sell": "sälj",
     "bait": "bete",
@@ -223,7 +226,7 @@
     "flip": "slantsingling",
     "blackjack": "blackjack",
     "trophy": "trofé",
-    "ship": "ship",
+    "ship": "fartyg",
     "femboy": "femboy",
     "daily": "daglig",
     "quest": "uppdrag",
@@ -232,36 +235,110 @@
     "help": "hjälp",
     "inventory": "inventarie",
     "status": "status",
-    "scramble": "blanda"
+    "scramble": "blanda",
+    "dice": "tärningar"
   },
   "command_aliases": {
-    "cast": ["kasta", "fiska"],
-    "sack": ["sack"],
-    "eat": ["ät", "at"],
-    "sell": ["sälj", "salj"],
-    "bait": ["bete"],
-    "sellall": ["säljallt", "saljallt"],
-    "shop": ["butik"],
-    "buy": ["köp", "kop"],
-    "rods": ["spön", "spon"],
-    "balance": ["saldo"],
-    "top": ["toppen"],
-    "help": ["hjälp", "hjalp", "kommandon"],
-    "link": ["länka", "lanka"],
-    "linked": ["länkade", "lankade"],
-    "quest": ["uppdrag"],
-    "autosell": ["autosälj", "autosalj"],
-    "inventory": ["inventarie"],
-    "open": ["öppna", "oppna"],
-    "inspect": ["inspektera"],
-    "drink": ["drick"],
-    "smoke": ["rök", "rok"],
-    "flip": ["slantsingling"],
-    "blackjack": ["bj"],
-    "status": ["status"],
-    "trophy": ["trofé", "trofe"],
-    "ship": ["ship"],
-    "daily": ["daglig"],
-    "scramble": ["blanda"]
+    "cast": [
+      "kasta",
+      "fiska"
+    ],
+    "sack": [
+      "sack"
+    ],
+    "eat": [
+      "ät",
+      "at"
+    ],
+    "sell": [
+      "sälj",
+      "salj"
+    ],
+    "bait": [
+      "bete"
+    ],
+    "sellall": [
+      "säljallt",
+      "saljallt"
+    ],
+    "shop": [
+      "butik"
+    ],
+    "buy": [
+      "köp",
+      "kop"
+    ],
+    "rods": [
+      "spön",
+      "spon"
+    ],
+    "balance": [
+      "saldo"
+    ],
+    "top": [
+      "toppen"
+    ],
+    "help": [
+      "hjälp",
+      "hjalp",
+      "kommandon"
+    ],
+    "link": [
+      "länka",
+      "lanka"
+    ],
+    "linked": [
+      "länkade",
+      "lankade"
+    ],
+    "quest": [
+      "uppdrag"
+    ],
+    "autosell": [
+      "autosälj",
+      "autosalj"
+    ],
+    "inventory": [
+      "inventarie"
+    ],
+    "open": [
+      "öppna",
+      "oppna"
+    ],
+    "inspect": [
+      "inspektera"
+    ],
+    "drink": [
+      "drick"
+    ],
+    "smoke": [
+      "rök",
+      "rok"
+    ],
+    "flip": [
+      "slantsingling"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "status": [
+      "status"
+    ],
+    "trophy": [
+      "trofé",
+      "trofe"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "daily": [
+      "daglig"
+    ],
+    "scramble": [
+      "blanda"
+    ],
+    "dice": [
+      "roll"
+    ]
   }
 }

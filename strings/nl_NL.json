@@ -15,7 +15,18 @@
       "bait_no_bait_set": "{player}: Je hebt geen aas ingesteld.",
       "bait_cleared": "{player}: Aas verwijderd.",
       "bait_module_not_found": "{player}: Vis-module niet gevonden.",
-      "bait_sack_empty": "{player}: Je zak is leeg."
+      "bait_sack_empty": "{player}: Je zak is leeg.",
+      "sell_all_sack_empty": "Je zak is leeg. Je hebt geen vis om te verkopen.",
+      "sell_sack_empty": "Je zak is leeg.",
+      "sell_fish_not_found": "Er is geen '{name}' in uw zak gevonden.",
+      "sold_single_fish": "Je hebt een {name} verkocht voor ${price:.2f}! Uw nieuwe saldo is ${new_balance:.2f}.",
+      "eat_sack_empty": "Je zak is leeg.",
+      "eat_fish_not_found": "Er zijn geen '{name}' in uw zak aangetroffen.",
+      "ate_fish": "Je hebt gegeten.",
+      "bait_no_fish_to_use": "Je zak is leeg. Je hebt geen vis om als te gebruiken.",
+      "bait_not_found": "Er is geen '{bait_name}' in uw zak gevonden.",
+      "bait_set_next": "Je hebt een {bait_name} gebruikt als aas voor je volgende keuze.",
+      "bait_already_set": "Je hebt al een bezit: {bait_name}."
     },
     "drink": {
       "module_not_found": "{player}: Bier-module niet gevonden.",
@@ -68,7 +79,7 @@
       "no_items_available": "{player}: Geen items beschikbaar in de winkel.",
       "shop_items": "{player}: Beschikbare winkelitems: {items}",
       "item_entry": "{item_name} (${item_price:.2f})",
-      "item_entry_with_max": "{item_name} (${item_price:.2f}, max: {item_max})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, maximaal: {item_max})",
       "module_not_found": "{player}: Winkel-module niet gevonden.",
       "buy_no_item_specified": "{player}: Geef een item op om te kopen.",
       "buy_module_not_found": "{player}: Winkel-module niet gevonden.",
@@ -99,6 +110,76 @@
       "self_is_not": "{player}: Ik ben geen femboy ({chance}%)",
       "target_is": "{player}: {target} is een femboy ({chance}%)",
       "target_is_not": "{player}: {target} is geen femboy ({chance}%)"
+    },
+    "flip": {
+      "module_not_found": "{player}: Casinomodule niet gevonden.",
+      "no_balance": "{player}: Je hebt geen saldo om te gokken.",
+      "invalid_amount": "{player}: Ongeldig bedrag. Voer een geldig nummer in.",
+      "amount_must_be_positive": "Echt niet Jose, kies een getal groter dan 0.",
+      "insufficient_funds": "Onvoldoende middelen. Uw huidige saldo is ${current_balance:.2f}.",
+      "win_heads": "Je hebt de hoofden omgedraaid en ${amount:.2f} gewonnen! Uw nieuwe saldo is ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "Je hebt de munt omgedraaid en ${amount:.2f} verloren. Uw nieuwe saldo is ${new_balance:.2f}.{chance_suffix}"
+    },
+    "inventory": {
+      "module_not_found": "{player}: Voorraadmodule niet gevonden.",
+      "empty": "{player}: Terwijl je door je inventaris snuffelt, vind je niets anders dan stof.",
+      "contents": "Inventaris van {player}: {items}",
+      "open": {
+        "no_cases": "{player}: U heeft geen zaken om te openen.",
+        "no_case_named": "Je hebt geen {case_name} om te openen.",
+        "invalid_case": "{case_name} is geen geldig geval.",
+        "opened_case": "Je hebt een {case_name} geopend en een {item_name} ter waarde van {price} gekregen! Je verkoopt het en steekt het wisselgeld in je zak."
+      },
+      "inspect": {
+        "specify_item": "{player}: Geef een item op dat u wilt inspecteren.",
+        "default_description": "{player}: Een alledaagse {item_name}."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Scramble-module niet gevonden.",
+      "start": "De eerste persoon die het woord ontcijfert, wint: {word}",
+      "winner": "{player} heeft het woord '{word}' correct ontcijferd en wint $100!"
+    },
+    "link": {
+      "module_not_found": "{player}: Accountkoppelingsmodule niet gevonden.",
+      "code_generated": "{player}: Gebruik code {code} om een ​​ander account te koppelen. Code verloopt gedurende {minutes} minuten.",
+      "no_linked_accounts": "{player}: Geen geïntegreerde accounts gevonden.",
+      "linked_accounts": "Gecombineerde rekeningen van {player}: {accounts}",
+      "invalid_code": "Ongeldige code. Controleer dit en probeer het opnieuw.",
+      "code_expired": "Code is verlopen. Genereer een nieuwe.",
+      "cannot_link_self": "Kan een account niet aan zichzelf koppelen.",
+      "already_linked_different_ids": "Er kunnen geen accounts worden geïntegreerd die al aan verschillende account-ID's compatibel zijn.",
+      "success": "{target_platform} gebruiker \"{target_identifier}\" is succesvol gekoppeld aan {source_platform} gebruiker \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Vismodule niet gevonden.",
+      "list_empty": "{player}: Autosell-lijst is leeg.",
+      "list": "{player}: Vis automatisch verkocht: {fish_list}",
+      "usage_add": "{player}: Gebruik: @autosell opgelost <vis> toe",
+      "usage_remove": "{player}: Gebruik: @autosell verwijder <vis>",
+      "usage_general": "{player}: Gebruik: @autosell [toevoegen|verwijderen] <fish>, @autosell wissen van @autosell aan lijst."
+    },
+    "quest": {
+      "system_not_available": "Quest-systeem niet beschikbaar.",
+      "next_available_in": "Volgende dagelijkse zoektocht beschikbaar in {time_remaining}",
+      "no_daily_available": "Geen dagelijkse zoektocht beschikbaar."
+    },
+    "ship": {
+      "provide_name": "{player}: Geef een naam op voor verzending!",
+      "compatibility": "{player} en {target} zijn {compatibility}% compatibel!"
+    },
+    "status": {
+      "module_not_found": "{player}: Statuseffectmodule niet gevonden.",
+      "no_effects": "{player}: U heeft geen actieve statuseffecten.",
+      "effects_list": "Statuseffecten van {player}: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Trofeemodule niet geladen.",
+      "empty_case": "{player}: Je trofeeënkast is leeg. Gebruik trofee add <fish_name> om vis toe te voegen!",
+      "usage_add": "{player}: Gebruik: trofee toevoegen <vis_naam>",
+      "usage_remove": "{player}: Gebruik: trofee verwijder <nummer>",
+      "number_must_be_numeric": "{player}: Trofeenummer moet een getal zijn.",
+      "unknown_subcommand": "{player}: Onbekend subcommando. Gebruik: trofee [voeg <vis_naam> toe | verwijder <nummer>]"
     }
   },
   "errors": {
@@ -122,7 +203,8 @@
     "dice": "Gooi dobbelstenen (1-6) en wed op hoog (4-6), laag (1-3) of een exact getal. Gebruik: dobbel <inzet|all> hoog|laag|1-6. (alias: roll)",
     "balance": "Toon het huidige saldo van de speler. (alias: bal, money)",
     "top": "Toon de top spelers in de economie. (alias: leaderboard, topplayers)",
-    "help": "Toon de lijst met beschikbare commando's of hulp voor een commando. (alias: commands)"
+    "help": "Toon de lijst met beschikbare commando's of hulp voor een commando. (alias: commands)",
+    "flip": "Draai een munt om een ​​bedrag aan 'alles' te gokken voor uw saldo. (alias: gokken, munten opgooien)"
   },
   "help_command_names": {
     "cast": "vissen",
@@ -144,45 +226,106 @@
     "flip": "kopofmunt",
     "blackjack": "blackjack",
     "trophy": "trofee",
-    "ship": "ship",
-    "femboy": "femboy",
+    "ship": "schip",
+    "femboy": "vrouw",
     "daily": "dagelijks",
-    "quest": "quest",
+    "quest": "speurtocht",
     "balance": "saldo",
     "top": "ranglijst",
     "help": "hulp",
     "inventory": "inventaris",
     "status": "status",
-    "scramble": "hussel"
+    "scramble": "hussel",
+    "dice": "dubbelstenen"
   },
   "command_aliases": {
-    "cast": ["vissen"],
-    "sack": ["zak"],
-    "eat": ["eten"],
-    "sell": ["verkopen"],
-    "bait": ["aas"],
-    "sellall": ["allesverkopen"],
-    "shop": ["winkel"],
-    "buy": ["kopen"],
-    "rods": ["hengels"],
-    "balance": ["saldo"],
-    "top": ["ranglijst"],
-    "help": ["hulp", "commando"],
-    "link": ["koppelen"],
-    "linked": ["gekoppeld"],
-    "daily": ["dagelijks"],
-    "quest": ["quest"],
-    "autosell": ["autoverkoop"],
-    "inventory": ["inventaris"],
-    "open": ["openen"],
-    "inspect": ["inspecteren"],
-    "drink": ["drinken"],
-    "smoke": ["roken"],
-    "flip": ["kopofmunt"],
-    "blackjack": ["bj"],
-    "status": ["status"],
-    "trophy": ["trofee"],
-    "ship": ["ship"],
-    "scramble": ["hussel"]
+    "cast": [
+      "vissen"
+    ],
+    "sack": [
+      "zak"
+    ],
+    "eat": [
+      "eten"
+    ],
+    "sell": [
+      "verkopen"
+    ],
+    "bait": [
+      "aas"
+    ],
+    "sellall": [
+      "allesverkopen"
+    ],
+    "shop": [
+      "winkel"
+    ],
+    "buy": [
+      "kopen"
+    ],
+    "rods": [
+      "hengels"
+    ],
+    "balance": [
+      "saldo"
+    ],
+    "top": [
+      "ranglijst"
+    ],
+    "help": [
+      "hulp",
+      "commando"
+    ],
+    "link": [
+      "koppelen"
+    ],
+    "linked": [
+      "gekoppeld"
+    ],
+    "daily": [
+      "dagelijks"
+    ],
+    "quest": [
+      "quest"
+    ],
+    "autosell": [
+      "autoverkoop"
+    ],
+    "inventory": [
+      "inventaris"
+    ],
+    "open": [
+      "openen"
+    ],
+    "inspect": [
+      "inspecteren"
+    ],
+    "drink": [
+      "drinken"
+    ],
+    "smoke": [
+      "roken"
+    ],
+    "flip": [
+      "kopofmunt"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "status": [
+      "status"
+    ],
+    "trophy": [
+      "trofee"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "scramble": [
+      "hussel"
+    ],
+    "dice": [
+      "roll"
+    ]
   }
 }

@@ -15,7 +15,18 @@
       "bait_no_bait_set": "{player}: No tienes cebo seleccionado.",
       "bait_cleared": "{player}: Cebo eliminado.",
       "bait_module_not_found": "{player}: Módulo de pesca no encontrado.",
-      "bait_sack_empty": "{player}: Tu bolsa está vacía."
+      "bait_sack_empty": "{player}: Tu bolsa está vacía.",
+      "sell_all_sack_empty": "Tu saco está vacío. No tienes pescado para vender.",
+      "sell_sack_empty": "Tu saco está vacío.",
+      "sell_fish_not_found": "No se encontró ningún '{name}' en tu bolsa.",
+      "sold_single_fish": "¡Vendiste un {name} por ${price:.2f}! Su nuevo saldo es ${new_balance:.2f}.",
+      "eat_sack_empty": "Tu saco está vacío.",
+      "eat_fish_not_found": "No se encontró ningún '{name}' en tu bolsa.",
+      "ate_fish": "Te comiste el pescado.",
+      "bait_no_fish_to_use": "Tu saco está vacío. No tienes peces para usar como cebo.",
+      "bait_not_found": "No se encontró ningún '{bait_name}' en tu bolsa.",
+      "bait_set_next": "Utilizarás un {bait_name} como cebo para tu próxima captura.",
+      "bait_already_set": "Ya tienes un juego de cebo: {bait_name}."
     },
     "drink": {
       "module_not_found": "{player}: Módulo de cerveza no encontrado.",
@@ -99,6 +110,76 @@
       "self_is_not": "{player}: No soy femboy ({chance}%)",
       "target_is": "{player}: {target} es femboy ({chance}%)",
       "target_is_not": "{player}: {target} no es femboy ({chance}%)"
+    },
+    "flip": {
+      "module_not_found": "{player}: Módulo de casino no encontrado.",
+      "no_balance": "{player}: No tienes saldo para apostar.",
+      "invalid_amount": "{player}: Monto no válido. Por favor ingrese un número válido.",
+      "amount_must_be_positive": "De ninguna manera José, elige un número mayor que 0.",
+      "insufficient_funds": "Fondos insuficientes. Su saldo actual es ${current_balance:.2f}.",
+      "win_heads": "¡Ganaste cara y ganaste ${amount:.2f}! Su nuevo saldo es ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "Lanzaste cruz y perdiste ${amount:.2f}. Su nuevo saldo es ${new_balance:.2f}.{chance_suffix}"
+    },
+    "inventory": {
+      "module_not_found": "{player}: Módulo de inventario no encontrado.",
+      "empty": "{player}: Hurgando en tu inventario, no encuentras más que polvo.",
+      "contents": "Inventario de {player}: {items}",
+      "open": {
+        "no_cases": "{player}: No tienes casos para abrir.",
+        "no_case_named": "No tienes un {case_name} para abrir.",
+        "invalid_case": "{case_name} no es un caso válido.",
+        "opened_case": "¡Abriste un {case_name} y obtuviste un {item_name} con un valor de {price}! Lo vendes y te embolsas el cambio."
+      },
+      "inspect": {
+        "specify_item": "{player}: Especifique un elemento para inspeccionar.",
+        "default_description": "{player}: Un {item_name} común y corriente."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Módulo codificador no encontrado.",
+      "start": "La primera persona que descifre la palabra gana: {word}",
+      "winner": "¡{player} descifró la palabra '{word}' correctamente y gana $100!"
+    },
+    "link": {
+      "module_not_found": "{player}: No se encontró el módulo de vinculación de cuentas.",
+      "code_generated": "{player}: use el código {code} para vincular otra cuenta. El código caduca en {minutes} minutos.",
+      "no_linked_accounts": "{player}: No se encontraron cuentas vinculadas.",
+      "linked_accounts": "Cuentas vinculadas de {player}: {accounts}",
+      "invalid_code": "Código no válido. Por favor verifique e intente nuevamente.",
+      "code_expired": "El código ha caducado. Por favor genere uno nuevo.",
+      "cannot_link_self": "No se puede vincular una cuenta consigo misma.",
+      "already_linked_different_ids": "No se pueden vincular cuentas que ya están vinculadas a diferentes ID de cuenta.",
+      "success": "Se vinculó correctamente el usuario {target_platform} \"{target_identifier}\" al usuario {source_platform} \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Módulo de pesca no encontrado.",
+      "list_empty": "{player}: La lista de venta automática está vacía.",
+      "list": "{player}: Pescado de venta automática: {fish_list}",
+      "usage_add": "{player}: Uso: @autosell agregar <pez>",
+      "usage_remove": "{player}: Uso: @autosell eliminar <pez>",
+      "usage_general": "{player}: Uso: @autosell [agregar|eliminar] <fish>, @autosell clear o @autosell para enumerar."
+    },
+    "quest": {
+      "system_not_available": "El sistema de misiones no está disponible.",
+      "next_available_in": "Próxima misión diaria disponible en {time_remaining}",
+      "no_daily_available": "No hay misiones diarias disponibles."
+    },
+    "ship": {
+      "provide_name": "{player}: ¡Proporcione un nombre para realizar el envío!",
+      "compatibility": "¡{player} y {target} son {compatibility}% compatibles!"
+    },
+    "status": {
+      "module_not_found": "{player}: Módulo de efectos de estado no encontrado.",
+      "no_effects": "{player}: No tienes efectos de estado activos.",
+      "effects_list": "Efectos de estado de {player}: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Módulo de trofeos no cargado.",
+      "empty_case": "{player}: Tu vitrina de trofeos está vacía. ¡Usa el trofeo y agrega <fish_name> para agregar peces!",
+      "usage_add": "{player}: Uso: agregar trofeo <nombre_pez>",
+      "usage_remove": "{player}: Uso: quitar trofeo <número>",
+      "number_must_be_numeric": "{player}: El número del trofeo debe ser un número.",
+      "unknown_subcommand": "{player}: Subcomando desconocido. Uso: trofeo [añadir <nombre_pez> | eliminar <número>]"
     }
   },
   "errors": {
@@ -118,9 +199,12 @@
     "shop": "Muestra las categorías disponibles y objetos en 'shop <categoría>'.",
     "buy": "Compra un objeto de la tienda.",
     "rods": "Ver cañas de pesca disponibles en la tienda.",
-    "blackjack": "Juega blackjack para un jugador: blackjack <apuesta|all>, blackjack hit, blackjack stand, blackjack double.",    "dice": "Lanza los dados (1-6) y apuesta en alto (4-6), bajo (1-3), o un número exacto. Uso: dados <apuesta|all> alto|bajo|1-6. (alias: roll)",    "balance": "Muestra el saldo actual del jugador. (alias: bal, money)",
+    "blackjack": "Juega blackjack para un jugador: blackjack <apuesta|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Lanza los dados (1-6) y apuesta en alto (4-6), bajo (1-3), o un número exacto. Uso: dados <apuesta|all> alto|bajo|1-6. (alias: roll)",
+    "balance": "Muestra el saldo actual del jugador. (alias: bal, money)",
     "top": "Muestra a los mejores jugadores en la economía. (alias: leaderboard, topplayers)",
-    "help": "Muestra la lista de comandos disponibles o ayuda de un comando. (alias: commands)"
+    "help": "Muestra la lista de comandos disponibles o ayuda de un comando. (alias: commands)",
+    "flip": "Lanza una moneda para apostar una cantidad o \"todo\" por tu saldo. (alias: apuesta, lanzamiento de moneda)"
   },
   "help_command_names": {
     "cast": "pescar",
@@ -140,9 +224,9 @@
     "link": "vincular",
     "linked": "vinculados",
     "flip": "moneda",
-    "blackjack": "blackjack",
+    "blackjack": "veintiuna",
     "trophy": "trofeo",
-    "ship": "ship",
+    "ship": "barco",
     "femboy": "femboy",
     "daily": "diario",
     "quest": "mision",
@@ -151,36 +235,98 @@
     "help": "ayuda",
     "inventory": "inventario",
     "status": "estado",
-    "scramble": "mezclar"
+    "scramble": "mezclar",
+    "dice": "dados"
   },
   "command_aliases": {
-    "cast": ["pescar"],
-    "sack": ["bolsa"],
-    "eat": ["comer"],
-    "sell": ["vender"],
-    "bait": ["cebo"],
-    "sellall": ["vendertodo"],
-    "shop": ["tienda"],
-    "buy": ["comprar"],
-    "rods": ["canas", "cañas"],
-    "balance": ["saldo"],
-    "top": ["ranking"],
-    "help": ["ayuda", "comandos"],
-    "link": ["vincular"],
-    "linked": ["vinculados"],
-    "daily": ["diario"],
-    "quest": ["mision"],
-    "autosell": ["autoventa"],
-    "inventory": ["inventario"],
-    "open": ["abrir"],
-    "inspect": ["inspeccionar"],
-    "drink": ["beber"],
-    "smoke": ["fumar"],
-    "flip": ["moneda"],
-    "blackjack": ["bj"],
-    "status": ["estado"],
-    "trophy": ["trofeo"],
-    "ship": ["ship"],
-    "scramble": ["mezclar"]
+    "cast": [
+      "pescar"
+    ],
+    "sack": [
+      "bolsa"
+    ],
+    "eat": [
+      "comer"
+    ],
+    "sell": [
+      "vender"
+    ],
+    "bait": [
+      "cebo"
+    ],
+    "sellall": [
+      "vendertodo"
+    ],
+    "shop": [
+      "tienda"
+    ],
+    "buy": [
+      "comprar"
+    ],
+    "rods": [
+      "canas",
+      "cañas"
+    ],
+    "balance": [
+      "saldo"
+    ],
+    "top": [
+      "ranking"
+    ],
+    "help": [
+      "ayuda",
+      "comandos"
+    ],
+    "link": [
+      "vincular"
+    ],
+    "linked": [
+      "vinculados"
+    ],
+    "daily": [
+      "diario"
+    ],
+    "quest": [
+      "mision"
+    ],
+    "autosell": [
+      "autoventa"
+    ],
+    "inventory": [
+      "inventario"
+    ],
+    "open": [
+      "abrir"
+    ],
+    "inspect": [
+      "inspeccionar"
+    ],
+    "drink": [
+      "beber"
+    ],
+    "smoke": [
+      "fumar"
+    ],
+    "flip": [
+      "moneda"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "status": [
+      "estado"
+    ],
+    "trophy": [
+      "trofeo"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "scramble": [
+      "mezclar"
+    ],
+    "dice": [
+      "roll"
+    ]
   }
 }

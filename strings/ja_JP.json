@@ -15,7 +15,18 @@
       "bait_no_bait_set": "{player}: エサが設定されていません。",
       "bait_cleared": "{player}: エサをクリアしました。",
       "bait_module_not_found": "{player}: 釣りモジュールが見つかりません。",
-      "bait_sack_empty": "{player}: 袋は空です。"
+      "bait_sack_empty": "{player}: 袋は空です。",
+      "sell_all_sack_empty": "あなたのバッグは空です。売る魚はありません。",
+      "sell_sack_empty": "あなたのバッグは空です。",
+      "sell_fish_not_found": "あなたのバッグの中「{name}」は見つかりませんでした。",
+      "sold_single_fish": "{name} を ${price:.2f} で販売しました。新しい残高は ${new_balance:.2f} です。",
+      "eat_sack_empty": "あなたのバッグは空です。",
+      "eat_fish_not_found": "あなたのバッグの中「{name}」は見つかりませんでした。",
+      "ate_fish": "あなたはその魚を食べました。",
+      "bait_no_fish_to_use": "あなたの袋は空です。餌として使える魚はありません。",
+      "bait_not_found": "あなたのバッグの中「{bait_name}」は見つかりませんでした。",
+      "bait_set_next": "次の獲物の餌として{bait_name}を使用します。",
+      "bait_already_set": "あなたはもう餌セットを持っています: {bait_name}。"
     },
     "drink": {
       "module_not_found": "{player}: ビールモジュールが見つかりません。",
@@ -99,6 +110,76 @@
       "self_is_not": "{player}: 私はfemboyではありません ({chance}%)",
       "target_is": "{player}: {target}はfemboyです ({chance}%)",
       "target_is_not": "{player}: {target}はfemboyではありません ({chance}%)"
+    },
+    "flip": {
+      "module_not_found": "{player}: カジノ モジュールが見つかりません。",
+      "no_balance": "{player}: セールを行うための残高はありません。",
+      "invalid_amount": "{player}: 金額が有効です。有効な番号を入力してください。",
+      "amount_must_be_positive": "まさか、0より大きい数字を選んでください。",
+      "insufficient_funds": "資金が不足しています。現在の残高は ${current_balance:.2f} です。",
+      "win_heads": "あなたは裏返して ${amount:.2f} を獲得しました! 新しい残高は ${new_balance:.2f}.{chance_suffix} です",
+      "lose_tails": "裏を返して ${amount:.2f} を進めました。新しい残高は ${new_balance:.2f}.{chance_suffix} です"
+    },
+    "inventory": {
+      "module_not_found": "{player}: インベントリ モジュールが見つかりません。",
+      "empty": "{player}: インベントリを漁ってみるとゴミ、しか発見されません。",
+      "contents": "{player} の在庫: {items}",
+      "open": {
+        "no_cases": "{player}: ケースは開きません。",
+        "no_case_named": "{case_name} は開きません。",
+        "invalid_case": "{case_name} は有効なケースではありません。",
+        "opened_case": "{case_name} 開いて、{price} 相当の {item_name} を獲得しました。それを売ってお金をポケットに入れます。"
+      },
+      "inspect": {
+        "specify_item": "{player}: 検査する項目を指定してください。",
+        "default_description": "{player}: ありきたりの {item_name}。"
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: スクランブル モジュールが見つかりません。",
+      "start": "最初に単語を解読した人が勝ちです: {word}",
+      "winner": "{player} は単語「{word}」を正しく読み、100ドルを獲得しました。"
+    },
+    "link": {
+      "module_not_found": "{player}: アカウントリンク モジュールが見つかりません。",
+      "code_generated": "{player}: コード {code} を使用して別のアカウントをリンクします。コードは {minutes} 分で期限切れになります。",
+      "no_linked_accounts": "{player}: リンクされたアカウントが見つかりませんでした。",
+      "linked_accounts": "{player} のリンクされたアカウント: {accounts}",
+      "invalid_code": "有効なコードです。確認してもう一度お試しください。",
+      "code_expired": "コードの有効期限が切れています。新しいものを生成してください。",
+      "cannot_link_self": "アカウントをそれ自体にリンクすることはできません。",
+      "already_linked_different_ids": "すでに異なるアカウントIDにリンクされているアカウントをリンクすることはできません。",
+      "success": "{target_platform}ユーザー「{target_identifier}」を {source_platform}ユーザー「{source_identifier}」にリンクしました。"
+    },
+    "autosell": {
+      "module_not_found": "{player}: 釣りモジュールが見つかりません。",
+      "list_empty": "{player}: 自動販売リストが空です。",
+      "list": "{player}: 魚の自動販売: {fish_list}",
+      "usage_add": "{player}: 使用法: @autosell add <fish>",
+      "usage_remove": "{player}: 使用法: @autosell 削除 <fish>",
+      "usage_general": "{player}: 使用法: @autosell [add|remove] <fish>、@autosell Clear、または @autosell をリストに追加します。"
+    },
+    "quest": {
+      "system_not_available": "クエストシステムは利用できません。",
+      "next_available_in": "次のデイリークエストは{time_remaining}で利用可能になります",
+      "no_daily_available": "デイリークエストは利用できません。"
+    },
+    "ship": {
+      "provide_name": "{player}: 発送に使用する名前を入力してください。",
+      "compatibility": "{player} と {target} は {compatibility}% の互換性があります。"
+    },
+    "status": {
+      "module_not_found": "{player}: ステータス効果モジュールが見つかりません。",
+      "no_effects": "{player}: 有効なステータス効果はありません。",
+      "effects_list": "{player}のステータス効果: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "トロフィーモジュールがロードされていません。",
+      "empty_case": "{player}: トロフィー ケースは空です。トロフィー add <fish_name> を使用して魚を追加してください。",
+      "usage_add": "{player}: 使用法: トロフィー追加 <fish_name>",
+      "usage_remove": "{player}: 使用法: トロフィーの削除 <番号>",
+      "number_must_be_numeric": "{player}: トロフィー番号は数字になりません。",
+      "unknown_subcommand": "{player}: 不明なサブコマンドです。使用: トロフィー [<fish_name> を追加 | <番号>を削除]"
     }
   },
   "errors": {
@@ -121,7 +202,9 @@
     "blackjack": "1人用ブラックジャック: blackjack <bet|all>, blackjack hit, blackjack stand, blackjack double。",
     "balance": "プレイヤーの現在残高を表示。 (alias: bal, money)",
     "top": "経済ランキングのトップを表示。 (alias: leaderboard, topplayers)",
-    "help": "利用可能コマンド一覧や個別ヘルプを表示。 (alias: commands)"
+    "help": "利用可能コマンド一覧や個別ヘルプを表示。 (alias: commands)",
+    "flip": "コインを投げて、残高の金額または「考え方」をセールします。 (別名: セール、コインフリップ)",
+    "dice": "サイコロ (1 ～ 6) を振って、高い数字 (4 ～ 6)、低い数字 (1 ～ 3)、または正確な数字を考えます。 使用法: サイコロ <bet|all> high|low|1-6。 （別名：ロール）"
   },
   "help_command_names": {
     "cast": "つる",
@@ -145,7 +228,7 @@
     "dice": "さいころ",
     "trophy": "トロフィー",
     "ship": "シップ",
-    "femboy": "femboy",
+    "femboy": "フェムボーイ",
     "daily": "まいにち",
     "quest": "クエスト",
     "balance": "ざんだか",
@@ -156,33 +239,120 @@
     "scramble": "まぜる"
   },
   "command_aliases": {
-    "cast": ["つる", "tsuru"],
-    "sack": ["ふくろ", "fukuro"],
-    "eat": ["たべる", "taberu"],
-    "sell": ["うる", "uru"],
-    "bait": ["えさ", "esa"],
-    "sellall": ["ぜんぶうる", "zenbuuru"],
-    "shop": ["ショップ", "shopjp"],
-    "buy": ["かう", "kau"],
-    "rods": ["さお", "sao"],
-    "balance": ["ざんだか", "zandaka"],
-    "top": ["ランキング", "rankingjp"],
-    "help": ["ヘルプ", "herupu", "helpjp"],
-    "link": ["れんけい", "renkei"],
-    "linked": ["れんけいずみ", "renkeizumi"],
-    "daily": ["まいにち", "mainichi"],
-    "quest": ["クエスト", "kuesuto"],
-    "autosell": ["じどうはんばい", "jidouhanbai"],
-    "inventory": ["もちもの", "mochimono"],
-    "open": ["あける", "akeru"],
-    "inspect": ["みる", "miru"],
-    "drink": ["のむ", "nomu"],
-    "smoke": ["すう", "suu"],
-    "flip": ["コイントス", "kointosu"],
-    "blackjack": ["bj"],
-    "status": ["ステータス", "suteetasu"],
-    "trophy": ["トロフィー", "torofii"],
-    "ship": ["シップ", "shippu"],
-    "scramble": ["まぜる", "mazeru"]
+    "cast": [
+      "つる",
+      "tsuru"
+    ],
+    "sack": [
+      "ふくろ",
+      "fukuro"
+    ],
+    "eat": [
+      "たべる",
+      "taberu"
+    ],
+    "sell": [
+      "うる",
+      "uru"
+    ],
+    "bait": [
+      "えさ",
+      "esa"
+    ],
+    "sellall": [
+      "ぜんぶうる",
+      "zenbuuru"
+    ],
+    "shop": [
+      "ショップ",
+      "shopjp"
+    ],
+    "buy": [
+      "かう",
+      "kau"
+    ],
+    "rods": [
+      "さお",
+      "sao"
+    ],
+    "balance": [
+      "ざんだか",
+      "zandaka"
+    ],
+    "top": [
+      "ランキング",
+      "rankingjp"
+    ],
+    "help": [
+      "ヘルプ",
+      "herupu",
+      "helpjp"
+    ],
+    "link": [
+      "れんけい",
+      "renkei"
+    ],
+    "linked": [
+      "れんけいずみ",
+      "renkeizumi"
+    ],
+    "daily": [
+      "まいにち",
+      "mainichi"
+    ],
+    "quest": [
+      "クエスト",
+      "kuesuto"
+    ],
+    "autosell": [
+      "じどうはんばい",
+      "jidouhanbai"
+    ],
+    "inventory": [
+      "もちもの",
+      "mochimono"
+    ],
+    "open": [
+      "あける",
+      "akeru"
+    ],
+    "inspect": [
+      "みる",
+      "miru"
+    ],
+    "drink": [
+      "のむ",
+      "nomu"
+    ],
+    "smoke": [
+      "すう",
+      "suu"
+    ],
+    "flip": [
+      "コイントス",
+      "kointosu"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "status": [
+      "ステータス",
+      "suteetasu"
+    ],
+    "trophy": [
+      "トロフィー",
+      "torofii"
+    ],
+    "ship": [
+      "シップ",
+      "shippu"
+    ],
+    "scramble": [
+      "まぜる",
+      "mazeru"
+    ],
+    "dice": [
+      "roll"
+    ]
   }
 }

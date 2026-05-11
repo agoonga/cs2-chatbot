@@ -179,3 +179,9 @@ db/economy.db
 db/fish.db
 db/inventory.db
 db/status_effects.db
+
+# Localization/generated artifacts
+localization_audit_report.json
+localization_benchmark_report.json
+untranslated_fallback_report.json
+cs2_client.lock

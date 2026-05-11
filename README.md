@@ -40,6 +40,34 @@ python launcher.py server
 python launcher.py client
 ```
 
+## Testing
+
+Unit tests now live under the tests folder and are run with pytest.
+
+Run all unit tests:
+```bash
+pytest
+```
+
+Run only dice-related tests:
+```bash
+pytest tests/test_casino_dice.py tests/test_casino_command_dice.py
+```
+
+Run blackjack and command-localization tests:
+```bash
+pytest tests/test_casino_blackjack.py tests/test_command_registry_localization.py
+```
+
+Manual smoke scripts were grouped under scripts/manual:
+- scripts/manual/test_dice_smoke.py
+- scripts/manual/test_localization_smoke.py
+- scripts/manual/verify_localization_smoke.py
+- scripts/manual/test_communication_smoke.py
+
+Legacy root-level entry point still available as a wrapper:
+- test_communication.py
+
 ## Building Executable
 To build a standalone executable:
 ```bash

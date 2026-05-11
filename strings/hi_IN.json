@@ -1,0 +1,339 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player} ने ${price} मूल्य का {weight} पाउंड वजनी {name} पकड़ा!",
+      "cast_success_autosold": "{player} ने एक {name} पकड़ा, ${price} में स्वतः बिक गया!",
+      "empty_line": "{player}: आप एक खाली लाइन में रील करते हैं।",
+      "sack_limit_reached": "आपकी बोरी में केवल {sack_size} मछली आ सकती है।",
+      "sold_all_fish": "आपने अपनी सारी मछलियाँ कुल ${total_earnings:.2f} में बेच दीं! आपका नया शेष ${new_balance:.2f} है।",
+      "module_not_found": "{player}: फिशिंग मॉड्यूल नहीं मिला।",
+      "sack_contents": "{player} की बोरी में शामिल हैं: {contents}",
+      "sack_empty": "{player}: आपकी बोरी खाली है.",
+      "sack_module_not_found": "{player}: फिशिंग मॉड्यूल नहीं मिला।",
+      "eat_module_not_found": "{player}: फिशिंग मॉड्यूल नहीं मिला।",
+      "sell_module_not_found": "{player}: फिशिंग मॉड्यूल नहीं मिला।",
+      "bait_no_bait_set": "{player}: आपके पास कोई चारा सेट नहीं है।",
+      "bait_cleared": "{player}: चारा साफ हो गया।",
+      "bait_module_not_found": "{player}: फिशिंग मॉड्यूल नहीं मिला।",
+      "bait_sack_empty": "{player}: आपकी बोरी खाली है.",
+      "sell_all_sack_empty": "तुम्हारी बोरी खाली है. आपके पास बेचने के लिए कोई मछली नहीं है.",
+      "sell_sack_empty": "तुम्हारी बोरी खाली है.",
+      "sell_fish_not_found": "आपके बोरे में कोई '{name}' नहीं मिला।",
+      "sold_single_fish": "आपने {name} को ${price:.2f} में बेचा! आपका नया शेष ${new_balance:.2f} है।",
+      "eat_sack_empty": "तुम्हारी बोरी खाली है.",
+      "eat_fish_not_found": "आपके बोरे में कोई '{name}' नहीं मिला।",
+      "ate_fish": "तुमने मछली खा ली.",
+      "bait_no_fish_to_use": "तुम्हारी बोरी खाली है. आपके पास चारे के रूप में उपयोग करने के लिए कोई मछली नहीं है।",
+      "bait_not_found": "आपके बोरे में कोई '{bait_name}' नहीं मिला।",
+      "bait_set_next": "आप अपने अगले कैच के लिए {bait_name} को चारे के रूप में उपयोग करेंगे।",
+      "bait_already_set": "आपके पास पहले से ही चारा सेट है: {bait_name}।"
+    },
+    "drink": {
+      "module_not_found": "{player}: बीयर मॉड्यूल नहीं मिला।",
+      "no_beer": "{player}: आपके पास पीने के लिए बीयर नहीं है।",
+      "beer_not_found": "बीयर '{beer}' नहीं मिली.",
+      "no_beer_named": "आपके पास पीने के लिए {beer_name} नहीं है।",
+      "drank": "आप {beer_name} पीते हैं। ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: कैसीनो मॉड्यूल नहीं मिला।",
+      "no_balance": "{player}: आपके पास जुआ खेलने के लिए कोई संतुलन नहीं है।",
+      "invalid_amount": "{player}: अमान्य राशि. कृपया सही अंक दर्ज करें।",
+      "amount_must_be_positive": "बिलकुल नहीं, 0 से बड़ी संख्या चुनें।",
+      "insufficient_funds": "अपर्याप्त कोष। आपकी वर्तमान शेष राशि ${current_balance:.2f} है।",
+      "win_heads": "आपने पलटवार किया और ${amount:.2f} जीत लिया! आपका नया शेष ${new_balance:.2f}.{chance_suffix} है",
+      "lose_tails": "आपने पूँछ उलट दी और ${amount:.2f} खो दिया। आपका नया शेष ${new_balance:.2f}.{chance_suffix} है"
+    },
+    "blackjack": {
+      "module_not_found": "{player}: कैसीनो मॉड्यूल नहीं मिला।",
+      "usage": "{player}: उपयोग: ब्लैकजैक <शर्त|सभी> | ब्लैकजैक हिट | ब्लैकजैक स्टैंड | ब्लैकजैक डबल",
+      "invalid_amount": "अमान्य राशि. कृपया सही अंक दर्ज करें।",
+      "amount_must_be_positive": "दांव 0 से अधिक होना चाहिए.",
+      "insufficient_funds": "अपर्याप्त कोष। आपकी वर्तमान शेष राशि ${current_balance:.2f} है।",
+      "double_not_allowed": "आप केवल अपनी पहली चाल के रूप में दोगुना कर सकते हैं।",
+      "game_already_active": "इस सत्र में आपके पास पहले से ही एक सक्रिय ब्लैकजैक हाथ है।",
+      "started": "ब्लैकजैक शुरू हो गया. शर्त: ${bet:.2f}। आपका हाथ: {player_hand} ({player_value})। डीलर: {dealer_up}, ?",
+      "no_active_game": "इस सत्र में आपके पास कोई सक्रिय ब्लैकजैक हाथ नहीं है।",
+      "hit": "आप लिखें। आपका हाथ: {player_hand} ({player_value})। डीलर: {dealer_up}, ?",
+      "bust": "छाती। आपका हाथ: {player_hand} ({player_value})। आप ${bet:.2f} खो देते हैं। शेष राशि: ${new_balance:.2f}.",
+      "stand_result": "{result} आपका हाथ: {player_hand} ({player_value})। डीलर का हाथ: {dealer_hand} ({dealer_value})। शेष राशि: ${new_balance:.2f}.",
+      "win": "आप ${win_amount:.2f} जीतें!",
+      "lose": "आप ${bet:.2f} खो देते हैं।",
+      "push": "धकेलना। आपका दांव वापस कर दिया गया है.",
+      "push_blackjack": "धकेलना। आप और डीलर दोनों के पास ब्लैकजैक है। आपका दांव वापस कर दिया गया है. शेष राशि: ${new_balance:.2f}.",
+      "player_blackjack": "लाठी! आप ${win_amount:.2f} जीतते हैं। शेष राशि: ${new_balance:.2f}.",
+      "dealer_blackjack": "डीलर के पास लाठी है. आप ${bet:.2f} खो देते हैं। शेष राशि: ${new_balance:.2f}."
+    },
+    "dice": {
+      "module_not_found": "{player}: कैसीनो मॉड्यूल नहीं मिला।",
+      "usage": "{player}: उपयोग: पासा <शर्त|सभी> उच्च|निम्न|1-6",
+      "invalid_bet": "{player}: अमान्य शर्त राशि।",
+      "amount_must_be_positive": "दांव 0 से अधिक होना चाहिए.",
+      "insufficient_funds": "अपर्याप्त कोष। आपकी वर्तमान शेष राशि ${current_balance:.2f} है।",
+      "no_balance": "{player}: आपके पास जुआ खेलने के लिए कोई संतुलन नहीं है।",
+      "invalid_guess": "अमान्य अनुमान. 'उच्च', 'निम्न', या संख्या 1-6 का प्रयोग करें।",
+      "rolled": "लुढ़का हुआ {roll}। अनुमान लगाया गया {guess}. {result} शेष: ${new_balance:.2f}।",
+      "win": "आप ${win_amount:.2f} जीतें!",
+      "lose": "आप ${bet:.2f} खो देते हैं।"
+    },
+    "inventory": {
+      "module_not_found": "{player}: इन्वेंटरी मॉड्यूल नहीं मिला।",
+      "empty": "{player}: अपनी सूची खंगालने पर, आपको धूल के अलावा कुछ नहीं मिलता।",
+      "contents": "{player} की सूची: {items}",
+      "open": {
+        "no_cases": "{player}: आपके पास खोलने के लिए कोई केस नहीं है।",
+        "no_case_named": "आपके पास खोलने के लिए {case_name} नहीं है।",
+        "invalid_case": "{case_name} वैध मामला नहीं है.",
+        "opened_case": "आपने {case_name} खोला और आपको {price} मूल्य का {item_name} मिला! आप इसे बेचें और परिवर्तन अपने पास रखें।"
+      },
+      "inspect": {
+        "specify_item": "{player}: कृपया निरीक्षण के लिए एक आइटम निर्दिष्ट करें।",
+        "default_description": "{player}: एक असाधारण {item_name}।"
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: स्क्रैम्बल मॉड्यूल नहीं मिला।",
+      "start": "शब्द को सुलझाने वाला पहला व्यक्ति जीतता है: {word}",
+      "winner": "{player} ने '{word}' शब्द को सही ढंग से सुलझाया और $100 जीते!"
+    },
+    "smoke": {
+      "module_not_found": "{player}: तंबाकू मॉड्यूल नहीं मिला।",
+      "no_tobacco": "{player}: आपके पास चबाने के लिए कोई तम्बाकू नहीं है।",
+      "tobacco_not_found": "तम्बाकू '{tobacco}' नहीं मिला।",
+      "no_tobacco_named": "आपके पास चबाने के लिए कोई {tobacco_name} नहीं है।",
+      "smoked": "आप {tobacco_name} दबाते हैं। ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: खाता लिंकिंग मॉड्यूल नहीं मिला।",
+      "code_generated": "{player}: किसी अन्य खाते को लिंक करने के लिए कोड {code} का उपयोग करें। कोड {minutes} मिनट में समाप्त हो जाता है।",
+      "no_linked_accounts": "{player}: कोई लिंक किया हुआ खाता नहीं मिला।",
+      "linked_accounts": "{player} के लिंक किए गए खाते: {accounts}",
+      "invalid_code": "अवैध कोड। कृपया जाँच करें और पुनः प्रयास करें।",
+      "code_expired": "कोड समाप्त हो गया है. कृपया एक नया जनरेट करें.",
+      "cannot_link_self": "किसी खाते को स्वयं से लिंक नहीं किया जा सकता.",
+      "already_linked_different_ids": "उन खातों को लिंक नहीं किया जा सकता जो पहले से ही विभिन्न खाता आईडी से जुड़े हुए हैं।",
+      "success": "{target_platform} उपयोगकर्ता \"{target_identifier}\" को {source_platform} उपयोगकर्ता \"{source_identifier}\" से सफलतापूर्वक जोड़ा गया।"
+    },
+    "autosell": {
+      "module_not_found": "{player}: फिशिंग मॉड्यूल नहीं मिला।",
+      "list_empty": "{player}: ऑटोसेल सूची खाली है।",
+      "list": "{player}: ऑटोसेल मछली: {fish_list}",
+      "usage_add": "{player}: उपयोग: @autosell जोड़ें <मछली>",
+      "usage_remove": "{player}: उपयोग: @ऑटोसेल हटाएं <मछली>",
+      "usage_general": "{player}: उपयोग: @autosell [जोड़ें|निकालें] <मछली>, @autosell साफ़ करें, या @autosell सूची में डालें।"
+    },
+    "quest": {
+      "system_not_available": "खोज प्रणाली उपलब्ध नहीं है.",
+      "next_available_in": "अगली दैनिक खोज {time_remaining} में उपलब्ध है",
+      "no_daily_available": "कोई दैनिक खोज उपलब्ध नहीं है."
+    },
+    "ship": {
+      "provide_name": "{player}: कृपया शिप करने के लिए एक नाम प्रदान करें!",
+      "compatibility": "{player} और {target} {compatibility}% संगत हैं!"
+    },
+    "status": {
+      "module_not_found": "{player}: स्थिति प्रभाव मॉड्यूल नहीं मिला।",
+      "no_effects": "{player}: आपके पास कोई सक्रिय स्थिति प्रभाव नहीं है।",
+      "effects_list": "{player} की स्थिति प्रभाव: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "ट्रॉफी मॉड्यूल लोड नहीं हुआ.",
+      "empty_case": "{player}: आपका ट्रॉफी केस खाली है। मछली जोड़ने के लिए ट्रॉफी ऐड <fish_name> का उपयोग करें!",
+      "usage_add": "{player}: उपयोग: ट्रॉफी जोड़ें <मछली_नाम>",
+      "usage_remove": "{player}: उपयोग: ट्रॉफी हटाएं <संख्या>",
+      "number_must_be_numeric": "{player}: ट्रॉफी नंबर एक नंबर होना चाहिए।",
+      "unknown_subcommand": "{player}: Unknown subcommand. Use: trophy [add <fish_name> | <नंबर>] हटाएं"
+    },
+    "shop": {
+      "available_categories": "{player}: उपलब्ध श्रेणियां: {categories}",
+      "no_items_available": "{player}: दुकान में कोई सामान उपलब्ध नहीं है।",
+      "shop_items": "{player}: उपलब्ध दुकान आइटम: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, अधिकतम: {item_max})",
+      "module_not_found": "{player}: शॉप मॉड्यूल नहीं मिला।",
+      "buy_no_item_specified": "{player}: कृपया खरीदने के लिए एक आइटम निर्दिष्ट करें।",
+      "buy_module_not_found": "{player}: शॉप मॉड्यूल नहीं मिला।",
+      "rods_shortcut_help": "दुकान में उपलब्ध मछली पकड़ने वाली छड़ें देखें।",
+      "invalid_quantity": "अमान्य मात्रा.",
+      "item_not_found": "दुकानदार आह भरते हुए कहता है, 'मेरे पास वह सामान नहीं है।'",
+      "max_quantity_reached": "आपके पास एक समय में इस आइटम का केवल {max_count} ही हो सकता है।",
+      "insufficient_funds": "दुकानदार कहता है: 'क्या यह आपके खून के लिए बहुत समृद्ध नहीं है?'",
+      "purchase_success": "आपने {quantity} x '{item_name}' खरीदा। आपका नया शेष ${money_left} है।",
+      "purchase_processing_error": "खरीदारी संसाधित करते समय त्रुटि: {error}",
+      "category_not_found": "श्रेणी नहीं मिली. उपलब्ध श्रेणियां: {categories}",
+      "no_items_in_category": "इस श्रेणी में कोई आइटम उपलब्ध नहीं है.",
+      "nothing_for_you": "दुकानदार कहता है: 'मेरे पास तुम्हारे लिए कुछ भी नहीं है।'"
+    },
+    "economy": {
+      "balance_response": "{player}, आपकी वर्तमान शेष राशि ${balance} है।",
+      "top_players_list": "{player}: शीर्ष खिलाड़ी: {list}",
+      "top_no_players": "{player}: कोई खिलाड़ी नहीं मिला.",
+      "module_not_found": "{player}: इकोनॉमी मॉड्यूल नहीं मिला।"
+    },
+    "help": {
+      "no_help_available": "{player}: '{command}' के लिए कोई सहायता उपलब्ध नहीं है।",
+      "available_commands": "{player}: उपलब्ध आदेश: {list}",
+      "module_not_found": "{player}: सहायता मॉड्यूल नहीं मिला."
+    },
+    "femboy": {
+      "self_is": "{player}: मैं एक फेमबॉय हूं ({chance}%)",
+      "self_is_not": "{player}: मैं फेमबॉय नहीं हूं ({chance}%)",
+      "target_is": "{player}: {target} एक फेमबॉय है ({chance}%)",
+      "target_is_not": "{player}: {target} फ़ेम्बॉय नहीं है ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "मॉड्यूल नहीं मिला: {module}",
+    "command_not_found": "{player}: कमांड '{command}' नहीं मिला।",
+    "command_not_found_with_suggestion": "{player}: कमांड '{command}' नहीं मिला। क्या आपका मतलब '{suggestion}' था?",
+    "invalid_input": "अमान्य निवेश",
+    "insufficient_funds": "अपर्याप्त कोष",
+    "item_not_found": "आइटम नहीं मिला"
+  },
+  "help_texts": {
+    "cast": "किसी मछली या वस्तु को पकड़ने के लिए अपनी मछली पकड़ने वाली छड़ी डालें। (उर्फ: मछली, गोफिश)",
+    "sack": "अपने मछली पकड़ने वाले बोरे की सामग्री प्रदर्शित करें। (उर्फ: बैग)",
+    "eat": "अपने बोरे से एक मछली खाओ.",
+    "sell": "अपने बोरे से एक मछली या 'सभी' मछली बेचें।",
+    "bait": "बड़ी मछली पकड़ने की संभावना बढ़ाने के लिए एक मछली को चारे के रूप में उपयोग करें। अपने बोरे में आखिरी मछली का उपयोग करने के लिए 'अंतिम', चारा साफ करने के लिए 'स्पष्ट'।",
+    "shop": "उपलब्ध श्रेणियों और 'दुकान <श्रेणी>' में आइटमों की सूची बनाएं।",
+    "buy": "दुकान से कोई वस्तु खरीदें.",
+    "rods": "दुकान में उपलब्ध मछली पकड़ने वाली छड़ें देखें।",
+    "flip": "अपनी शेष राशि के लिए एक राशि या 'सभी' का जुआ खेलने के लिए एक सिक्का उछालें। (उपनाम: जुआ, सिक्का उछालना)",
+    "blackjack": "एक-खिलाड़ी ब्लैकजैक खेलें: ब्लैकजैक <बेट|ऑल>, ब्लैकजैक हिट, ब्लैकजैक स्टैंड, ब्लैकजैक डबल।",
+    "dice": "एक पासा (1-6) घुमाएँ और उच्च (4-6), निम्न (1-3), या एक सटीक संख्या पर दांव लगाएं। उपयोग: पासा <शर्त|सभी> उच्च|निम्न|1-6। (उर्फ: रोल)",
+    "balance": "खिलाड़ी का वर्तमान संतुलन प्रदर्शित करें। (उर्फ: बाल, पैसा)",
+    "top": "अर्थव्यवस्था में शीर्ष खिलाड़ियों को प्रदर्शित करें। (उर्फ: लीडरबोर्ड, शीर्ष खिलाड़ी)",
+    "help": "किसी विशिष्ट कमांड के लिए उपलब्ध कमांड या सहायता की सूची प्रदर्शित करें। (उपनाम: आदेश)"
+  },
+  "help_command_names": {
+    "cast": "ढालना",
+    "sack": "थैला",
+    "eat": "खाओ",
+    "sell": "बेचना",
+    "bait": "प्रलोभन",
+    "sellall": "सब बेच दो",
+    "shop": "दुकान",
+    "buy": "खरीदना",
+    "rods": "छड़",
+    "smoke": "धुआँ",
+    "drink": "पीना",
+    "open": "खुला",
+    "inspect": "निरीक्षण करें",
+    "autosell": "स्वत: बिक्री",
+    "link": "जोड़ना",
+    "linked": "जुड़ा हुआ",
+    "flip": "पलटना",
+    "blackjack": "डांडा",
+    "dice": "पासा",
+    "trophy": "ट्रॉफी",
+    "ship": "जहाज",
+    "femboy": "femboy",
+    "daily": "दैनिक",
+    "quest": "खोज",
+    "balance": "संतुलन",
+    "top": "शीर्ष",
+    "help": "मदद",
+    "inventory": "भंडार",
+    "status": "स्थिति",
+    "scramble": "संघर्ष"
+  },
+  "command_aliases": {
+    "cast": [
+      "fish",
+      "gofish"
+    ],
+    "sack": [
+      "bag"
+    ],
+    "eat": [
+      "eat"
+    ],
+    "sell": [
+      "sell"
+    ],
+    "bait": [
+      "bait"
+    ],
+    "sellall": [
+      "sellall"
+    ],
+    "shop": [
+      "shop"
+    ],
+    "buy": [
+      "buy"
+    ],
+    "rods": [
+      "rods"
+    ],
+    "balance": [
+      "bal",
+      "money"
+    ],
+    "top": [
+      "leaderboard",
+      "topplayers"
+    ],
+    "help": [
+      "commands",
+      "cmds"
+    ],
+    "link": [
+      "link"
+    ],
+    "linked": [
+      "accounts"
+    ],
+    "quest": [
+      "quest"
+    ],
+    "autosell": [
+      "autosell"
+    ],
+    "inventory": [
+      "inventory",
+      "inv"
+    ],
+    "open": [
+      "open",
+      "case"
+    ],
+    "inspect": [
+      "inspect"
+    ],
+    "drink": [
+      "beer",
+      "sip"
+    ],
+    "smoke": [
+      "chuff",
+      "pack"
+    ],
+    "flip": [
+      "gamble",
+      "coinflip"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "dice": [
+      "roll"
+    ],
+    "status": [
+      "effects"
+    ],
+    "trophy": [
+      "trophy"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "daily": [
+      "quest"
+    ],
+    "scramble": [
+      "scramble"
+    ]
+  }
+}
