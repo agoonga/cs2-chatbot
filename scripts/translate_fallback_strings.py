@@ -25,6 +25,8 @@ LANG_MAP = {
     "zh_CN": "zh-CN",
     "en_SG": "en",
     "hi_IN": "hi",
+    "he_IL": "iw",
+    "fi_FI": "fi",
 }
 
 PLACEHOLDER_RE = re.compile(r"\{[^{}]+\}")

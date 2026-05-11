@@ -172,5 +172,36 @@ def dice_command(bot, is_team: bool, playername: str, chattext: str) -> None:
         bot.add_to_chat_queue(is_team, f"{playername}: {result}")
     except ValueError:
         bot.add_to_chat_queue(is_team, bot.t("commands.dice.invalid_bet", player=playername))
+
+
+@command_registry.register("slots", aliases=["slot", "spin"])
+def slots_command(bot, is_team: bool, playername: str, chattext: str) -> None:
+    """
+    Spin slots and gamble an amount.
+
+    Usage: slots <bet|all>
+    """
+    casino_module: CasinoModule = bot.modules.get_module("casino")
+    if not casino_module:
+        bot.add_to_chat_queue(is_team, bot.t("commands.slots.module_not_found", player=playername))
+        return
+
+    text = chattext.strip()
+
+    try:
+        if text.lower() == "all":
+            amount = casino_module.economy.get_balance(playername)
+            if amount <= 0:
+                bot.add_to_chat_queue(is_team, bot.t("commands.slots.no_balance", player=playername))
+                return
+        elif text:
+            amount = float(text)
+        else:
+            amount = 10
+
+        result = casino_module.slots(playername, amount, t=bot.t)
+        bot.add_to_chat_queue(is_team, f"{playername}: {result}")
+    except ValueError:
+        bot.add_to_chat_queue(is_team, bot.t("commands.slots.invalid_amount", player=playername))
         
         

@@ -188,6 +188,18 @@
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "翻译失败。请再试一次。",
       "label": "翻译"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "dice": "掷骰子 (1-6) 并押注高 (4-6)、低 (1-3) 或精确数字。用法：骰子 <bet|all> 高|低|1-6。 （别名：卷）",
     "balance": "显示玩家当前的余额。 （别名：bal、金钱）",
     "top": "显示经济领域的顶级参与者。 （别名：排行榜、顶尖玩家）",
-    "help": "显示可用命令的列表或特定命令的帮助。 （别名：命令）"
+    "help": "显示可用命令的列表或特定命令的帮助。 （别名：命令）",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "投掷",
@@ -246,7 +259,8 @@
     "inventory": "存货",
     "status": "地位",
     "scramble": "争夺",
-    "translate": "翻译"
+    "translate": "翻译",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -382,6 +396,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

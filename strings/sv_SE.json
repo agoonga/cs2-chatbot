@@ -188,6 +188,18 @@
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "Översättning misslyckades. Försök igen.",
       "label": "översättning"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "balance": "Visa spelarens nuvarande saldo. (alias: bal, money)",
     "top": "Visa toppspelarna i ekonomin. (alias: leaderboard, topplayers)",
     "help": "Visa listan över tillgängliga kommandon eller hjälp för ett särskilt kommando. (alias: commands)",
-    "flip": "Vänd ett mynt för att spela ett belopp eller \"allt\" för ditt saldo. (alias: gamble, coinflip)"
+    "flip": "Vänd ett mynt för att spela ett belopp eller \"allt\" för ditt saldo. (alias: gamble, coinflip)",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "kasta",
@@ -246,7 +259,8 @@
     "status": "status",
     "scramble": "blanda",
     "dice": "tärningar",
-    "translate": "översätta"
+    "translate": "översätta",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -353,6 +367,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

@@ -188,6 +188,18 @@
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "Çeviri başarısız oldu. Lütfen tekrar deneyin.",
       "label": "çeviri"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "top": "Ekonomideki en iyi oyuncuları göster. (takma adlar: leaderboard, topplayers)",
     "help": "Komut listesini veya belirli bir komutun yardımını göster. (takma ad: commands)",
     "flip": "Bakiyeniz karşılığında bir miktar veya 'tüm' ile kumar oynamak için yazı tura atın. (takma ad: kumar, yazı tura)",
-    "dice": "Bir zar atın (1-6) ve yüksek (4-6), düşük (1-3) veya tam bir sayıya bahis yapın. Kullanım: <bahis|hepsi> yüksek|düşük|1-6 zar. (takma adı: rulo)"
+    "dice": "Bir zar atın (1-6) ve yüksek (4-6), düşük (1-3) veya tam bir sayıya bahis yapın. Kullanım: <bahis|hepsi> yüksek|düşük|1-6 zar. (takma adı: rulo)",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "at",
@@ -246,7 +259,8 @@
     "inventory": "envanter",
     "status": "durum",
     "scramble": "karistir",
-    "translate": "tercüme etmek"
+    "translate": "tercüme etmek",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -356,6 +370,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

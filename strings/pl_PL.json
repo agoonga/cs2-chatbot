@@ -188,6 +188,18 @@
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "Tłumaczenie nie powiodło się. Spróbuj ponownie.",
       "label": "tłumaczenie"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "top": "Pokaż najlepszych graczy w ekonomii. (alias: leaderboard, topplayers)",
     "help": "Pokaż listę dostępnych komend lub pomoc dla konkretnej komendy. (alias: commands)",
     "flip": "Rzuć monetę, aby określić lub całość, aby wyjść saldo. (alias: hazard, rzut monetą)",
-    "dice": "Rzuć wylot (1-6) i wysunięty na ziemię (4-6), lub dostępną do kraju. Sposób użycia: kości <bet|all>high|niskie|1-6. (alias: rolka)"
+    "dice": "Rzuć wylot (1-6) i wysunięty na ziemię (4-6), lub dostępną do kraju. Sposób użycia: kości <bet|all>high|niskie|1-6. (alias: rolka)",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "rzut",
@@ -246,7 +259,8 @@
     "status": "status",
     "scramble": "mieszaj",
     "dice": "kostka do gry",
-    "translate": "tłumaczyć"
+    "translate": "tłumaczyć",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -341,6 +355,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

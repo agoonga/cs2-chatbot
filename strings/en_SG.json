@@ -188,6 +188,18 @@
       "result": "{player}: ({from_lang}→{to_lang}) {result}",
       "error": "Translation failed. Please try again.",
       "label": "translation"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "dice": "Roll a dice (1-6) and bet on high (4-6), low (1-3), or an exact number. Usage: dice <bet|all> high|low|1-6. (alias: roll)",
     "balance": "Display the player's current balance. (alias: bal, money)",
     "top": "Display the top players in the economy. (alias: leaderboard, topplayers)",
-    "help": "Display the list of available commands or help for a specific command. (alias: commands)"
+    "help": "Display the list of available commands or help for a specific command. (alias: commands)",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "cast",
@@ -246,7 +259,8 @@
     "inventory": "inventory",
     "status": "status",
     "scramble": "scramble",
-    "translate": "translate"
+    "translate": "translate",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -348,6 +362,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

@@ -414,3 +414,69 @@ class Casino:
         )
 
         return rolled_msg
+
+    def slots(self, user_id, amount=10, t=None):
+        """
+        Spin a 3-reel slot machine.
+
+        Payout rules:
+        - 3 matching symbols: 5:1 payout
+        - 2 matching symbols: 1:1 payout
+        - no match: lose bet
+        """
+        if amount <= 0:
+            return self._translate(t, "commands.slots.amount_must_be_positive", "Bet must be greater than 0.")
+
+        current_balance = self.economy.get_balance(user_id)
+        if current_balance < amount:
+            return self._translate(
+                t,
+                "commands.slots.insufficient_funds",
+                "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+                current_balance=current_balance,
+            )
+
+        symbols = ["cherry", "lemon", "bell", "star", "seven"]
+        reels = [random.choice(symbols), random.choice(symbols), random.choice(symbols)]
+
+        # Deduct upfront so payout logic is simple and consistent with dice.
+        self.economy.deduct_balance(user_id, amount)
+
+        a, b, c = reels
+        if a == b == c:
+            payout_multiplier = 5.0
+            payout = amount * (1 + payout_multiplier)
+            self.economy.add_balance(user_id, payout)
+            result = self._translate(
+                t,
+                "commands.slots.win_three",
+                "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+                win_amount=payout - amount,
+            )
+        elif a == b or b == c or a == c:
+            payout_multiplier = 1.0
+            payout = amount * (1 + payout_multiplier)
+            self.economy.add_balance(user_id, payout)
+            result = self._translate(
+                t,
+                "commands.slots.win_two",
+                "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+                win_amount=payout - amount,
+            )
+        else:
+            result = self._translate(
+                t,
+                "commands.slots.lose",
+                "No match. You lose ${bet:.2f}.",
+                bet=amount,
+            )
+
+        reels_text = " | ".join(reels)
+        return self._translate(
+            t,
+            "commands.slots.spun",
+            "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+            reels=reels_text,
+            result=result,
+            new_balance=self.economy.get_balance(user_id),
+        )

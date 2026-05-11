@@ -188,6 +188,18 @@
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "A tradução falhou. Por favor, tente novamente.",
       "label": "tradução"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "balance": "Exiba o saldo atual do jogador. (alias: bal, money)",
     "top": "Exiba os melhores jogadores na economia. (alias: leaderboard, topplayers)",
     "help": "Exiba a lista de comandos disponíveis ou ajuda para um comando específico. (alias: commands)",
-    "flip": "Jogue uma moeda para apostar uma quantia ou 'tudo' do seu saldo. (alias: jogo, coinflip)"
+    "flip": "Jogue uma moeda para apostar uma quantia ou 'tudo' do seu saldo. (alias: jogo, coinflip)",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "pescar",
@@ -246,7 +259,8 @@
     "inventory": "inventario",
     "status": "status",
     "scramble": "embaralhar",
-    "translate": "traduzir"
+    "translate": "traduzir",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -342,6 +356,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

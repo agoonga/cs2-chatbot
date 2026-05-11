@@ -1,0 +1,371 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player} תפס {name} במשקל {weight} פאונד בשווי ${price}!",
+      "cast_success_autosold": "{player} תפס {name}, נמכר אוטומטית ב-${price}!",
+      "empty_line": "{player}: אתה מסתובב בשורה ריקה.",
+      "sack_limit_reached": "השק שלך יכול להכיל רק {sack_size} דגים.",
+      "sold_all_fish": "מכרת את כל הדגים שלך בסכום כולל של ${total_earnings:.2f}! היתרה החדשה שלך היא ${new_balance:.2f}.",
+      "module_not_found": "{player}: מודול דיג לא נמצא.",
+      "sack_contents": "השק של {player} מכיל: {contents}",
+      "sack_empty": "{player}: השק שלך ריק.",
+      "sack_module_not_found": "{player}: מודול דיג לא נמצא.",
+      "eat_module_not_found": "{player}: מודול דיג לא נמצא.",
+      "sell_module_not_found": "{player}: מודול דיג לא נמצא.",
+      "bait_no_bait_set": "{player}: אין לך סט פיתיון.",
+      "bait_cleared": "{player}: הפיתיון נוקה.",
+      "bait_module_not_found": "{player}: מודול דיג לא נמצא.",
+      "bait_sack_empty": "{player}: השק שלך ריק.",
+      "sell_all_sack_empty": "השק שלך ריק. אין לך דגים למכור.",
+      "sell_sack_empty": "השק שלך ריק.",
+      "sell_fish_not_found": "לא נמצאו '{name}' בשק שלך.",
+      "sold_single_fish": "מכרת {name} ב-${price:.2f}! היתרה החדשה שלך היא ${new_balance:.2f}.",
+      "eat_sack_empty": "השק שלך ריק.",
+      "eat_fish_not_found": "לא נמצאו '{name}' בשק שלך.",
+      "ate_fish": "אכלת את הדג.",
+      "bait_no_fish_to_use": "השק שלך ריק. אין לך דגים להשתמש בהם כפיתיון.",
+      "bait_not_found": "לא נמצאו '{bait_name}' בשק שלך.",
+      "bait_set_next": "אתה תשתמש ב-{bait_name} כפיתיון לתפיסה הבאה שלך.",
+      "bait_already_set": "כבר יש לך סט פיתיון: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: מודול בירה לא נמצא.",
+      "no_beer": "{player}: אין לך בירה לשתות.",
+      "beer_not_found": "בירה '{beer}' לא נמצאה.",
+      "no_beer_named": "אין לך {beer_name} לשתות.",
+      "drank": "אתה שותה {beer_name}. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: מודול הקזינו לא נמצא.",
+      "no_balance": "{player}: אין לך יתרה להמר.",
+      "invalid_amount": "{player}: סכום לא חוקי. נא להזין מספר חוקי.",
+      "amount_must_be_positive": "אין מצב ג'וס, בחר מספר גדול מ-0.",
+      "insufficient_funds": "אין מספיק כספים. היתרה הנוכחית שלך היא ${current_balance:.2f}.",
+      "win_heads": "הפכת ראשים וזכית ב-${amount:.2f}! היתרה החדשה שלך היא ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "הפכת זנבות והפסדת ${amount:.2f}. היתרה החדשה שלך היא ${new_balance:.2f}.{chance_suffix}"
+    },
+    "blackjack": {
+      "module_not_found": "{player}: מודול הקזינו לא נמצא.",
+      "usage": "{player}: שימוש: בלאק ג'ק <bet|all> | להיט בלאק ג'ק | דוכן בלאק ג'ק | בלאק ג'ק כפול",
+      "invalid_amount": "סכום לא חוקי. נא להזין מספר חוקי.",
+      "amount_must_be_positive": "ההימור חייב להיות גדול מ-0.",
+      "insufficient_funds": "אין מספיק כספים. היתרה הנוכחית שלך היא ${current_balance:.2f}.",
+      "double_not_allowed": "אתה יכול להכפיל רק כצעד ראשון.",
+      "game_already_active": "כבר יש לך יד בלאק ג'ק פעילה בסשן הזה.",
+      "started": "בלאק ג'ק התחיל. הימור: ${bet:.2f}. היד שלך: {player_hand} ({player_value}). סוחר: {dealer_up}, ?",
+      "no_active_game": "אין לך יד פעילה של בלאק ג'ק בסשן הזה.",
+      "hit": "אתה מצייר. היד שלך: {player_hand} ({player_value}). סוחר: {dealer_up}, ?",
+      "bust": "חָזֶה. היד שלך: {player_hand} ({player_value}). אתה מפסיד ${bet:.2f}. יתרה: ${new_balance:.2f}.",
+      "stand_result": "{result} היד שלך: {player_hand} ({player_value}). יד סוחר: {dealer_hand} ({dealer_value}). יתרה: ${new_balance:.2f}.",
+      "win": "אתה זוכה ב-${win_amount:.2f}!",
+      "lose": "אתה מפסיד ${bet:.2f}.",
+      "push": "לִדחוֹף. ההימור שלך מוחזר.",
+      "push_blackjack": "לִדחוֹף. גם לך וגם לדילר יש בלאק ג'ק. ההימור שלך מוחזר. יתרה: ${new_balance:.2f}.",
+      "player_blackjack": "בלאק ג'ק! אתה זוכה ב-${win_amount:.2f}. יתרה: ${new_balance:.2f}.",
+      "dealer_blackjack": "לדילר יש בלאק ג'ק. אתה מפסיד ${bet:.2f}. יתרה: ${new_balance:.2f}."
+    },
+    "dice": {
+      "module_not_found": "{player}: מודול הקזינו לא נמצא.",
+      "usage": "{player}: שימוש: קוביות <bet|all> high|low|1-6",
+      "invalid_bet": "{player}: סכום הימור לא חוקי.",
+      "amount_must_be_positive": "ההימור חייב להיות גדול מ-0.",
+      "insufficient_funds": "אין מספיק כספים. היתרה הנוכחית שלך היא ${current_balance:.2f}.",
+      "no_balance": "{player}: אין לך יתרה להמר.",
+      "invalid_guess": "ניחוש לא חוקי. השתמש ב'גבוה', 'נמוך' או מספר 1-6.",
+      "rolled": "התגלגל {roll}. ניחש {guess}. יתרה {result}: ${new_balance:.2f}.",
+      "win": "אתה זוכה ב-${win_amount:.2f}!",
+      "lose": "אתה מפסיד ${bet:.2f}."
+    },
+    "slots": {
+      "module_not_found": "{player}: מודול הקזינו לא נמצא.",
+      "usage": "{player}: שימוש: משבצות <bet|all>",
+      "invalid_amount": "{player}: סכום לא חוקי. נא להזין מספר חוקי.",
+      "amount_must_be_positive": "ההימור חייב להיות גדול מ-0.",
+      "insufficient_funds": "אין מספיק כספים. היתרה הנוכחית שלך היא ${current_balance:.2f}.",
+      "no_balance": "{player}: אין לך יתרה להמר.",
+      "spun": "משבצות: [{reels}] {result} יתרה: ${new_balance:.2f}.",
+      "win_three": "קוּפָּה! שלושה כאלה. אתה זוכה ב-${win_amount:.2f}!",
+      "win_two": "נֶחְמָד! שני סמלים תואמים. אתה זוכה ב-${win_amount:.2f}!",
+      "lose": "אין התאמה. אתה מפסיד ${bet:.2f}."
+    },
+    "inventory": {
+      "module_not_found": "{player}: מודול המלאי לא נמצא.",
+      "empty": "{player}: מחטטת במלאי שלך, אינך מוצא דבר מלבד אבק.",
+      "contents": "המלאי של {player}: {items}",
+      "open": {
+        "no_cases": "{player}: אין לך תיקים לפתוח.",
+        "no_case_named": "אין לך {case_name} לפתוח.",
+        "invalid_case": "{case_name} אינו מקרה חוקי.",
+        "opened_case": "פתחת {case_name} וקיבלת {item_name} בשווי {price}! אתה מוכר את זה ומכיס את השינוי."
+      },
+      "inspect": {
+        "specify_item": "{player}: נא לציין פריט לבדיקה.",
+        "default_description": "{player}: {item_name} מהשורה הראשונה."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: מודול הערבול לא נמצא.",
+      "start": "האדם הראשון שמבטל את המילה זוכה: {word}",
+      "winner": "{player} ביטל את המילה '{word}' בצורה נכונה וזוכה ב-$100!"
+    },
+    "translate": {
+      "label": "תִרגוּם",
+      "usage": "שימוש: !תרגם <to> <טקסט> | !תרגם <from> <to> <text> | >לסמס | > מהטקסט",
+      "unknown_lang": "שפה לא ידועה '{lang}'. נסה: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "התרגום נכשל. אנא נסה שוב."
+    },
+    "smoke": {
+      "module_not_found": "{player}: מודול טבק לא נמצא.",
+      "no_tobacco": "{player}: אין לך טבק למרוח.",
+      "tobacco_not_found": "הטבק '{tobacco}' לא נמצא.",
+      "no_tobacco_named": "אין לך שום {tobacco_name} לטעון.",
+      "smoked": "אתה מקפיץ {tobacco_name}. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: מודול קישור חשבון לא נמצא.",
+      "code_generated": "{player}: השתמש בקוד {code} כדי לקשר חשבון אחר. תוקף הקוד יפוג בעוד {minutes} דקות.",
+      "no_linked_accounts": "{player}: לא נמצאו חשבונות מקושרים.",
+      "linked_accounts": "החשבונות המקושרים של {player}: {accounts}",
+      "invalid_code": "קוד לא חוקי. אנא בדוק ונסה שוב.",
+      "code_expired": "פג תוקף הקוד. נא ליצור אחד חדש.",
+      "cannot_link_self": "לא יכול לקשר חשבון לעצמו.",
+      "already_linked_different_ids": "לא ניתן לקשר חשבונות שכבר מקושרים למזהי חשבון שונים.",
+      "success": "קישור {target_platform} משתמש \"{target_identifier}\" למשתמש {source_platform} \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player}: מודול דיג לא נמצא.",
+      "list_empty": "{player}: רשימת המכירה האוטומטית ריקה.",
+      "list": "{player}: מכירה אוטומטית של דגים: {fish_list}",
+      "usage_add": "{player}: שימוש: @autosell הוסף <fish|all>",
+      "usage_remove": "{player}: שימוש: @autosell הסר <fish>",
+      "usage_general": "{player}: שימוש: @autosell [הוסף|הסר] <fish|all>, @autosell clear, או @autosell לרשימה.",
+      "add_all_success": "{player}: מכירה אוטומטית מופעלת עבור כל סוגי הדגים ({count})."
+    },
+    "quest": {
+      "system_not_available": "מערכת Quest לא זמינה.",
+      "next_available_in": "המסע היומי הבא זמין ב{time_remaining}",
+      "no_daily_available": "אין חיפוש יומי זמין."
+    },
+    "ship": {
+      "provide_name": "{player}: נא לספק שם למשלוח!",
+      "compatibility": "{player} ו-{target} תואמים {compatibility}%!"
+    },
+    "status": {
+      "module_not_found": "{player}: מודול אפקטי מצב לא נמצא.",
+      "no_effects": "{player}: אין לך השפעות סטטוס פעילות.",
+      "effects_list": "השפעות הסטטוס של {player}: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "מודול הגביע לא נטען.",
+      "empty_case": "{player}: מארז הגביע שלך ריק. השתמש ב-Tourphy add <fish_name> כדי להוסיף דגים!",
+      "usage_add": "{player}: Usage: trophy add <fish_name>",
+      "usage_remove": "{player}: שימוש: הסרת גביע <number>",
+      "number_must_be_numeric": "{player}: מספר הגביע חייב להיות מספר.",
+      "unknown_subcommand": "{player}: פקודה משנה לא ידועה. השתמש: גביע [הוסף <שם_דג> | הסר <number>]"
+    },
+    "shop": {
+      "available_categories": "{player}: קטגוריות זמינות: {categories}",
+      "no_items_available": "{player}: אין פריטים זמינים בחנות.",
+      "shop_items": "{player}: פריטים זמינים בחנות: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, מקסימום: {item_max})",
+      "module_not_found": "{player}: מודול החנות לא נמצא.",
+      "buy_no_item_specified": "{player}: נא לציין פריט לקנייה.",
+      "buy_module_not_found": "{player}: מודול החנות לא נמצא.",
+      "rods_shortcut_help": "צפה בחכות דיג זמינות בחנות.",
+      "invalid_quantity": "כמות לא חוקית.",
+      "item_not_found": "בעל החנות נאנח ואומר: 'אין לי את הפריט הזה'.",
+      "max_quantity_reached": "אתה יכול לקבל רק {max_count} מהפריט הזה בכל פעם.",
+      "insufficient_funds": "בעל החנות אומר: 'זה לא עשיר מדי בשביל הדם שלך?'",
+      "purchase_success": "קנית {quantity} x '{item_name}'. היתרה החדשה שלך היא ${money_left}.",
+      "purchase_processing_error": "שגיאה במהלך עיבוד הרכישה: {error}",
+      "category_not_found": "הקטגוריה לא נמצאה. קטגוריות זמינות: {categories}",
+      "no_items_in_category": "אין פריטים זמינים בקטגוריה זו.",
+      "nothing_for_you": "בעל החנות אומר: 'אין לי כלום בשבילך'."
+    },
+    "economy": {
+      "balance_response": "{player}, היתרה הנוכחית שלך היא ${balance}.",
+      "top_players_list": "{player}: שחקנים מובילים: {list}",
+      "top_no_players": "{player}: לא נמצאו שחקנים.",
+      "module_not_found": "{player}: מודול כלכלה לא נמצא."
+    },
+    "help": {
+      "no_help_available": "{player}: אין עזרה זמינה עבור '{command}'.",
+      "available_commands": "{player}: פקודות זמינות: {list}",
+      "module_not_found": "{player}: מודול העזרה לא נמצא."
+    },
+    "femboy": {
+      "self_is": "{player}: אני femboy ({chance}%)",
+      "self_is_not": "{player}: אני לא femboy ({chance}%)",
+      "target_is": "{player}: {target} הוא femboy ({chance}%)",
+      "target_is_not": "{player}: {target} הוא לא femboy ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "מודול לא נמצא: {module}",
+    "command_not_found": "{player}: הפקודה '{command}' לא נמצאה.",
+    "command_not_found_with_suggestion": "{player}: הפקודה '{command}' לא נמצאה. האם התכוונת ל'{suggestion}'?",
+    "spam_cooldown": "{player}: האט. אתה מתקרר למשך {seconds}s.",
+    "invalid_input": "קלט לא חוקי",
+    "insufficient_funds": "אין מספיק כספים",
+    "item_not_found": "פריט לא נמצא"
+  },
+  "help_texts": {
+    "cast": "הטל את החכה שלך כדי לתפוס דג או פריט. (כינוי: דגים, דג)",
+    "sack": "הצג את התוכן של שק הדיג שלך. (כינוי: תיק)",
+    "eat": "תאכל דג מהשק שלך.",
+    "sell": "מכור דג מהשק שלך או 'כל' הדגים.",
+    "bait": "השתמש בדג כפיתיון כדי להגדיל את הסיכוי שלך לתפוס דג גדול יותר. 'אחרון' כדי להשתמש בדג האחרון בשק שלך, 'נקה' כדי לפנות פיתיון.",
+    "shop": "רשום את הקטגוריות הזמינות ואת הפריטים ב'חנות <קטגוריה>'.",
+    "buy": "קנה פריט מהחנות.",
+    "rods": "צפה בחכות דיג זמינות בחנות.",
+    "flip": "הפיל מטבע כדי להמר על סכום או 'הכל' עבור היתרה שלך. (כינוי: הימור, היפוך מטבעות)",
+    "blackjack": "שחקו בלאק ג'ק לשחקן אחד: בלאק ג'ק <bet|all>, להיט בלאק ג'ק, עמדת בלאק ג'ק, כפול של בלאק ג'ק.",
+    "dice": "לזרוק קובייה (1-6) ולהמר על גבוה (4-6), נמוך (1-3), או מספר מדויק. שימוש: קוביות <bet|all> high|low|1-6. (כינוי: רול)",
+    "slots": "סובב מכונת מזל: משבצות <bet|all>. (כינוי: משבצת, ספין)",
+    "balance": "הצג את היתרה הנוכחית של השחקן. (כינוי: bal, כסף)",
+    "top": "הצג את השחקנים המובילים במשק. (כינוי: leaderboard, שחקנים מובילים)",
+    "help": "הצג את רשימת הפקודות הזמינות או עזרה עבור פקודה ספציפית. (כינוי: פקודות)"
+  },
+  "help_command_names": {
+    "cast": "יָצוּק",
+    "sack": "שַׂק",
+    "eat": "לֶאֱכוֹל",
+    "sell": "מְכִירָה",
+    "bait": "פְּתָיוֹן",
+    "sellall": "sellall",
+    "shop": "לִקְנוֹת",
+    "buy": "לִקְנוֹת",
+    "rods": "מוטות",
+    "smoke": "עָשָׁן",
+    "drink": "לִשְׁתוֹת",
+    "open": "לִפְתוֹחַ",
+    "inspect": "לִבדוֹק",
+    "autosell": "מכירה אוטומטית",
+    "link": "לְקַשֵׁר",
+    "linked": "צָמוּד",
+    "flip": "לְהַעִיף",
+    "blackjack": "בלאק ג'ק",
+    "dice": "קוּבִּיוֹת",
+    "slots": "חריצים",
+    "trophy": "פְּרָס",
+    "ship": "סְפִינָה",
+    "femboy": "femboy",
+    "daily": "יוֹמִי",
+    "quest": "לַחקוֹר",
+    "balance": "לְאַזֵן",
+    "top": "רֹאשׁ",
+    "help": "עֶזרָה",
+    "inventory": "מְלַאי",
+    "status": "סטָטוּס",
+    "scramble": "לִטרוֹף",
+    "translate": "לְתַרְגֵם"
+  },
+  "command_aliases": {
+    "cast": [
+      "fish",
+      "gofish"
+    ],
+    "sack": [
+      "bag"
+    ],
+    "eat": [
+      "eat"
+    ],
+    "sell": [
+      "sell"
+    ],
+    "bait": [
+      "bait"
+    ],
+    "sellall": [
+      "sellall"
+    ],
+    "shop": [
+      "shop"
+    ],
+    "buy": [
+      "buy"
+    ],
+    "rods": [
+      "rods"
+    ],
+    "balance": [
+      "bal",
+      "money"
+    ],
+    "top": [
+      "leaderboard",
+      "topplayers"
+    ],
+    "help": [
+      "commands",
+      "cmds"
+    ],
+    "link": [
+      "link"
+    ],
+    "linked": [
+      "accounts"
+    ],
+    "quest": [
+      "quest"
+    ],
+    "autosell": [
+      "autosell"
+    ],
+    "inventory": [
+      "inventory",
+      "inv"
+    ],
+    "open": [
+      "open",
+      "case"
+    ],
+    "inspect": [
+      "inspect"
+    ],
+    "drink": [
+      "beer",
+      "sip"
+    ],
+    "smoke": [
+      "chuff",
+      "pack"
+    ],
+    "flip": [
+      "gamble",
+      "coinflip"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "dice": [
+      "roll"
+    ],
+    "slots": [
+      "slot",
+      "spin"
+    ],
+    "status": [
+      "effects"
+    ],
+    "trophy": [
+      "trophy"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "daily": [
+      "quest"
+    ],
+    "scramble": [
+      "scramble"
+    ],
+    "translate": [
+      "trans",
+      "tl"
+    ]
+  }
+}

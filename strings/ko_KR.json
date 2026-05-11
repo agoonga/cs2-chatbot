@@ -188,6 +188,18 @@
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "번역에 실패했습니다. 다시 시도해 주세요.",
       "label": "번역"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "top": "경제 상위 플레이어를 표시합니다. (별칭: leaderboard, topplayers)",
     "help": "사용 가능한 명령 목록 또는 특정 명령의 도움말을 표시합니다. (별칭: commands)",
     "flip": "칩을 사용하는 잔액에 맞는 금액 또는 '전체'를 도박에 참여하세요. (별칭: 도박, 뒤집기)",
-    "dice": "다윗(1-6)을 굴리고 높은 값(4-6), 하위 값(1-3) 또는 숫자에 따라 이동합니다. 입력: <베팅|모두> 높이음|낮음|1-6. (별칭: 롤)"
+    "dice": "다윗(1-6)을 굴리고 높은 값(4-6), 하위 값(1-3) 또는 숫자에 따라 이동합니다. 입력: <베팅|모두> 높이음|낮음|1-6. (별칭: 롤)",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "낚기",
@@ -246,7 +259,8 @@
     "inventory": "인벤토리",
     "status": "상태",
     "scramble": "섞기",
-    "translate": "번역하다"
+    "translate": "번역하다",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -341,6 +355,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

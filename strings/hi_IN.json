@@ -188,6 +188,18 @@
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "अनुवाद विफल. कृपया पुन: प्रयास करें।",
       "label": "अनुवाद"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "dice": "एक पासा (1-6) घुमाएँ और उच्च (4-6), निम्न (1-3), या एक सटीक संख्या पर दांव लगाएं। उपयोग: पासा <शर्त|सभी> उच्च|निम्न|1-6। (उर्फ: रोल)",
     "balance": "खिलाड़ी का वर्तमान संतुलन प्रदर्शित करें। (उर्फ: बाल, पैसा)",
     "top": "अर्थव्यवस्था में शीर्ष खिलाड़ियों को प्रदर्शित करें। (उर्फ: लीडरबोर्ड, शीर्ष खिलाड़ी)",
-    "help": "किसी विशिष्ट कमांड के लिए उपलब्ध कमांड या सहायता की सूची प्रदर्शित करें। (उपनाम: आदेश)"
+    "help": "किसी विशिष्ट कमांड के लिए उपलब्ध कमांड या सहायता की सूची प्रदर्शित करें। (उपनाम: आदेश)",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "ढालना",
@@ -246,7 +259,8 @@
     "inventory": "भंडार",
     "status": "स्थिति",
     "scramble": "संघर्ष",
-    "translate": "अनुवाद"
+    "translate": "अनुवाद",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -348,6 +362,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

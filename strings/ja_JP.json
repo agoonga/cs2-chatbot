@@ -188,6 +188,18 @@
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "翻訳に失敗しました。もう一度試してください。",
       "label": "翻訳"
+    },
+    "slots": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: slots <bet|all>",
+      "invalid_amount": "{player}: Invalid amount. Please enter a valid number.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "spun": "Slots: [{reels}] {result} Balance: ${new_balance:.2f}.",
+      "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
+      "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
+      "lose": "No match. You lose ${bet:.2f}."
     }
   },
   "errors": {
@@ -213,7 +225,8 @@
     "top": "経済ランキングのトップを表示。 (alias: leaderboard, topplayers)",
     "help": "利用可能コマンド一覧や個別ヘルプを表示。 (alias: commands)",
     "flip": "コインを投げて、残高の金額または「考え方」をセールします。 (別名: セール、コインフリップ)",
-    "dice": "サイコロ (1 ～ 6) を振って、高い数字 (4 ～ 6)、低い数字 (1 ～ 3)、または正確な数字を考えます。 使用法: サイコロ <bet|all> high|low|1-6。 （別名：ロール）"
+    "dice": "サイコロ (1 ～ 6) を振って、高い数字 (4 ～ 6)、低い数字 (1 ～ 3)、または正確な数字を考えます。 使用法: サイコロ <bet|all> high|low|1-6。 （別名：ロール）",
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
   },
   "help_command_names": {
     "cast": "つる",
@@ -246,7 +259,8 @@
     "inventory": "もちもの",
     "status": "ステータス",
     "scramble": "まぜる",
-    "translate": "翻訳する"
+    "translate": "翻訳する",
+    "slots": "slots"
   },
   "command_aliases": {
     "cast": [
@@ -367,6 +381,10 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "slots": [
+      "slot",
+      "spin"
     ]
   }
 }

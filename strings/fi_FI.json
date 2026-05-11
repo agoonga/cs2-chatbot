@@ -1,0 +1,371 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "{player} sai kiinni {name}, joka painaa {weight} paunaa arvoltaan {price} dollaria!",
+      "cast_success_autosold": "{player} kiinni {name}, myyty automaattisesti hintaan ${price}!",
+      "empty_line": "{player}: Kelaat tyhjää riviä.",
+      "sack_limit_reached": "Säkkiisi mahtuu vain {sack_size} kalaa.",
+      "sold_all_fish": "Myit kaikki kalasi yhteensä {total_earnings:.2f} dollarilla! Uusi saldosi on ${new_balance:.2f}.",
+      "module_not_found": "{player}: Kalastusmoduulia ei löydy.",
+      "sack_contents": "{player}:n säkki sisältää: {contents}",
+      "sack_empty": "{player}: Säkkisi on tyhjä.",
+      "sack_module_not_found": "{player}: Kalastusmoduulia ei löydy.",
+      "eat_module_not_found": "{player}: Kalastusmoduulia ei löydy.",
+      "sell_module_not_found": "{player}: Kalastusmoduulia ei löydy.",
+      "bait_no_bait_set": "{player}: Sinulla ei ole syöttisarjaa.",
+      "bait_cleared": "{player}: syötti tyhjennetty.",
+      "bait_module_not_found": "{player}: Kalastusmoduulia ei löydy.",
+      "bait_sack_empty": "{player}: Säkkisi on tyhjä.",
+      "sell_all_sack_empty": "Säkkisi on tyhjä. Sinulla ei ole kalaa myytävänä.",
+      "sell_sack_empty": "Säkkisi on tyhjä.",
+      "sell_fish_not_found": "Säkistäsi ei löytynyt '{name}'.",
+      "sold_single_fish": "Myit {name} hintaan {price:.2f} $! Uusi saldosi on ${new_balance:.2f}.",
+      "eat_sack_empty": "Säkkisi on tyhjä.",
+      "eat_fish_not_found": "Säkistäsi ei löytynyt '{name}'.",
+      "ate_fish": "Söit kalan.",
+      "bait_no_fish_to_use": "Säkkisi on tyhjä. Sinulla ei ole kalaa syöttinä.",
+      "bait_not_found": "Säkistäsi ei löytynyt '{bait_name}'.",
+      "bait_set_next": "Käytät {bait_name} syöttinä seuraavaan saaliisi.",
+      "bait_already_set": "Sinulla on jo syöttisarja: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: Olutmoduulia ei löydy.",
+      "no_beer": "{player}: Sinulla ei ole olutta juoda.",
+      "beer_not_found": "Olutta '{beer}' ei löydy.",
+      "no_beer_named": "Sinulla ei ole {beer_name} juotavaa.",
+      "drank": "Juot {beer_name}. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: Kasinomoduulia ei löydy.",
+      "no_balance": "{player}: Sinulla ei ole uhkapeliä.",
+      "invalid_amount": "{player}: Virheellinen summa. Anna kelvollinen numero.",
+      "amount_must_be_positive": "Ei mitenkään, jose, valitse numero, joka on suurempi kuin 0.",
+      "insufficient_funds": "Rahat eivät riitä. Nykyinen saldosi on ${current_balance:.2f}.",
+      "win_heads": "Käänsit päätäsi ja voitit ${amount:.2f}! Uusi saldosi on ${new_balance:.2f}.{chance_suffix}",
+      "lose_tails": "Käänsit häntää ja menetit ${amount:.2f}. Uusi saldosi on ${new_balance:.2f}.{chance_suffix}"
+    },
+    "blackjack": {
+      "module_not_found": "{player}: Kasinomoduulia ei löydy.",
+      "usage": "{player}: Käyttö: blackjack <panos|kaikki> | blackjack osuma | blackjack-teline | blackjack tupla",
+      "invalid_amount": "Virheellinen summa. Anna kelvollinen numero.",
+      "amount_must_be_positive": "Panoksen on oltava suurempi kuin 0.",
+      "insufficient_funds": "Rahat eivät riitä. Nykyinen saldosi on ${current_balance:.2f}.",
+      "double_not_allowed": "Voit vain tuplata ensimmäisenä siirtoasi.",
+      "game_already_active": "Sinulla on jo aktiivinen blackjack-käsi tässä istunnossa.",
+      "started": "Blackjack alkoi. Panos: ${bet:.2f}. Kätesi: {player_hand} ({player_value}). Jälleenmyyjä: {dealer_up}, ?",
+      "no_active_game": "Sinulla ei ole aktiivista blackjack-käsiä tässä istunnossa.",
+      "hit": "Sinä piirrät. Kätesi: {player_hand} ({player_value}). Jälleenmyyjä: {dealer_up}, ?",
+      "bust": "Rintakuva. Kätesi: {player_hand} ({player_value}). Menetät ${bet:.2f}. Saldo: ${new_balance:.2f}.",
+      "stand_result": "{result} Kätesi: {player_hand} ({player_value}). Jakajan käsi: {dealer_hand} ({dealer_value}). Saldo: ${new_balance:.2f}.",
+      "win": "Voitat ${win_amount:.2f}!",
+      "lose": "Menetät ${bet:.2f}.",
+      "push": "Työnnä. Panoksesi palautetaan.",
+      "push_blackjack": "Työnnä. Sekä sinulla että jakajalla on blackjack. Panoksesi palautetaan. Saldo: ${new_balance:.2f}.",
+      "player_blackjack": "Blackjack! Voitat ${win_amount:.2f}. Saldo: ${new_balance:.2f}.",
+      "dealer_blackjack": "Jakajalla on blackjack. Menetät ${bet:.2f}. Saldo: ${new_balance:.2f}."
+    },
+    "dice": {
+      "module_not_found": "{player}: Kasinomoduulia ei löydy.",
+      "usage": "{player}: Käyttö: noppa <panos|kaikki> korkea|matala|1-6",
+      "invalid_bet": "{player}: Virheellinen panossumma.",
+      "amount_must_be_positive": "Panoksen on oltava suurempi kuin 0.",
+      "insufficient_funds": "Rahat eivät riitä. Nykyinen saldosi on ${current_balance:.2f}.",
+      "no_balance": "{player}: Sinulla ei ole uhkapeliä.",
+      "invalid_guess": "Virheellinen arvaus. Käytä \"korkea\", \"matala\" tai numero 1-6.",
+      "rolled": "Rullattu {roll}. Arvattu {guess}. {result} Saldo: ${new_balance:.2f}.",
+      "win": "Voitat ${win_amount:.2f}!",
+      "lose": "Menetät ${bet:.2f}."
+    },
+    "slots": {
+      "module_not_found": "{player}: Kasinomoduulia ei löydy.",
+      "usage": "{player}: Käyttö: kolikkopelit <panos|kaikki>",
+      "invalid_amount": "{player}: Virheellinen summa. Anna kelvollinen numero.",
+      "amount_must_be_positive": "Panoksen on oltava suurempi kuin 0.",
+      "insufficient_funds": "Rahat eivät riitä. Nykyinen saldosi on ${current_balance:.2f}.",
+      "no_balance": "{player}: Sinulla ei ole uhkapeliä.",
+      "spun": "Paikkoja: [{reels}] {result} Saldo: ${new_balance:.2f}.",
+      "win_three": "JÄTTIPOTTI! Kolme samanlaista. Voitat ${win_amount:.2f}!",
+      "win_two": "Mukava! Kaksi vastaavaa symbolia. Voitat ${win_amount:.2f}!",
+      "lose": "Ei ottelua. Menetät ${bet:.2f}."
+    },
+    "inventory": {
+      "module_not_found": "{player}: Varastomoduulia ei löydy.",
+      "empty": "{player}: Selailemalla varastoasi et löydä mitään muuta kuin pölyä.",
+      "contents": "{player}:n varasto: {items}",
+      "open": {
+        "no_cases": "{player}: Sinulla ei ole avattavia tapauksia.",
+        "no_case_named": "Sinulla ei ole {case_name} avattavaa.",
+        "invalid_case": "{case_name} ei ole kelvollinen tapaus.",
+        "opened_case": "Avasit {case_name} ja sait {item_name} arvoisen {price}! Myyt sen ja pussit vaihtorahasi."
+      },
+      "inspect": {
+        "specify_item": "{player}: Määritä tarkastettava kohde.",
+        "default_description": "{player}: Huippusuora {item_name}."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Scramble-moduulia ei löydy.",
+      "start": "Ensimmäinen, joka purkaa sanan, voittaa: {word}",
+      "winner": "{player} purki sanan '{word}' oikein ja voittaa $100!"
+    },
+    "translate": {
+      "label": "käännös",
+      "usage": "Käyttö: !käännä <to> <teksti> | !käännä <from> <to> <text> | >tekstiksi | > tekstistä",
+      "unknown_lang": "Tuntematon kieli '{lang}'. Kokeile: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hei",
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "Käännös epäonnistui. Yritä uudelleen."
+    },
+    "smoke": {
+      "module_not_found": "{player}: Tupakkamoduulia ei löydy.",
+      "no_tobacco": "{player}: Sinulla ei ole tupakkaa.",
+      "tobacco_not_found": "Tupakkaa '{tobacco}' ei löydy.",
+      "no_tobacco_named": "Sinulla ei ole mitään {tobacco_name} tsemppiä.",
+      "smoked": "Tyhjennät {tobacco_name}. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: Tilin linkitysmoduulia ei löydy.",
+      "code_generated": "{player}: Käytä koodia {code} linkittääksesi toisen tilin. Koodi vanhenee {minutes} minuutin kuluttua.",
+      "no_linked_accounts": "{player}: Linkitettyjä tilejä ei löytynyt.",
+      "linked_accounts": "Käyttäjän {player} linkitetyt tilit: {accounts}",
+      "invalid_code": "Virheellinen koodi. Tarkista ja yritä uudelleen.",
+      "code_expired": "Koodi on vanhentunut. Luo uusi.",
+      "cannot_link_self": "Tiliä ei voi linkittää itseensä.",
+      "already_linked_different_ids": "Ei voi linkittää tilejä, jotka on jo linkitetty eri tilitunnuksiin.",
+      "success": "{target_platform}-käyttäjän \"{target_identifier}\" linkitys {source_platform}-käyttäjään \"{source_identifier}\" onnistui."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Kalastusmoduulia ei löydy.",
+      "list_empty": "{player}: Automyynnin lista on tyhjä.",
+      "list": "{player}: Kalan automaattimyynti: {fish_list}",
+      "usage_add": "{player}: Käyttö: @autosell add <fish|all>",
+      "usage_remove": "{player}: Käyttö: @autosell poista <kala>",
+      "usage_general": "{player}: Käyttö: @autosell [lisää|poista] <kala|kaikki>, @autosell tyhjennä tai @autosell luetteloon.",
+      "add_all_success": "{player}: Automaattinen myynti käytössä kaikille kalatyypeille ({count})."
+    },
+    "quest": {
+      "system_not_available": "Quest-järjestelmä ei ole käytettävissä.",
+      "next_available_in": "Seuraava päivittäinen seikkailu saatavilla {time_remaining}",
+      "no_daily_available": "Päivittäistä tehtävää ei ole saatavilla."
+    },
+    "ship": {
+      "provide_name": "{player}: Anna nimi, jolla lähetät!",
+      "compatibility": "{player} ja {target} ovat {compatibility}% yhteensopivia!"
+    },
+    "status": {
+      "module_not_found": "{player}: Status Effects -moduulia ei löydy.",
+      "no_effects": "{player}: Sinulla ei ole aktiivisia tilatehosteita.",
+      "effects_list": "{player}:n tilatehosteet: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Trophy-moduulia ei ladattu.",
+      "empty_case": "{player}: Pokaalikotelosi on tyhjä. Käytä pokaalin lisäystä <kalan_nimi> lisätäksesi kalaa!",
+      "usage_add": "{player}: Käyttö: pokaalin lisäys <kalan_nimi>",
+      "usage_remove": "{player}: Käyttö: pokaalin poistaminen <numero>",
+      "number_must_be_numeric": "{player}: Trophy-numeron on oltava numero.",
+      "unknown_subcommand": "{player}: Tuntematon alakomento. Käytä: pokaali [lisää <kalan_nimi> | poista <numero>]"
+    },
+    "shop": {
+      "available_categories": "{player}: Käytettävissä olevat luokat: {categories}",
+      "no_items_available": "{player}: Kaupassa ei ole tuotteita saatavilla.",
+      "shop_items": "{player}: Saatavilla olevat kaupassa olevat tuotteet: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, maksimi: {item_max})",
+      "module_not_found": "{player}: Kauppamoduulia ei löydy.",
+      "buy_no_item_specified": "{player}: Määritä ostettava kohde.",
+      "buy_module_not_found": "{player}: Kauppamoduulia ei löydy.",
+      "rods_shortcut_help": "Katso saatavilla olevat vavat kaupasta.",
+      "invalid_quantity": "Virheellinen määrä.",
+      "item_not_found": "Kauppias huokaa ja sanoo: \"Minulla ei ole sitä tuotetta.\"",
+      "max_quantity_reached": "Sinulla voi olla vain {max_count} tätä tuotetta kerrallaan.",
+      "insufficient_funds": "Kauppias sanoo: \"Eikö se ole liian rikasta verellesi?\"",
+      "purchase_success": "Ostit {quantity} x '{item_name}'. Uusi saldosi on ${money_left}.",
+      "purchase_processing_error": "Virhe ostoa käsiteltäessä: {error}",
+      "category_not_found": "Luokkaa ei löydy. Käytettävissä olevat luokat: {categories}",
+      "no_items_in_category": "Tässä luokassa ei ole saatavilla tuotteita.",
+      "nothing_for_you": "Kauppias sanoo: \"Minulla ei ole sinulle mitään.\""
+    },
+    "economy": {
+      "balance_response": "{player}, nykyinen saldosi on ${balance}.",
+      "top_players_list": "{player}: Parhaat pelaajat: {list}",
+      "top_no_players": "{player}: Pelaajia ei löytynyt.",
+      "module_not_found": "{player}: Economy-moduulia ei löydy."
+    },
+    "help": {
+      "no_help_available": "{player}: Ei apua kohteelle '{command}'.",
+      "available_commands": "{player}: Käytettävissä olevat komennot: {list}",
+      "module_not_found": "{player}: Ohjemoduulia ei löydy."
+    },
+    "femboy": {
+      "self_is": "{player}: Olen femboy ({chance}%)",
+      "self_is_not": "{player}: En ole femboy ({chance}%)",
+      "target_is": "{player}: {target} is a femboy ({chance}%)",
+      "target_is_not": "{player}: {target} ei ole femboy ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "Moduulia ei löydy: {module}",
+    "command_not_found": "{player}: Komentoa '{command}' ei löydy.",
+    "command_not_found_with_suggestion": "{player}: Komentoa '{command}' ei löydy. Tarkoititko '{suggestion}'?",
+    "spam_cooldown": "{player}: Hidasta. Olet jäähtymässä {seconds}s.",
+    "invalid_input": "Virheellinen syöte",
+    "insufficient_funds": "Rahat eivät riitä",
+    "item_not_found": "Kohdetta ei löydy"
+  },
+  "help_texts": {
+    "cast": "Heitä onkisi saadaksesi kalan tai esineen. (alias: kala, gofish)",
+    "sack": "Näytä kalastussäkkisi sisältö. (alias: laukku)",
+    "eat": "Syö kala säkistäsi.",
+    "sell": "Myy kala säkistäsi tai \"kaikki\" kalat.",
+    "bait": "Käytä kalaa syöttinä lisätäksesi mahdollisuuksiasi saada isompi. \"viimeinen\" käyttää säkkisi viimeistä kalaa, \"kirkas\" syötin poistamiseen.",
+    "shop": "Listaa saatavilla olevat luokat ja tuotteet osiossa 'shop <category>'.",
+    "buy": "Osta tuote kaupasta.",
+    "rods": "Katso saatavilla olevat vavat kaupasta.",
+    "flip": "Heitä kolikko pelataksesi summa tai \"kaikki\" saldosi. (alias: uhkapeli, kolikonheitto)",
+    "blackjack": "Pelaa yhden pelaajan blackjackia: blackjack <bet|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Heitä noppaa (1-6) ja panosta korkealle (4-6), matalalle (1-3) tai tarkalle numerolle. Käyttö: noppa <panos|kaikki> korkea|matala|1-6. (alias: rulla)",
+    "slots": "Pyöritä kolikkopeliä: kolikkopelit <panos|kaikki>. (alias: slot, spin)",
+    "balance": "Näytä pelaajan nykyinen saldo. (alias: bal, raha)",
+    "top": "Näytä talouden parhaat pelaajat. (alias: tulostaulukko, huippupelaajat)",
+    "help": "Näytä luettelo käytettävissä olevista komennoista tai tietyn komennon ohje. (alias: komennot)"
+  },
+  "help_command_names": {
+    "cast": "heittää",
+    "sack": "säkki",
+    "eat": "syödä",
+    "sell": "myydä",
+    "bait": "syötti",
+    "sellall": "myydä",
+    "shop": "kauppa",
+    "buy": "ostaa",
+    "rods": "tangot",
+    "smoke": "savu",
+    "drink": "juoda",
+    "open": "avata",
+    "inspect": "tarkastaa",
+    "autosell": "automyynti",
+    "link": "linkki",
+    "linked": "linkitetty",
+    "flip": "kääntää",
+    "blackjack": "blackjack",
+    "dice": "noppaa",
+    "slots": "lähtö",
+    "trophy": "pokaali",
+    "ship": "laiva",
+    "femboy": "femboy",
+    "daily": "päivittäin",
+    "quest": "tehtävä",
+    "balance": "saldo",
+    "top": "alkuun",
+    "help": "auttaa",
+    "inventory": "inventaario",
+    "status": "status",
+    "scramble": "kömpiä",
+    "translate": "kääntää"
+  },
+  "command_aliases": {
+    "cast": [
+      "fish",
+      "gofish"
+    ],
+    "sack": [
+      "bag"
+    ],
+    "eat": [
+      "eat"
+    ],
+    "sell": [
+      "sell"
+    ],
+    "bait": [
+      "bait"
+    ],
+    "sellall": [
+      "sellall"
+    ],
+    "shop": [
+      "shop"
+    ],
+    "buy": [
+      "buy"
+    ],
+    "rods": [
+      "rods"
+    ],
+    "balance": [
+      "bal",
+      "money"
+    ],
+    "top": [
+      "leaderboard",
+      "topplayers"
+    ],
+    "help": [
+      "commands",
+      "cmds"
+    ],
+    "link": [
+      "link"
+    ],
+    "linked": [
+      "accounts"
+    ],
+    "quest": [
+      "quest"
+    ],
+    "autosell": [
+      "autosell"
+    ],
+    "inventory": [
+      "inventory",
+      "inv"
+    ],
+    "open": [
+      "open",
+      "case"
+    ],
+    "inspect": [
+      "inspect"
+    ],
+    "drink": [
+      "beer",
+      "sip"
+    ],
+    "smoke": [
+      "chuff",
+      "pack"
+    ],
+    "flip": [
+      "gamble",
+      "coinflip"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "dice": [
+      "roll"
+    ],
+    "slots": [
+      "slot",
+      "spin"
+    ],
+    "status": [
+      "effects"
+    ],
+    "trophy": [
+      "trophy"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "daily": [
+      "quest"
+    ],
+    "scramble": [
+      "scramble"
+    ],
+    "translate": [
+      "trans",
+      "tl"
+    ]
+  }
+}

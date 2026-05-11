@@ -24,6 +24,8 @@ LOCALES = [
     "zh_CN",
     "en_SG",
     "hi_IN",
+    "he_IL",
+    "fi_FI",
 ]
 
 
