@@ -44,6 +44,18 @@
       "player_blackjack": "¡Blackjack! Ganas ${win_amount:.2f}. Saldo: ${new_balance:.2f}.",
       "dealer_blackjack": "El crupier tiene blackjack. Pierdes ${bet:.2f}. Saldo: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Módulo de casino no encontrado.",
+      "usage": "{player}: Uso: dados <apuesta|all> alto|bajo|1-6",
+      "invalid_bet": "{player}: Cantidad de apuesta inválida.",
+      "amount_must_be_positive": "La apuesta debe ser mayor que 0.",
+      "insufficient_funds": "Fondos insuficientes. Tu saldo actual es ${current_balance:.2f}.",
+      "no_balance": "{player}: No tienes saldo para apostar.",
+      "invalid_guess": "Predicción inválida. Usa 'alto', 'bajo', o un número 1-6.",
+      "rolled": "Salió {roll}. Adivinaste {guess}. {result} Saldo: ${new_balance:.2f}.",
+      "win": "¡Ganas ${win_amount:.2f}!",
+      "lose": "Pierdes ${bet:.2f}."
+    },
     "smoke": {
       "module_not_found": "{player}: Módulo de tabaco no encontrado.",
       "no_tobacco": "{player}: No tienes tabaco para fumar.",
@@ -106,8 +118,7 @@
     "shop": "Muestra las categorías disponibles y objetos en 'shop <categoría>'.",
     "buy": "Compra un objeto de la tienda.",
     "rods": "Ver cañas de pesca disponibles en la tienda.",
-    "blackjack": "Juega blackjack para un jugador: blackjack <apuesta|all>, blackjack hit, blackjack stand, blackjack double.",
-    "balance": "Muestra el saldo actual del jugador. (alias: bal, money)",
+    "blackjack": "Juega blackjack para un jugador: blackjack <apuesta|all>, blackjack hit, blackjack stand, blackjack double.",    "dice": "Lanza los dados (1-6) y apuesta en alto (4-6), bajo (1-3), o un número exacto. Uso: dados <apuesta|all> alto|bajo|1-6. (alias: roll)",    "balance": "Muestra el saldo actual del jugador. (alias: bal, money)",
     "top": "Muestra a los mejores jugadores en la economía. (alias: leaderboard, topplayers)",
     "help": "Muestra la lista de comandos disponibles o ayuda de un comando. (alias: commands)"
   },

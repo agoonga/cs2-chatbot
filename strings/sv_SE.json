@@ -64,6 +64,18 @@
       "player_blackjack": "Blackjack! Du vinner ${win_amount:.2f}. Saldo: ${new_balance:.2f}.",
       "dealer_blackjack": "Dealern har blackjack. Du förlorar ${bet:.2f}. Saldo: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Kasinomodulen hittades inte.",
+      "usage": "{player}: Användning: tarningen <insats|all> högt|lågt|1-6",
+      "invalid_bet": "{player}: Ogiltigt insatsbelopp.",
+      "amount_must_be_positive": "Insatsen måste vara större än 0.",
+      "insufficient_funds": "Otillräckliga pengar. Ditt nuvarande saldo är ${current_balance:.2f}.",
+      "no_balance": "{player}: Du har inget saldo att spela för.",
+      "invalid_guess": "Ogiltig gissning. Använd 'högt', 'lågt' eller ett tal 1-6.",
+      "rolled": "Du slog {roll}. Du gissade {guess}. {result} Saldo: ${new_balance:.2f}.",
+      "win": "Du vinner ${win_amount:.2f}!",
+      "lose": "Du förlorar ${bet:.2f}."
+    },
     "inventory": {
       "module_not_found": "{player}: Inventariemodulen hittades inte.",
       "empty": "{player}: Du rotar i inventariet men hittar inget annat än damm.",
@@ -187,8 +199,7 @@
     "shop": "Lista tillgängliga kategorier och saker i 'shop <kategori>'.",
     "buy": "Köp en sak i butiken.",
     "rods": "Visa tillgängliga fiskespön i butiken.",
-    "blackjack": "Spela enspelar-blackjack: blackjack <insats|all>, blackjack hit, blackjack stand, blackjack double.",
-    "balance": "Visa spelarens nuvarande saldo. (alias: bal, money)",
+    "blackjack": "Spela enspelar-blackjack: blackjack <insats|all>, blackjack hit, blackjack stand, blackjack double.",    "dice": "Slå tärningar (1-6) och satsa på högt (4-6), lågt (1-3) eller ett exakt nummer. Användning: tarningen <insats|all> högt|lågt|1-6. (alias: roll)",    "balance": "Visa spelarens nuvarande saldo. (alias: bal, money)",
     "top": "Visa toppspelarna i ekonomin. (alias: leaderboard, topplayers)",
     "help": "Visa listan över tillgängliga kommandon eller hjälp för ett särskilt kommando. (alias: commands)"
   },

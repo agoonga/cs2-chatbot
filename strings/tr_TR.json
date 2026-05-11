@@ -64,6 +64,18 @@
       "player_blackjack": "Blackjack! ${win_amount:.2f} kazandın. Bakiye: ${new_balance:.2f}.",
       "dealer_blackjack": "Krupiye blackjack yaptı. ${bet:.2f} kaybettin. Bakiye: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Kumarhane modülü bulunamadı.",
+      "usage": "{player}: Kullanım: zarlar <bahis|all> yüksek|düşük|1-6",
+      "invalid_bet": "{player}: Geçersiz bahis miktarı.",
+      "amount_must_be_positive": "Bahis miktarı 0'dan büyük olmalıdır.",
+      "insufficient_funds": "Yetersiz bakiye. Mevcut bakiyen ${current_balance:.2f}.",
+      "no_balance": "{player}: Bahis yapacak bakiyen yok.",
+      "invalid_guess": "Geçersiz tahmin. 'yüksek', 'düşük' veya 1-6 arasında bir sayı kullan.",
+      "rolled": "{roll} çıktı. {guess} tahmin ettin. {result} Bakiye: ${new_balance:.2f}.",
+      "win": "${win_amount:.2f} kazandın!",
+      "lose": "${bet:.2f} kaybettin."
+    },
     "inventory": {
       "module_not_found": "{player}: Envanter modülü bulunamadı.",
       "empty": "{player}: Envanterini karıştırıyorsun ama tozdan başka bir şey bulamıyorsun.",
@@ -210,8 +222,7 @@
     "link": "bagla",
     "linked": "bagli",
     "flip": "yazitura",
-    "blackjack": "blackjack",
-    "trophy": "kupa",
+    "blackjack": "blackjack",    "dice": "zarlar",    "trophy": "kupa",
     "ship": "ship",
     "femboy": "femboy",
     "daily": "gunluk",

@@ -44,6 +44,18 @@
       "player_blackjack": "ブラックジャック！ ${win_amount:.2f}の勝ち。残高: ${new_balance:.2f}。",
       "dealer_blackjack": "ディーラーがブラックジャック。${bet:.2f}の負け。残高: ${new_balance:.2f}。"
     },
+    "dice": {
+      "module_not_found": "{player}: カジノモジュールが見つかりません。",
+      "usage": "{player}: 使用法: さいころ <ベット|all> 高|低|1-6",
+      "invalid_bet": "{player}: 無効なベット金額です。",
+      "amount_must_be_positive": "ベット額は0より大きくしてください。",
+      "insufficient_funds": "残高不足です。現在の残高は${current_balance:.2f}です。",
+      "no_balance": "{player}: ベットする残高がありません。",
+      "invalid_guess": "無効な予想です。'高'、'低'、または1-6の番号を使用してください。",
+      "rolled": "{roll}が出ました。{guess}と予想しました。{result} 残高: ${new_balance:.2f}。",
+      "win": "${win_amount:.2f}の勝ち！",
+      "lose": "${bet:.2f}の負け。"
+    },
     "smoke": {
       "module_not_found": "{player}: タバコモジュールが見つかりません。",
       "no_tobacco": "{player}: 吸えるタバコがありません。",
@@ -130,6 +142,7 @@
     "linked": "れんけいずみ",
     "flip": "コイントス",
     "blackjack": "ブラックジャック",
+    "dice": "さいころ",
     "trophy": "トロフィー",
     "ship": "シップ",
     "femboy": "femboy",

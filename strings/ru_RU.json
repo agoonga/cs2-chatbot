@@ -64,6 +64,18 @@
       "player_blackjack": "Блэкджек! Вы выиграли ${win_amount:.2f}. Баланс: ${new_balance:.2f}.",
       "dealer_blackjack": "У дилера блэкджек. Вы проиграли ${bet:.2f}. Баланс: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Модуль казино не найден.",
+      "usage": "{player}: Использование: кости <ставка|all> высокий|низкий|1-6",
+      "invalid_bet": "{player}: Неверная сумма ставки.",
+      "amount_must_be_positive": "Ставка должна быть больше 0.",
+      "insufficient_funds": "Недостаточно средств. Ваш текущий баланс: ${current_balance:.2f}.",
+      "no_balance": "{player}: У вас нет баланса для ставки.",
+      "invalid_guess": "Неверное предположение. Используйте 'высокий', 'низкий' или число 1-6.",
+      "rolled": "Вы выбросили {roll}. Вы угадали {guess}. {result} Баланс: ${new_balance:.2f}.",
+      "win": "Вы выиграли ${win_amount:.2f}!",
+      "lose": "Вы проиграли ${bet:.2f}."
+    },
     "inventory": {
       "module_not_found": "{player}: Модуль инвентаря не найден.",
       "empty": "{player}: Вы роетесь в инвентаре, но находите только пыль.",
@@ -188,6 +200,7 @@
     "buy": "Купить предмет в магазине.",
     "rods": "Посмотреть доступные удочки в магазине.",
     "blackjack": "Одиночный блэкджек: blackjack <ставка|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Бросьте кости (1-6) и сделайте ставку на высокий (4-6), низкий (1-3) или точное число. Использование: кости <ставка|all> высокий|низкий|1-6. (alias: roll)",
     "balance": "Показать текущий баланс игрока. (alias: bal, money)",
     "top": "Показать топ игроков в экономике. (alias: leaderboard, topplayers)",
     "help": "Показать список доступных команд или справку по команде. (alias: commands)"

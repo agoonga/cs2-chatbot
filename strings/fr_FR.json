@@ -44,6 +44,18 @@
       "player_blackjack": "Blackjack ! Vous gagnez ${win_amount:.2f}. Solde : ${new_balance:.2f}.",
       "dealer_blackjack": "Le croupier a blackjack. Vous perdez ${bet:.2f}. Solde : ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Module casino introuvable.",
+      "usage": "{player}: Utilisation : des <mise|all> haut|bas|1-6",
+      "invalid_bet": "{player}: Montant de mise invalide.",
+      "amount_must_be_positive": "La mise doit etre superieure a 0.",
+      "insufficient_funds": "Fonds insuffisants. Votre solde actuel est ${current_balance:.2f}.",
+      "no_balance": "{player}: Vous n'avez pas de solde pour parier.",
+      "invalid_guess": "Prediction invalide. Utilisez 'haut', 'bas', ou un nombre 1-6.",
+      "rolled": "Vous avez roule {roll}. Vous avez devine {guess}. {result} Solde : ${new_balance:.2f}.",
+      "win": "Vous gagnez ${win_amount:.2f} !",
+      "lose": "Vous perdez ${bet:.2f}."
+    },
     "smoke": {
       "module_not_found": "{player}: Module tabac introuvable.",
       "no_tobacco": "{player}: Vous n'avez pas de tabac a fumer.",
@@ -106,8 +118,7 @@
     "shop": "Liste les categories disponibles et les objets dans 'shop <categorie>'.",
     "buy": "Achetez un objet dans la boutique.",
     "rods": "Voir les cannes disponibles dans la boutique.",
-    "blackjack": "Jouez au blackjack solo : blackjack <mise|all>, blackjack hit, blackjack stand, blackjack double.",
-    "balance": "Affiche le solde du joueur. (alias: bal, money)",
+    "blackjack": "Jouez au blackjack solo : blackjack <mise|all>, blackjack hit, blackjack stand, blackjack double.",    "dice": "Lancez les dés (1-6) et pariez sur haut (4-6), bas (1-3), ou un nombre exact. Utilisation: dés <mise|all> haut|bas|1-6. (alias: roll)",    "balance": "Affiche le solde du joueur. (alias: bal, money)",
     "top": "Affiche les meilleurs joueurs. (alias: leaderboard, topplayers)",
     "help": "Affiche la liste des commandes ou l'aide d'une commande. (alias: commands)"
   },
@@ -129,8 +140,7 @@
     "link": "lier",
     "linked": "compteslies",
     "flip": "pileouface",
-    "blackjack": "blackjack",
-    "trophy": "trophee",
+    "blackjack": "blackjack",    "dice": "dés",    "trophy": "trophee",
     "ship": "ship",
     "femboy": "femboy",
     "daily": "quotidien",
@@ -167,8 +177,7 @@
     "smoke": ["fumer"],
     "flip": ["pileouface"],
     "blackjack": ["bj"],
-    "status": ["statut"],
-    "trophy": ["trophee"],
+    "status": ["statut"]    "dice": ["roll"],    "trophy": ["trophee"],
     "ship": ["ship"],
     "scramble": ["melange"]
   }

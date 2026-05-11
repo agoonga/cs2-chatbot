@@ -44,6 +44,18 @@
       "player_blackjack": "Blackjack! Je wint ${win_amount:.2f}. Saldo: ${new_balance:.2f}.",
       "dealer_blackjack": "Dealer heeft blackjack. Je verliest ${bet:.2f}. Saldo: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Casinò-module niet gevonden.",
+      "usage": "{player}: Gebruik: dobbel <inzet|all> hoog|laag|1-6",
+      "invalid_bet": "{player}: Ongeldig inzet bedrag.",
+      "amount_must_be_positive": "De inzet moet groter zijn dan 0.",
+      "insufficient_funds": "Onvoldoende saldo. Je huidige saldo is ${current_balance:.2f}.",
+      "no_balance": "{player}: Je hebt geen saldo om in te zetten.",
+      "invalid_guess": "Ongeldige gok. Gebruik 'hoog', 'laag' of een getal 1-6.",
+      "rolled": "Je gooide {roll}. Je giste {guess}. {result} Saldo: ${new_balance:.2f}.",
+      "win": "Je wint ${win_amount:.2f}!",
+      "lose": "Je verliest ${bet:.2f}."
+    },
     "smoke": {
       "module_not_found": "{player}: Tabak-module niet gevonden.",
       "no_tobacco": "{player}: Je hebt geen tabak om te roken.",
@@ -107,6 +119,7 @@
     "buy": "Koop een item uit de winkel.",
     "rods": "Bekijk beschikbare hengels in de winkel.",
     "blackjack": "Speel singleplayer blackjack: blackjack <inzet|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Gooi dobbelstenen (1-6) en wed op hoog (4-6), laag (1-3) of een exact getal. Gebruik: dobbel <inzet|all> hoog|laag|1-6. (alias: roll)",
     "balance": "Toon het huidige saldo van de speler. (alias: bal, money)",
     "top": "Toon de top spelers in de economie. (alias: leaderboard, topplayers)",
     "help": "Toon de lijst met beschikbare commando's of hulp voor een commando. (alias: commands)"

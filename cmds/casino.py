@@ -126,4 +126,51 @@ def blackjack_double_command(bot, is_team: bool, playername: str, chattext: str)
     session_id = bot.get_request_session() if hasattr(bot, "get_request_session") else "default"
     result = casino_module.blackjack_double(playername, session_id, t=bot.t)
     bot.add_to_chat_queue(is_team, f"{playername}: {result}")
+
+
+@command_registry.register("dice", aliases=["roll", "d"])
+def dice_command(bot, is_team: bool, playername: str, chattext: str) -> None:
+    """
+    Roll a dice (1-6) and gamble an amount.
+
+    Usage: dice <bet> high|low|1-6
+
+    :param bot: The Bot instance.
+    :param is_team: Whether the message is for the team chat.
+    :param playername: The name of the player.
+    :param chattext: The bet amount and guess (e.g., "10 high" or "50 4").
+    """
+    casino_module: CasinoModule = bot.modules.get_module("casino")
+    if not casino_module:
+        bot.add_to_chat_queue(is_team, bot.t("commands.dice.module_not_found", player=playername))
+        return
+
+    text = chattext.strip()
+    if not text:
+        bot.add_to_chat_queue(is_team, bot.t("commands.dice.usage", player=playername))
+        return
+
+    parts = text.split(maxsplit=1)
+    if len(parts) < 2:
+        bot.add_to_chat_queue(is_team, bot.t("commands.dice.usage", player=playername))
+        return
+
+    bet_str, guess = parts[0], parts[1]
+
+    try:
+        # Check if the user wants to bet their entire balance
+        if bet_str.lower() == "all":
+            amount = casino_module.economy.get_balance(playername)
+            if amount <= 0:
+                bot.add_to_chat_queue(is_team, bot.t("commands.dice.no_balance", player=playername))
+                return
+        else:
+            amount = float(bet_str)
+
+        # Perform the dice roll
+        result = casino_module.dice_roll(playername, amount, guess, t=bot.t)
+        bot.add_to_chat_queue(is_team, f"{playername}: {result}")
+    except ValueError:
+        bot.add_to_chat_queue(is_team, bot.t("commands.dice.invalid_bet", player=playername))
+        
         

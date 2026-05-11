@@ -44,6 +44,18 @@
       "player_blackjack": "Blackjack! Hai vinto ${win_amount:.2f}. Saldo: ${new_balance:.2f}.",
       "dealer_blackjack": "Il banco ha blackjack. Perdi ${bet:.2f}. Saldo: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Modulo casinò non trovato.",
+      "usage": "{player}: Uso: dadi <puntata|all> alto|basso|1-6",
+      "invalid_bet": "{player}: Importo della puntata non valido.",
+      "amount_must_be_positive": "La puntata deve essere maggiore di 0.",
+      "insufficient_funds": "Fondi insufficienti. Il tuo saldo attuale è ${current_balance:.2f}.",
+      "no_balance": "{player}: Non hai saldo per scommettere.",
+      "invalid_guess": "Previsione non valida. Usa 'alto', 'basso' o un numero 1-6.",
+      "rolled": "Hai tirato {roll}. Hai indovinato {guess}. {result} Saldo: ${new_balance:.2f}.",
+      "win": "Hai vinto ${win_amount:.2f}!",
+      "lose": "Hai perso ${bet:.2f}."
+    },
     "smoke": {
       "module_not_found": "{player}: Modulo tabacco non trovato.",
       "no_tobacco": "{player}: Non hai tabacco da fumare.",
@@ -106,8 +118,7 @@
     "shop": "Mostra le categorie disponibili e gli oggetti in 'shop <categoria>'.",
     "buy": "Compra un oggetto dal negozio.",
     "rods": "Vedi le canne disponibili nel negozio.",
-    "blackjack": "Gioca a blackjack in singolo: blackjack <puntata|all>, blackjack hit, blackjack stand, blackjack double.",
-    "balance": "Mostra il saldo attuale del giocatore. (alias: bal, money)",
+    "blackjack": "Gioca a blackjack in singolo: blackjack <puntata|all>, blackjack hit, blackjack stand, blackjack double.",    "dice": "Lancia i dadi (1-6) e scommetti su alto (4-6), basso (1-3) o un numero esatto. Uso: dadi <puntata|all> alto|basso|1-6. (alias: roll)",    "balance": "Mostra il saldo attuale del giocatore. (alias: bal, money)",
     "top": "Mostra i migliori giocatori in economia. (alias: leaderboard, topplayers)",
     "help": "Mostra la lista dei comandi disponibili o aiuto per un comando. (alias: commands)"
   },

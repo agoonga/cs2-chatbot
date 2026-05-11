@@ -44,6 +44,18 @@
       "player_blackjack": "Blackjack! Du gewinnst ${win_amount:.2f}. Guthaben: ${new_balance:.2f}.",
       "dealer_blackjack": "Der Dealer hat Blackjack. Du verlierst ${bet:.2f}. Guthaben: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Kasino-Modul nicht gefunden.",
+      "usage": "{player}: Verwendung: wuerfel <einsatz|all> hoch|tief|1-6",
+      "invalid_bet": "{player}: Ungueltiger Einsatzbetrag.",
+      "amount_must_be_positive": "Der Einsatz muss groesser als 0 sein.",
+      "insufficient_funds": "Unzureichendes Guthaben. Dein aktuelles Guthaben ist ${current_balance:.2f}.",
+      "no_balance": "{player}: Du hast kein Guthaben zum Wetten.",
+      "invalid_guess": "Ungueltige Vermutung. Verwende 'hoch', 'tief' oder eine Zahl 1-6.",
+      "rolled": "Gewuerfelt {roll}. Du hast {guess} getippt. {result} Guthaben: ${new_balance:.2f}.",
+      "win": "Du gewinnst ${win_amount:.2f}!",
+      "lose": "Du verlierst ${bet:.2f}."
+    },
     "smoke": {
       "module_not_found": "{player}: Tabak-Modul nicht gefunden.",
       "no_tobacco": "{player}: Du hast keinen Tabak zum Rauchen.",
@@ -106,8 +118,7 @@
     "shop": "Listet Kategorien und Gegenstande in 'shop <kategorie>' auf.",
     "buy": "Kaufe einen Gegenstand im Shop.",
     "rods": "Verfugbare Ruten im Shop anzeigen.",
-    "blackjack": "Spiele Singleplayer-Blackjack: blackjack <einsatz|all>, blackjack hit, blackjack stand, blackjack double.",
-    "balance": "Zeigt das aktuelle Guthaben des Spielers. (alias: bal, money)",
+    "blackjack": "Spiele Singleplayer-Blackjack: blackjack <einsatz|all>, blackjack hit, blackjack stand, blackjack double.",    "dice": "Würfel (1-6) rollen und auf hoch (4-6), tief (1-3) oder eine genaue Nummer setzen. Verwendung: wuerfel <einsatz|all> hoch|tief|1-6. (alias: roll)",    "balance": "Zeigt das aktuelle Guthaben des Spielers. (alias: bal, money)",
     "top": "Zeigt die besten Spieler in der Wirtschaft. (alias: leaderboard, topplayers)",
     "help": "Zeigt verfugbare Befehle oder Hilfe zu einem Befehl. (alias: commands)"
   },
@@ -130,6 +141,7 @@
     "linked": "verknupft",
     "flip": "muenzwurf",
     "blackjack": "blackjack",
+    "dice": "wuerfel",
     "trophy": "trophae",
     "ship": "ship",
     "femboy": "femboy",
@@ -166,6 +178,7 @@
     "drink": ["trinken"],
     "smoke": ["rauchen"],
     "flip": ["muenzwurf"],
+    "dice": ["roll"],
     "blackjack": ["bj"],
     "status": ["status"],
     "trophy": ["trophae"],

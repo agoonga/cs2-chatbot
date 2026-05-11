@@ -64,6 +64,18 @@
       "player_blackjack": "블랙잭! ${win_amount:.2f}를 얻었습니다. 잔액: ${new_balance:.2f}.",
       "dealer_blackjack": "딜러 블랙잭. ${bet:.2f}를 잃었습니다. 잔액: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: 카지노 모듈을 찾을 수 없습니다.",
+      "usage": "{player}: 사용법: 주사위 <배팅금액|all> 높음|낮음|1-6",
+      "invalid_bet": "{player}: 잘못된 베팅 금액입니다.",
+      "amount_must_be_positive": "배팅 금액은 0보다 커야 합니다.",
+      "insufficient_funds": "잔액이 부족합니다. 현재 잔액은 ${current_balance:.2f}입니다.",
+      "no_balance": "{player}: 베팅할 잔액이 없습니다.",
+      "invalid_guess": "잘못된 추측입니다. '높음', '낮음' 또는 1-6 사이의 숫자를 사용하세요.",
+      "rolled": "{roll}이 나왔습니다. {guess}를 맞혔습니다. {result} 잔액: ${new_balance:.2f}.",
+      "win": "${win_amount:.2f}를 얻었습니다!",
+      "lose": "${bet:.2f}를 잃었습니다."
+    },
     "inventory": {
       "module_not_found": "{player}: 인벤토리 모듈을 찾을 수 없습니다.",
       "empty": "{player}: 인벤토리를 뒤졌지만 먼지밖에 없습니다.",
@@ -211,6 +223,7 @@
     "linked": "연결됨",
     "flip": "동전던지기",
     "blackjack": "블랙잭",
+    "dice": "주사위",
     "trophy": "트로피",
     "ship": "ship",
     "femboy": "femboy",

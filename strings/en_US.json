@@ -64,6 +64,18 @@
       "player_blackjack": "Blackjack! You win ${win_amount:.2f}. Balance: ${new_balance:.2f}.",
       "dealer_blackjack": "Dealer has blackjack. You lose ${bet:.2f}. Balance: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Casino module not found.",
+      "usage": "{player}: Usage: dice <bet|all> high|low|1-6",
+      "invalid_bet": "{player}: Invalid bet amount.",
+      "amount_must_be_positive": "Bet must be greater than 0.",
+      "insufficient_funds": "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+      "no_balance": "{player}: You have no balance to gamble.",
+      "invalid_guess": "Invalid guess. Use 'high', 'low', or a number 1-6.",
+      "rolled": "Rolled {roll}. Guessed {guess}. {result} Balance: ${new_balance:.2f}.",
+      "win": "You win ${win_amount:.2f}!",
+      "lose": "You lose ${bet:.2f}."
+    },
     "inventory": {
       "module_not_found": "{player}: Inventory module not found.",
       "empty": "{player}: Rummaging through your inventory, you find nothing but dust.",
@@ -187,7 +199,9 @@
     "shop": "List the categories available, and items in 'shop <category>'.",
     "buy": "Buy an item from the shop.",
     "rods": "View available fishing rods in the shop.",
+    "flip": "Flip a coin to gamble an amount or 'all' for your balance. (alias: gamble, coinflip)",
     "blackjack": "Play one-player blackjack: blackjack <bet|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Roll a dice (1-6) and bet on high (4-6), low (1-3), or an exact number. Usage: dice <bet|all> high|low|1-6. (alias: roll)",
     "balance": "Display the player's current balance. (alias: bal, money)",
     "top": "Display the top players in the economy. (alias: leaderboard, topplayers)",
     "help": "Display the list of available commands or help for a specific command. (alias: commands)"
@@ -211,6 +225,7 @@
     "linked": "linked",
     "flip": "flip",
     "blackjack": "blackjack",
+    "dice": "dice",
     "trophy": "trophy",
     "ship": "ship",
     "femboy": "femboy",
@@ -247,6 +262,7 @@
     "smoke": ["chuff", "pack"],
     "flip": ["gamble", "coinflip"],
     "blackjack": ["bj"],
+    "dice": ["roll"],
     "status": ["effects"],
     "trophy": ["trophy"],
     "ship": ["ship"],

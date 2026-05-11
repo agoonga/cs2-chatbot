@@ -323,3 +323,94 @@ class Casino:
 
         self._bj_finish(user_id, session_id)
         return summary
+
+    def dice_roll(self, user_id, amount=10, guess="high", t=None):
+        """
+        Roll a dice (1-6) and compare against a guess.
+
+        :param user_id: The ID of the user.
+        :param amount: The amount to bet (default is 10).
+        :param guess: The guess: "high" (4-6), "low" (1-3), or a number 1-6.
+        :param t: Translation function.
+        :return: A message with the result of the dice roll.
+        """
+        if amount <= 0:
+            return self._translate(t, "commands.dice.amount_must_be_positive", "Bet must be greater than 0.")
+
+        # Ensure the user has enough balance
+        current_balance = self.economy.get_balance(user_id)
+        if current_balance < amount:
+            return self._translate(
+                t,
+                "commands.dice.insufficient_funds",
+                "Insufficient funds. Your current balance is ${current_balance:.2f}.",
+                current_balance=current_balance,
+            )
+
+        # Normalize guess
+        guess_lower = guess.strip().lower()
+
+        # Roll the dice (1-6)
+        roll = random.randint(1, 6)
+
+        # Determine win/loss
+        win = False
+        payout_multiplier = 0
+
+        if guess_lower == "high":
+            win = roll >= 4
+            payout_multiplier = 1.0  # 1:1 payout
+        elif guess_lower == "low":
+            win = roll <= 3
+            payout_multiplier = 1.0  # 1:1 payout
+        else:
+            # Try to parse as a number for exact guess
+            try:
+                exact_num = int(guess_lower)
+                if exact_num < 1 or exact_num > 6:
+                    return self._translate(
+                        t,
+                        "commands.dice.invalid_guess",
+                        "Invalid guess. Use 'high', 'low', or a number 1-6.",
+                    )
+                win = roll == exact_num
+                payout_multiplier = 5.0  # 5:1 payout
+            except ValueError:
+                return self._translate(
+                    t,
+                    "commands.dice.invalid_guess",
+                    "Invalid guess. Use 'high', 'low', or a number 1-6.",
+                )
+
+        # Deduct the bet upfront
+        self.economy.deduct_balance(user_id, amount)
+
+        # Calculate payout
+        if win:
+            payout = amount * (1 + payout_multiplier)
+            self.economy.add_balance(user_id, payout)
+            result_msg = self._translate(
+                t,
+                "commands.dice.win",
+                "You win ${win_amount:.2f}!",
+                win_amount=payout - amount,
+            )
+        else:
+            result_msg = self._translate(
+                t,
+                "commands.dice.lose",
+                "You lose ${bet:.2f}.",
+                bet=amount,
+            )
+
+        rolled_msg = self._translate(
+            t,
+            "commands.dice.rolled",
+            "Rolled {roll}. Guessed {guess}. {result} Balance: ${new_balance:.2f}.",
+            roll=roll,
+            guess=guess_lower,
+            result=result_msg,
+            new_balance=self.economy.get_balance(user_id),
+        )
+
+        return rolled_msg

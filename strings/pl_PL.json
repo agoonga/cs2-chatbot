@@ -64,6 +64,18 @@
       "player_blackjack": "Blackjack! Wygrywasz ${win_amount:.2f}. Saldo: ${new_balance:.2f}.",
       "dealer_blackjack": "Krupier ma blackjacka. Przegrywasz ${bet:.2f}. Saldo: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Nie znaleziono modułu kasyna.",
+      "usage": "{player}: Użycie: kości <stawka|all> wysoko|nisko|1-6",
+      "invalid_bet": "{player}: Nieprawidłowa kwota stawki.",
+      "amount_must_be_positive": "Stawka musi być większa od 0.",
+      "insufficient_funds": "Brak środków. Twoje aktualne saldo to ${current_balance:.2f}.",
+      "no_balance": "{player}: Nie masz salda do hazardu.",
+      "invalid_guess": "Nieprawidłowe zgadnięcie. Użyj 'wysoko', 'nisko' lub liczby 1-6.",
+      "rolled": "Wyrzuciłeś {roll}. Zgadłeś {guess}. {result} Saldo: ${new_balance:.2f}.",
+      "win": "Wygrałeś ${win_amount:.2f}!",
+      "lose": "Przegrałeś ${bet:.2f}."
+    },
     "inventory": {
       "module_not_found": "{player}: Nie znaleziono modułu ekwipunku.",
       "empty": "{player}: Przeszukujesz ekwipunek, ale znajdujesz tylko kurz.",

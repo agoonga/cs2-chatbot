@@ -44,6 +44,18 @@
       "player_blackjack": "Blackjack! Você ganhou ${win_amount:.2f}. Saldo: ${new_balance:.2f}.",
       "dealer_blackjack": "O dealer tem blackjack. Você perdeu ${bet:.2f}. Saldo: ${new_balance:.2f}."
     },
+    "dice": {
+      "module_not_found": "{player}: Módulo de cassino não encontrado.",
+      "usage": "{player}: Uso: dados <aposta|all> alto|baixo|1-6",
+      "invalid_bet": "{player}: Valor de aposta inválido.",
+      "amount_must_be_positive": "A aposta deve ser maior que 0.",
+      "insufficient_funds": "Saldo insuficiente. Seu saldo atual é ${current_balance:.2f}.",
+      "no_balance": "{player}: Você não tem saldo para apostar.",
+      "invalid_guess": "Adivinhação inválida. Use 'alto', 'baixo', ou um número 1-6.",
+      "rolled": "Rolou {roll}. Adivinhou {guess}. {result} Saldo: ${new_balance:.2f}.",
+      "win": "Você ganhou ${win_amount:.2f}!",
+      "lose": "Você perdeu ${bet:.2f}."
+    },
     "smoke": {
       "module_not_found": "{player}: Módulo de tabaco não encontrado.",
       "no_tobacco": "{player}: Você não tem tabaco para fumar.",
@@ -107,6 +119,7 @@
     "buy": "Compre um item da loja.",
     "rods": "Ver varas de pesca disponíveis na loja.",
     "blackjack": "Jogue blackjack solo: blackjack <aposta|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Jogue dados (1-6) e aposte em alto (4-6), baixo (1-3), ou um número exato. Uso: dados <aposta|all> alto|baixo|1-6. (alias: roll)",
     "balance": "Exiba o saldo atual do jogador. (alias: bal, money)",
     "top": "Exiba os melhores jogadores na economia. (alias: leaderboard, topplayers)",
     "help": "Exiba a lista de comandos disponíveis ou ajuda para um comando específico. (alias: commands)"
@@ -130,6 +143,7 @@
     "linked": "vinculados",
     "flip": "caraoucoroa",
     "blackjack": "blackjack",
+    "dice": "dados",
     "trophy": "trofeu",
     "ship": "shipar",
     "femboy": "femboy",
@@ -167,6 +181,7 @@
     "smoke": ["fumar"],
     "flip": ["caraoucoroa"],
     "blackjack": ["bj"],
+    "dice": ["roll"],
     "status": ["status"],
     "trophy": ["trofeu"],
     "ship": ["shipar"],
