@@ -120,7 +120,8 @@
       "list": "{player}：自动销售鱼：{fish_list}",
       "usage_add": "{player}：用法：@autosell add <fish>",
       "usage_remove": "{player}：用法：@autosell 删除 <fish>",
-      "usage_general": "{player}：用法：@autosell [添加|删除] <鱼>、@autosell 清除或@autosell 列出。"
+      "usage_general": "{player}：用法：@autosell [添加|删除] <鱼>、@autosell 清除或@autosell 列出。",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "任务系统不可用。",

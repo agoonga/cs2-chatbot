@@ -120,7 +120,8 @@
       "list": "{player}: Рыба в автопродаже: {fish_list}",
       "usage_add": "{player}: Использование: @autosell add <fish>",
       "usage_remove": "{player}: Использование: @autosell remove <fish>",
-      "usage_general": "{player}: Использование: @autosell [add|remove] <fish>, @autosell clear, или @autosell для списка."
+      "usage_general": "{player}: Использование: @autosell [add|remove] <fish>, @autosell clear, или @autosell для списка.",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "Система квестов недоступна.",

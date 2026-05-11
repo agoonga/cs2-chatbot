@@ -157,7 +157,8 @@
       "list": "{player}: Vis automatisch verkocht: {fish_list}",
       "usage_add": "{player}: Gebruik: @autosell opgelost <vis> toe",
       "usage_remove": "{player}: Gebruik: @autosell verwijder <vis>",
-      "usage_general": "{player}: Gebruik: @autosell [toevoegen|verwijderen] <fish>, @autosell wissen van @autosell aan lijst."
+      "usage_general": "{player}: Gebruik: @autosell [toevoegen|verwijderen] <fish>, @autosell wissen van @autosell aan lijst.",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "Quest-systeem niet beschikbaar.",

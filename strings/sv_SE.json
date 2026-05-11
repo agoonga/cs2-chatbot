@@ -120,7 +120,8 @@
       "list": "{player}: Fiskar i autosälj: {fish_list}",
       "usage_add": "{player}: Användning: @autosell add <fish>",
       "usage_remove": "{player}: Användning: @autosell remove <fish>",
-      "usage_general": "{player}: Användning: @autosell [add|remove] <fish>, @autosell clear eller bara @autosell för att visa listan."
+      "usage_general": "{player}: Användning: @autosell [add|remove] <fish>, @autosell clear eller bara @autosell för att visa listan.",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "Uppdragssystemet är inte tillgängligt.",

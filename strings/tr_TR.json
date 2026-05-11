@@ -120,7 +120,8 @@
       "list": "{player}: Otomatik satılacak balıklar: {fish_list}",
       "usage_add": "{player}: Kullanım: @autosell add <fish>",
       "usage_remove": "{player}: Kullanım: @autosell remove <fish>",
-      "usage_general": "{player}: Kullanım: @autosell [add|remove] <fish>, @autosell clear veya listelemek için sadece @autosell."
+      "usage_general": "{player}: Kullanım: @autosell [add|remove] <fish>, @autosell clear veya listelemek için sadece @autosell.",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "Görev sistemi kullanılamıyor.",

@@ -120,7 +120,8 @@
       "list": "{player}: ऑटोसेल मछली: {fish_list}",
       "usage_add": "{player}: उपयोग: @autosell जोड़ें <मछली>",
       "usage_remove": "{player}: उपयोग: @ऑटोसेल हटाएं <मछली>",
-      "usage_general": "{player}: उपयोग: @autosell [जोड़ें|निकालें] <मछली>, @autosell साफ़ करें, या @autosell सूची में डालें।"
+      "usage_general": "{player}: उपयोग: @autosell [जोड़ें|निकालें] <मछली>, @autosell साफ़ करें, या @autosell सूची में डालें।",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "खोज प्रणाली उपलब्ध नहीं है.",

@@ -120,7 +120,8 @@
       "list": "{player}: Ryby do autosprzedaży: {fish_list}",
       "usage_add": "{player}: Użycie: @autosell add <fish>",
       "usage_remove": "{player}: Użycie: @autosell remove <fish>",
-      "usage_general": "{player}: Użycie: @autosell [add|remove] <fish>, @autosell clear albo samo @autosell, aby wyświetlić listę."
+      "usage_general": "{player}: Użycie: @autosell [add|remove] <fish>, @autosell clear albo samo @autosell, aby wyświetlić listę.",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "System zadań jest niedostępny.",

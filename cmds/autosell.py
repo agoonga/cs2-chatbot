@@ -39,6 +39,22 @@ def autosell_command(bot, is_team: bool, playername: str, chattext: str) -> None
         if not fish_name:
             bot.add_to_chat_queue(is_team, bot.t("commands.autosell.usage_add", player=playername))
             return
+
+        if fish_name.lower() == "all":
+            fish_names = sorted({
+                item.get("name")
+                for item in fishing_module.list_fish()
+                if item.get("type") == "fish" and item.get("name")
+            })
+            for fish in fish_names:
+                fishing_module.add_autosell_fish(playername, fish)
+
+            bot.add_to_chat_queue(
+                is_team,
+                bot.t("commands.autosell.add_all_success", player=playername, count=len(fish_names)),
+            )
+            return
+
         _, message = fishing_module.add_autosell_fish(playername, fish_name)
         bot.add_to_chat_queue(is_team, f"{playername}: {message}")
         return

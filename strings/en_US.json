@@ -124,9 +124,10 @@
       "module_not_found": "{player}: Fishing module not found.",
       "list_empty": "{player}: Autosell list is empty.",
       "list": "{player}: Autosell fish: {fish_list}",
-      "usage_add": "{player}: Usage: @autosell add <fish>",
+      "usage_add": "{player}: Usage: @autosell add <fish|all>",
       "usage_remove": "{player}: Usage: @autosell remove <fish>",
-      "usage_general": "{player}: Usage: @autosell [add|remove] <fish>, @autosell clear, or @autosell to list."
+      "usage_general": "{player}: Usage: @autosell [add|remove] <fish|all>, @autosell clear, or @autosell to list.",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "Quest system not available.",

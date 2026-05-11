@@ -157,7 +157,8 @@
       "list": "{player} : Vente automatique de poisson : {fish_list}",
       "usage_add": "{player}      : Utilisation   : @autosell ajouter <fish>",
       "usage_remove": "{player}      : Utilisation   : @autosell supprimer <fish>",
-      "usage_general": "{player} : Utilisation : @autosell [ajouter|supprimer] <fish>, @autosell clear ou @autosell à la liste."
+      "usage_general": "{player} : Utilisation : @autosell [ajouter|supprimer] <fish>, @autosell clear ou @autosell à la liste.",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "Système de quête non disponible.",

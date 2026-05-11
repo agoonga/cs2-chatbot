@@ -120,7 +120,8 @@
       "list": "{player}: 자동 판매 물고기: {fish_list}",
       "usage_add": "{player}: 사용법: @autosell add <fish>",
       "usage_remove": "{player}: 사용법: @autosell remove <fish>",
-      "usage_general": "{player}: 사용법: @autosell [add|remove] <fish>, @autosell clear, 또는 목록을 보려면 @autosell"
+      "usage_general": "{player}: 사용법: @autosell [add|remove] <fish>, @autosell clear, 또는 목록을 보려면 @autosell",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "퀘스트 시스템을 사용할 수 없습니다.",

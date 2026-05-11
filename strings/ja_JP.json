@@ -157,7 +157,8 @@
       "list": "{player}: 魚の自動販売: {fish_list}",
       "usage_add": "{player}: 使用法: @autosell add <fish>",
       "usage_remove": "{player}: 使用法: @autosell 削除 <fish>",
-      "usage_general": "{player}: 使用法: @autosell [add|remove] <fish>、@autosell Clear、または @autosell をリストに追加します。"
+      "usage_general": "{player}: 使用法: @autosell [add|remove] <fish>、@autosell Clear、または @autosell をリストに追加します。",
+      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
     "quest": {
       "system_not_available": "クエストシステムは利用できません。",
