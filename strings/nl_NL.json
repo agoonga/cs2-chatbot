@@ -185,8 +185,9 @@
     "translate": {
       "usage": "Gebruik: !translate <van> <naar> <tekst> b.v. !translate nl zh mooie handschoenen",
       "unknown_lang": "Onbekende taal '{lang}'. Probeer: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
-      "error": "Vertaling mislukt. Probeer het opnieuw."
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "Vertaling mislukt. Probeer het opnieuw.",
+      "label": "vertaling"
     }
   },
   "errors": {

@@ -185,8 +185,9 @@
     "translate": {
       "usage": "Verwendung: !translate <from> <to> <text> z.B. !translate en zh schöne Handschuhe",
       "unknown_lang": "Unbekannte Sprache „{lang}“. Versuchen Sie: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
-      "error": "Die Übersetzung ist fehlgeschlagen. Bitte versuchen Sie es erneut."
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "Die Übersetzung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "label": "Übersetzung"
     }
   },
   "errors": {

@@ -185,8 +185,9 @@
     "translate": {
       "usage": "使用法: !translate <from> <to> <text> 例: !en zh を翻訳します 素敵な手袋",
       "unknown_lang": "不明な言語「{lang}」です。試してください: en、zh、es、fr、de、it、nl、ru、ja、tr、sv、ko、pl、pt、hi",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
-      "error": "翻訳に失敗しました。もう一度試してください。"
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "翻訳に失敗しました。もう一度試してください。",
+      "label": "翻訳"
     }
   },
   "errors": {

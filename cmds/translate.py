@@ -1,4 +1,5 @@
 from util.commands import command_registry
+from importlib import import_module
 
 # Maps user-friendly language inputs to deep-translator GoogleTranslator codes
 _LANG_MAP = {
@@ -19,6 +20,34 @@ _LANG_MAP = {
     "hi": "hi", "hindi": "hi",
     "sg": "en",
 }
+
+_TARGET_LOCALE_MAP = {
+    "en": "en_US",
+    "en_us": "en_US",
+    "en_sg": "en_SG",
+    "sg": "en_SG",
+    "zh": "zh_CN",
+    "zh_cn": "zh_CN",
+    "es": "es_ES",
+    "fr": "fr_FR",
+    "de": "de_DE",
+    "it": "it_IT",
+    "nl": "nl_NL",
+    "ru": "ru_RU",
+    "ja": "ja_JP",
+    "tr": "tr_TR",
+    "sv": "sv_SE",
+    "ko": "ko_KR",
+    "pl": "pl_PL",
+    "pt": "pt_BR",
+    "hi": "hi_IN",
+}
+
+
+def _get_target_locale(to_input: str) -> str:
+    """Map a translate target code to a bot locale file."""
+    normalized = (to_input or "").strip().lower().replace("-", "_")
+    return _TARGET_LOCALE_MAP.get(normalized, "en_US")
 
 
 @command_registry.register("translate", aliases=["trans", "tl"])
@@ -66,9 +95,14 @@ def translate_command(bot, is_team: bool, playername: str, chattext: str) -> Non
         return
 
     try:
-        from deep_translator import GoogleTranslator
+        GoogleTranslator = import_module("deep_translator").GoogleTranslator
         translated = GoogleTranslator(source=source_lang, target=to_lang).translate(text)
+        target_locale = _get_target_locale(to_input)
         bot.add_to_chat_queue(is_team, bot.t("commands.translate.result",
-            player=playername, from_lang=from_input, to_lang=to_input, result=translated))
+            player=playername,
+            label=bot._localization.get_string("commands.translate.label", language=target_locale),
+            from_lang=from_input,
+            to_lang=to_input,
+            result=translated))
     except Exception:
         bot.add_to_chat_queue(is_team, bot.t("commands.translate.error"))

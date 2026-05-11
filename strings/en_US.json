@@ -97,9 +97,10 @@
       "winner": "{player} unscrambled the word '{word}' correctly and wins $100!"
     },
     "translate": {
-      "usage": "Usage: !translate <to> <text>  or  !translate <from> <to> <text>",
+      "label": "translation",
+      "usage": "Usage: !translate <to> <text> | !translate <from> <to> <text> | >to text | >from to text",
       "unknown_lang": "Unknown language '{lang}'. Try: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
+      "result": "{player}: (translation {from_lang}→{to_lang}) {result}",
       "error": "Translation failed. Please try again."
     },
     "smoke": {
@@ -187,6 +188,13 @@
       "self_is_not": "{player}: I am not a femboy ({chance}%)",
       "target_is": "{player}: {target} is a femboy ({chance}%)",
       "target_is_not": "{player}: {target} is not a femboy ({chance}%)"
+    },
+    "translate": {
+      "label": "translation",
+      "usage": "Usage: !translate <to> <text> | !translate <from> <to> <text> | >to text | >from to text",
+      "unknown_lang": "Unknown language '{lang}'. Try: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "Translation failed. Please try again."
     }
   },
   "errors": {

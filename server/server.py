@@ -141,7 +141,21 @@ class BotServer:
         return ["@"]
 
     def _extract_command(self, chattext: str):
-        """Extract command name and args for any configured prefix."""
+        """Extract command name and args for any configured prefix.
+
+        Also supports translation shortcut:
+          >zh hello
+          >zh en 你好
+        which maps to command "translate" with args after ">".
+        """
+        stripped = (chattext or "").strip()
+
+        if stripped.startswith(">"):
+            shortcut_args = stripped[1:].strip()
+            if shortcut_args:
+                return "translate", shortcut_args
+            return None
+
         for prefix in self.prefixes:
             if chattext.startswith(prefix):
                 remainder = chattext[len(prefix):].strip()

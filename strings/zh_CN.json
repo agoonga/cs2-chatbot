@@ -185,8 +185,9 @@
     "translate": {
       "usage": "用法： !translate <from> <to> <text> 例如!translate en zh 漂亮的手套",
       "unknown_lang": "未知语言“{lang}”。尝试：en、zh、es、fr、de、it、nl、ru、ja、tr、sv、ko、pl、pt、hi",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
-      "error": "翻译失败。请再试一次。"
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "翻译失败。请再试一次。",
+      "label": "翻译"
     }
   },
   "errors": {

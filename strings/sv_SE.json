@@ -185,8 +185,9 @@
     "translate": {
       "usage": "Användning: !translate <from> <to> <text> t.ex. !translate en zh snygga handskar",
       "unknown_lang": "Okänt språk '{lang}'. Prova: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
-      "error": "Översättning misslyckades. Försök igen."
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "Översättning misslyckades. Försök igen.",
+      "label": "översättning"
     }
   },
   "errors": {

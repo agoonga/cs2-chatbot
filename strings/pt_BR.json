@@ -185,8 +185,9 @@
     "translate": {
       "usage": "Uso: !translate <from> <to> <text> por exemplo. !translate en zh lindas luvas",
       "unknown_lang": "Idioma desconhecido '{lang}'. Tente: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
-      "error": "A tradução falhou. Por favor, tente novamente."
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "A tradução falhou. Por favor, tente novamente.",
+      "label": "tradução"
     }
   },
   "errors": {

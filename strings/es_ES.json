@@ -185,8 +185,9 @@
     "translate": {
       "usage": "Uso: !traducir <de> <a> <texto> p.e. !translate es zh bonitos guantes",
       "unknown_lang": "Idioma desconocido '{lang}'. Pruebe: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hola",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
-      "error": "La traducción falló. Por favor inténtalo de nuevo."
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "La traducción falló. Por favor inténtalo de nuevo.",
+      "label": "traducción"
     }
   },
   "errors": {

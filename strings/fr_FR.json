@@ -185,8 +185,9 @@
     "translate": {
       "usage": "Utilisation : !translate <from> <to> <text> par ex. !translate en zh beaux gants",
       "unknown_lang": "Langue inconnue '{lang}'. Essayez : en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
-      "result": "{player} : ({from_lang}→{to_lang}) {result}",
-      "error": "La traduction a échoué. Veuillez réessayer."
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "La traduction a échoué. Veuillez réessayer.",
+      "label": "traduction"
     }
   },
   "errors": {

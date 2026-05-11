@@ -185,8 +185,9 @@
     "translate": {
       "usage": "उपयोग: !translate <from> <to> <text> उदा. !अनुवाद एन zh अच्छे दस्ताने",
       "unknown_lang": "अज्ञात भाषा '{lang}'. प्रयास करें: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
-      "result": "{player}: ({from_lang}→{to_lang}) {result}",
-      "error": "अनुवाद विफल. कृपया पुन: प्रयास करें।"
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "अनुवाद विफल. कृपया पुन: प्रयास करें।",
+      "label": "अनुवाद"
     }
   },
   "errors": {
