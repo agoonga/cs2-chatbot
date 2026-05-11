@@ -193,6 +193,7 @@
     "module_not_found": "Module not found: {module}",
     "command_not_found": "{player}: Command '{command}' not found.",
     "command_not_found_with_suggestion": "{player}: Command '{command}' not found. Did you mean '{suggestion}'?",
+    "spam_cooldown": "{player}: Slow down. You're on cooldown for {seconds}s.",
     "invalid_input": "Invalid input",
     "insufficient_funds": "Insufficient funds",
     "item_not_found": "Item not found"

@@ -121,7 +121,7 @@
       "usage_add": "{player}：用法：@autosell add <fish>",
       "usage_remove": "{player}：用法：@autosell 删除 <fish>",
       "usage_general": "{player}：用法：@autosell [添加|删除] <鱼>、@autosell 清除或@autosell 列出。",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}：启用所有鱼类类型的自动销售（{count}）。"
     },
     "quest": {
       "system_not_available": "任务系统不可用。",
@@ -143,7 +143,7 @@
       "usage_add": "{player}：用法：奖杯添加<fish_name>",
       "usage_remove": "{player}：用途：奖杯移除<number>",
       "number_must_be_numeric": "{player}：奖杯编号必须是数字。",
-      "unknown_subcommand": "{player}：未知子命令。使用：奖杯[添加<鱼名>|删除<数字>]"
+      "unknown_subcommand": "{player}: 未知子命令。用途：奖杯[添加<fish_name>|消除<number>]"
     },
     "shop": {
       "available_categories": "{player}：可用类别：{categories}",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}：未找到命令“{command}”。您的意思是“{suggestion}”吗？",
     "invalid_input": "输入无效",
     "insufficient_funds": "资金不足",
-    "item_not_found": "未找到项目"
+    "item_not_found": "未找到项目",
+    "spam_cooldown": "{player}： 减速。你的冷却时间为{seconds}s。"
   },
   "help_texts": {
     "cast": "抛出你的钓鱼竿来捕捉鱼或物品。 （别名：鱼、鳉鱼）",

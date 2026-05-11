@@ -4,6 +4,13 @@ console_log_path = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike
 exec_path = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/chat.cfg"
 command_prefix = "!,@"
 
+[anti_spam]
+window_seconds = 3
+max_messages = 5
+cooldown_seconds = 60
+warn_interval_seconds = 20
+should_remove_from_queue = true
+
 [database]
 host = "localhost"
 port = 5432

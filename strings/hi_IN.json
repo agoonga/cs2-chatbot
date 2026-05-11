@@ -121,7 +121,7 @@
       "usage_add": "{player}: उपयोग: @autosell जोड़ें <मछली>",
       "usage_remove": "{player}: उपयोग: @ऑटोसेल हटाएं <मछली>",
       "usage_general": "{player}: उपयोग: @autosell [जोड़ें|निकालें] <मछली>, @autosell साफ़ करें, या @autosell सूची में डालें।",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: सभी प्रकार की मछलियों के लिए सक्षम ऑटोसेल ({count})."
     },
     "quest": {
       "system_not_available": "खोज प्रणाली उपलब्ध नहीं है.",
@@ -143,7 +143,7 @@
       "usage_add": "{player}: उपयोग: ट्रॉफी जोड़ें <मछली_नाम>",
       "usage_remove": "{player}: उपयोग: ट्रॉफी हटाएं <संख्या>",
       "number_must_be_numeric": "{player}: ट्रॉफी नंबर एक नंबर होना चाहिए।",
-      "unknown_subcommand": "{player}: Unknown subcommand. Use: trophy [add <fish_name> | <नंबर>] हटाएं"
+      "unknown_subcommand": "{player}: अज्ञात उपकमांड. उपयोग: ट्रॉफी [जोड़ें<fish_name>| निकालना<number>]"
     },
     "shop": {
       "available_categories": "{player}: उपलब्ध श्रेणियां: {categories}",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: कमांड '{command}' नहीं मिला। क्या आपका मतलब '{suggestion}' था?",
     "invalid_input": "अमान्य निवेश",
     "insufficient_funds": "अपर्याप्त कोष",
-    "item_not_found": "आइटम नहीं मिला"
+    "item_not_found": "आइटम नहीं मिला",
+    "spam_cooldown": "{player}: गति कम करो। आप इसके लिए कूलडाउन पर हैं{seconds}एस।"
   },
   "help_texts": {
     "cast": "किसी मछली या वस्तु को पकड़ने के लिए अपनी मछली पकड़ने वाली छड़ी डालें। (उर्फ: मछली, गोफिश)",

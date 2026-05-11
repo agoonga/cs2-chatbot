@@ -331,6 +331,22 @@ class CS2Client:
         self.logger.debug(f"Adding message to chat queue: {chattext} (team: {is_team})")
         self.chat_queue.append((is_team, chattext))
         self.logger.info(f"{len(self.chat_queue)} messages in queue.")
+
+    def remove_player_from_chat_queue(self, playername: str) -> int:
+        """Remove queued bot responses that belong to a specific player."""
+        normalized_player = (playername or "").strip()
+        if not normalized_player:
+            return 0
+
+        prefix = f"{normalized_player}:"
+        with self.chat_queue_lock:
+            before = len(self.chat_queue)
+            self.chat_queue = [item for item in self.chat_queue if not item[1].startswith(prefix)]
+            removed = before - len(self.chat_queue)
+
+        if removed > 0:
+            self.logger.info(f"Removed {removed} queued messages for player {normalized_player}.")
+        return removed
         
     def _chat_queue_worker(self) -> None:
         """Process the chat queue and send messages to CS2."""
@@ -340,8 +356,11 @@ class CS2Client:
                 
             if not self.chat_queue:
                 continue
-                
-            is_team, chattext = self.chat_queue.pop(0)
+
+            with self.chat_queue_lock:
+                if not self.chat_queue:
+                    continue
+                is_team, chattext = self.chat_queue.pop(0)
             self.logger.info(f"Processing chat message: {chattext} (team: {is_team})")
             
             try:
@@ -555,6 +574,11 @@ class CS2Client:
             # Queue responses for sending to CS2
             if responses:
                 for response in responses:
+                    control = response.get("control")
+                    if control == "remove_player_queue":
+                        self.remove_player_from_chat_queue(response.get("player", ""))
+                        continue
+
                     response_is_team = response.get("is_team", is_team)
                     response_text = response.get("text", "")
                     if response_text:

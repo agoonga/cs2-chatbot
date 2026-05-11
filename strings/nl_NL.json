@@ -158,7 +158,7 @@
       "usage_add": "{player}: Gebruik: @autosell opgelost <vis> toe",
       "usage_remove": "{player}: Gebruik: @autosell verwijder <vis>",
       "usage_general": "{player}: Gebruik: @autosell [toevoegen|verwijderen] <fish>, @autosell wissen van @autosell aan lijst.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Autosell ingeschakeld voor alle vissoorten ({count})."
     },
     "quest": {
       "system_not_available": "Quest-systeem niet beschikbaar.",
@@ -180,7 +180,7 @@
       "usage_add": "{player}: Gebruik: trofee toevoegen <vis_naam>",
       "usage_remove": "{player}: Gebruik: trofee verwijder <nummer>",
       "number_must_be_numeric": "{player}: Trofeenummer moet een getal zijn.",
-      "unknown_subcommand": "{player}: Onbekend subcommando. Gebruik: trofee [voeg <vis_naam> toe | verwijder <nummer>]"
+      "unknown_subcommand": "{player}: Onbekend subcommando. Gebruik: trofee [add<fish_name>| verwijderen<number>]"
     },
     "translate": {
       "usage": "Gebruik: !translate <van> <naar> <tekst> b.v. !translate nl zh mooie handschoenen",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Commando '{command}' niet gevonden. Bedoelde je '{suggestion}'?",
     "invalid_input": "Ongeldige invoer",
     "insufficient_funds": "Onvoldoende saldo",
-    "item_not_found": "Item niet gevonden"
+    "item_not_found": "Item niet gevonden",
+    "spam_cooldown": "{player}: Vertragen. Je bent aan het afkoelen voor{seconds}S."
   },
   "help_texts": {
     "cast": "Gooi je hengel uit om een vis of item te vangen. (alias: fish, gofish)",

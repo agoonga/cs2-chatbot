@@ -121,7 +121,7 @@
       "usage_add": "{player}: Användning: @autosell add <fish>",
       "usage_remove": "{player}: Användning: @autosell remove <fish>",
       "usage_general": "{player}: Användning: @autosell [add|remove] <fish>, @autosell clear eller bara @autosell för att visa listan.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Aktiverad automatisk försäljning för alla fisktyper ({count})."
     },
     "quest": {
       "system_not_available": "Uppdragssystemet är inte tillgängligt.",
@@ -143,7 +143,7 @@
       "usage_add": "{player}: Användning: trophy add <fish_name>",
       "usage_remove": "{player}: Användning: trophy remove <number>",
       "number_must_be_numeric": "{player}: Trofénumret måste vara ett tal.",
-      "unknown_subcommand": "{player}: Okänt underkommando. Använd: trophy [add <fish_name> | remove <number>]"
+      "unknown_subcommand": "{player}: Okänt underkommando. Använd: trofé [lägg till<fish_name>| ta bort<number>]"
     },
     "shop": {
       "available_categories": "{player}: Tillgängliga kategorier: {categories}",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Kommandot '{command}' hittades inte. Menade du '{suggestion}'?",
     "invalid_input": "Ogiltig inmatning",
     "insufficient_funds": "Otillräckliga pengar",
-    "item_not_found": "Sak hittades inte"
+    "item_not_found": "Sak hittades inte",
+    "spam_cooldown": "{player}: Sakta ner. Du är på cooldown för{seconds}s."
   },
   "help_texts": {
     "cast": "Kasta ditt spö för att fånga en fisk eller en sak. (alias: fish, gofish)",

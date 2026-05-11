@@ -158,7 +158,7 @@
       "usage_add": "{player}: Verwendung: @autosell <Fisch> hinzufügen",
       "usage_remove": "{player}: Verwendung: @autosell entferne <Fisch>",
       "usage_general": "{player}: Verwendung: @autosell [add|remove] <fish>, @autosell clear oder @autosell to list.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Automatischer Verkauf für alle Fischarten aktiviert ({count})."
     },
     "quest": {
       "system_not_available": "Questsystem nicht verfügbar.",
@@ -180,7 +180,7 @@
       "usage_add": "{player}: Verwendung: Trophäe <Fischname> hinzufügen",
       "usage_remove": "{player}: Verwendung: Trophäe entfernen <Nummer>",
       "number_must_be_numeric": "{player}: Trophäennummer muss eine Zahl sein.",
-      "unknown_subcommand": "{player}: Unbekannter Unterbefehl. Verwendung: Trophäe [add <fish_name> | <Nummer> entfernen]"
+      "unknown_subcommand": "{player}: Unbekannter Unterbefehl. Verwendung: Trophäe [hinzufügen<fish_name>| entfernen<number>]"
     },
     "translate": {
       "usage": "Verwendung: !translate <from> <to> <text> z.B. !translate en zh schöne Handschuhe",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Befehl '{command}' nicht gefunden. Meintest du '{suggestion}'?",
     "invalid_input": "Ungueltige Eingabe",
     "insufficient_funds": "Unzureichendes Guthaben",
-    "item_not_found": "Gegenstand nicht gefunden"
+    "item_not_found": "Gegenstand nicht gefunden",
+    "spam_cooldown": "{player}: Verlangsamen. Du bist in der Abklingzeit für{seconds}S."
   },
   "help_texts": {
     "cast": "Wirf deine Angel aus, um Fisch oder Gegenstande zu fangen. (alias: fish, gofish)",

@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Command '{command}' not found. Did you mean '{suggestion}'?",
     "invalid_input": "Invalid input",
     "insufficient_funds": "Insufficient funds",
-    "item_not_found": "Item not found"
+    "item_not_found": "Item not found",
+    "spam_cooldown": "{player}: Slow down. You're on cooldown for {seconds}s."
   },
   "help_texts": {
     "cast": "Cast your fishing rod to catch a fish or item. (alias: fish, gofish)",

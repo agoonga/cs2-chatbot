@@ -121,7 +121,7 @@
       "usage_add": "{player}: Kullanım: @autosell add <fish>",
       "usage_remove": "{player}: Kullanım: @autosell remove <fish>",
       "usage_general": "{player}: Kullanım: @autosell [add|remove] <fish>, @autosell clear veya listelemek için sadece @autosell.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Tüm balık türleri için otomatik satış etkinleştirildi ({count})."
     },
     "quest": {
       "system_not_available": "Görev sistemi kullanılamıyor.",
@@ -143,7 +143,7 @@
       "usage_add": "{player}: Kullanım: trophy add <fish_name>",
       "usage_remove": "{player}: Kullanım: trophy remove <number>",
       "number_must_be_numeric": "{player}: Kupa numarası sayı olmalı.",
-      "unknown_subcommand": "{player}: Bilinmeyen alt komut. Kullanım: trophy [add <fish_name> | remove <number>]"
+      "unknown_subcommand": "{player}: Bilinmeyen alt komut. Kullanım: kupa [ekle<fish_name>| kaldırmak<number>]"
     },
     "shop": {
       "available_categories": "{player}: Kullanılabilir kategoriler: {categories}",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: '{command}' komutu bulunamadı. Acaba '{suggestion}' mi demek istedin?",
     "invalid_input": "Geçersiz giriş",
     "insufficient_funds": "Yetersiz bakiye",
-    "item_not_found": "Eşya bulunamadı"
+    "item_not_found": "Eşya bulunamadı",
+    "spam_cooldown": "{player}: Yavaşla. Şu süre için bekleme süresindesiniz:{seconds}S."
   },
   "help_texts": {
     "cast": "Balık ya da eşya yakalamak için oltanı at. (takma adlar: fish, gofish)",

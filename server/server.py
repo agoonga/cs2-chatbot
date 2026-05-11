@@ -1,6 +1,8 @@
 import os
 import sys
 import logging
+import threading
+from collections import deque
 from contextvars import ContextVar
 from flask import Flask, request, jsonify
 from typing import Dict, List
@@ -24,6 +26,30 @@ def resource_path(relative_path):
 
 class BotServer:
     """Server that handles bot command and module processing."""
+
+    @staticmethod
+    def _positive_int(value, default):
+        """Convert to positive int; fall back to default when invalid."""
+        try:
+            parsed = int(value)
+            return parsed if parsed > 0 else default
+        except (TypeError, ValueError):
+            return default
+
+    @staticmethod
+    def _as_bool(value, default):
+        """Convert common string/number values to bool; fall back to default when invalid."""
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, (int, float)):
+            return bool(value)
+        if isinstance(value, str):
+            normalized = value.strip().lower()
+            if normalized in {"1", "true", "yes", "on"}:
+                return True
+            if normalized in {"0", "false", "no", "off"}:
+                return False
+        return default
     
     def __init__(self):
         """Initialize the bot server."""
@@ -74,6 +100,26 @@ class BotServer:
         
         # Response queue for collecting responses during command execution
         self._response_queue = []
+
+        # Anti-spam settings (configurable via [anti_spam] in config.toml).
+        anti_spam_cfg = self.config.get("anti_spam", {}) if isinstance(self.config, dict) else {}
+        self._spam_window_seconds = self._positive_int(anti_spam_cfg.get("window_seconds", 3), 3)
+        self._spam_max_messages = self._positive_int(anti_spam_cfg.get("max_messages", 5), 5)
+        self._spam_cooldown_seconds = self._positive_int(anti_spam_cfg.get("cooldown_seconds", 10), 10)
+        self._spam_warn_interval_seconds = self._positive_int(anti_spam_cfg.get("warn_interval_seconds", 30), 30)
+        self._spam_remove_from_queue = self._as_bool(anti_spam_cfg.get("should_remove_from_queue", True), True)
+        self._spam_timestamps = {}
+        self._cooldown_until = {}
+        self._last_cooldown_warn_at = {}
+        self._spam_lock = threading.Lock()
+        self.logger.info(
+            "Anti-spam config: window=%ss, max_messages=%s, cooldown=%ss, warn_interval=%ss, should_remove_from_queue=%s",
+            self._spam_window_seconds,
+            self._spam_max_messages,
+            self._spam_cooldown_seconds,
+            self._spam_warn_interval_seconds,
+            self._spam_remove_from_queue,
+        )
         
         # Load commands and modules
         if hasattr(sys, '_MEIPASS'):
@@ -146,6 +192,24 @@ class BotServer:
             if not command_parts and not self._has_active_scramble_session(session_id):
                 self.logger.debug(f"Ignoring non-command message for inactive session: {session_id}")
                 return []
+
+            # Only commands count toward anti-spam cooldown.
+            if command_parts:
+                cooldown_seconds, should_warn = self._check_spam_cooldown(session_id, playername)
+                if cooldown_seconds > 0:
+                    responses = []
+                    if self._spam_remove_from_queue and should_warn:
+                        responses.append({
+                            "is_team": is_team,
+                            "control": "remove_player_queue",
+                            "player": playername,
+                        })
+                    if should_warn:
+                        responses.append({
+                            "is_team": is_team,
+                            "text": self.t("errors.spam_cooldown", player=playername, seconds=cooldown_seconds),
+                        })
+                    return responses
 
             # Pass to modules that are reading input
             module_start = time.time()
@@ -225,6 +289,39 @@ class BotServer:
             return False
 
         return session_id in games
+
+    def _check_spam_cooldown(self, session_id: str, playername: str):
+        """Return (cooldown_seconds, should_warn) for this player/session."""
+        import time
+
+        now = time.time()
+        normalized_session = (session_id or "default").strip().lower()
+        normalized_player = (playername or "").strip().lower()
+        player_key = f"{normalized_session}:{normalized_player}"
+
+        with self._spam_lock:
+            cooldown_end = self._cooldown_until.get(player_key, 0)
+            if now < cooldown_end:
+                remaining = int(cooldown_end - now + 0.999)
+                last_warn = self._last_cooldown_warn_at.get(player_key, 0)
+                should_warn = (now - last_warn) >= self._spam_warn_interval_seconds
+                if should_warn:
+                    self._last_cooldown_warn_at[player_key] = now
+                return max(1, remaining), should_warn
+
+            timestamps = self._spam_timestamps.setdefault(player_key, deque())
+            cutoff = now - self._spam_window_seconds
+            while timestamps and timestamps[0] < cutoff:
+                timestamps.popleft()
+
+            timestamps.append(now)
+            if len(timestamps) > self._spam_max_messages:
+                self._cooldown_until[player_key] = now + self._spam_cooldown_seconds
+                self._last_cooldown_warn_at[player_key] = now
+                timestamps.clear()
+                return self._spam_cooldown_seconds, True
+
+        return 0, False
         
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         """Compatibility method for commands that expect this method."""

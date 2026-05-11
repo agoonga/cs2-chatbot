@@ -158,7 +158,7 @@
       "usage_add": "{player}: Uso: @autosell agregar <pez>",
       "usage_remove": "{player}: Uso: @autosell eliminar <pez>",
       "usage_general": "{player}: Uso: @autosell [agregar|eliminar] <fish>, @autosell clear o @autosell para enumerar.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Venta automática habilitada para todos los tipos de peces ({count})."
     },
     "quest": {
       "system_not_available": "El sistema de misiones no está disponible.",
@@ -180,7 +180,7 @@
       "usage_add": "{player}: Uso: agregar trofeo <nombre_pez>",
       "usage_remove": "{player}: Uso: quitar trofeo <número>",
       "number_must_be_numeric": "{player}: El número del trofeo debe ser un número.",
-      "unknown_subcommand": "{player}: Subcomando desconocido. Uso: trofeo [añadir <nombre_pez> | eliminar <número>]"
+      "unknown_subcommand": "{player}: Subcomando desconocido. Uso: trofeo [añadir<fish_name>| eliminar<number>]"
     },
     "translate": {
       "usage": "Uso: !traducir <de> <a> <texto> p.e. !translate es zh bonitos guantes",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Comando '{command}' no encontrado. Quisiste decir '{suggestion}'?",
     "invalid_input": "Entrada inválida",
     "insufficient_funds": "Fondos insuficientes",
-    "item_not_found": "Objeto no encontrado"
+    "item_not_found": "Objeto no encontrado",
+    "spam_cooldown": "{player}: Desacelerar. Estás en tiempo de reutilización por{seconds}s."
   },
   "help_texts": {
     "cast": "Lanza tu caña para atrapar un pez u objeto. (alias: fish, gofish)",

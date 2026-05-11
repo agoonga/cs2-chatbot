@@ -158,7 +158,7 @@
       "usage_add": "{player}: Uso: @autosell add <peixe>",
       "usage_remove": "{player}: Uso: @autosell remove <peixe>",
       "usage_general": "{player}: Uso: @autosell [add|remove] <fish>, @autosell clear ou @autosell para listar.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Venda automática habilitada para todos os tipos de peixes ({count})."
     },
     "quest": {
       "system_not_available": "Sistema de missão não disponível.",
@@ -180,7 +180,7 @@
       "usage_add": "{player}: Uso: adição de troféu <fish_name>",
       "usage_remove": "{player}: Uso: remoção de troféu <número>",
       "number_must_be_numeric": "{player}: O número do troféu deve ser um número.",
-      "unknown_subcommand": "{player}: Subcomando desconhecido. Uso: troféu [add <fish_name> | removedor <número>]"
+      "unknown_subcommand": "{player}: Subcomando desconhecido. Uso: troféu [adicionar<fish_name>| remover<number>]"
     },
     "translate": {
       "usage": "Uso: !translate <from> <to> <text> por exemplo. !translate en zh lindas luvas",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Comando '{command}' nao encontrado. Voce quis dizer '{suggestion}'?",
     "invalid_input": "Entrada inválida",
     "insufficient_funds": "Fundos insuficientes",
-    "item_not_found": "Item não encontrado"
+    "item_not_found": "Item não encontrado",
+    "spam_cooldown": "{player}: Desacelerar. Você está em espera por{seconds}S."
   },
   "help_texts": {
     "cast": "Lance sua vara de pesca para pegar um peixe ou item. (alias: fish, gofish)",

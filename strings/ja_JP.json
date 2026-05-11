@@ -158,7 +158,7 @@
       "usage_add": "{player}: 使用法: @autosell add <fish>",
       "usage_remove": "{player}: 使用法: @autosell 削除 <fish>",
       "usage_general": "{player}: 使用法: @autosell [add|remove] <fish>、@autosell Clear、または @autosell をリストに追加します。",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: すべての魚の種類で自動販売を有効にしました ({count}）。"
     },
     "quest": {
       "system_not_available": "クエストシステムは利用できません。",
@@ -180,7 +180,7 @@
       "usage_add": "{player}: 使用法: トロフィー追加 <fish_name>",
       "usage_remove": "{player}: 使用法: トロフィーの削除 <番号>",
       "number_must_be_numeric": "{player}: トロフィー番号は数字になりません。",
-      "unknown_subcommand": "{player}: 不明なサブコマンドです。使用: トロフィー [<fish_name> を追加 | <番号>を削除]"
+      "unknown_subcommand": "{player}: 不明なサブコマンドです。使用: トロフィー [追加]<fish_name>|取り除く<number>]"
     },
     "translate": {
       "usage": "使用法: !translate <from> <to> <text> 例: !en zh を翻訳します 素敵な手袋",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: コマンド '{command}' は見つかりません。'{suggestion}' のことですか？",
     "invalid_input": "無効な入力です",
     "insufficient_funds": "残高不足です",
-    "item_not_found": "アイテムが見つかりません"
+    "item_not_found": "アイテムが見つかりません",
+    "spam_cooldown": "{player}： 減速する。クールダウン中です{seconds}s."
   },
   "help_texts": {
     "cast": "釣り竿を投げて魚やアイテムを釣ります。 (alias: fish, gofish)",

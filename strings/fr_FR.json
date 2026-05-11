@@ -158,7 +158,7 @@
       "usage_add": "{player}      : Utilisation   : @autosell ajouter <fish>",
       "usage_remove": "{player}      : Utilisation   : @autosell supprimer <fish>",
       "usage_general": "{player} : Utilisation : @autosell [ajouter|supprimer] <fish>, @autosell clear ou @autosell à la liste.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Activation de la vente automatique pour tous les types de poissons ({count})."
     },
     "quest": {
       "system_not_available": "Système de quête non disponible.",
@@ -180,7 +180,7 @@
       "usage_add": "{player} : Utilisation : ajout du trophée <fish_name>",
       "usage_remove": "{player} : Utilisation : trophée supprimé <numéro>",
       "number_must_be_numeric": "{player}      : Le numéro du trophée doit être un nombre.",
-      "unknown_subcommand": "{player}   : sous-commande inconnue. Utiliser : trophée [ajouter <fish_name> | supprimer <numéro>]"
+      "unknown_subcommand": "{player}: Sous-commande inconnue. Utilisation : trophée [ajouter<fish_name>| retirer<number>]"
     },
     "translate": {
       "usage": "Utilisation : !translate <from> <to> <text> par ex. !translate en zh beaux gants",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Commande '{command}' introuvable. Vouliez-vous dire '{suggestion}' ?",
     "invalid_input": "Entree invalide",
     "insufficient_funds": "Fonds insuffisants",
-    "item_not_found": "Objet introuvable"
+    "item_not_found": "Objet introuvable",
+    "spam_cooldown": "{player}: Ralentir. Vous êtes en temps de recharge pour{seconds}s."
   },
   "help_texts": {
     "cast": "Lancez votre canne pour attraper un poisson ou un objet. (alias: fish, gofish)",

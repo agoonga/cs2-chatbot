@@ -121,7 +121,7 @@
       "usage_add": "{player}: Использование: @autosell add <fish>",
       "usage_remove": "{player}: Использование: @autosell remove <fish>",
       "usage_general": "{player}: Использование: @autosell [add|remove] <fish>, @autosell clear, или @autosell для списка.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Включена автопродажа для всех типов рыбы ({count})."
     },
     "quest": {
       "system_not_available": "Система квестов недоступна.",
@@ -143,7 +143,7 @@
       "usage_add": "{player}: Использование: trophy add <fish_name>",
       "usage_remove": "{player}: Использование: trophy remove <number>",
       "number_must_be_numeric": "{player}: Номер трофея должен быть числом.",
-      "unknown_subcommand": "{player}: Неизвестная подкоманда. Используйте: trophy [add <fish_name> | remove <number>]"
+      "unknown_subcommand": "{player}: Неизвестная подкоманда. Использование: трофей [добавить<fish_name>| удалять<number>]"
     },
     "shop": {
       "available_categories": "{player}: Доступные категории: {categories}",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Команда '{command}' не найдена. Возможно, вы имели в виду '{suggestion}'?",
     "invalid_input": "Неверный ввод",
     "insufficient_funds": "Недостаточно средств",
-    "item_not_found": "Предмет не найден"
+    "item_not_found": "Предмет не найден",
+    "spam_cooldown": "{player}: Замедлять. Вы находитесь на перезарядке в течение{seconds}с."
   },
   "help_texts": {
     "cast": "Забросьте удочку, чтобы поймать рыбу или предмет. (alias: fish, gofish)",

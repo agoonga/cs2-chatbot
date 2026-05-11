@@ -121,7 +121,7 @@
       "usage_add": "{player}: Użycie: @autosell add <fish>",
       "usage_remove": "{player}: Użycie: @autosell remove <fish>",
       "usage_general": "{player}: Użycie: @autosell [add|remove] <fish>, @autosell clear albo samo @autosell, aby wyświetlić listę.",
-      "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
+      "add_all_success": "{player}: Włączono automatyczną sprzedaż dla wszystkich typów ryb ({count})."
     },
     "quest": {
       "system_not_available": "System zadań jest niedostępny.",
@@ -143,7 +143,7 @@
       "usage_add": "{player}: Użycie: trophy add <fish_name>",
       "usage_remove": "{player}: Użycie: trophy remove <number>",
       "number_must_be_numeric": "{player}: Numer trofeum musi być liczbą.",
-      "unknown_subcommand": "{player}: Nieznana podkomenda. Użyj: trophy [add <fish_name> | remove <number>]"
+      "unknown_subcommand": "{player}: Nieznane polecenie podrzędne. Zastosowanie: trofeum [dodaj<fish_name>| usunąć<number>]"
     },
     "shop": {
       "available_categories": "{player}: Dostępne kategorie: {categories}",
@@ -195,7 +195,8 @@
     "command_not_found_with_suggestion": "{player}: Nie znaleziono komendy '{command}'. Czy chodziło o '{suggestion}'?",
     "invalid_input": "Nieprawidłowe dane wejściowe",
     "insufficient_funds": "Niewystarczające środki",
-    "item_not_found": "Nie znaleziono przedmiotu"
+    "item_not_found": "Nie znaleziono przedmiotu",
+    "spam_cooldown": "{player}: Kierowco zwolnij. Masz czas odnowienia{seconds}S."
   },
   "help_texts": {
     "cast": "Rzuć wędkę, aby złapać rybę lub przedmiot. (alias: fish, gofish)",
