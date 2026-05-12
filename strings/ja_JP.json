@@ -134,7 +134,10 @@
         "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
         "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
         "knife_hit": "KNIFE HIT!",
-        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit.",
+        "opened_mtg_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_mtg_hit": "MYTHIC HIT!",
+        "mtg_api_error": "Couldn't reach MTG card data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: 検査する項目を指定してください。",
@@ -211,6 +214,10 @@
     "pokedex": {
       "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
       "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
+    },
+    "collection": {
+      "empty": "{player}: Your MTG collection is empty. Open some MTG packs first.",
+      "summary": "{player}: MTG collection discovered {total} unique cards. By set: {sets}"
     }
   },
   "errors": {
@@ -238,7 +245,8 @@
     "flip": "コインを投げて、残高の金額または「考え方」をセールします。 (別名: セール、コインフリップ)",
     "dice": "サイコロ (1 ～ 6) を振って、高い数字 (4 ～ 6)、低い数字 (1 ～ 3)、または正確な数字を考えます。 使用法: サイコロ <bet|all> high|low|1-6。 （別名：ロール）",
     "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)",
-    "pokedex": "Show discovered Pokemon cards grouped by region."
+    "pokedex": "Show discovered Pokemon cards grouped by region.",
+    "collection": "Show discovered MTG cards grouped by set."
   },
   "help_command_names": {
     "cast": "つる",
@@ -273,7 +281,8 @@
     "scramble": "まぜる",
     "translate": "翻訳する",
     "slots": "slots",
-    "pokedex": "pokedex"
+    "pokedex": "pokedex",
+    "collection": "collection"
   },
   "command_aliases": {
     "cast": [
@@ -401,6 +410,10 @@
     ],
     "pokedex": [
       "dex"
+    ],
+    "collection": [
+      "mtgcollection",
+      "mtgdex"
     ]
   }
 }

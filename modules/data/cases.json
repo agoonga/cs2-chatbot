@@ -7,27 +7,128 @@
         "knife_pull_chance": 0.0025
     },
     {
-        "name": "Pokemon Pack - Scarlet & Violet",
-        "aliases": ["pokemon pack", "scarlet pack", "sv pack"],
+        "name": "CS Weapon Case",
+        "aliases": ["Weapon Case", "cswc"],
+        "source": "cs2_case_api",
+        "api_case_name": "CS:GO Weapon Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Operation Phoenix Weapon Case",
+        "aliases": ["Phoenix Case", "Operation Phoenix Case"],
+        "source": "cs2_case_api",
+        "api_case_name": "Operation Phoenix Weapon Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Operation Breakout Weapon Case",
+        "aliases": ["Breakout Case", "Operation Breakout Case"],
+        "source": "cs2_case_api",
+        "api_case_name": "Operation Breakout Weapon Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Chroma Case",
+        "aliases": ["Chroma"],
+        "source": "cs2_case_api",
+        "api_case_name": "Chroma Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Gamma Case",
+        "aliases": ["Gamma"],
+        "source": "cs2_case_api",
+        "api_case_name": "Gamma Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Recoil Case",
+        "aliases": ["Recoil"],
+        "source": "cs2_case_api",
+        "api_case_name": "Recoil Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Revolution Case",
+        "aliases": ["Revolution"],
+        "source": "cs2_case_api",
+        "api_case_name": "Revolution Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Fracture Case",
+        "aliases": ["Fracture"],
+        "source": "cs2_case_api",
+        "api_case_name": "Fracture Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Danger Zone Case",
+        "aliases": ["DZ Case", "Danger Zone"],
+        "source": "cs2_case_api",
+        "api_case_name": "Danger Zone Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Dreams & Nightmares Case",
+        "aliases": ["Dreams Case", "Nightmares Case", "Dreams and Nightmares"],
+        "source": "cs2_case_api",
+        "api_case_name": "Dreams & Nightmares Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Fever Case",
+        "aliases": ["Fever"],
+        "source": "cs2_case_api",
+        "api_case_name": "Fever Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "PK Scarlet & Violet",
+        "aliases": ["pokemon pack", "scarlet pack", "sv pack", "pokemon pack - scarlet & violet"],
         "source": "pokemon_tcg_api",
         "set_id": "sv1",
         "region": "Paldea",
         "good_pull_chance": 0.05
     },
     {
-        "name": "Pokemon Pack - Paldea Evolved",
-        "aliases": ["paldea pack", "paldea evolved pack", "sv2 pack"],
+        "name": "PK Paldea Evolved",
+        "aliases": ["paldea pack", "paldea evolved pack", "sv2 pack", "pokemon pack - paldea evolved"],
         "source": "pokemon_tcg_api",
         "set_id": "sv2",
         "region": "Paldea",
         "good_pull_chance": 0.05
     },
     {
-        "name": "Pokemon Pack - Obsidian Flames",
-        "aliases": ["obsidian pack", "obsidian flames pack", "sv3 pack"],
+        "name": "PK Obsidian Flames",
+        "aliases": ["obsidian pack", "obsidian flames pack", "sv3 pack", "pokemon pack - obsidian flames"],
         "source": "pokemon_tcg_api",
         "set_id": "sv3",
         "region": "Paldea",
+        "good_pull_chance": 0.05
+    },
+    {
+        "name": "MTG Wilds of Eldraine",
+        "aliases": ["mtg woe", "woe", "eldraine", "wilds of eldraine"],
+        "source": "mtg_tcg_api",
+        "set_code": "woe",
+        "region": "Eldraine",
+        "good_pull_chance": 0.05
+    },
+    {
+        "name": "MTG Lost Caverns of Ixalan",
+        "aliases": ["mtg lci", "lci", "ixalan", "lost caverns"],
+        "source": "mtg_tcg_api",
+        "set_code": "lci",
+        "region": "Ixalan",
+        "good_pull_chance": 0.05
+    },
+    {
+        "name": "MTG Outlaws of Thunder Junction",
+        "aliases": ["mtg otj", "otj", "thunder junction", "outlaws"],
+        "source": "mtg_tcg_api",
+        "set_code": "otj",
+        "region": "Thunder Junction",
         "good_pull_chance": 0.05
     }
 ]

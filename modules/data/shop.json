@@ -437,34 +437,195 @@
     ],
     "Packs": [
         {
-            "name": "Pokemon Pack - Scarlet & Violet",
-            "aliases": ["Pokemon Pack", "Pokemon", "Poke Pack", "Card Pack", "Scarlet Violet Pack", "Pokmon Pack"],
+            "name": "PK Scarlet & Violet",
+            "aliases": ["Pokemon Pack", "Pokemon", "Poke Pack", "Card Pack", "Scarlet Violet Pack", "Pokmon Pack", "Pokemon Pack - Scarlet & Violet"],
             "price": 4.99,
             "description": "A sealed Scarlet & Violet trading card pack.",
             "type": "item",
-            "max": 999,
             "attributes": {
                 "openable": true
             }
         },
         {
-            "name": "Pokemon Pack - Paldea Evolved",
-            "aliases": ["Paldea Pack", "Paldea Evolved Pack"],
+            "name": "PK Paldea Evolved",
+            "aliases": ["Paldea Pack", "Paldea Evolved Pack", "Pokemon Pack - Paldea Evolved"],
             "price": 5.49,
             "description": "A sealed Paldea Evolved trading card pack.",
             "type": "item",
-            "max": 999,
             "attributes": {
                 "openable": true
             }
         },
         {
-            "name": "Pokemon Pack - Obsidian Flames",
-            "aliases": ["Obsidian Pack", "Obsidian Flames Pack"],
+            "name": "PK Obsidian Flames",
+            "aliases": ["Obsidian Pack", "Obsidian Flames Pack", "Pokemon Pack - Obsidian Flames"],
             "price": 5.99,
             "description": "A sealed Obsidian Flames trading card pack.",
             "type": "item",
-            "max": 999,
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "MTG Wilds of Eldraine",
+            "aliases": ["MTG WOE", "WOE", "Wilds of Eldraine"],
+            "price": 4.99,
+            "description": "A sealed MTG booster from Wilds of Eldraine.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "MTG Lost Caverns of Ixalan",
+            "aliases": ["MTG LCI", "LCI", "Ixalan"],
+            "price": 5.49,
+            "description": "A sealed MTG booster from Lost Caverns of Ixalan.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "MTG Outlaws of Thunder Junction",
+            "aliases": ["MTG OTJ", "OTJ", "Thunder Junction"],
+            "price": 5.99,
+            "description": "A sealed MTG booster from Outlaws of Thunder Junction.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        }
+    ],
+    "Cases": [
+        {
+            "name": "Bravo Case",
+            "aliases": ["Operation Bravo Case", "Bravo", "CS Case"],
+            "price": 24.99,
+            "market_hash_name": "Operation Bravo Case",
+            "description": "A sealed CS case with a tiny chance at a knife hit.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "CS Weapon Case",
+            "aliases": ["Weapon Case", "CSWC"],
+            "price": 29.99,
+            "market_hash_name": "CS:GO Weapon Case",
+            "description": "The classic case that started the skin chase.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Operation Phoenix Weapon Case",
+            "aliases": ["Phoenix Case", "Operation Phoenix Case"],
+            "price": 4.99,
+            "market_hash_name": "Operation Phoenix Weapon Case",
+            "description": "A fan-favorite case from Operation Phoenix.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Operation Breakout Weapon Case",
+            "aliases": ["Breakout Case", "Operation Breakout Case"],
+            "price": 9.99,
+            "market_hash_name": "Operation Breakout Weapon Case",
+            "description": "A sought-after case known for iconic knife finishes.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Chroma Case",
+            "aliases": ["Chroma"],
+            "price": 2.99,
+            "market_hash_name": "Chroma Case",
+            "description": "A colorful case with vibrant finishes.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Gamma Case",
+            "aliases": ["Gamma"],
+            "price": 2.99,
+            "market_hash_name": "Gamma Case",
+            "description": "A modern case loaded with neon and tactical looks.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Recoil Case",
+            "aliases": ["Recoil"],
+            "price": 1.49,
+            "market_hash_name": "Recoil Case",
+            "description": "A newer case with high-volume market activity.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Revolution Case",
+            "aliases": ["Revolution"],
+            "price": 1.49,
+            "market_hash_name": "Revolution Case",
+            "description": "A recent case with stylish modern skins.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Fracture Case",
+            "aliases": ["Fracture"],
+            "price": 1.49,
+            "market_hash_name": "Fracture Case",
+            "description": "A budget case with popular finishes.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Danger Zone Case",
+            "aliases": ["DZ Case", "Danger Zone"],
+            "price": 2.49,
+            "market_hash_name": "Danger Zone Case",
+            "description": "A battle-hardened case from the Danger Zone era.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Dreams & Nightmares Case",
+            "aliases": ["Dreams Case", "Nightmares Case", "Dreams and Nightmares"],
+            "price": 2.49,
+            "market_hash_name": "Dreams & Nightmares Case",
+            "description": "A surreal case loaded with dreamlike and horror-inspired finishes.",
+            "type": "item",
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Fever Case",
+            "aliases": ["Fever"],
+            "price": 2.49,
+            "market_hash_name": "Fever Case",
+            "description": "A fresh case with high-energy modern skins.",
+            "type": "item",
             "attributes": {
                 "openable": true
             }

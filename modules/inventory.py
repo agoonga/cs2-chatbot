@@ -9,6 +9,7 @@ from thefuzz import process, fuzz
 from util.cs2_case_api import CS2CaseAPIError, CS2CaseClient
 from util.database import DatabaseConnection
 from util.config import get_config_path
+from util.mtg_tcg_api import MTGTCGAPIError, MTGTCGClient
 from util.pokemon_tcg_api import PokemonTCGAPIError, PokemonTCGClient
 from util.module_registry import module_registry
 from modules.economy import Economy
@@ -27,8 +28,10 @@ class Inventory:
             raise Exception(f"Error loading cases: {e}")
         self.economy: Economy = module_registry.get_module("economy")
         self.pokemon_tcg = PokemonTCGClient(api_key=os.getenv("POKEMONTCG_API_KEY"))
+        self.mtg_tcg = MTGTCGClient()
         self.cs2_case_api = CS2CaseClient()
         self._ensure_pokedex_table()
+        self._ensure_mtg_collection_table()
 
         # Warm Pokemon set cache on startup so @open is usually instant.
         pokemon_set_ids = [
@@ -38,6 +41,14 @@ class Inventory:
         ]
         if pokemon_set_ids:
             self.pokemon_tcg.prewarm_sets(pokemon_set_ids)
+
+        mtg_set_codes = [
+            case.get("set_code")
+            for case in self.cases
+            if case.get("source") == "mtg_tcg_api" and case.get("set_code")
+        ]
+        if mtg_set_codes:
+            self.mtg_tcg.prewarm_sets(mtg_set_codes)
 
         cs2_case_names = [
             case.get("api_case_name", case.get("name"))
@@ -69,6 +80,31 @@ class Inventory:
                 """
                 CREATE INDEX IF NOT EXISTS idx_user_pokedex_user_region
                 ON user_pokedex(user_id, region)
+                """
+            )
+
+    def _ensure_mtg_collection_table(self):
+        """Ensure MTG collection discovery table exists."""
+        with DatabaseConnection() as cursor:
+            cursor.execute(
+                """
+                CREATE TABLE IF NOT EXISTS user_mtg_collection (
+                    user_id TEXT NOT NULL,
+                    card_name TEXT NOT NULL,
+                    set_code TEXT NOT NULL,
+                    set_name TEXT NOT NULL,
+                    rarity TEXT NOT NULL DEFAULT 'Unknown',
+                    pulls INTEGER NOT NULL DEFAULT 1,
+                    first_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    last_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    PRIMARY KEY (user_id, card_name, set_code)
+                )
+                """
+            )
+            cursor.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_user_mtg_collection_user_set
+                ON user_mtg_collection(user_id, set_name)
                 """
             )
 
@@ -111,6 +147,65 @@ class Inventory:
                 """
                 SELECT COUNT(*)
                 FROM user_pokedex
+                WHERE user_id = %s
+                """,
+                (user_id,),
+            )
+            row = cursor.fetchone()
+        return int(row[0]) if row else 0
+
+    def record_mtg_collection_discovery(
+        self,
+        user_id: str,
+        card_name: str,
+        set_code: str,
+        set_name: str,
+        rarity: str = "Unknown",
+    ) -> None:
+        """Record a pulled MTG card discovery for the player's collection."""
+        with DatabaseConnection() as cursor:
+            cursor.execute(
+                """
+                INSERT INTO user_mtg_collection (user_id, card_name, set_code, set_name, rarity)
+                VALUES (%s, %s, %s, %s, %s)
+                ON CONFLICT (user_id, card_name, set_code)
+                DO UPDATE SET
+                    pulls = user_mtg_collection.pulls + 1,
+                    last_seen_at = CURRENT_TIMESTAMP,
+                    set_name = EXCLUDED.set_name,
+                    rarity = EXCLUDED.rarity
+                """,
+                (
+                    user_id,
+                    card_name,
+                    (set_code or "unknown").lower(),
+                    set_name or "Unknown Set",
+                    rarity or "Unknown",
+                ),
+            )
+
+    def get_mtg_collection_counts_by_set(self, user_id: str):
+        """Return discovered unique MTG card counts grouped by set for a user."""
+        with DatabaseConnection() as cursor:
+            cursor.execute(
+                """
+                SELECT set_name, COUNT(*) AS discovered
+                FROM user_mtg_collection
+                WHERE user_id = %s
+                GROUP BY set_name
+                ORDER BY set_name ASC
+                """,
+                (user_id,),
+            )
+            return cursor.fetchall()
+
+    def get_mtg_collection_total_discovered(self, user_id: str) -> int:
+        """Return total unique discovered MTG cards for a user."""
+        with DatabaseConnection() as cursor:
+            cursor.execute(
+                """
+                SELECT COUNT(*)
+                FROM user_mtg_collection
                 WHERE user_id = %s
                 """,
                 (user_id,),
@@ -384,6 +479,67 @@ class Inventory:
                         t,
                         "commands.inventory.open.good_card_hit",
                         "GOOD CARD HIT!",
+                    )
+                return result_text
+
+            if case and case.get("source") == "mtg_tcg_api":
+                pull_start = time.time()
+                try:
+                    pull = self.mtg_tcg.pull_pack_card(
+                        case.get("set_code", ""),
+                        good_pull_chance=float(case.get("good_pull_chance", 0.05)),
+                    )
+                except (ValueError, MTGTCGAPIError):
+                    elapsed = time.time() - pull_start
+                    self.logger.exception(
+                        "MTG pack open failed user=%s case=%s set_code=%s elapsed=%.3fs",
+                        user_id,
+                        canonical_case_name,
+                        case.get("set_code", ""),
+                        elapsed,
+                    )
+                    return self._translate(
+                        t,
+                        "commands.inventory.open.mtg_api_error",
+                        "Couldn't reach MTG card data service right now. Try opening again in a bit.",
+                    )
+
+                self.remove_item(user_id, canonical_case_name, 1)
+                self.economy.add_balance(user_id, pull["price"])
+                self.record_mtg_collection_discovery(
+                    user_id,
+                    pull["name"],
+                    case.get("set_code", "unknown"),
+                    pull["set_name"],
+                    pull["rarity"],
+                )
+                elapsed = time.time() - pull_start
+                self.logger.info(
+                    "MTG pack opened user=%s case=%s card=%s rarity=%s set=%s price=%s good_hit=%s elapsed=%.3fs",
+                    user_id,
+                    canonical_case_name,
+                    pull["name"],
+                    pull["rarity"],
+                    pull["set_name"],
+                    pull["price"],
+                    pull.get("good_hit", False),
+                    elapsed,
+                )
+                result_text = self._translate(
+                    t,
+                    "commands.inventory.open.opened_mtg_pack",
+                    "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+                    case_name=canonical_case_name,
+                    item_name=pull["name"],
+                    rarity=pull["rarity"],
+                    set_name=pull["set_name"],
+                    price=pull["price"],
+                )
+                if pull.get("good_hit"):
+                    result_text += " " + self._translate(
+                        t,
+                        "commands.inventory.open.good_mtg_hit",
+                        "MYTHIC HIT!",
                     )
                 return result_text
 

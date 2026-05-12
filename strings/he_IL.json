@@ -102,7 +102,10 @@
         "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
         "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
         "knife_hit": "KNIFE HIT!",
-        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit.",
+        "opened_mtg_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_mtg_hit": "MYTHIC HIT!",
+        "mtg_api_error": "Couldn't reach MTG card data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: נא לציין פריט לבדיקה.",
@@ -211,6 +214,10 @@
     "pokedex": {
       "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
       "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
+    },
+    "collection": {
+      "empty": "{player}: Your MTG collection is empty. Open some MTG packs first.",
+      "summary": "{player}: MTG collection discovered {total} unique cards. By set: {sets}"
     }
   },
   "errors": {
@@ -238,7 +245,8 @@
     "balance": "הצג את היתרה הנוכחית של השחקן. (כינוי: bal, כסף)",
     "top": "הצג את השחקנים המובילים במשק. (כינוי: leaderboard, שחקנים מובילים)",
     "help": "הצג את רשימת הפקודות הזמינות או עזרה עבור פקודה ספציפית. (כינוי: פקודות)",
-    "pokedex": "Show discovered Pokemon cards grouped by region."
+    "pokedex": "Show discovered Pokemon cards grouped by region.",
+    "collection": "Show discovered MTG cards grouped by set."
   },
   "help_command_names": {
     "cast": "יָצוּק",
@@ -273,7 +281,8 @@
     "status": "סטָטוּס",
     "scramble": "לִטרוֹף",
     "translate": "לְתַרְגֵם",
-    "pokedex": "pokedex"
+    "pokedex": "pokedex",
+    "collection": "collection"
   },
   "command_aliases": {
     "cast": [
@@ -382,6 +391,10 @@
     ],
     "pokedex": [
       "dex"
+    ],
+    "collection": [
+      "mtgcollection",
+      "mtgdex"
     ]
   }
 }

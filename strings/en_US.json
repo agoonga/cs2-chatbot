@@ -102,7 +102,10 @@
         "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit.",
         "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
         "good_card_hit": "GOOD CARD HIT!",
-        "api_error": "Couldn't reach card data service right now. Try opening again in a bit."
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_mtg_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_mtg_hit": "MYTHIC HIT!",
+        "mtg_api_error": "Couldn't reach MTG card data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: Please specify an item to inspect.",
@@ -149,10 +152,14 @@
       "usage_general": "{player}: Usage: @autosell [add|remove] <fish|all>, @autosell clear, or @autosell to list.",
       "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
-          "pokedex": {
-            "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
-            "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
-          },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
+    },
+    "collection": {
+      "empty": "{player}: Your MTG collection is empty. Open some MTG packs first.",
+      "summary": "{player}: MTG collection discovered {total} unique cards. By set: {sets}"
+    },
     "quest": {
       "system_not_available": "Quest system not available.",
       "next_available_in": "Next daily quest available in {time_remaining}",
@@ -245,6 +252,7 @@
     "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)",
     "balance": "Display the player's current balance. (alias: bal, money)",
     "pokedex": "Show discovered Pokemon cards grouped by region.",
+    "collection": "Show discovered MTG cards grouped by set.",
     "top": "Display the top players in the economy. (alias: leaderboard, topplayers)",
     "help": "Display the list of available commands or help for a specific command. (alias: commands)"
   },
@@ -281,7 +289,8 @@
     "status": "status",
     "scramble": "scramble",
     "translate": "translate",
-    "pokedex": "pokedex"
+    "pokedex": "pokedex",
+    "collection": "collection"
   },
   "command_aliases": {
     "cast": ["fish", "gofish"],
@@ -314,6 +323,7 @@
     "ship": ["ship"],
     "daily": ["quest"],
     "pokedex": ["dex"],
+    "collection": ["mtgcollection", "mtgdex"],
     "scramble": ["scramble"],
     "translate": ["trans", "tl"]
   }

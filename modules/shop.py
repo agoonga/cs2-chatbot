@@ -1,8 +1,10 @@
 import os
 import json
 import sys
+import logging
 from thefuzz import process, fuzz
 
+from util.cs2_case_api import CS2CaseClient
 from util.config import get_config_path
 from util.module_registry import module_registry
 from modules.economy import Economy
@@ -12,6 +14,7 @@ class Shop:
     load_after = ["economy", "inventory"]  # Load after the economy and inventory modules
     
     def __init__(self):
+        self.logger = logging.getLogger(__name__)
         appdata_dir = os.path.dirname(get_config_path())
         shop_path = os.path.join(appdata_dir, "shop.json") if hasattr(sys, '_MEIPASS') else os.path.join("modules", "data", "shop.json")
         try:
@@ -21,8 +24,34 @@ class Shop:
             raise Exception(f"Error loading shop: {e}")
         self.economy: Economy = module_registry.get_module("economy")
         self.inventory: Inventory = module_registry.get_module("inventory")
+        self.cs2_case_api = CS2CaseClient()
 
+        self._refresh_case_prices_on_startup()
         self.load_shop_categories()
+
+    def _refresh_case_prices_on_startup(self):
+        """Refresh buy prices for CS2 cases from Steam market data at launch."""
+        cases = self.shop.get("Cases")
+        if not isinstance(cases, list) or not cases:
+            return
+
+        refreshed = 0
+        for case in cases:
+            if not isinstance(case, dict):
+                continue
+            market_name = case.get("market_hash_name") or case.get("api_case_name") or case.get("name")
+            if not isinstance(market_name, str) or not market_name.strip():
+                continue
+
+            price = self.cs2_case_api.get_case_price(market_name.strip())
+            if price is None:
+                continue
+
+            case["price"] = round(float(price), 2)
+            refreshed += 1
+
+        if refreshed:
+            self.logger.info("Shop case prices refreshed from Steam count=%s", refreshed)
 
     def _translate(self, t, key, default_text, **kwargs):
         if callable(t):

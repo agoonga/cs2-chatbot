@@ -19,6 +19,7 @@ class CS2CaseClient:
     """Simple client for pulling CS2 case items from a public crate API."""
 
     CRATES_URL = "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/crates.json"
+    STEAM_PRICE_URL = "https://steamcommunity.com/market/priceoverview/"
 
     def __init__(self, timeout: float = 8.0, max_retries: int = 1):
         self.timeout = timeout
@@ -35,7 +36,43 @@ class CS2CaseClient:
             self._cache_path = config_dir / "cache" / "cs2_crates_cache.json"
 
         self._crates: List[Dict[str, Any]] = []
+        self._case_price_cache: Dict[str, float] = {}
+        self._item_price_cache: Dict[str, float] = {}
         self._load_cached_crates()
+
+    @staticmethod
+    def _safe_float(value: Any) -> Optional[float]:
+        try:
+            parsed = float(value)
+            return parsed if parsed >= 0 else None
+        except Exception:
+            return None
+
+    @staticmethod
+    def _parse_steam_price(raw_value: Any) -> Optional[float]:
+        if raw_value is None:
+            return None
+        if isinstance(raw_value, (int, float)):
+            return round(float(raw_value), 2)
+
+        text = str(raw_value).strip()
+        if not text:
+            return None
+
+        # Keep digits and separators, then normalize to dot decimal.
+        filtered = "".join(ch for ch in text if ch.isdigit() or ch in ".,")
+        if not filtered:
+            return None
+
+        if filtered.count(",") > 0 and filtered.count(".") > 0:
+            filtered = filtered.replace(",", "")
+        elif filtered.count(",") > 0 and filtered.count(".") == 0:
+            filtered = filtered.replace(",", ".")
+
+        try:
+            return round(float(filtered), 2)
+        except Exception:
+            return None
 
     def _load_cached_crates(self) -> None:
         try:
@@ -46,11 +83,25 @@ class CS2CaseClient:
                 return
             updated_at = float(payload.get("updated_at", 0))
             crates = payload.get("crates", [])
+            case_prices = payload.get("case_prices", {})
+            item_prices = payload.get("item_prices", {})
             if not isinstance(crates, list):
                 return
             if (time.time() - updated_at) > self._cache_ttl_seconds:
                 return
             self._crates = crates
+            if isinstance(case_prices, dict):
+                self._case_price_cache = {
+                    str(k).strip().lower(): v
+                    for k, v in case_prices.items()
+                    if self._safe_float(v) is not None
+                }
+            if isinstance(item_prices, dict):
+                self._item_price_cache = {
+                    str(k).strip().lower(): v
+                    for k, v in item_prices.items()
+                    if self._safe_float(v) is not None
+                }
             self._logger.info("Loaded CS2 crates cache entries=%s path=%s", len(crates), self._cache_path)
         except Exception:
             self._logger.exception("Failed loading CS2 crates cache from %s", self._cache_path)
@@ -61,10 +112,84 @@ class CS2CaseClient:
             payload = {
                 "updated_at": time.time(),
                 "crates": self._crates,
+                "case_prices": self._case_price_cache,
+                "item_prices": self._item_price_cache,
             }
             self._cache_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
         except Exception:
             self._logger.exception("Failed saving CS2 crates cache to %s", self._cache_path)
+
+    def _fetch_steam_price(self, market_hash_name: str) -> Optional[float]:
+        name = (market_hash_name or "").strip()
+        if not name:
+            return None
+
+        attempts = self.max_retries + 1
+        for attempt in range(1, attempts + 1):
+            try:
+                response = self._session.get(
+                    self.STEAM_PRICE_URL,
+                    params={
+                        "appid": 730,
+                        "currency": 1,
+                        "market_hash_name": name,
+                    },
+                    timeout=self.timeout,
+                )
+                response.raise_for_status()
+                payload = response.json()
+                if not isinstance(payload, dict) or not payload.get("success"):
+                    return None
+
+                price = self._parse_steam_price(payload.get("lowest_price"))
+                if price is None:
+                    price = self._parse_steam_price(payload.get("median_price"))
+                return price
+            except Exception as exc:
+                self._logger.warning(
+                    "Steam price fetch failed name=%s (attempt %s/%s): %s",
+                    name,
+                    attempt,
+                    attempts,
+                    exc,
+                )
+                if attempt >= attempts:
+                    return None
+                time.sleep(0.25 * attempt)
+
+        return None
+
+    def get_case_price(self, case_name: str, refresh: bool = False) -> Optional[float]:
+        key = (case_name or "").strip().lower()
+        if not key:
+            return None
+
+        if not refresh and key in self._case_price_cache:
+            return self._safe_float(self._case_price_cache[key])
+
+        price = self._fetch_steam_price(case_name)
+        if price is None:
+            return self._safe_float(self._case_price_cache.get(key))
+
+        self._case_price_cache[key] = price
+        self._save_cached_crates()
+        return price
+
+    def get_item_price(self, item_name: str, refresh: bool = False) -> Optional[float]:
+        key = (item_name or "").strip().lower()
+        if not key:
+            return None
+
+        if not refresh and key in self._item_price_cache:
+            return self._safe_float(self._item_price_cache[key])
+
+        price = self._fetch_steam_price(item_name)
+        if price is None:
+            return self._safe_float(self._item_price_cache.get(key))
+
+        self._item_price_cache[key] = price
+        self._save_cached_crates()
+        return price
 
     def _fetch_crates(self) -> List[Dict[str, Any]]:
         attempts = self.max_retries + 1
@@ -106,7 +231,19 @@ class CS2CaseClient:
         if not names:
             return
         found = sum(1 for c in crates if c.get("name", "").strip().lower() in names)
-        self._logger.info("CS2 case prewarm ready requested=%s found=%s", len(names), found)
+        priced = 0
+        for name in case_names:
+            if not isinstance(name, str) or not name.strip():
+                continue
+            if self.get_case_price(name.strip()) is not None:
+                priced += 1
+
+        self._logger.info(
+            "CS2 case prewarm ready requested=%s found=%s priced=%s",
+            len(names),
+            found,
+            priced,
+        )
 
     @staticmethod
     def _item_price(item: Dict[str, Any], knife_hit: bool = False) -> float:
@@ -150,10 +287,11 @@ class CS2CaseClient:
             raise CS2CaseAPIError(f"Case '{case_name}' has no pullable items")
 
         rarity_name = ((pulled.get("rarity") or {}).get("name") or "Unknown")
+        market_price = self.get_item_price(pulled.get("name", ""))
         return {
             "name": pulled.get("name", "Unknown Item"),
             "rarity": rarity_name,
-            "price": self._item_price(pulled, knife_hit=knife_hit),
+            "price": market_price if market_price is not None else self._item_price(pulled, knife_hit=knife_hit),
             "knife_hit": knife_hit,
             "case_name": crate.get("name", case_name),
         }
