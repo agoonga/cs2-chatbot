@@ -59,14 +59,14 @@ def _get_target_locale(to_input: str) -> str:
 
 @command_registry.register("translate", aliases=["trans", "tl"])
 def translate_command(bot, is_team: bool, playername: str, chattext: str) -> None:
-    # Support both:
-    #   !translate <to> <text>          — auto-detect source
-    #   !translate <from> <to> <text>   — explicit source
-    # chattext does NOT include the command name, so:
-    #   "en ru hello"  → args[0]="en", args[1]="ru", args[2]="hello"
+    # Support:
+    #   !translate <to>               — translate last message to <to>
+    #   !translate <to> <text>        — auto-detect source, translate <text>
+    #   !translate <from> <to> <text> — explicit source
+    # chattext does NOT include the command name.
     args = chattext.split(None, 2)
 
-    if len(args) < 2:
+    if not args:
         bot.add_to_chat_queue(is_team, bot.t("commands.translate.usage"))
         return
 
@@ -80,21 +80,24 @@ def translate_command(bot, is_team: bool, playername: str, chattext: str) -> Non
         text = args[2] if len(args) > 2 else ""
         source_lang = _LANG_MAP[from_input]
     elif arg0 in _LANG_MAP:
-        # Auto-detect: !translate <to> <text>
+        # Either "!translate <to> <text>" or "!translate <to>" (last-message fallback)
         from_input = "auto"
         to_input = arg0
-        text = args[1] if len(args) > 1 else ""
-        # args[1] is actually the first word of text here; rejoin with rest
+        source_lang = "auto"
         parts = chattext.split(None, 1)
         text = parts[1] if len(parts) > 1 else ""
-        source_lang = "auto"
     else:
         bot.add_to_chat_queue(is_team, bot.t("commands.translate.unknown_lang", lang=arg0))
         return
 
+    # No inline text — fall back to the last chat message seen in this session
     if not text:
-        bot.add_to_chat_queue(is_team, bot.t("commands.translate.usage"))
-        return
+        session_id = bot.get_request_session() if hasattr(bot, "get_request_session") else "default"
+        last = getattr(bot, "last_message", {}).get(session_id, "")
+        if not last:
+            bot.add_to_chat_queue(is_team, bot.t("commands.translate.no_last_message"))
+            return
+        text = last
 
     to_lang = _LANG_MAP.get(to_input)
     if not to_lang:

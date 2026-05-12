@@ -5,7 +5,7 @@ import threading
 from collections import deque
 from contextvars import ContextVar
 from flask import Flask, request, jsonify
-from typing import Dict, List
+from typing import Deque, Dict, List
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -101,6 +101,12 @@ class BotServer:
         # Response queue for collecting responses during command execution
         self._response_queue = []
 
+        # Last non-command message per session (used by translate fallback)
+        self.last_message: Dict[str, str] = {}
+
+        # Last bot response texts per session (to avoid capturing bot echoes as user chat)
+        self._recent_response_texts: Dict[str, Deque[str]] = {}
+
         # Anti-spam settings (configurable via [anti_spam] in config.toml).
         anti_spam_cfg = self.config.get("anti_spam", {}) if isinstance(self.config, dict) else {}
         self._spam_window_seconds = self._positive_int(anti_spam_cfg.get("window_seconds", 3), 3)
@@ -190,9 +196,10 @@ class BotServer:
             language: Language code for responses (defaults to en_US)
         """
         # Set language for this request (request-scoped to avoid cross-request bleed).
+        normalized_session = session_id or "default"
         self.language = language
         language_token = self._request_language.set(language)
-        session_token = self._request_session.set(session_id or "default")
+        session_token = self._request_session.set(normalized_session)
         import time
         start_time = time.time()
         
@@ -203,13 +210,18 @@ class BotServer:
             command_parts = self._extract_command(chattext)
 
             # Plain text is only meaningful when a scramble session is active.
-            if not command_parts and not self._has_active_scramble_session(session_id):
-                self.logger.debug(f"Ignoring non-command message for inactive session: {session_id}")
-                return []
+            if not command_parts:
+                # Always record last non-command message for translate fallback.
+                stripped_chat = (chattext or "").strip()
+                if stripped_chat and not self._is_recent_bot_response(normalized_session, stripped_chat):
+                    self.last_message[normalized_session] = stripped_chat
+                if not self._has_active_scramble_session(normalized_session):
+                    self.logger.debug(f"Ignoring non-command message for inactive session: {normalized_session}")
+                    return []
 
             # Only commands count toward anti-spam cooldown.
             if command_parts:
-                cooldown_seconds, should_warn = self._check_spam_cooldown(session_id, playername)
+                cooldown_seconds, should_warn = self._check_spam_cooldown(normalized_session, playername)
                 if cooldown_seconds > 0:
                     responses = []
                     if self._spam_remove_from_queue and should_warn:
@@ -223,6 +235,7 @@ class BotServer:
                             "is_team": is_team,
                             "text": self.t("errors.spam_cooldown", player=playername, seconds=cooldown_seconds),
                         })
+                    self._remember_recent_responses(normalized_session, responses)
                     return responses
 
             # Pass to modules that are reading input
@@ -234,12 +247,12 @@ class BotServer:
                     try:
                         try:
                             if module_name == "scramble":
-                                response = module_instance.process(playername, is_team, chattext, session_id=session_id, t=self.t)
+                                response = module_instance.process(playername, is_team, chattext, session_id=normalized_session, t=self.t)
                             else:
                                 response = module_instance.process(playername, is_team, chattext, t=self.t)
                         except TypeError:
                             if module_name == "scramble":
-                                response = module_instance.process(playername, is_team, chattext, session_id=session_id)
+                                response = module_instance.process(playername, is_team, chattext, session_id=normalized_session)
                             else:
                                 response = module_instance.process(playername, is_team, chattext)
                         if response:
@@ -275,6 +288,7 @@ class BotServer:
             # Return collected responses
             responses = self._response_queue
             self._response_queue = []
+            self._remember_recent_responses(normalized_session, responses)
 
             total_time = time.time() - start_time
             self.logger.info(f"Total processing time: {total_time:.4f}s (modules: {module_time:.4f}s)")
@@ -336,6 +350,23 @@ class BotServer:
                 return self._spam_cooldown_seconds, True
 
         return 0, False
+
+    def _remember_recent_responses(self, session_id: str, responses: List[Dict]) -> None:
+        """Keep a rolling per-session history of recent bot response texts."""
+        history = self._recent_response_texts.setdefault(session_id, deque(maxlen=5))
+        for response in responses:
+            text = response.get("text") if isinstance(response, dict) else None
+            if isinstance(text, str):
+                stripped = text.strip()
+                if stripped:
+                    history.append(stripped)
+
+    def _is_recent_bot_response(self, session_id: str, text: str) -> bool:
+        """Return True if text matches one of the most recent bot responses for this session."""
+        history = self._recent_response_texts.get(session_id)
+        if not history:
+            return False
+        return text in history
         
     def add_to_chat_queue(self, is_team: bool, chattext: str) -> None:
         """Compatibility method for commands that expect this method."""
