@@ -520,6 +520,36 @@
         "description": "An old barnacle-laden Bravo case."
     },
     {
+        "name": "Pokemon Pack - Scarlet & Violet",
+        "type": "item",
+        "min_weight": 0,
+        "max_weight": 0,
+        "price_multiplier": 0.0,
+        "rarity": "Rare",
+        "catch_rate": 2.0,
+        "description": "A sealed Scarlet & Violet pack pulled from the water."
+    },
+    {
+        "name": "Pokemon Pack - Paldea Evolved",
+        "type": "item",
+        "min_weight": 0,
+        "max_weight": 0,
+        "price_multiplier": 0.0,
+        "rarity": "Rare",
+        "catch_rate": 1.5,
+        "description": "A sealed Paldea Evolved pack with a soggy wrapper."
+    },
+    {
+        "name": "Pokemon Pack - Obsidian Flames",
+        "type": "item",
+        "min_weight": 0,
+        "max_weight": 0,
+        "price_multiplier": 0.0,
+        "rarity": "Rare",
+        "catch_rate": 1.5,
+        "description": "A sealed Obsidian Flames pack. Warm to the touch for some reason."
+    },
+    {
         "name": "Sunken Treasure Chest",
         "type": "item",
         "min_weight": 0,

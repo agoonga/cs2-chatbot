@@ -84,7 +84,13 @@
         "no_cases": "{player}: У вас нет кейсов для открытия.",
         "no_case_named": "У вас нет кейса {case_name} для открытия.",
         "invalid_case": "{case_name} не является допустимым кейсом.",
-        "opened_case": "Вы открыли {case_name} и получили {item_name} стоимостью {price}! Вы сразу продали его и забрали деньги."
+        "opened_case": "Вы открыли {case_name} и получили {item_name} стоимостью {price}! Вы сразу продали его и забрали деньги.",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: Укажите предмет для осмотра.",
@@ -201,6 +207,10 @@
       "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
       "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
       "lose": "No match. You lose ${bet:.2f}."
+    },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
     }
   },
   "errors": {
@@ -227,7 +237,8 @@
     "top": "Показать топ игроков в экономике. (alias: leaderboard, topplayers)",
     "help": "Показать список доступных команд или справку по команде. (alias: commands)",
     "flip": "Подбросьте монету, чтобы положить на карту определенную сумму или «все» на свой баланс. (псевдоним: азартная игра, койнфлип)",
-    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)",
+    "pokedex": "Show discovered Pokemon cards grouped by region."
   },
   "help_command_names": {
     "cast": "ловить",
@@ -261,7 +272,8 @@
     "scramble": "мешать",
     "dice": "кости",
     "translate": "переводить",
-    "slots": "slots"
+    "slots": "slots",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": [
@@ -359,6 +371,9 @@
     "slots": [
       "slot",
       "spin"
+    ],
+    "pokedex": [
+      "dex"
     ]
   }
 }

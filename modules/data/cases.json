@@ -1,33 +1,33 @@
 [
     {
         "name": "Bravo Case",
-        "items": {
-            "mil-spec": [
-                { "name": "Galil AR | Shattered", "price": 109.12 },
-                { "name": "SG 553 | Wave Spray", "price": 14.78 },
-                { "name": "UMP-45 | Bone Pile", "price": 15.23 },
-                { "name": "Nova | Tempest", "price": 10.34 },
-                { "name": "G3SG1 | Demeter", "price": 9.87 },
-                { "name": "Dual Berettas | Black Limba", "price": 10.12 }
-            ],
-            "restricted": [
-                { "name": "USP-S | Overgrowth", "price": 39.87 },
-                { "name": "M4A4 | Zirka", "price": 40.56 },
-                { "name": "M4A1-S | Bright Water", "price": 34.92 },
-                { "name": "MAC-10 | Graven", "price": 46.34 }
-            ],
-            "classified": [
-                { "name": "P90 | Emerald Dragon", "price": 1003.21 },
-                { "name": "P2000 | Ocean Foam", "price": 202.78 },
-                { "name": "AWP | Graphite", "price": 179.34 }
-            ],
-            "covert": [
-                { "name": "AK-47 | Fire Serpent", "price": 1150.32 },
-                { "name": "Desert Eagle | Golden Koi", "price": 798.45 }
-            ],
-            "exceedingly-rare": [
-
-            ]
-        }
+        "aliases": ["Operation Bravo Case", "bravo"],
+        "source": "cs2_case_api",
+        "api_case_name": "Operation Bravo Case",
+        "knife_pull_chance": 0.0025
+    },
+    {
+        "name": "Pokemon Pack - Scarlet & Violet",
+        "aliases": ["pokemon pack", "scarlet pack", "sv pack"],
+        "source": "pokemon_tcg_api",
+        "set_id": "sv1",
+        "region": "Paldea",
+        "good_pull_chance": 0.05
+    },
+    {
+        "name": "Pokemon Pack - Paldea Evolved",
+        "aliases": ["paldea pack", "paldea evolved pack", "sv2 pack"],
+        "source": "pokemon_tcg_api",
+        "set_id": "sv2",
+        "region": "Paldea",
+        "good_pull_chance": 0.05
+    },
+    {
+        "name": "Pokemon Pack - Obsidian Flames",
+        "aliases": ["obsidian pack", "obsidian flames pack", "sv3 pack"],
+        "source": "pokemon_tcg_api",
+        "set_id": "sv3",
+        "region": "Paldea",
+        "good_pull_chance": 0.05
     }
 ]

@@ -421,6 +421,53 @@
                     "fishing.miss_rate_10"
                 ]
             }
+        },
+        {
+            "name": "Camel Crush Menthol",
+            "aliases": ["Camel", "Camel Crush", "Crush", "Camel Menthol"],
+            "description": "Click the capsule and chase fish with icy confidence.",
+            "price": 11.99,
+            "type": "tobacco",
+            "attributes": {
+                "effects": [
+                    "fishing.catch_rate_20"
+                ]
+            }
+        }
+    ],
+    "Packs": [
+        {
+            "name": "Pokemon Pack - Scarlet & Violet",
+            "aliases": ["Pokemon Pack", "Pokemon", "Poke Pack", "Card Pack", "Scarlet Violet Pack", "Pokmon Pack"],
+            "price": 4.99,
+            "description": "A sealed Scarlet & Violet trading card pack.",
+            "type": "item",
+            "max": 999,
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Pokemon Pack - Paldea Evolved",
+            "aliases": ["Paldea Pack", "Paldea Evolved Pack"],
+            "price": 5.49,
+            "description": "A sealed Paldea Evolved trading card pack.",
+            "type": "item",
+            "max": 999,
+            "attributes": {
+                "openable": true
+            }
+        },
+        {
+            "name": "Pokemon Pack - Obsidian Flames",
+            "aliases": ["Obsidian Pack", "Obsidian Flames Pack"],
+            "price": 5.99,
+            "description": "A sealed Obsidian Flames trading card pack.",
+            "type": "item",
+            "max": 999,
+            "attributes": {
+                "openable": true
+            }
         }
     ]
 }

@@ -51,6 +51,21 @@ CREATE TABLE IF NOT EXISTS user_inventory (
     PRIMARY KEY (user_id, item_name)
 );
 
+-- User Pokemon card discoveries (Pokedex)
+CREATE TABLE IF NOT EXISTS user_pokedex (
+    user_id TEXT NOT NULL,
+    card_name TEXT NOT NULL,
+    set_id TEXT NOT NULL,
+    set_name TEXT NOT NULL,
+    region TEXT NOT NULL DEFAULT 'Unknown',
+    pulls INTEGER NOT NULL DEFAULT 1,
+    first_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, card_name, set_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_user_pokedex_user_region ON user_pokedex(user_id, region);
+
 -- Status effects table
 CREATE TABLE IF NOT EXISTS status_effects (
     user_id TEXT NOT NULL,

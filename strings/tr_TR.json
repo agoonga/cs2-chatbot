@@ -84,7 +84,13 @@
         "no_cases": "{player}: Açacak kasan yok.",
         "no_case_named": "Açacak {case_name} kasan yok.",
         "invalid_case": "{case_name} geçerli bir kasa değil.",
-        "opened_case": "Bir {case_name} açtın ve {price} değerinde bir {item_name} aldın! Hemen satıp parayı cebe attın."
+        "opened_case": "Bir {case_name} açtın ve {price} değerinde bir {item_name} aldın! Hemen satıp parayı cebe attın.",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: İncelemek için bir eşya belirt.",
@@ -201,6 +207,10 @@
       "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
       "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
       "lose": "No match. You lose ${bet:.2f}."
+    },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
     }
   },
   "errors": {
@@ -227,7 +237,8 @@
     "help": "Komut listesini veya belirli bir komutun yardımını göster. (takma ad: commands)",
     "flip": "Bakiyeniz karşılığında bir miktar veya 'tüm' ile kumar oynamak için yazı tura atın. (takma ad: kumar, yazı tura)",
     "dice": "Bir zar atın (1-6) ve yüksek (4-6), düşük (1-3) veya tam bir sayıya bahis yapın. Kullanım: <bahis|hepsi> yüksek|düşük|1-6 zar. (takma adı: rulo)",
-    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)",
+    "pokedex": "Show discovered Pokemon cards grouped by region."
   },
   "help_command_names": {
     "cast": "at",
@@ -261,7 +272,8 @@
     "status": "durum",
     "scramble": "karistir",
     "translate": "tercüme etmek",
-    "slots": "slots"
+    "slots": "slots",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": [
@@ -375,6 +387,9 @@
     "slots": [
       "slot",
       "spin"
+    ],
+    "pokedex": [
+      "dex"
     ]
   }
 }

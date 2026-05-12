@@ -26,6 +26,7 @@ services:
       POSTGRES_DB: fishing_bot
       POSTGRES_USER: bot_user
       POSTGRES_PASSWORD: bot_password
+      POKEMON_TCG_CACHE_PATH: /app/cache/pokemon_tcg_cache.json
     ports:
       - "8080:8080"
     depends_on:
@@ -35,6 +36,7 @@ services:
       - ./modules/data:/app/modules/data:ro
       - ./strings:/app/strings:ro
       - ./config.toml:/app/config.toml:ro
+      - ./cache:/app/cache
     restart: unless-stopped
 
 volumes:

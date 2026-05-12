@@ -84,7 +84,13 @@
         "no_cases": "{player}: 열 수 있는 케이스가 없습니다.",
         "no_case_named": "{case_name} 케이스가 없습니다.",
         "invalid_case": "{case_name}은(는) 유효한 케이스가 아닙니다.",
-        "opened_case": "{case_name}를 열어 {price} 가치의 {item_name}를 얻었습니다! 바로 팔아서 돈을 챙겼습니다."
+        "opened_case": "{case_name}를 열어 {price} 가치의 {item_name}를 얻었습니다! 바로 팔아서 돈을 챙겼습니다.",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: 확인할 아이템을 지정하세요.",
@@ -201,6 +207,10 @@
       "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
       "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
       "lose": "No match. You lose ${bet:.2f}."
+    },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
     }
   },
   "errors": {
@@ -227,7 +237,8 @@
     "help": "사용 가능한 명령 목록 또는 특정 명령의 도움말을 표시합니다. (별칭: commands)",
     "flip": "칩을 사용하는 잔액에 맞는 금액 또는 '전체'를 도박에 참여하세요. (별칭: 도박, 뒤집기)",
     "dice": "다윗(1-6)을 굴리고 높은 값(4-6), 하위 값(1-3) 또는 숫자에 따라 이동합니다. 입력: <베팅|모두> 높이음|낮음|1-6. (별칭: 롤)",
-    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)",
+    "pokedex": "Show discovered Pokemon cards grouped by region."
   },
   "help_command_names": {
     "cast": "낚기",
@@ -261,7 +272,8 @@
     "status": "상태",
     "scramble": "섞기",
     "translate": "번역하다",
-    "slots": "slots"
+    "slots": "slots",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": [
@@ -360,6 +372,9 @@
     "slots": [
       "slot",
       "spin"
+    ],
+    "pokedex": [
+      "dex"
     ]
   }
 }

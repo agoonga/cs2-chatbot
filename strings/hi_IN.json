@@ -84,7 +84,13 @@
         "no_cases": "{player}: आपके पास खोलने के लिए कोई केस नहीं है।",
         "no_case_named": "आपके पास खोलने के लिए {case_name} नहीं है।",
         "invalid_case": "{case_name} वैध मामला नहीं है.",
-        "opened_case": "आपने {case_name} खोला और आपको {price} मूल्य का {item_name} मिला! आप इसे बेचें और परिवर्तन अपने पास रखें।"
+        "opened_case": "आपने {case_name} खोला और आपको {price} मूल्य का {item_name} मिला! आप इसे बेचें और परिवर्तन अपने पास रखें।",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: कृपया निरीक्षण के लिए एक आइटम निर्दिष्ट करें।",
@@ -201,6 +207,10 @@
       "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
       "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
       "lose": "No match. You lose ${bet:.2f}."
+    },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
     }
   },
   "errors": {
@@ -227,7 +237,8 @@
     "balance": "खिलाड़ी का वर्तमान संतुलन प्रदर्शित करें। (उर्फ: बाल, पैसा)",
     "top": "अर्थव्यवस्था में शीर्ष खिलाड़ियों को प्रदर्शित करें। (उर्फ: लीडरबोर्ड, शीर्ष खिलाड़ी)",
     "help": "किसी विशिष्ट कमांड के लिए उपलब्ध कमांड या सहायता की सूची प्रदर्शित करें। (उपनाम: आदेश)",
-    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)",
+    "pokedex": "Show discovered Pokemon cards grouped by region."
   },
   "help_command_names": {
     "cast": "ढालना",
@@ -261,7 +272,8 @@
     "status": "स्थिति",
     "scramble": "संघर्ष",
     "translate": "अनुवाद",
-    "slots": "slots"
+    "slots": "slots",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": [
@@ -367,6 +379,9 @@
     "slots": [
       "slot",
       "spin"
+    ],
+    "pokedex": [
+      "dex"
     ]
   }
 }

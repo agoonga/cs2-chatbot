@@ -96,7 +96,13 @@
         "no_cases": "{player}: Sinulla ei ole avattavia tapauksia.",
         "no_case_named": "Sinulla ei ole {case_name} avattavaa.",
         "invalid_case": "{case_name} ei ole kelvollinen tapaus.",
-        "opened_case": "Avasit {case_name} ja sait {item_name} arvoisen {price}! Myyt sen ja pussit vaihtorahasi."
+        "opened_case": "Avasit {case_name} ja sait {item_name} arvoisen {price}! Myyt sen ja pussit vaihtorahasi.",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: Määritä tarkastettava kohde.",
@@ -201,6 +207,10 @@
       "self_is_not": "{player}: En ole femboy ({chance}%)",
       "target_is": "{player}: {target} is a femboy ({chance}%)",
       "target_is_not": "{player}: {target} ei ole femboy ({chance}%)"
+    },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
     }
   },
   "errors": {
@@ -227,7 +237,8 @@
     "slots": "Pyöritä kolikkopeliä: kolikkopelit <panos|kaikki>. (alias: slot, spin)",
     "balance": "Näytä pelaajan nykyinen saldo. (alias: bal, raha)",
     "top": "Näytä talouden parhaat pelaajat. (alias: tulostaulukko, huippupelaajat)",
-    "help": "Näytä luettelo käytettävissä olevista komennoista tai tietyn komennon ohje. (alias: komennot)"
+    "help": "Näytä luettelo käytettävissä olevista komennoista tai tietyn komennon ohje. (alias: komennot)",
+    "pokedex": "Show discovered Pokemon cards grouped by region."
   },
   "help_command_names": {
     "cast": "heittää",
@@ -261,7 +272,8 @@
     "inventory": "inventaario",
     "status": "status",
     "scramble": "kömpiä",
-    "translate": "kääntää"
+    "translate": "kääntää",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": [
@@ -367,6 +379,9 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "pokedex": [
+      "dex"
     ]
   }
 }

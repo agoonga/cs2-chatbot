@@ -96,7 +96,13 @@
         "no_cases": "{player}: You have no cases to open.",
         "no_case_named": "You don't have a {case_name} to open.",
         "invalid_case": "{case_name} is not a valid case.",
-        "opened_case": "You opened a {case_name} and got a {item_name} worth {price}! You sell it and pocket the change."
+        "opened_case": "You opened a {case_name} and got a {item_name} worth {price}! You sell it and pocket the change.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit.",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: Please specify an item to inspect.",
@@ -143,6 +149,10 @@
       "usage_general": "{player}: Usage: @autosell [add|remove] <fish|all>, @autosell clear, or @autosell to list.",
       "add_all_success": "{player}: Enabled autosell for all fish types ({count})."
     },
+          "pokedex": {
+            "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+            "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
+          },
     "quest": {
       "system_not_available": "Quest system not available.",
       "next_available_in": "Next daily quest available in {time_remaining}",
@@ -234,6 +244,7 @@
     "dice": "Roll a dice (1-6) and bet on high (4-6), low (1-3), or an exact number. Usage: dice <bet|all> high|low|1-6. (alias: roll)",
     "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)",
     "balance": "Display the player's current balance. (alias: bal, money)",
+    "pokedex": "Show discovered Pokemon cards grouped by region.",
     "top": "Display the top players in the economy. (alias: leaderboard, topplayers)",
     "help": "Display the list of available commands or help for a specific command. (alias: commands)"
   },
@@ -269,7 +280,8 @@
     "inventory": "inventory",
     "status": "status",
     "scramble": "scramble",
-    "translate": "translate"
+    "translate": "translate",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": ["fish", "gofish"],
@@ -301,6 +313,7 @@
     "trophy": ["trophy"],
     "ship": ["ship"],
     "daily": ["quest"],
+    "pokedex": ["dex"],
     "scramble": ["scramble"],
     "translate": ["trans", "tl"]
   }

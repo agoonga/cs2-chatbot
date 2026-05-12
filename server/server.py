@@ -224,7 +224,7 @@ class BotServer:
                 cooldown_seconds, should_warn = self._check_spam_cooldown(normalized_session, playername)
                 if cooldown_seconds > 0:
                     responses = []
-                    if self._spam_remove_from_queue and should_warn:
+                    if self._spam_remove_from_queue:
                         responses.append({
                             "is_team": is_team,
                             "control": "remove_player_queue",

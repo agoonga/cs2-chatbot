@@ -96,7 +96,13 @@
         "no_cases": "{player}: אין לך תיקים לפתוח.",
         "no_case_named": "אין לך {case_name} לפתוח.",
         "invalid_case": "{case_name} אינו מקרה חוקי.",
-        "opened_case": "פתחת {case_name} וקיבלת {item_name} בשווי {price}! אתה מוכר את זה ומכיס את השינוי."
+        "opened_case": "פתחת {case_name} וקיבלת {item_name} בשווי {price}! אתה מוכר את זה ומכיס את השינוי.",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: נא לציין פריט לבדיקה.",
@@ -201,6 +207,10 @@
       "self_is_not": "{player}: אני לא femboy ({chance}%)",
       "target_is": "{player}: {target} הוא femboy ({chance}%)",
       "target_is_not": "{player}: {target} הוא לא femboy ({chance}%)"
+    },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
     }
   },
   "errors": {
@@ -227,7 +237,8 @@
     "slots": "סובב מכונת מזל: משבצות <bet|all>. (כינוי: משבצת, ספין)",
     "balance": "הצג את היתרה הנוכחית של השחקן. (כינוי: bal, כסף)",
     "top": "הצג את השחקנים המובילים במשק. (כינוי: leaderboard, שחקנים מובילים)",
-    "help": "הצג את רשימת הפקודות הזמינות או עזרה עבור פקודה ספציפית. (כינוי: פקודות)"
+    "help": "הצג את רשימת הפקודות הזמינות או עזרה עבור פקודה ספציפית. (כינוי: פקודות)",
+    "pokedex": "Show discovered Pokemon cards grouped by region."
   },
   "help_command_names": {
     "cast": "יָצוּק",
@@ -261,7 +272,8 @@
     "inventory": "מְלַאי",
     "status": "סטָטוּס",
     "scramble": "לִטרוֹף",
-    "translate": "לְתַרְגֵם"
+    "translate": "לְתַרְגֵם",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": [
@@ -367,6 +379,9 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "pokedex": [
+      "dex"
     ]
   }
 }

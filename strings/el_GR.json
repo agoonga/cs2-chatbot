@@ -96,7 +96,13 @@
         "no_cases": "{player}: Δεν έχετε θήκες να ανοίξετε.",
         "no_case_named": "Δεν έχετε {case_name} για άνοιγμα.",
         "invalid_case": "Η {case_name} δεν είναι έγκυρη περίπτωση.",
-        "opened_case": "Ανοίξατε ένα {case_name} και πήρατε ένα {item_name} αξίας {price}! Το πουλάς και τσέπης τα ρέστα."
+        "opened_case": "Ανοίξατε ένα {case_name} και πήρατε ένα {item_name} αξίας {price}! Το πουλάς και τσέπης τα ρέστα.",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: Προσδιορίστε ένα στοιχείο προς επιθεώρηση.",
@@ -201,6 +207,10 @@
       "self_is_not": "{player}: Δεν είμαι θηλυκός ({chance}%)",
       "target_is": "{player}: {target} είναι θηλυκό ({chance}%)",
       "target_is_not": "{player}: {target} δεν είναι θηλυκός ({chance}%)"
+    },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
     }
   },
   "errors": {
@@ -227,7 +237,8 @@
     "slots": "Περιστρέψτε έναν κουλοχέρη: κουλοχέρηδες <bet|all>. (ψευδώνυμο: υποδοχή, περιστροφή)",
     "balance": "Εμφάνιση του τρέχοντος υπολοίπου του παίκτη. (ψευδώνυμο: bal, χρήματα)",
     "top": "Εμφάνιση των κορυφαίων παικτών στην οικονομία. (ψευδώνυμο: leaderboard, topplayers)",
-    "help": "Εμφανίστε τη λίστα με τις διαθέσιμες εντολές ή βοήθεια για μια συγκεκριμένη εντολή. (ψευδώνυμο: εντολές)"
+    "help": "Εμφανίστε τη λίστα με τις διαθέσιμες εντολές ή βοήθεια για μια συγκεκριμένη εντολή. (ψευδώνυμο: εντολές)",
+    "pokedex": "Show discovered Pokemon cards grouped by region."
   },
   "help_command_names": {
     "cast": "εκμαγείο",
@@ -261,7 +272,8 @@
     "inventory": "καταγραφή εμπορευμάτων",
     "status": "κατάσταση",
     "scramble": "σκαρφάλωμα",
-    "translate": "μεταφράζω"
+    "translate": "μεταφράζω",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": [
@@ -367,6 +379,9 @@
     "translate": [
       "trans",
       "tl"
+    ],
+    "pokedex": [
+      "dex"
     ]
   }
 }

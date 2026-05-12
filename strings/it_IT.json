@@ -128,7 +128,13 @@
         "no_cases": "{player}: Non hai casi da aprire.",
         "no_case_named": "Non hai un {case_name} da aprire.",
         "invalid_case": "{case_name} non è un caso valido.",
-        "opened_case": "Hai aperto un {case_name} e hai ottenuto un {item_name} del valore di {price}! Lo vendi e intaschi il resto."
+        "opened_case": "Hai aperto un {case_name} e hai ottenuto un {item_name} del valore di {price}! Lo vendi e intaschi il resto.",
+        "opened_pokemon_pack": "You opened {case_name} and pulled {item_name} ({rarity}) from {set_name} worth ${price:.2f}!",
+        "good_card_hit": "GOOD CARD HIT!",
+        "api_error": "Couldn't reach card data service right now. Try opening again in a bit.",
+        "opened_cs_case": "You opened {case_name} and pulled {item_name} ({rarity}) worth ${price:.2f}!",
+        "knife_hit": "KNIFE HIT!",
+        "cs_api_error": "Couldn't reach case data service right now. Try opening again in a bit."
       },
       "inspect": {
         "specify_item": "{player}: specifica un articolo da controllare.",
@@ -201,6 +207,10 @@
       "win_three": "JACKPOT! Three of a kind. You win ${win_amount:.2f}!",
       "win_two": "Nice! Two matching symbols. You win ${win_amount:.2f}!",
       "lose": "No match. You lose ${bet:.2f}."
+    },
+    "pokedex": {
+      "empty": "{player}: Your Pokedex is empty. Open some Pokemon packs first.",
+      "summary": "{player}: Pokedex discovered {total} unique cards. By region: {regions}"
     }
   },
   "errors": {
@@ -227,7 +237,8 @@
     "top": "Mostra i migliori giocatori in economia. (alias: leaderboard, topplayers)",
     "help": "Mostra la lista dei comandi disponibili o aiuto per un comando. (alias: commands)",
     "flip": "Lancia una moneta per scommettere un importo o \"tutto\" per il tuo saldo. (alias: scommessa, coinflip)",
-    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)"
+    "slots": "Spin a slot machine: slots <bet|all>. (alias: slot, spin)",
+    "pokedex": "Show discovered Pokemon cards grouped by region."
   },
   "help_command_names": {
     "cast": "pescare",
@@ -261,7 +272,8 @@
     "scramble": "mischia",
     "dice": "papà",
     "translate": "tradurre",
-    "slots": "slots"
+    "slots": "slots",
+    "pokedex": "pokedex"
   },
   "command_aliases": {
     "cast": [
@@ -359,6 +371,9 @@
     "slots": [
       "slot",
       "spin"
+    ],
+    "pokedex": [
+      "dex"
     ]
   }
 }

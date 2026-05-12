@@ -62,5 +62,13 @@
         "effects": [
             "fishing.miss_rate_10"
         ]
+    },
+    {
+        "name": "Camel Crush Menthol",
+        "description": "Click the capsule and chase fish with icy confidence.",
+        "price": 11.99,
+        "effects": [
+            "fishing.catch_rate_20"
+        ]
     }
 ]
