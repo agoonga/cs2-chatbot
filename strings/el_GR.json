@@ -1,0 +1,372 @@
+{
+  "commands": {
+    "fishing": {
+      "cast_success_fish": "Ο {player} έπιασε ένα {name} βάρους {weight} λίβρες αξίας {price} $!",
+      "cast_success_autosold": "Ο {player} έπιασε ένα {name}, πωλήθηκε αυτόματα για {price} $!",
+      "empty_line": "{player}: Κυκλοφορείτε σε μια κενή γραμμή.",
+      "sack_limit_reached": "Ο σάκος σας χωράει μόνο {sack_size} ψάρια.",
+      "sold_all_fish": "Πουλήσατε όλα τα ψάρια σας για συνολικά {total_earnings:.2f} $! Το νέο υπόλοιπό σας είναι {new_balance:.2f} $.",
+      "module_not_found": "{player}: Η μονάδα ψαρέματος δεν βρέθηκε.",
+      "sack_contents": "Ο σάκος του {player} περιέχει: {contents}",
+      "sack_empty": "{player}: Ο σάκος σας είναι άδειος.",
+      "sack_module_not_found": "{player}: Η μονάδα ψαρέματος δεν βρέθηκε.",
+      "eat_module_not_found": "{player}: Η μονάδα ψαρέματος δεν βρέθηκε.",
+      "sell_module_not_found": "{player}: Η μονάδα ψαρέματος δεν βρέθηκε.",
+      "bait_no_bait_set": "{player}: Δεν έχετε σετ δολώματος.",
+      "bait_cleared": "{player}: Το δόλωμα καθαρίστηκε.",
+      "bait_module_not_found": "{player}: Η μονάδα ψαρέματος δεν βρέθηκε.",
+      "bait_sack_empty": "{player}: Ο σάκος σας είναι άδειος.",
+      "sell_all_sack_empty": "Ο σάκος σας είναι άδειος. Δεν έχεις ψάρι να πουλήσεις.",
+      "sell_sack_empty": "Ο σάκος σας είναι άδειος.",
+      "sell_fish_not_found": "Δεν βρέθηκαν \"{name}\" στον σάκο σας.",
+      "sold_single_fish": "Πουλήσατε ένα {name} για {price:.2f} $! Το νέο σας υπόλοιπο είναι {new_balance:.2f} $.",
+      "eat_sack_empty": "Ο σάκος σας είναι άδειος.",
+      "eat_fish_not_found": "Δεν βρέθηκαν \"{name}\" στον σάκο σας.",
+      "ate_fish": "Έφαγες το ψάρι.",
+      "bait_no_fish_to_use": "Ο σάκος σας είναι άδειος. Δεν έχετε ψάρι να χρησιμοποιήσετε ως δόλωμα.",
+      "bait_not_found": "Δεν βρέθηκαν \"{bait_name}\" στον σάκο σας.",
+      "bait_set_next": "Θα χρησιμοποιήσετε ένα {bait_name} ως δόλωμα για τα επόμενα αλιεύματά σας.",
+      "bait_already_set": "Έχετε ήδη ένα σετ δολώματος: {bait_name}."
+    },
+    "drink": {
+      "module_not_found": "{player}: Η μονάδα μπύρας δεν βρέθηκε.",
+      "no_beer": "{player}: Δεν έχεις μπύρα να πιεις.",
+      "beer_not_found": "Η μπύρα '{beer}' δεν βρέθηκε.",
+      "no_beer_named": "Δεν έχετε {beer_name} να πιείτε.",
+      "drank": "Πίνεις ένα {beer_name}. ({effects})"
+    },
+    "flip": {
+      "module_not_found": "{player}: Η μονάδα καζίνο δεν βρέθηκε.",
+      "no_balance": "{player}: Δεν έχετε υπόλοιπο για να παίξετε.",
+      "invalid_amount": "{player}: Μη έγκυρο ποσό. Εισαγάγετε έναν έγκυρο αριθμό.",
+      "amount_must_be_positive": "Δεν υπάρχει περίπτωση jose, διάλεξε έναν αριθμό μεγαλύτερο από 0.",
+      "insufficient_funds": "Ανεπαρκή κεφάλαια. Το τρέχον υπόλοιπό σας είναι {current_balance:.2f} $.",
+      "win_heads": "Γύρισες κεφάλια και κέρδισες {amount:.2f} $! Το νέο σας υπόλοιπο είναι {new_balance:.2f} $.{chance_suffix}",
+      "lose_tails": "Γύρισες ουρές και έχασες {amount:.2f} $. Το νέο σας υπόλοιπο είναι {new_balance:.2f} $.{chance_suffix}"
+    },
+    "blackjack": {
+      "module_not_found": "{player}: Η μονάδα καζίνο δεν βρέθηκε.",
+      "usage": "{player}: Χρήση: blackjack <bet|all> | χτύπημα blackjack | stand blackjack | διπλό μπλάκτζακ",
+      "invalid_amount": "Μη έγκυρο ποσό. Εισαγάγετε έναν έγκυρο αριθμό.",
+      "amount_must_be_positive": "Το στοίχημα πρέπει να είναι μεγαλύτερο από 0.",
+      "insufficient_funds": "Ανεπαρκή κεφάλαια. Το τρέχον υπόλοιπό σας είναι {current_balance:.2f} $.",
+      "double_not_allowed": "Μπορείτε να διπλασιάσετε μόνο ως την πρώτη σας κίνηση.",
+      "game_already_active": "Έχετε ήδη ένα ενεργό χέρι blackjack σε αυτή τη συνεδρία.",
+      "started": "Το Blackjack ξεκίνησε. Στοίχημα: {bet:.2f} $. Το χέρι σας: {player_hand} ({player_value}). Αντιπρόσωπος: {dealer_up}, ?",
+      "no_active_game": "Δεν έχετε ενεργό χέρι blackjack σε αυτή τη συνεδρία.",
+      "hit": "Ζωγραφίζεις. Το χέρι σας: {player_hand} ({player_value}). Αντιπρόσωπος: {dealer_up}, ?",
+      "bust": "Προτομή. Το χέρι σας: {player_hand} ({player_value}). Χάνετε {bet:.2f} $. Υπόλοιπο: {new_balance:.2f} $.",
+      "stand_result": "{result} Το χέρι σας: {player_hand} ({player_value}). Χέρι αντιπροσώπου: {dealer_hand} ({dealer_value}). Υπόλοιπο: {new_balance:.2f} $.",
+      "win": "Κερδίζετε {win_amount:.2f} $!",
+      "lose": "Χάνετε {bet:.2f} $.",
+      "push": "Σπρώξτε. Το στοίχημά σας επιστρέφεται.",
+      "push_blackjack": "Σπρώξτε. Τόσο εσείς όσο και ο ντίλερ έχετε blackjack. Το στοίχημά σας επιστρέφεται. Υπόλοιπο: {new_balance:.2f} $.",
+      "player_blackjack": "Κοντό ρόπαλο δεμένο με λουρί! Κερδίζετε {win_amount:.2f} $. Υπόλοιπο: {new_balance:.2f} $.",
+      "dealer_blackjack": "Ο ντίλερ έχει μπλάκτζακ. Χάνετε {bet:.2f} $. Υπόλοιπο: {new_balance:.2f} $."
+    },
+    "dice": {
+      "module_not_found": "{player}: Η μονάδα καζίνο δεν βρέθηκε.",
+      "usage": "{player}: Χρήση: ζάρια <στοίχημα|όλα> υψηλό|χαμηλό|1-6",
+      "invalid_bet": "{player}: Μη έγκυρο ποσό στοιχήματος.",
+      "amount_must_be_positive": "Το στοίχημα πρέπει να είναι μεγαλύτερο από 0.",
+      "insufficient_funds": "Ανεπαρκή κεφάλαια. Το τρέχον υπόλοιπό σας είναι {current_balance:.2f} $.",
+      "no_balance": "{player}: Δεν έχετε υπόλοιπο για να παίξετε.",
+      "invalid_guess": "Άκυρη εικασία. Χρησιμοποιήστε «υψηλό», «χαμηλό» ή έναν αριθμό 1-6.",
+      "rolled": "Έλαψε {roll}. Μαντέψαμε {guess}. {result} Υπόλοιπο: {new_balance:.2f} $.",
+      "win": "Κερδίζετε {win_amount:.2f} $!",
+      "lose": "Χάνετε {bet:.2f} $."
+    },
+    "slots": {
+      "module_not_found": "{player}: Η μονάδα καζίνο δεν βρέθηκε.",
+      "usage": "{player}: Χρήση: κουλοχέρηδες <bet|all>",
+      "invalid_amount": "{player}: Μη έγκυρο ποσό. Εισαγάγετε έναν έγκυρο αριθμό.",
+      "amount_must_be_positive": "Το στοίχημα πρέπει να είναι μεγαλύτερο από 0.",
+      "insufficient_funds": "Ανεπαρκή κεφάλαια. Το τρέχον υπόλοιπό σας είναι {current_balance:.2f} $.",
+      "no_balance": "{player}: Δεν έχετε υπόλοιπο για να παίξετε.",
+      "spun": "Κουλοχέρηδες: [{reels}] {result} Υπόλοιπο:{new_balance:.2f} $.",
+      "win_three": "ΣΥΝΟΛΟ ΣΤΟΙΧΗΜΑΤΩΝ! Τρεις στο είδος τους. Κερδίζετε {win_amount:.2f} $!",
+      "win_two": "Ομορφη! Δύο σύμβολα που ταιριάζουν. Κερδίζετε {win_amount:.2f} $!",
+      "lose": "Κανένα ταίρι. Χάνετε {bet:.2f} $."
+    },
+    "inventory": {
+      "module_not_found": "{player}: Η μονάδα αποθέματος δεν βρέθηκε.",
+      "empty": "{player}: Ψάχνοντας το απόθεμά σας, δεν βρίσκετε τίποτα άλλο εκτός από σκόνη.",
+      "contents": "απόθεμα {player}: {items}",
+      "open": {
+        "no_cases": "{player}: Δεν έχετε θήκες να ανοίξετε.",
+        "no_case_named": "Δεν έχετε {case_name} για άνοιγμα.",
+        "invalid_case": "Η {case_name} δεν είναι έγκυρη περίπτωση.",
+        "opened_case": "Ανοίξατε ένα {case_name} και πήρατε ένα {item_name} αξίας {price}! Το πουλάς και τσέπης τα ρέστα."
+      },
+      "inspect": {
+        "specify_item": "{player}: Προσδιορίστε ένα στοιχείο προς επιθεώρηση.",
+        "default_description": "{player}: Μια πρώτης τάξεως {item_name}."
+      }
+    },
+    "scramble": {
+      "module_not_found": "{player}: Η μονάδα κωδικοποίησης δεν βρέθηκε.",
+      "start": "Κερδίζει το πρώτο άτομο που ξεμπερδεύει τη λέξη: {word}",
+      "winner": "Ο {player} κατάργησε σωστά τη λέξη '{word}' και κερδίζει 100 $!"
+    },
+    "translate": {
+      "label": "μετάφραση",
+      "usage": "Χρήση: !translate <σε> <κείμενο> | !μετάφραση <από> <σε> <κείμενο> | >σε κείμενο | >από το κείμενο",
+      "unknown_lang": "Άγνωστη γλώσσα '{lang}'. Δοκιμάστε: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
+      "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
+      "error": "Η μετάφραση απέτυχε. Δοκιμάστε ξανά.",
+      "no_last_message": "No recent message to translate. Send a chat message first."
+    },
+    "smoke": {
+      "module_not_found": "{player}: Η μονάδα καπνού δεν βρέθηκε.",
+      "no_tobacco": "{player}: Δεν έχεις καπνό να τσιμπήσεις.",
+      "tobacco_not_found": "Ο καπνός '{tobacco}' δεν βρέθηκε.",
+      "no_tobacco_named": "Δεν έχετε {tobacco_name} για να τσιμπήσετε.",
+      "smoked": "Σουφάζεις ένα {tobacco_name}. ({effects})"
+    },
+    "link": {
+      "module_not_found": "{player}: Η μονάδα σύνδεσης λογαριασμού δεν βρέθηκε.",
+      "code_generated": "{player}: Χρησιμοποιήστε τον κωδικό {code} για να συνδέσετε έναν άλλο λογαριασμό. Ο κωδικός λήγει σε {minutes} λεπτά.",
+      "no_linked_accounts": "{player}: Δεν βρέθηκαν συνδεδεμένοι λογαριασμοί.",
+      "linked_accounts": "συνδεδεμένοι λογαριασμοί του {player}: {accounts}",
+      "invalid_code": "Μη έγκυρος κωδικός. Ελέγξτε και δοκιμάστε ξανά.",
+      "code_expired": "Ο κωδικός έχει λήξει. Δημιουργήστε ένα νέο.",
+      "cannot_link_self": "Δεν είναι δυνατή η σύνδεση ενός λογαριασμού στον εαυτό του.",
+      "already_linked_different_ids": "Δεν είναι δυνατή η σύνδεση λογαριασμών που είναι ήδη συνδεδεμένοι με διαφορετικά αναγνωριστικά λογαριασμού.",
+      "success": "Επιτυχής σύνδεση {target_platform} χρήστη \"{target_identifier}\" με {source_platform} χρήστη \"{source_identifier}\"."
+    },
+    "autosell": {
+      "module_not_found": "{player}: Η μονάδα ψαρέματος δεν βρέθηκε.",
+      "list_empty": "{player}: Η λίστα αυτόματης πώλησης είναι κενή.",
+      "list": "{player}: Αυτόματη πώληση ψαριών: {fish_list}",
+      "usage_add": "{player}: Χρήση: @autosell προσθήκη <fish|all>",
+      "usage_remove": "{player}: Χρήση: @autosell αφαιρέστε το <fish>",
+      "usage_general": "{player}: Χρήση: @autosell [προσθήκη|κατάργηση] <fish|all>, @autosell διαγραφή ή @autosell στη λίστα.",
+      "add_all_success": "{player}: Ενεργοποιημένη αυτόματη πώληση για όλους τους τύπους ψαριών ({count})."
+    },
+    "quest": {
+      "system_not_available": "Το σύστημα αναζήτησης δεν είναι διαθέσιμο.",
+      "next_available_in": "Η επόμενη ημερήσια αποστολή διαθέσιμη σε {time_remaining}",
+      "no_daily_available": "Δεν υπάρχει διαθέσιμη καθημερινή αποστολή."
+    },
+    "ship": {
+      "provide_name": "{player}: Δώστε ένα όνομα για αποστολή!",
+      "compatibility": "Τα {player} και {target} είναι {compatibility}% συμβατά!"
+    },
+    "status": {
+      "module_not_found": "{player}: Η λειτουργική μονάδα εφέ κατάστασης δεν βρέθηκε.",
+      "no_effects": "{player}: Δεν έχετε εφέ ενεργής κατάστασης.",
+      "effects_list": "εφέ κατάστασης του {player}: {effects}"
+    },
+    "trophy": {
+      "module_not_loaded": "Η μονάδα Trophy δεν έχει φορτωθεί.",
+      "empty_case": "{player}: Η τροπαιοθήκη σας είναι άδεια. Χρησιμοποιήστε το trophy add <fish_name> για να προσθέσετε ψάρια!",
+      "usage_add": "{player}: Χρήση: προσθήκη τροπαίου <fish_name>",
+      "usage_remove": "{player}: Χρήση: αφαίρεση τροπαίου <αριθμός>",
+      "number_must_be_numeric": "{player}: Ο αριθμός του τροπαίου πρέπει να είναι αριθμός.",
+      "unknown_subcommand": "{player}: Άγνωστη υποεντολή. Χρήση: trophy [προσθήκη <fish_name> | αφαίρεση <αριθμός>]"
+    },
+    "shop": {
+      "available_categories": "{player}: Διαθέσιμες κατηγορίες: {categories}",
+      "no_items_available": "{player}: Δεν υπάρχουν διαθέσιμα προϊόντα στο κατάστημα.",
+      "shop_items": "{player}: Διαθέσιμα είδη καταστήματος: {items}",
+      "item_entry": "{item_name} (${item_price:.2f})",
+      "item_entry_with_max": "{item_name} (${item_price:.2f}, μέγ.: {item_max})",
+      "module_not_found": "{player}: Η μονάδα καταστήματος δεν βρέθηκε.",
+      "buy_no_item_specified": "{player}: Προσδιορίστε ένα είδος προς αγορά.",
+      "buy_module_not_found": "{player}: Η μονάδα καταστήματος δεν βρέθηκε.",
+      "rods_shortcut_help": "Δείτε τα διαθέσιμα καλάμια ψαρέματος στο κατάστημα.",
+      "invalid_quantity": "Μη έγκυρη ποσότητα.",
+      "item_not_found": "Ο καταστηματάρχης αναστενάζει και λέει: «Δεν έχω αυτό το αντικείμενο».",
+      "max_quantity_reached": "Μπορείτε να έχετε μόνο {max_count} αυτού του στοιχείου κάθε φορά.",
+      "insufficient_funds": "Ο καταστηματάρχης λέει: \"Δεν είναι πολύ πλούσιο για το αίμα σου;\"",
+      "purchase_success": "Αγοράσατε {quantity} x '{item_name}'. Το νέο σας υπόλοιπο είναι {money_left} $.",
+      "purchase_processing_error": "Σφάλμα κατά την επεξεργασία της αγοράς: {error}",
+      "category_not_found": "Η κατηγορία δεν βρέθηκε. Διαθέσιμες κατηγορίες: {categories}",
+      "no_items_in_category": "Δεν υπάρχουν διαθέσιμα στοιχεία σε αυτήν την κατηγορία.",
+      "nothing_for_you": "Ο καταστηματάρχης λέει: «Δεν έχω τίποτα για σένα»."
+    },
+    "economy": {
+      "balance_response": "{player}, το τρέχον υπόλοιπό σας είναι {balance} $.",
+      "top_players_list": "{player}: Κορυφαίοι παίκτες: {list}",
+      "top_no_players": "{player}: Δεν βρέθηκαν παίκτες.",
+      "module_not_found": "{player}: Δεν βρέθηκε η οικονομική μονάδα."
+    },
+    "help": {
+      "no_help_available": "{player}: Δεν υπάρχει διαθέσιμη βοήθεια για το '{command}'.",
+      "available_commands": "{player}: Διαθέσιμες εντολές: {list}",
+      "module_not_found": "{player}: Η μονάδα βοήθειας δεν βρέθηκε."
+    },
+    "femboy": {
+      "self_is": "{player}: Είμαι θηλυκός ({chance}%)",
+      "self_is_not": "{player}: Δεν είμαι θηλυκός ({chance}%)",
+      "target_is": "{player}: {target} είναι θηλυκό ({chance}%)",
+      "target_is_not": "{player}: {target} δεν είναι θηλυκός ({chance}%)"
+    }
+  },
+  "errors": {
+    "module_not_found": "Η ενότητα δεν βρέθηκε: {module}",
+    "command_not_found": "{player}: Η εντολή '{command}' δεν βρέθηκε.",
+    "command_not_found_with_suggestion": "{player}: Η εντολή '{command}' δεν βρέθηκε. Μήπως εννοούσατε '{suggestion}';",
+    "spam_cooldown": "{player}: Σιγά σιγά. Βρίσκεστε σε κατάσταση αναμονής για {seconds}s.",
+    "invalid_input": "Μη έγκυρη εισαγωγή",
+    "insufficient_funds": "Ανεπαρκή κεφάλαια",
+    "item_not_found": "Το στοιχείο δεν βρέθηκε"
+  },
+  "help_texts": {
+    "cast": "Ρίξτε το καλάμι σας για να πιάσετε ένα ψάρι ή ένα αντικείμενο. (ψευδώνυμο: ψάρι, gofish)",
+    "sack": "Εμφανίστε το περιεχόμενο του σάκου ψαρέματός σας. (ψευδώνυμο: τσάντα)",
+    "eat": "Φάε ένα ψάρι από το τσουβάλι σου.",
+    "sell": "Πουλήστε ένα ψάρι από το σάκο σας ή «όλα» ψάρια.",
+    "bait": "Χρησιμοποιήστε ένα ψάρι ως δόλωμα για να αυξήσετε τις πιθανότητές σας να πιάσετε ένα μεγαλύτερο. 'τελευταίο' για να χρησιμοποιήσετε το τελευταίο ψάρι στο σάκο σας, 'καθαρό' για να καθαρίσετε το δόλωμα.",
+    "shop": "Καταχωρίστε τις διαθέσιμες κατηγορίες και τα είδη στο \"κατάστημα <κατηγορία>\".",
+    "buy": "Αγοράστε ένα αντικείμενο από το κατάστημα.",
+    "rods": "Δείτε τα διαθέσιμα καλάμια ψαρέματος στο κατάστημα.",
+    "flip": "Στρέψτε ένα νόμισμα για να στοιχηματίσετε ένα ποσό ή «όλα» για το υπόλοιπό σας. (ψευδώνυμο: τζόγος, κέρμα)",
+    "blackjack": "Παίξτε blackjack για έναν παίκτη: blackjack <bet|all>, blackjack hit, blackjack stand, blackjack double.",
+    "dice": "Ρίξτε ένα ζάρι (1-6) και ποντάρετε σε υψηλό (4-6), χαμηλό (1-3) ή έναν ακριβή αριθμό. Χρήση: ζάρια <στοίχημα|όλα> υψηλό|χαμηλό|1-6. (ψευδώνυμο: ρολό)",
+    "slots": "Περιστρέψτε έναν κουλοχέρη: κουλοχέρηδες <bet|all>. (ψευδώνυμο: υποδοχή, περιστροφή)",
+    "balance": "Εμφάνιση του τρέχοντος υπολοίπου του παίκτη. (ψευδώνυμο: bal, χρήματα)",
+    "top": "Εμφάνιση των κορυφαίων παικτών στην οικονομία. (ψευδώνυμο: leaderboard, topplayers)",
+    "help": "Εμφανίστε τη λίστα με τις διαθέσιμες εντολές ή βοήθεια για μια συγκεκριμένη εντολή. (ψευδώνυμο: εντολές)"
+  },
+  "help_command_names": {
+    "cast": "εκμαγείο",
+    "sack": "σάκος",
+    "eat": "φάω",
+    "sell": "πωλώ",
+    "bait": "δόλωμα",
+    "sellall": "πουλήσει",
+    "shop": "κατάστημα",
+    "buy": "αγορά",
+    "rods": "ράβδους",
+    "smoke": "καπνός",
+    "drink": "ποτό",
+    "open": "ανοιχτό",
+    "inspect": "ελέγχω",
+    "autosell": "αυτόματη πώληση",
+    "link": "σύνδεσμος",
+    "linked": "συνδεδεμένο",
+    "flip": "αναρρίπτω",
+    "blackjack": "κοντό ρόπαλο δεμένο με λουρί",
+    "dice": "ζάρια",
+    "slots": "κουλοχέρηδες",
+    "trophy": "τρόπαιο",
+    "ship": "πλοίο",
+    "femboy": "femboy",
+    "daily": "καθημερινά",
+    "quest": "αναζήτηση",
+    "balance": "ισορροπία",
+    "top": "κορυφή",
+    "help": "βοήθεια",
+    "inventory": "καταγραφή εμπορευμάτων",
+    "status": "κατάσταση",
+    "scramble": "σκαρφάλωμα",
+    "translate": "μεταφράζω"
+  },
+  "command_aliases": {
+    "cast": [
+      "fish",
+      "gofish"
+    ],
+    "sack": [
+      "bag"
+    ],
+    "eat": [
+      "eat"
+    ],
+    "sell": [
+      "sell"
+    ],
+    "bait": [
+      "bait"
+    ],
+    "sellall": [
+      "sellall"
+    ],
+    "shop": [
+      "shop"
+    ],
+    "buy": [
+      "buy"
+    ],
+    "rods": [
+      "rods"
+    ],
+    "balance": [
+      "bal",
+      "money"
+    ],
+    "top": [
+      "leaderboard",
+      "topplayers"
+    ],
+    "help": [
+      "commands",
+      "cmds"
+    ],
+    "link": [
+      "link"
+    ],
+    "linked": [
+      "accounts"
+    ],
+    "quest": [
+      "quest"
+    ],
+    "autosell": [
+      "autosell"
+    ],
+    "inventory": [
+      "inventory",
+      "inv"
+    ],
+    "open": [
+      "open",
+      "case"
+    ],
+    "inspect": [
+      "inspect"
+    ],
+    "drink": [
+      "beer",
+      "sip"
+    ],
+    "smoke": [
+      "chuff",
+      "pack"
+    ],
+    "flip": [
+      "gamble",
+      "coinflip"
+    ],
+    "blackjack": [
+      "bj"
+    ],
+    "dice": [
+      "roll"
+    ],
+    "slots": [
+      "slot",
+      "spin"
+    ],
+    "status": [
+      "effects"
+    ],
+    "trophy": [
+      "trophy"
+    ],
+    "ship": [
+      "ship"
+    ],
+    "daily": [
+      "quest"
+    ],
+    "scramble": [
+      "scramble"
+    ],
+    "translate": [
+      "trans",
+      "tl"
+    ]
+  }
+}

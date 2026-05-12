@@ -187,7 +187,8 @@
       "unknown_lang": "Nieznany język „{lang}”. Spróbuj: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, cześć",
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "Tłumaczenie nie powiodło się. Spróbuj ponownie.",
-      "label": "tłumaczenie"
+      "label": "tłumaczenie",
+      "no_last_message": "No recent message to translate. Send a chat message first."
     },
     "slots": {
       "module_not_found": "{player}: Casino module not found.",

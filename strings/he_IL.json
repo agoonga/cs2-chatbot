@@ -113,7 +113,8 @@
       "usage": "שימוש: !תרגם <to> <טקסט> | !תרגם <from> <to> <text> | >לסמס | > מהטקסט",
       "unknown_lang": "שפה לא ידועה '{lang}'. נסה: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
-      "error": "התרגום נכשל. אנא נסה שוב."
+      "error": "התרגום נכשל. אנא נסה שוב.",
+      "no_last_message": "No recent message to translate. Send a chat message first."
     },
     "smoke": {
       "module_not_found": "{player}: מודול טבק לא נמצא.",

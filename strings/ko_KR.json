@@ -187,7 +187,8 @@
       "unknown_lang": "알 수 없는 언어 '{lang}'. 다음을 시도해 보세요. en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "번역에 실패했습니다. 다시 시도해 주세요.",
-      "label": "번역"
+      "label": "번역",
+      "no_last_message": "No recent message to translate. Send a chat message first."
     },
     "slots": {
       "module_not_found": "{player}: Casino module not found.",

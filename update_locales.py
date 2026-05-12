@@ -16,7 +16,7 @@ mapping = {
     "de_DE": "de", "es_ES": "es", "fr_FR": "fr", "it_IT": "it",
     "ja_JP": "ja", "ko_KR": "ko", "nl_NL": "nl", "pl_PL": "pl",
     "pt_BR": "pt", "ru_RU": "ru", "sv_SE": "sv", "tr_TR": "tr",
-    "zh_CN": "zh-CN", "hi_IN": "hi"
+    "zh_CN": "zh-CN", "hi_IN": "hi", "el_GR": "el"
 }
 
 def get_nested_value(data, key_path):

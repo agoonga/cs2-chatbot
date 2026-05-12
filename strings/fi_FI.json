@@ -113,7 +113,8 @@
       "usage": "Käyttö: !käännä <to> <teksti> | !käännä <from> <to> <text> | >tekstiksi | > tekstistä",
       "unknown_lang": "Tuntematon kieli '{lang}'. Kokeile: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hei",
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
-      "error": "Käännös epäonnistui. Yritä uudelleen."
+      "error": "Käännös epäonnistui. Yritä uudelleen.",
+      "no_last_message": "No recent message to translate. Send a chat message first."
     },
     "smoke": {
       "module_not_found": "{player}: Tupakkamoduulia ei löydy.",

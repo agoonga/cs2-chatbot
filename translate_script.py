@@ -17,7 +17,8 @@ LOCALE_MAP = {
     "zh_CN": "zh-CN",
     "zh_TW": "zh-TW",
     "pt_BR": "pt",
-    "es_ES": "es"
+    "es_ES": "es",
+    "el_GR": "el"
 }
 
 def get_nested(data, key):

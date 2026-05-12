@@ -20,6 +20,7 @@ _LANG_MAP = {
     "hi": "hi", "hindi": "hi",
     "he": "iw", "hebrew": "iw", "iw": "iw",
     "fi": "fi", "finnish": "fi",
+    "el": "el", "greek": "el",
     "sg": "en",
 }
 
@@ -48,6 +49,8 @@ _TARGET_LOCALE_MAP = {
     "hebrew": "he_IL",
     "fi": "fi_FI",
     "finnish": "fi_FI",
+    "el": "el_GR",
+    "greek": "el_GR",
 }
 
 

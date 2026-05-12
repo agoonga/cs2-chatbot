@@ -27,6 +27,7 @@ LANG_MAP = {
     "hi_IN": "hi",
     "he_IL": "iw",
     "fi_FI": "fi",
+    "el_GR": "el",
 }
 
 PLACEHOLDER_RE = re.compile(r"\{[^{}]+\}")

@@ -187,7 +187,8 @@
       "unknown_lang": "Onbekende taal '{lang}'. Probeer: en, zh, es, fr, de, it, nl, ru, ja, tr, sv, ko, pl, pt, hi",
       "result": "{player}: ({label} {from_lang}→{to_lang}) {result}",
       "error": "Vertaling mislukt. Probeer het opnieuw.",
-      "label": "vertaling"
+      "label": "vertaling",
+      "no_last_message": "No recent message to translate. Send a chat message first."
     },
     "slots": {
       "module_not_found": "{player}: Casino module not found.",

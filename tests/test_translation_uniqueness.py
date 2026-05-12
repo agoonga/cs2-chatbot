@@ -26,6 +26,7 @@ LOCALES = [
     "hi_IN",
     "he_IL",
     "fi_FI",
+    "el_GR",
 ]
 
 
